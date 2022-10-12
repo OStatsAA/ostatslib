@@ -55,7 +55,7 @@ jobs:
             # Unique keys of your project and organization. You can find them in SonarCloud > Information (bottom-left menu)
             # mandatory
             -Dsonar.projectKey=OStatsAA_ostatslib
-            -Dsonar.organization=ostatslib
+            -Dsonar.organization=ostatsaa
             -Dsonar.python.version=3
             -Dsonar.tests=tests
             -Dsonar.sources=ostatslib

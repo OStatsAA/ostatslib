@@ -1,0 +1,2 @@
+# ostatslib
+Open Statistics Library

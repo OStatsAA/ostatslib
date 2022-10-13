@@ -18,5 +18,5 @@ class DataFeaturesSet:
     is_response_quantitative: bool = False
     is_response_dichotomous: bool = False
     variables_features_set: Dict[str, VariableFeaturesSet] = field(
-        default_factory= dict()
+        default_factory= {}
     )

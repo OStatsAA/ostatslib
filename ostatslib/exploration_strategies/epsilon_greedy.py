@@ -27,5 +27,5 @@ class EpsilonGreedy(ExplorationStrategy):
         prob = random()
         if prob < self.__epsilon:
             return choice(actions_list)
-        else:
-            return model.predict(state)
+
+        return model.predict(state)

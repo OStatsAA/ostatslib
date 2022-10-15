@@ -19,7 +19,8 @@ class ExplorationStrategy(ABC):
                    state: State,
                    actions_list: list[str],
                    agent_memory: ReplayMemory) -> str:
-        """Gets actions according to exploration strategy
+        """
+        Gets actions according to exploration strategy
 
         Args:
             model (object): _description_

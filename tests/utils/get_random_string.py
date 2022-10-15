@@ -1,3 +1,7 @@
+"""
+get_random_string function module
+"""
+
 import random
 import string
 

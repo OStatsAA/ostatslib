@@ -4,8 +4,8 @@ ExplorationStrategy module
 
 from abc import ABC, abstractmethod
 from ostatslib.agents.model import Model
-from ostatslib.agents.replay_memory import ReplayMemory
-from ostatslib.environments.state import State
+from ostatslib.replay_memories.replay_memory import ReplayMemory
+from ostatslib.states.state import State
 
 
 class ExplorationStrategy(ABC):

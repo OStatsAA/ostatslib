@@ -4,8 +4,8 @@ EpsilonGreedy class module
 
 from random import random, choice
 from ostatslib.agents.model import Model
-from ostatslib.agents.replay_memory import ReplayMemory
-from ostatslib.environments.state import State
+from ostatslib.replay_memories import ReplayMemory
+from ostatslib.states.state import State
 from .exploration_strategy import ExplorationStrategy
 
 

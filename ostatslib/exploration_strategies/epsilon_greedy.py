@@ -3,7 +3,9 @@ EpsilonGreedy class module
 """
 
 from random import random, choice
-from typing import Any, Dict
+from ostatslib.agents.model import Model
+from ostatslib.agents.replay_memory import ReplayMemory
+from ostatslib.environments.state import State
 from .exploration_strategy import ExplorationStrategy
 
 
@@ -18,10 +20,10 @@ class EpsilonGreedy(ExplorationStrategy):
         self.__epsilon = epsilon
 
     def get_action(self,
-                   model: Any,
-                   state: dict,
+                   model: Model,
+                   state: State,
                    actions_list: list[str],
-                   agent_memory: Dict) -> str:
+                   agent_memory: ReplayMemory) -> str:
         prob = random()
         if prob < self.__epsilon:
             return choice(actions_list)

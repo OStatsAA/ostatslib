@@ -3,7 +3,9 @@ ExplorationStrategy module
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict
+from ostatslib.agents.model import Model
+from ostatslib.agents.replay_memory import ReplayMemory
+from ostatslib.environments.state import State
 
 
 class ExplorationStrategy(ABC):
@@ -13,10 +15,10 @@ class ExplorationStrategy(ABC):
 
     @abstractmethod
     def get_action(self,
-                   model: Any,
-                   state: Dict,
+                   model: Model,
+                   state: State,
                    actions_list: list[str],
-                   agent_memory: Dict) -> str:
+                   agent_memory: ReplayMemory) -> str:
         """Gets actions according to exploration strategy
 
         Args:

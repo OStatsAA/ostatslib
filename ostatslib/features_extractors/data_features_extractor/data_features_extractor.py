@@ -4,10 +4,10 @@ Feature Extractor Class
 from pandas import DataFrame
 
 from .extract_functions import is_dichotomous, is_quantitative, get_missing_entries_ratio
-from .features_set import DataFeaturesSet, VariableFeaturesSet
+from .data_features_set import DataFeaturesSet, VariableFeaturesSet
 
 
-class FeaturesExtractor:
+class DataFeaturesExtractor:
     """
     Feature Extractor class
     """

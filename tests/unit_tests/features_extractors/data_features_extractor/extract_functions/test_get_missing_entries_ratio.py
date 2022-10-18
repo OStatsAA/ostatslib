@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 
-from ostatslib.features_extractor.extract_functions import get_missing_entries_ratio
+from ostatslib.features_extractors.data_features_extractor.extract_functions import get_missing_entries_ratio
 from tests.utils import get_random_string
 
 

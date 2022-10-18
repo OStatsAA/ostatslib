@@ -4,7 +4,7 @@ Feature Extractor Testing
 import pytest
 import pandas as pd
 
-from ostatslib.features_extractor import FeaturesExtractor
+from ostatslib.features_extractors import DataFeaturesExtractor
 
 
 @pytest.fixture
@@ -23,34 +23,34 @@ def fixture_dataframe() -> pd.DataFrame:
 
 def test_should_have_total_rows_count(fixture_dataframe):
     """Testing total rows count"""
-    features = FeaturesExtractor().run(fixture_dataframe, 'V4')
+    features = DataFeaturesExtractor().run(fixture_dataframe, 'V4')
 
     assert features.rows_count == 3
 
 
 def test_should_have_total_variables_count(fixture_dataframe):
     """Testing variables count"""
-    features = FeaturesExtractor().run(fixture_dataframe, 'V4')
+    features = DataFeaturesExtractor().run(fixture_dataframe, 'V4')
 
     assert features.variables_count == 4
 
 
 def test_should_have_is_response_dichotomous_false(fixture_dataframe):
     """Testing total rows count"""
-    features = FeaturesExtractor().run(fixture_dataframe, 'V4')
+    features = DataFeaturesExtractor().run(fixture_dataframe, 'V4')
 
     assert features.is_response_dichotomous is False
 
 
 def test_should_have_is_response_dichotomous_true(fixture_dataframe):
     """Testing total rows count"""
-    features = FeaturesExtractor().run(fixture_dataframe, 'V3')
+    features = DataFeaturesExtractor().run(fixture_dataframe, 'V3')
 
     assert features.is_response_dichotomous is True
 
 
 def test_should_have_ratio_of_continous_variables(fixture_dataframe):
     """Testing total rows count"""
-    features = FeaturesExtractor().run(fixture_dataframe, 'V4')
+    features = DataFeaturesExtractor().run(fixture_dataframe, 'V4')
 
     assert features.ratio_of_continous_variables == .5

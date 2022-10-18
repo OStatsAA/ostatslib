@@ -1,10 +1,12 @@
-"""Tests for is_quantitative function"""
+"""
+Tests for is_quantitative function
+"""
 
 import pandas as pd
 import numpy as np
 
-from ostatslib.features_extractor.extract_functions import is_quantitative
-from ostatslib.features_extractor.extract_functions.is_quantitative import MEDIUM_ROW_COUNT
+from ostatslib.features_extractors.data_features_extractor.extract_functions import is_quantitative
+from ostatslib.features_extractors.data_features_extractor.extract_functions.is_quantitative import MEDIUM_ROW_COUNT
 from tests.utils import get_random_string
 
 

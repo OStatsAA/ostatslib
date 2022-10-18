@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 
-from ostatslib.features_extractor.extract_functions import is_dichotomous
+from ostatslib.features_extractors.data_features_extractor.extract_functions import is_dichotomous
 from tests.utils import get_random_string
 
 

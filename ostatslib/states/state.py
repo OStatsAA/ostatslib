@@ -39,10 +39,10 @@ class State(ABC):
             return value
 
         value = getattr(self.__analysis_features, feature_key, NaN)
-        if isnan(value):
-            raise AttributeError()
+        if isinstance(value, str) or not isnan(value):
+            return value
 
-        return value
+        raise AttributeError()
 
     def set(self, feature_key: str, value: int | float | bool) -> None:
         """

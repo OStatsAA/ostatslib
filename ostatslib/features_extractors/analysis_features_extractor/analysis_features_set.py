@@ -5,8 +5,9 @@ AnalysisFeaturesSet  module
 from dataclasses import dataclass
 
 
-@dataclass(init=False)
+@dataclass
 class AnalysisFeaturesSet:
     """
     Class to hold analysis features.
     """
+    response_variable_label: str = "result"

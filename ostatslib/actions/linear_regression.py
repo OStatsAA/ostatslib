@@ -23,15 +23,13 @@ def linear_regression(state: State,
                       data: DataFrame) -> ActionResult[RegressionResults]:
     """
     Fits data to a linear regression model.
-    Action result is a Statsmodels RegressionResults instance.
 
     Args:
         state (State): current environment state
         data (DataFrame): data under analysis
 
     Returns:
-        tuple[State, float, RegressionResults]: tuple with next state, reward and \
-            statsmodels' RegressionResults
+        ActionResult[RegressionResults]: _description_
     """
     response_var_label = state.get("response_variable_label")
     response_var = data[response_var_label]

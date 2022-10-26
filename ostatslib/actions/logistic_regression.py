@@ -15,15 +15,13 @@ from ostatslib.states import State
 def logistic_regression(state: State, data: DataFrame) -> ActionResult[LogisticRegressionCV]:
     """
     Fits data to a logistic regression model.
-    Action result is a ScikitLearn LogisticRegressionCV instance
 
     Args:
         state (State): current environment state
         data (DataFrame): data under analysis
 
     Returns:
-        tuple[State, float, LogisticRegressionCV]: tuple with next state, reward and \
-            ScikitLearn LogisticRegressionCV
+        ActionResult[LogisticRegressionCV]: action result
     """
     response_var_label = state.get("response_variable_label")
     y_values = data[response_var_label].values

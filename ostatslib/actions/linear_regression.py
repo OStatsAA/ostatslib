@@ -29,7 +29,7 @@ def linear_regression(state: State,
         data (DataFrame): data under analysis
 
     Returns:
-        ActionResult[RegressionResults]: _description_
+        ActionResult[RegressionResults]: action result
     """
     response_var_label = state.get("response_variable_label")
     response_var = data[response_var_label]
@@ -49,6 +49,7 @@ def __calculate_reward(state: State, regression: RegressionResults) -> float:
     reward += __reward_for_normally_distributed_errors(residuals_studentized)
     reward += __reward_for_correlation_of_error_terms(residuals)
     reward += __reward_for_homoscedasticity(residuals, explanatory_vars)
+    reward += __reward_for_model_r_squared(regression.rsquared)
 
     return reward
 
@@ -92,3 +93,14 @@ def __reward_for_homoscedasticity(residuals: np.ndarray, explanatory_vars: np.nd
         return -10
 
     return 10
+
+
+def __reward_for_model_r_squared(rsquared: float) -> float:
+    if rsquared <= .6:
+        return - (1 - rsquared) * 100
+
+    if .6 < rsquared <= .9:
+        return rsquared * 50
+
+    if rsquared >= .9:
+        return rsquared * 60

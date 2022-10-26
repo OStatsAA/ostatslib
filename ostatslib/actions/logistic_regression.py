@@ -27,7 +27,7 @@ def logistic_regression(state: State, data: DataFrame) -> ActionResult[LogisticR
     y_values = data[response_var_label].values
     x_values = data.drop(response_var_label, axis=1).values
 
-    regression = LogisticRegressionCV()
+    regression = LogisticRegressionCV(cv=5)
 
     try:
         regression = regression.fit(x_values, y_values)

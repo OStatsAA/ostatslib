@@ -7,9 +7,8 @@ https://www.kirenz.com/post/2021-11-14-linear-regression-diagnostics-in-python/l
 
 import numpy as np
 from pandas import DataFrame
-from scipy.stats import kstest, norm
 from statsmodels.api import OLS
-from statsmodels.stats.stattools import durbin_watson
+from statsmodels.stats.stattools import durbin_watson, jarque_bera
 from statsmodels.stats.diagnostic import het_breuschpagan
 from statsmodels.regression.linear_model import RegressionResults
 
@@ -42,11 +41,10 @@ def linear_regression(state: State,
 def __calculate_reward(state: State, regression: RegressionResults) -> float:
     explanatory_vars: np.ndarray = regression.model.exog
     residuals: np.ndarray = regression.resid.values
-    residuals_studentized: np.ndarray = regression.get_influence().resid_studentized
     reward: float = 0
 
     reward += __penalty_for_dichotomous_response(state)
-    reward += __reward_for_normally_distributed_errors(residuals_studentized)
+    reward += __reward_for_normally_distributed_errors(regression)
     reward += __reward_for_correlation_of_error_terms(residuals)
     reward += __reward_for_homoscedasticity(residuals, explanatory_vars)
     reward += __reward_for_model_r_squared(regression.rsquared)
@@ -61,14 +59,13 @@ def __penalty_for_dichotomous_response(state: State) -> State:
     return 0
 
 
-def __reward_for_normally_distributed_errors(residuals_studentized: np.ndarray) -> float:
-    std_residuals_goodness_of_fit = kstest(residuals_studentized,
-                                           norm(0, 1).cdf)
+def __reward_for_normally_distributed_errors(regression: RegressionResults) -> float:
+    jarque_bera_pvalue = jarque_bera(regression.wresid.values)[1]
 
-    if std_residuals_goodness_of_fit.pvalue < .01:
+    if jarque_bera_pvalue < .01:
         return -20
 
-    if std_residuals_goodness_of_fit.pvalue < .05:
+    if jarque_bera_pvalue < .05:
         return -10
 
     return 10

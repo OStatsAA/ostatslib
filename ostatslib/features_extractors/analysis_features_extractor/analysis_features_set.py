@@ -11,3 +11,4 @@ class AnalysisFeaturesSet:
     Class to hold analysis features.
     """
     response_variable_label: str = "result"
+    score: float = 0

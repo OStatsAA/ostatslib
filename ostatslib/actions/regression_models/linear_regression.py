@@ -35,6 +35,7 @@ def linear_regression(state: State,
     explanatory_vars = data.drop(response_var_label, axis=1)
     regression = OLS(response_var, explanatory_vars).fit()
     reward = __calculate_reward(state, regression)
+    state = __apply_state_updates(state, regression)
     return ActionResult(state, reward, regression)
 
 
@@ -101,3 +102,8 @@ def __reward_for_model_r_squared(rsquared: float) -> float:
 
     if rsquared >= .9:
         return rsquared * 60
+
+
+def __apply_state_updates(state: State, regression: RegressionResults) -> State:
+    state.set('score', regression.rsquared)
+    return state

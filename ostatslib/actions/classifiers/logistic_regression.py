@@ -2,7 +2,6 @@
 Logistic regression module
 """
 
-import numpy as np
 from pandas import DataFrame
 from sklearn.linear_model import LogisticRegressionCV
 
@@ -34,18 +33,17 @@ def logistic_regression(state: State, data: DataFrame) -> ActionResult[LogisticR
     except ValueError:
         return ActionResult(state, -100, None)
 
-    reward = __calculate_reward(state, regression, x_values, y_values)
+    score: float = regression.score(x_values, y_values)
+    reward = __calculate_reward(state, score)
+    state = __apply_state_updates(state, score)
     return ActionResult(state, reward, regression)
 
 
-def __calculate_reward(state: State,
-                       regression: LogisticRegressionCV,
-                       x_values: np.ndarray,
-                       y_values: np.ndarray) -> float:
+def __calculate_reward(state: State, score: float) -> float:
     reward: float = 0
 
     reward += __penalty_for_continous_response(state)
-    reward += __reward_for_accuracy(regression.score(x_values, y_values))
+    reward += __reward_for_accuracy(score)
 
     return reward
 
@@ -66,3 +64,8 @@ def __reward_for_accuracy(score: float) -> float:
 
     if score >= .9:
         return score * 60
+
+
+def __apply_state_updates(state: State, score: float) -> State:
+    state.set('score', score)
+    return state

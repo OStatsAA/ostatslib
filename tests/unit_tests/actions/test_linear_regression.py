@@ -10,8 +10,8 @@ from scipy.stats import norm
 from statsmodels.regression.linear_model import RegressionResults
 import pytest
 
-from ostatslib.actions.linear_regression import linear_regression
-from ostatslib.actions.utils.action_result import ActionResult
+from ostatslib.actions import linear_regression
+from ostatslib.actions.utils import ActionResult
 from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
 from ostatslib.states import State
 

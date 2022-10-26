@@ -2,5 +2,7 @@
 Actions module
 """
 
-from .linear_regression import linear_regression
-from .logistic_regression import logistic_regression
+from .actions_space import ActionsSpace
+
+from .regression_models import linear_regression
+from .classifiers import logistic_regression

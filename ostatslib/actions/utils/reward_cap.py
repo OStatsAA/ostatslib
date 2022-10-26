@@ -3,11 +3,9 @@ reward_cap function module
 """
 
 from functools import wraps
-from typing import Callable, TypeVar
+from typing import TypeVar
 
-from pandas import DataFrame
-from ostatslib.states.state import State
-from .action_result import ActionResult
+from .action_result import ActionFunction, ActionResult
 
 T = TypeVar("T")
 
@@ -15,12 +13,12 @@ REWARD_UPPER_LIMIT = 100
 REWARD_LOWER_LIMIT = -100
 
 
-def reward_cap(action_function: Callable[[State, DataFrame], ActionResult[T]]) -> ActionResult[T]:
+def reward_cap(action_function: ActionFunction[T]) -> ActionResult[T]:
     """
     Limits rewards from an action
 
     Args:
-        action_function (Callable[[State, DataFrame], ActionResult[T]]): action function
+        action_function (ActionFunction[T]): action function
 
     Returns:
         ActionResult[T]: action results

@@ -3,7 +3,7 @@ ExplorationStrategy module
 """
 
 from abc import ABC, abstractmethod
-from ostatslib.agents.model import Model
+from ostatslib.rf_models import Model
 from ostatslib.replay_memories.replay_memory import ReplayMemory
 from ostatslib.states.state import State
 

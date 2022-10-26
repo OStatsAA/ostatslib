@@ -2,11 +2,10 @@
 Agent module
 """
 
-from ostatslib.agents.model import Model
-from ostatslib.replay_memories.replay_memory import ReplayMemory
-from ostatslib.states.state import State
-from ostatslib.exploration_strategies.epsilon_greedy import EpsilonGreedy
-from ostatslib.exploration_strategies.exploration_strategy import ExplorationStrategy
+from ostatslib.rf_models import Model
+from ostatslib.replay_memories import ReplayMemory
+from ostatslib.states import State
+from ostatslib.exploration_strategies import EpsilonGreedy, ExplorationStrategy
 
 
 class Agent:
@@ -15,13 +14,11 @@ class Agent:
     """
 
     def __init__(self,
-                 actions: list[str],
                  model: Model = None,
                  is_training: bool = False,
                  exploration_strategy: ExplorationStrategy = EpsilonGreedy(),
                  replay_memory: ReplayMemory = ReplayMemory()) -> None:
 
-        self.__actions = actions
         self.__model = model
         self.__is_training = is_training
         self.__exploration_strategy = exploration_strategy
@@ -58,7 +55,7 @@ class Agent:
         """
         self.__model.fit(self.__memory)
 
-    def get_action(self, state: State) -> str:
+    def get_action(self, state: State, available_actions: list[str]) -> str:
         """
         Gets an action
 
@@ -73,5 +70,5 @@ class Agent:
 
         return self.__exploration_strategy.get_action(self.__model,
                                                       state,
-                                                      self.__actions,
+                                                      available_actions,
                                                       self.__memory)

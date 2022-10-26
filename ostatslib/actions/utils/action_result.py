@@ -2,7 +2,9 @@
 ActionResult module
 """
 
-from typing import Generic, TypeVar
+from typing import Callable, Generic, TypeVar
+
+from pandas import DataFrame
 from ostatslib.states import State
 
 T = TypeVar("T")
@@ -20,3 +22,6 @@ class ActionResult(Generic[T]):
         self.state = state
         self.reward = reward
         self.result = result
+
+
+ActionFunction = Callable[[State, DataFrame], ActionResult[T]]

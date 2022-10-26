@@ -3,11 +3,9 @@ explainability rewards decorators module
 """
 
 from functools import wraps
-from typing import Callable, TypeVar
+from typing import TypeVar
 
-from pandas import DataFrame
-from ostatslib.states.state import State
-from .action_result import ActionResult
+from .action_result import ActionFunction, ActionResult
 
 T = TypeVar("T")
 
@@ -17,7 +15,7 @@ COMPREHENSIBLE_REWARD = 10
 
 
 def opaque_model(
-        action_function: Callable[[State, DataFrame], ActionResult[T]]) -> ActionResult[T]:
+        action_function: ActionFunction[T]) -> ActionResult[T]:
     """
     Penalty for actions resulting in an opaque model
 
@@ -38,7 +36,7 @@ def opaque_model(
 
 
 def interpretable_model(
-        action_function: Callable[[State, DataFrame], ActionResult[T]]) -> ActionResult[T]:
+        action_function: ActionFunction[T]) -> ActionResult[T]:
     """
     Reward for actions resulting in an interpetrable model
 
@@ -59,7 +57,7 @@ def interpretable_model(
 
 
 def comprehensible_model(
-        action_function: Callable[[State, DataFrame], ActionResult[T]]) -> ActionResult[T]:
+        action_function: ActionFunction[T]) -> ActionResult[T]:
     """
     Reward for actions resulting in an comprehensible model
 

@@ -18,10 +18,7 @@ def dummy_state() -> State:
     """
     Instantiates a dummy state fixture
     """
-    data_features_set = DataFeaturesSet()
-    data_features_set.variables_features_set = dict()
-    analysis_features_set = AnalysisFeaturesSet()
-    return State(data_features_set, analysis_features_set)
+    return State(DataFeaturesSet(), AnalysisFeaturesSet())
 
 
 def test_state_gets_method(dummy_state) -> None:
@@ -92,3 +89,13 @@ def test_state_equality_operator(dummy_state) -> None:
 
     other_state.set(KNOWN_FEATURE_KEY, not state.get(KNOWN_FEATURE_KEY))
     assert state != other_state
+
+
+def test_state_should_expose_features_vector(dummy_state: State) -> None:
+    """
+    Tests if state is able to expose its features as a vector
+    """
+    state: State = dummy_state
+    state.set("score", .5)
+
+    assert state.features_vector[0] == .5

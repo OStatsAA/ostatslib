@@ -4,7 +4,7 @@ State abstract class module
 
 from abc import ABC
 from dataclasses import fields
-from numpy import NaN, isnan
+from numpy import NaN, concatenate, isnan, ndarray, array
 from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
 from ostatslib.states.state_iterator import StateIterator
 
@@ -72,6 +72,19 @@ class State(ABC):
         features_fields = fields(self.__data_features)
         features_fields += fields(self.__analysis_features)
         return list(map(lambda field: field.name, features_fields))
+
+    @property
+    def features_vector(self) -> ndarray[float]:
+        """
+        Returns features vector
+
+        Returns:
+            ndarray: array of values
+        """
+        return concatenate((
+            array(self.__analysis_features),
+            array(self.__data_features)
+        ))
 
     def __iter__(self):
         return StateIterator(self)

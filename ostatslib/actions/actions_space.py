@@ -3,6 +3,10 @@ ActionsSpace module
 """
 
 from typing import TypeVar
+from ostatslib.actions.exploratory_actions import (
+    get_log_rows_count,
+    get_response_variable_type
+)
 from ostatslib.actions.regression_models import linear_regression
 from ostatslib.actions.classifiers import logistic_regression
 from ostatslib.actions.utils import ActionFunction
@@ -13,6 +17,10 @@ CLASSIFIERS = {
     'logistic_regression': logistic_regression
 }
 
+EXPLORATORY_ACTIONS = {
+    'get_log_rows_count': get_log_rows_count,
+    'get_response_variable_type': get_response_variable_type
+}
 
 REGRESSION_MODELS = {
     'linear_regression': linear_regression
@@ -25,7 +33,7 @@ class ActionsSpace:
     """
 
     def __init__(self) -> None:
-        self.__actions = REGRESSION_MODELS | CLASSIFIERS
+        self.__actions = EXPLORATORY_ACTIONS | CLASSIFIERS | REGRESSION_MODELS
 
     @property
     def actions(self) -> dict[str, ActionFunction]:
@@ -36,6 +44,15 @@ class ActionsSpace:
             dict: actions dictionary
         """
         return self.__actions
+
+    @property
+    def actions_names_list(self) -> list[str]:
+        """Gets actions names list (keys in actions dictionary)
+
+        Returns:
+            list[str]: actions names
+        """
+        return list(self.__actions.keys())
 
     def get_action(self, action_name: str) -> ActionFunction[T]:
         """

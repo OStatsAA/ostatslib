@@ -32,3 +32,13 @@ def test_actions_space_should_have_method_to_get_action_fn_by_name() -> None:
     action = actions_space.get_action('linear_regression')
 
     assert callable(action)
+
+
+def test_actions_space_should_have_method_to_get_action_names_list() -> None:
+    """
+    ActionsSpace exposes actions names list
+    """
+    actions_space = ActionsSpace()
+    actions_names = actions_space.actions_names_list
+
+    assert isinstance(actions_names, list)

@@ -1,6 +1,6 @@
 # pylint: disable=redefined-outer-name
 """
-get_log_rows_count action testing module
+get_response_variable_type action testing module
 """
 
 from pandas import DataFrame
@@ -8,7 +8,7 @@ from datacooker.recipes import Recipe
 from datacooker.variables import ContinousVariable
 import pytest
 
-from ostatslib.actions import get_log_rows_count
+from ostatslib.actions import get_response_variable_type
 from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
 from ostatslib.states import State
 
@@ -31,16 +31,20 @@ def dummy_data() -> DataFrame:
     return recipe.cook()
 
 
-def test_log_rows_count_yields_negative_rewards_if_feature_is_known(dummy_state,
-                                                                    dummy_data) -> None:
+def test_get_response_var_type_yields_negative_rewards_if_feature_is_known(dummy_state: State,
+                                                                           dummy_data) -> None:
     """
-    log_rows_count should yield positive rewards if the info is unkown.
+    get_response_variable_type should yield positive rewards if the info is unkown.
     Once the info is known and the state is updated, \
     any other attempt to run the same action should yield a negative reward \
-    if the rows count has not changed
+    if the features related to response type have not changed
     """
-    action_result = get_log_rows_count(dummy_state, dummy_data)
+    action_result = get_response_variable_type(dummy_state, dummy_data)
     assert action_result.reward > 0
 
-    action_result = get_log_rows_count(dummy_state, dummy_data)
+    action_result = get_response_variable_type(dummy_state, dummy_data)
     assert action_result.reward < 0
+
+    dummy_state.set("is_response_dichotomous", 1)
+    action_result = get_response_variable_type(dummy_state, dummy_data)
+    assert action_result.reward > 0

@@ -2,7 +2,9 @@
 Agent module
 """
 
-from ostatslib.rf_models import Model
+import numpy as np
+
+from ostatslib.reinforcement_learning_models import Model, SupportVectorRegression
 from ostatslib.replay_memories import ReplayMemory
 from ostatslib.states import State
 from ostatslib.exploration_strategies import EpsilonGreedy, ExplorationStrategy
@@ -14,7 +16,7 @@ class Agent:
     """
 
     def __init__(self,
-                 model: Model = None,
+                 model: Model = SupportVectorRegression(),
                  is_training: bool = False,
                  exploration_strategy: ExplorationStrategy = EpsilonGreedy(),
                  replay_memory: ReplayMemory = ReplayMemory()) -> None:
@@ -40,6 +42,7 @@ class Agent:
         """
         self.__memory.append(state, action_name, next_state, reward)
 
+    @property
     def is_memory_full(self) -> bool:
         """
         Return whether memory is full
@@ -49,13 +52,23 @@ class Agent:
         """
         return self.__memory.is_full()
 
+    @property
+    def memory_length(self) -> int:
+        """
+        Gets memory length
+
+        Returns:
+            int: memory length (rows count)
+        """
+        return len(self.__memory)
+
     def update_model(self) -> None:
         """
         Updates model used to estimate best actions
         """
         self.__model.fit(self.__memory)
 
-    def get_action(self, state: State, available_actions: list[str]) -> str:
+    def get_action(self, state: State, available_actions: np.ndarray) -> np.ndarray:
         """
         Gets an action
 
@@ -66,7 +79,7 @@ class Agent:
             str: action name
         """
         if not self.__is_training:
-            return self.__model.predict(state)
+            return self.__model.predict(state.features_vector, available_actions)
 
         return self.__exploration_strategy.get_action(self.__model,
                                                       state,

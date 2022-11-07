@@ -18,7 +18,7 @@ class EpsilonGreedy(ExplorationStrategy):
     Epsilon = 0 -> always selects estimated best action
     """
 
-    def __init__(self, epsilon: float = .5) -> None:
+    def __init__(self, epsilon: float = .9) -> None:
         self.__epsilon = epsilon
 
     def get_action(self,
@@ -27,7 +27,7 @@ class EpsilonGreedy(ExplorationStrategy):
                    actions: ndarray,
                    agent_memory: ReplayMemory) -> ndarray:
         prob = random()
-        if prob < self.__epsilon:
-            return choice(actions)
+        if prob > self.__epsilon and model.is_fit:
+            return model.predict(state.features_vector, actions)
 
-        return model.predict(state.features_vector, actions)
+        return choice(actions)

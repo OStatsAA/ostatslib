@@ -8,8 +8,18 @@ from collections import Counter
 from scipy.stats import kstest, uniform
 import pytest
 from ostatslib.exploration_strategies import EpsilonGreedy
+from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
+from ostatslib.states import State
 
 BEST_ACTION = 'best_action'
+
+
+@pytest.fixture
+def dummy_state() -> State:
+    """
+    Instantiates a dummy state fixture
+    """
+    return State(DataFeaturesSet(), AnalysisFeaturesSet())
 
 
 @pytest.fixture
@@ -23,7 +33,7 @@ def testing_model():
         Model stub
         """
 
-        def predict(self, _):
+        def predict(self, *args):
             """
             Stub predict method
             """
@@ -32,7 +42,7 @@ def testing_model():
     return Model()
 
 
-def test_actions_taken_uniformly_if_epsilon_is_1(testing_model) -> None:
+def test_actions_taken_uniformly_if_epsilon_is_1(testing_model, dummy_state: State) -> None:
     """
     If epsilon = 1, the epsilon-greedy strategy picks actions uniformly with prob 1/n_actions.
     Kolmogorov-Smirnov test for goodness of fit used to test uniformity
@@ -43,7 +53,7 @@ def test_actions_taken_uniformly_if_epsilon_is_1(testing_model) -> None:
 
     for i, _ in enumerate(explored_actions):
         explored_actions[i] = strategy.get_action(
-            testing_model, {}, actions_list, {})
+            testing_model, dummy_state, actions_list, dummy_state)
 
     actions_count = list(Counter(explored_actions).values())
     param_a = min(actions_count)
@@ -52,7 +62,7 @@ def test_actions_taken_uniformly_if_epsilon_is_1(testing_model) -> None:
     assert kstest_result.pvalue < .01
 
 
-def test_best_action_taken_aprox_half_times_if_epsilon_is_half(testing_model) -> None:
+def test_best_action_taken_aprox_half_times_if_epsilon_is_half(testing_model, dummy_state: State) -> None:
     """
     If epsilon = 0.5,
     the epsilon-greedy strategy picks the best action approximately 50% of the times.
@@ -63,7 +73,7 @@ def test_best_action_taken_aprox_half_times_if_epsilon_is_half(testing_model) ->
 
     for i, _ in enumerate(explored_actions):
         explored_actions[i] = strategy.get_action(
-            testing_model, {}, actions_list, {})
+            testing_model, dummy_state, actions_list, dummy_state)
 
     actions_counter = Counter(explored_actions)
     most_freq_action, most_freq_value = actions_counter.most_common(1)[0]
@@ -71,7 +81,7 @@ def test_best_action_taken_aprox_half_times_if_epsilon_is_half(testing_model) ->
     assert 400 < most_freq_value < 600
 
 
-def test_best_action_is_always_taken_if_epsilon_is_0(testing_model) -> None:
+def test_best_action_is_always_taken_if_epsilon_is_0(testing_model, dummy_state: State) -> None:
     """
     If epsilon = 1, the epsilon-greedy strategy picks actions uniformly with prob 1/n_actions.
     Kolmogorov-Smirnov test for goodness of fit used to test uniformty
@@ -82,7 +92,7 @@ def test_best_action_is_always_taken_if_epsilon_is_0(testing_model) -> None:
 
     for i, _ in enumerate(explored_actions):
         explored_actions[i] = strategy.get_action(
-            testing_model, {}, actions_list, {})
+            testing_model, dummy_state, actions_list, dummy_state)
 
     actions_counter = Counter(explored_actions)
     most_freq_action, most_freq_value = actions_counter.most_common(1)[0]

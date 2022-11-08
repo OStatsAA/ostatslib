@@ -16,19 +16,20 @@ class Agent:
     """
 
     def __init__(self,
-                 model: Model = SupportVectorRegression(),
+                 model: Model = None,
                  is_training: bool = False,
-                 exploration_strategy: ExplorationStrategy = EpsilonGreedy(),
-                 replay_memory: ReplayMemory = ReplayMemory()) -> None:
+                 exploration_strategy: ExplorationStrategy = None,
+                 replay_memory: ReplayMemory = None) -> None:
 
-        self.__model = model
-        self.__is_training = is_training
-        self.__exploration_strategy = exploration_strategy
-        self.__memory = replay_memory
+        self.__model = model if model is not None else SupportVectorRegression()
+        self.is_training = is_training
+        self.__exploration_strategy = (
+            exploration_strategy if exploration_strategy is not None else EpsilonGreedy())
+        self.__memory = replay_memory if replay_memory is not None else ReplayMemory()
 
     def remember_transition(self,
                             state: State,
-                            action_name: str,
+                            action_code: np.ndarray,
                             next_state: State,
                             reward: float) -> None:
         """
@@ -40,7 +41,10 @@ class Agent:
             next_state (State): resulting state
             reward (float): reward received
         """
-        self.__memory.append(state, action_name, next_state, reward)
+        self.__memory.append(state.features_vector,
+                             action_code,
+                             next_state.features_vector,
+                             reward)
 
     @property
     def is_memory_full(self) -> bool:
@@ -66,7 +70,7 @@ class Agent:
         """
         Updates model used to estimate best actions
         """
-        self.__model.fit(self.__memory)
+        self.__model.fit(*self.__memory.get_sar_entries().values())
 
     def get_action(self, state: State, available_actions: np.ndarray) -> np.ndarray:
         """
@@ -78,7 +82,7 @@ class Agent:
         Returns:
             str: action name
         """
-        if not self.__is_training:
+        if not self.is_training:
             return self.__model.predict(state.features_vector, available_actions)
 
         return self.__exploration_strategy.get_action(self.__model,

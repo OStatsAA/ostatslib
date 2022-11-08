@@ -15,10 +15,12 @@ class State(ABC):
     """
 
     def __init__(self,
-                 data_features: DataFeaturesSet,
-                 analysis_features: AnalysisFeaturesSet) -> None:
-        self.__data_features: DataFeaturesSet = data_features
-        self.__analysis_features: AnalysisFeaturesSet = analysis_features
+                 data_features: DataFeaturesSet = None,
+                 analysis_features: AnalysisFeaturesSet = None) -> None:
+        self.__data_features = (
+            data_features if data_features is not None else DataFeaturesSet())
+        self.__analysis_features = (
+            analysis_features if analysis_features is not None else AnalysisFeaturesSet())
 
     def get(self, feature_key: str) -> int | float | bool:
         """

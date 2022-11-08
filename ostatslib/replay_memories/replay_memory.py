@@ -2,9 +2,7 @@
 Replay memory module
 """
 
-from collections import Counter
 import numpy as np
-from ostatslib.states.state import State
 
 
 class ReplayMemory:
@@ -14,17 +12,17 @@ class ReplayMemory:
     """
 
     def __init__(self, max_length: int = 10000) -> None:
-        self.__states = np.empty(max_length, dtype=object)
-        self.__actions = np.empty(max_length, dtype=object)
-        self.__next_states = np.empty(max_length, dtype=object)
-        self.__rewards = np.empty(max_length, dtype=float)
+        self.__states = np.empty(1)
+        self.__actions = np.empty(1)
+        self.__next_states = np.empty(1)
+        self.__rewards = np.empty(1)
         self.__next_index = 0
         self.__max_length = max_length
 
     def append(self,
-               state: State,
-               action_name: str,
-               next_state: State,
+               state_features: np.ndarray,
+               action_code: np.ndarray,
+               next_state_features: np.ndarray,
                reward: float) -> None:
         """
         Appends new information to replay memory
@@ -35,20 +33,14 @@ class ReplayMemory:
             next_state (State): resulting state
             reward (float): reward received
         """
-        self.__states[self.__next_index] = state
-        self.__actions[self.__next_index] = action_name
-        self.__next_states[self.__next_index] = next_state
+        if not self.__next_index:
+            self.__initialize_arrays(state_features.shape, action_code.shape)
+
+        self.__states[self.__next_index] = state_features
+        self.__actions[self.__next_index] = action_code
+        self.__next_states[self.__next_index] = next_state_features
         self.__rewards[self.__next_index] = reward
         self.__next_index += 1
-
-    def get_actions_count(self) -> Counter:
-        """
-        Gets actions count in replay memory.
-
-        Returns:
-            Counter: Counter
-        """
-        return Counter(self.__actions[:self.__next_index])
 
     def get_sar_entries(self) -> dict[str, np.ndarray]:
         """
@@ -83,3 +75,15 @@ class ReplayMemory:
 
     def __len__(self):
         return self.__next_index
+
+    def __initialize_arrays(self,
+                            states_shape: tuple,
+                            actions_shape: tuple) -> None:
+        states_memories_shape = (self.__max_length, states_shape[0])
+        self.__states = np.ndarray(shape=states_memories_shape)
+        self.__next_states = np.ndarray(shape=states_memories_shape)
+
+        actions_memories_shape = (self.__max_length, actions_shape[0])
+        self.__actions = np.ndarray(shape=actions_memories_shape)
+
+        self.__rewards = np.ndarray(shape=(self.__max_length, 1))

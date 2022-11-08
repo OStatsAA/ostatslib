@@ -81,7 +81,7 @@ class ActionsSpace:
             index += 1
 
         return actions_array
-    
+
     @cached_property
     def encoding_length(self) -> int:
         """
@@ -109,7 +109,7 @@ class ActionsSpace:
         Gets action function
 
         Args:
-            action_name (str): action name
+            action_code (ndarray): action code
 
         Returns:
             ActionFunction[T]: action function

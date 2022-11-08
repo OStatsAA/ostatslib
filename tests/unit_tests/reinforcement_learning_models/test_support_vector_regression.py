@@ -11,17 +11,8 @@ import pytest
 
 
 from ostatslib.actions import ActionsSpace
-from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
 from ostatslib.reinforcement_learning_models import SupportVectorRegression
 from ostatslib.states import State
-
-
-@pytest.fixture
-def dummy_state() -> State:
-    """
-    Instantiates a dummy state fixture
-    """
-    return State(DataFeaturesSet(), AnalysisFeaturesSet())
 
 
 @pytest.fixture
@@ -30,7 +21,7 @@ def dummy_training_dataset() -> State:
     Instantiates a dummy training dataset
     """
     size = 10
-    state = State(DataFeaturesSet(), AnalysisFeaturesSet())
+    state = State()
     actions_space = ActionsSpace()
     actions_list = actions_space.actions_encodings_list
     encoding_length = actions_space.encoding_length
@@ -69,13 +60,12 @@ def test_svr_fitting(dummy_training_dataset: tuple, svr_mock: Mock) -> None:
     svr_mock.fit.assert_called_once()
 
 
-def test_svr_predicting(dummy_training_dataset: tuple, dummy_state: State) -> None:
+def test_svr_predicting(dummy_training_dataset: tuple) -> None:
     """
     Tests if predicting method return a valid callable action in actions space.
     """
     svr_model = SupportVectorRegression()
     svr_model.fit(*dummy_training_dataset)
-    dummy_state.set("log_rows_count", .5)
     predicted = svr_model.predict(dummy_training_dataset[0],
                                   dummy_training_dataset[1])
 

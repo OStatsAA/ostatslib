@@ -12,16 +12,7 @@ import pytest
 
 from ostatslib.actions import linear_regression
 from ostatslib.actions.utils import ActionResult
-from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
 from ostatslib.states import State
-
-
-@pytest.fixture
-def dummy_state() -> State:
-    """
-    Instantiates a dummy state fixture
-    """
-    return State(DataFeaturesSet(), AnalysisFeaturesSet(response_variable_label="result"))
 
 
 @pytest.fixture
@@ -45,20 +36,21 @@ def dummy_binary_response_data() -> DataFrame:
     return recipe.cook()
 
 
-def test_linear_data_yields_positve_reward(dummy_state, dummy_linear_data) -> None:
+def test_linear_data_yields_positve_reward(dummy_linear_data: DataFrame) -> None:
     """
     Action should return a positve reward when applied to a linear datatset
     """
-    action_result: ActionResult[RegressionResults] = linear_regression(dummy_state,
+    action_result: ActionResult[RegressionResults] = linear_regression(State(),
                                                                        dummy_linear_data)
     assert action_result.reward >= 10
 
 
-def test_binary_data_yields_negative_reward(dummy_state, dummy_binary_response_data) -> None:
+def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFrame) -> None:
     """
     Action should return a positve reward when applied to a linear datatset
     """
-    dummy_state.set("is_response_dichotomous", 1)
-    action_result: ActionResult[RegressionResults] = linear_regression(dummy_state,
+    state = State()
+    state.set("is_response_dichotomous", 1)
+    action_result: ActionResult[RegressionResults] = linear_regression(state,
                                                                        dummy_binary_response_data)
     assert action_result.reward <= 0

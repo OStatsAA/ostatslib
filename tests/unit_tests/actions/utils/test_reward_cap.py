@@ -2,8 +2,10 @@
 reward_cap decorator function tests module
 """
 
-from ostatslib.actions.utils import ActionResult, reward_cap, \
-    REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT
+from ostatslib.actions.utils import (ActionResult,
+                                     reward_cap,
+                                     REWARD_LOWER_LIMIT,
+                                     REWARD_UPPER_LIMIT)
 
 
 def test_enforces_reward_lower_limit() -> None:

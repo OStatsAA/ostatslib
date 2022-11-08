@@ -57,13 +57,12 @@ def __penalty_for_continous_response(state: State) -> float:
 
 def __reward_for_accuracy(score: float) -> float:
     if score <= .6:
-        return - (1 - score) * 100
+        return (1 - score) * (-100)
 
     if .6 < score <= .9:
         return score * 50
 
-    if score >= .9:
-        return score * 60
+    return score * 60
 
 
 def __apply_state_updates(state: State, score: float) -> State:

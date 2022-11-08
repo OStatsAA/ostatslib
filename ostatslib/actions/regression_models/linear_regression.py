@@ -81,7 +81,8 @@ def __reward_for_correlation_of_error_terms(residuals: np.ndarray) -> float:
     return -10
 
 
-def __reward_for_homoscedasticity(residuals: np.ndarray, explanatory_vars: np.ndarray) -> float:
+def __reward_for_homoscedasticity(residuals: np.ndarray,
+                                  explanatory_vars: np.ndarray) -> float:
     f_stat_pvalue = het_breuschpagan(residuals, explanatory_vars)[3]
 
     if f_stat_pvalue < .01:
@@ -100,8 +101,7 @@ def __reward_for_model_r_squared(rsquared: float) -> float:
     if .6 < rsquared <= .9:
         return rsquared * 50
 
-    if rsquared >= .9:
-        return rsquared * 60
+    return rsquared * 60
 
 
 def __apply_state_updates(state: State, regression: RegressionResults) -> State:

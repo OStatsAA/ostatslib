@@ -10,16 +10,7 @@ from scipy.stats import norm
 import pytest
 
 from ostatslib.actions import logistic_regression
-from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
 from ostatslib.states import State
-
-
-@pytest.fixture
-def dummy_state() -> State:
-    """
-    Instantiates a dummy state fixture
-    """
-    return State(DataFeaturesSet(), AnalysisFeaturesSet(response_variable_label="result"))
 
 
 @pytest.fixture
@@ -43,23 +34,20 @@ def dummy_continous_response_data() -> DataFrame:
     return recipe.cook()
 
 
-def test_binary_response_data_yields_positve_reward(dummy_state,
-                                                    dummy_binary_response_data) -> None:
+def test_binary_response_data_yields_positve_reward(dummy_binary_response_data) -> None:
     """
     Action should return a positve reward when applied to a linear datatset
     """
-    action_result = logistic_regression(
-        dummy_state, dummy_binary_response_data)
+    action_result = logistic_regression(State(), dummy_binary_response_data)
     assert action_result.reward >= 10
 
 
 def test_continous_response_data_yields_negative_reward(
-        dummy_state: State,
         dummy_continous_response_data: DataFrame) -> None:
     """
     Action should return a positve reward when applied to a linear datatset
     """
-    dummy_state.set("is_response_quantitative", 1)
-    action_result = logistic_regression(
-        dummy_state, dummy_continous_response_data)
+    state = State()
+    state.set("is_response_quantitative", 1)
+    action_result = logistic_regression(state, dummy_continous_response_data)
     assert action_result.reward <= 0

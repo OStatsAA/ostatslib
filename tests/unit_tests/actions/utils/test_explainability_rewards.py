@@ -3,13 +3,16 @@ explainability rewards decorators functions tests module
 """
 
 from random import uniform
-from ostatslib.actions.utils import ActionResult, \
-    comprehensible_model, interpretable_model, opaque_model
-from ostatslib.actions.utils.explainability_rewards import \
-    COMPREHENSIBLE_REWARD, \
-    INTERPETRABLE_REWARD,\
-    OPAQUE_PENALTY
-from ostatslib.actions.utils.reward_cap import REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT
+
+from ostatslib.actions.utils import (ActionResult,
+                                     comprehensible_model,
+                                     interpretable_model,
+                                     opaque_model,
+                                     REWARD_LOWER_LIMIT,
+                                     REWARD_UPPER_LIMIT)
+from ostatslib.actions.utils.explainability_rewards import (COMPREHENSIBLE_REWARD,
+                                                            INTERPETRABLE_REWARD,
+                                                            OPAQUE_PENALTY)
 
 
 def test_opaque_model() -> None:

@@ -2,7 +2,7 @@
 SupportVectorRegression module
 """
 
-from numpy import argmax, inf, ndarray, concatenate, tile
+from numpy import argmax, ndarray, concatenate, tile
 from sklearn.svm import SVR
 from ostatslib.reinforcement_learning_models.model import Model
 

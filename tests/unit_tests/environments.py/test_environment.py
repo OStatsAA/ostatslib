@@ -4,7 +4,6 @@ Environment testing module
 """
 
 from random import randrange
-from typing import Deque
 from pandas import DataFrame
 from scipy.stats import norm
 from datacooker.recipes import LogitRecipe, Recipe
@@ -12,16 +11,6 @@ from datacooker.variables import ContinousVariable
 import pytest
 
 from ostatslib.environments import Environment
-from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
-from ostatslib.states import State
-
-
-@pytest.fixture
-def dummy_state() -> State:
-    """
-    Instantiates a dummy state fixture
-    """
-    return State(DataFeaturesSet(), AnalysisFeaturesSet())
 
 
 @pytest.fixture
@@ -45,30 +34,28 @@ def dummy_training_datasets() -> list[DataFrame]:
     return datasets
 
 
-def test_environment_train_method(dummy_state: State,
-                                  dummy_training_datasets: list[DataFrame]) -> None:
+def test_environment_train_method(dummy_training_datasets: list[DataFrame]) -> None:
     """
     Tests environment training method
     """
     results = list()
     env = Environment()
     for dataset in dummy_training_datasets:
-        results.append(env.train_agent(dummy_state, dataset))
+        results.append(env.train_agent(dataset))
     env.agent.update_model()
 
     assert len(results) == len(dummy_training_datasets)
 
 
-def test_environment_run_analysis_method(dummy_state: State,
-                                         dummy_training_datasets: list[DataFrame]) -> None:
+def test_environment_run_analysis_method(dummy_training_datasets: list[DataFrame]) -> None:
     """
     Tests environment run analysis method and return a deque of actions
     """
     results = list()
     env = Environment()
     for dataset in dummy_training_datasets:
-        results.append(env.train_agent(dummy_state, dataset))
+        results.append(env.train_agent(dataset))
     env.agent.update_model()
 
-    analysis, _ = env.run_analysis(dummy_state, dummy_training_datasets[0])
+    analysis, _ = env.run_analysis(dummy_training_datasets[0])
     assert len(analysis)

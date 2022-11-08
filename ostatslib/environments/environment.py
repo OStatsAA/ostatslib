@@ -4,7 +4,6 @@ Environment module
 
 from collections import deque
 from copy import deepcopy
-from queue import Queue
 from typing import Deque
 from pandas import DataFrame
 from ostatslib.actions import ActionsSpace
@@ -45,8 +44,8 @@ class Environment:
         return self.__actions_space
 
     def run_analysis(self,
-                     initial_state: State,
                      data: DataFrame,
+                     initial_state: State = None,
                      max_steps: int = 10) -> tuple[Deque, bool]:
         """
         Run analysis using trained agent
@@ -59,16 +58,14 @@ class Environment:
         Returns:
             tuple[Queue, bool]: actions taken and done flag
         """
+        state = initial_state if initial_state is not None else State()
         self.__agent.is_training = False
-        state = initial_state
         actions_deque = deque(maxlen=max_steps)
         done = False
 
         for _ in range(max_steps):
 
-            action_code = self.__agent.get_action(state,
-                                                  self.__actions_space.actions_encodings_list)
-            action_fn = self.__actions_space.get_action_by_encoding(action_code)
+            action_fn, _ = self.__get_action(state)
             action_result = action_fn(deepcopy(state), data)
 
             actions_deque.append(action_result)
@@ -81,8 +78,8 @@ class Environment:
         return actions_deque, done
 
     def train_agent(self,
-                    initial_state: State,
                     data: DataFrame,
+                    initial_state: State = None,
                     max_steps: int = 10,
                     ) -> tuple[ActionResult, float, bool, int]:
         """
@@ -98,22 +95,17 @@ class Environment:
         Returns:
             Agent: trained agent
         """
+        state = initial_state if initial_state is not None else State()
         self.agent.is_training = True
-        state = initial_state
         accumulated_reward: float = 0
         action_result: ActionResult = None
         done = False
 
         for step_number in range(max_steps):
 
-            # Gets and runs action
-            action_code = self.__agent.get_action(state,
-                                                  self.__actions_space.actions_encodings_list)
-            action_fn = self.__actions_space.get_action_by_encoding(
-                action_code)
+            action_fn, action_code = self.__get_action(state)
             action_result = action_fn(deepcopy(state), data)
 
-            # Stores transition and updates accumulated reward and state
             self.__agent.remember_transition(state,
                                              action_code,
                                              action_result.state,
@@ -124,10 +116,16 @@ class Environment:
 
             done = self.__is_done(action_result)
             if done:
-                self.agent.is_training = False
                 break
 
+        self.agent.is_training = False
         return action_result.result, accumulated_reward, done, step_number
+
+    def __get_action(self, state: State):
+        action_code = self.__agent.get_action(state,
+                                              self.__actions_space.actions_encodings_list)
+        action_fn = self.__actions_space.get_action_by_encoding(action_code)
+        return action_fn, action_code
 
     def __is_done(self, action_result: ActionResult) -> bool:
         return action_result.result is not None

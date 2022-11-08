@@ -11,6 +11,16 @@ class Model(ABC):
     Model abstract class
     """
 
+    @property
+    @abstractmethod
+    def is_fit(self) -> bool:
+        """
+        Flags if models has already been fitted at least once
+
+        Returns:
+            bool: is fit flag
+        """
+
     @abstractmethod
     def fit(self,
             state_features: ndarray,

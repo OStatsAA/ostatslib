@@ -2,7 +2,7 @@
 SupportVectorRegression module
 """
 
-from numpy import argmax, ndarray, concatenate, tile
+from numpy import ndarray, concatenate, tile
 from sklearn.svm import SVR
 from ostatslib.reinforcement_learning_models.model import Model
 
@@ -31,10 +31,15 @@ class SupportVectorRegression(Model):
     def predict(self,
                 state_features: ndarray,
                 available_actions: ndarray) -> ndarray:
-        if len(state_features.shape) == 1:
+        features = None
+        if state_features.ndim == available_actions.ndim == 1:
+            features = concatenate((state_features, available_actions)).reshape(1, -1)
+        elif state_features.ndim == available_actions.ndim:
+            features = concatenate((state_features, available_actions), axis=1)
+        else:
             state_features = tile(state_features, (len(available_actions), 1))
+            features = concatenate((state_features, available_actions), axis=1)
 
-        features = concatenate((state_features, available_actions), axis=1)
         predictions = self.__svr.predict(features)
 
-        return available_actions[argmax(predictions)]
+        return predictions

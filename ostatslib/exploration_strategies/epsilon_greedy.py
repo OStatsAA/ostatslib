@@ -4,7 +4,7 @@ EpsilonGreedy class module
 
 from random import random, choice
 
-from numpy import ndarray
+from numpy import argmax, ndarray
 from ostatslib.reinforcement_learning_models import Model
 from ostatslib.replay_memories import ReplayMemory
 from ostatslib.states import State
@@ -28,6 +28,7 @@ class EpsilonGreedy(ExplorationStrategy):
                    agent_memory: ReplayMemory) -> ndarray:
         prob = random()
         if prob > self.__epsilon and model.is_fit:
-            return model.predict(state.features_vector, actions)
+            predictions = model.predict(state.features_vector, actions)
+            return actions[argmax(predictions)]
 
         return choice(actions)

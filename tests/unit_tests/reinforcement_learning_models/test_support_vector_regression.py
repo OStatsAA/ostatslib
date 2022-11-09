@@ -62,7 +62,7 @@ def test_svr_fitting(dummy_training_dataset: tuple, svr_mock: Mock) -> None:
 
 def test_svr_predicting(dummy_training_dataset: tuple) -> None:
     """
-    Tests if predicting method return a valid callable action in actions space.
+    Tests if predicting method return a array of values (QValues).
     """
     svr_model = SupportVectorRegression()
     svr_model.fit(*dummy_training_dataset)
@@ -70,4 +70,3 @@ def test_svr_predicting(dummy_training_dataset: tuple) -> None:
                                   dummy_training_dataset[1])
 
     assert isinstance(predicted, np.ndarray)
-    assert callable(ActionsSpace().get_action_by_encoding(predicted))

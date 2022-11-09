@@ -12,7 +12,7 @@ from ostatslib.exploration_strategies import EpsilonGreedy
 from ostatslib.replay_memories import ReplayMemory
 from ostatslib.states import State
 
-TEST_ACTION_CODE = ndarray([0])
+TEST_ACTION_CODE = ndarray([1])
 
 
 @pytest.fixture
@@ -45,7 +45,7 @@ def test_agent_memory() -> None:
     assert agent.is_memory_full is False
     assert agent.memory_length == 0
 
-    agent.remember_transition(State(), TEST_ACTION_CODE, State(), .42)
+    agent.remember_transition(State(), TEST_ACTION_CODE, State(), .42, TEST_ACTION_CODE)
 
     assert agent.is_memory_full is False
     assert agent.memory_length == 1

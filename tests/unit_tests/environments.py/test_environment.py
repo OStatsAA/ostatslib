@@ -55,7 +55,7 @@ def test_environment_run_analysis_method(dummy_training_datasets: list[DataFrame
     env = Environment()
     for dataset in dummy_training_datasets:
         results.append(env.train_agent(dataset))
-    env.agent.update_model()
+        env.agent.update_model()
 
     analysis, _ = env.run_analysis(dummy_training_datasets[0])
     assert len(analysis)

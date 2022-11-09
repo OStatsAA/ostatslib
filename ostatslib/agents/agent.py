@@ -19,19 +19,24 @@ class Agent:
                  model: Model = None,
                  is_training: bool = False,
                  exploration_strategy: ExplorationStrategy = None,
-                 replay_memory: ReplayMemory = None) -> None:
+                 replay_memory: ReplayMemory = None,
+                 learning_rate: float = .01,
+                 discount: float = 1) -> None:
 
         self.__model = model if model is not None else SupportVectorRegression()
         self.is_training = is_training
         self.__exploration_strategy = (
             exploration_strategy if exploration_strategy is not None else EpsilonGreedy())
         self.__memory = replay_memory if replay_memory is not None else ReplayMemory()
+        self.__learning_rate = learning_rate
+        self.__discount = discount
 
     def remember_transition(self,
                             state: State,
                             action_code: np.ndarray,
                             next_state: State,
-                            reward: float) -> None:
+                            reward: float,
+                            available_actions: np.ndarray) -> None:
         """
         Stores transition in agent's memory
 
@@ -41,10 +46,17 @@ class Agent:
             next_state (State): resulting state
             reward (float): reward received
         """
+        state_qvalue = self.get_qvalue(state, action_code)
+        next_state_qvalues = self.get_qvalue(next_state, available_actions)
+        next_state_best_qvalue = np.amax(next_state_qvalues)
+        discounted_next_state_qvalue = self.__discount * next_state_best_qvalue
+        target_qvalue = reward + discounted_next_state_qvalue
+
+        state_qvalue += self.__learning_rate * (target_qvalue - state_qvalue)
         self.__memory.append(state.features_vector,
                              action_code,
                              next_state.features_vector,
-                             reward)
+                             state_qvalue)
 
     @property
     def is_memory_full(self) -> bool:
@@ -72,6 +84,22 @@ class Agent:
         """
         self.__model.fit(*self.__memory.get_sar_entries().values())
 
+    def get_qvalue(self, state: State, action: np.ndarray) -> np.ndarray:
+        """
+        Returns QValues approximated by agent's model
+
+        Args:
+            state (State): state
+            action (np.ndarray): action(s)
+
+        Returns:
+            np.ndarray: QValues for action(s)
+        """
+        if self.__model.is_fit:
+            return self.__model.predict(state.features_vector, action)
+
+        return 0
+
     def get_action(self, state: State, available_actions: np.ndarray) -> np.ndarray:
         """
         Gets an action
@@ -83,7 +111,9 @@ class Agent:
             str: action name
         """
         if not self.is_training:
-            return self.__model.predict(state.features_vector, available_actions)
+            predictions = self.__model.predict(state.features_vector,
+                                               available_actions)
+            return available_actions[np.argmax(predictions)]
 
         return self.__exploration_strategy.get_action(self.__model,
                                                       state,

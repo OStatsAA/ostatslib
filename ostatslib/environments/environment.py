@@ -5,6 +5,7 @@ Environment module
 from collections import deque
 from copy import deepcopy
 from typing import Deque
+from numpy import ndarray
 from pandas import DataFrame
 from ostatslib.actions import ActionsSpace
 from ostatslib.actions.utils import ActionResult
@@ -61,11 +62,12 @@ class Environment:
         state = initial_state if initial_state is not None else State()
         self.__agent.is_training = False
         actions_deque = deque(maxlen=max_steps)
+        available_actions = self.__actions_space.actions_encodings_list
         done = False
 
         for _ in range(max_steps):
 
-            action_fn, _ = self.__get_action(state)
+            action_fn, _ = self.__get_action(state, available_actions)
             action_result = action_fn(deepcopy(state), data)
 
             actions_deque.append(action_result)
@@ -99,17 +101,20 @@ class Environment:
         self.agent.is_training = True
         accumulated_reward: float = 0
         action_result: ActionResult = None
+        available_actions = self.__actions_space.actions_encodings_list
         done = False
 
         for step_number in range(max_steps):
 
-            action_fn, action_code = self.__get_action(state)
+            action_fn, action_code = self.__get_action(state,
+                                                       available_actions)
             action_result = action_fn(deepcopy(state), data)
 
             self.__agent.remember_transition(state,
                                              action_code,
                                              action_result.state,
-                                             action_result.reward)
+                                             action_result.reward,
+                                             available_actions)
 
             accumulated_reward += action_result.reward
             state = action_result.state
@@ -121,9 +126,8 @@ class Environment:
         self.agent.is_training = False
         return action_result.result, accumulated_reward, done, step_number
 
-    def __get_action(self, state: State):
-        action_code = self.__agent.get_action(state,
-                                              self.__actions_space.actions_encodings_list)
+    def __get_action(self, state: State, available_actions: ndarray):
+        action_code = self.__agent.get_action(state, available_actions)
         action_fn = self.__actions_space.get_action_by_encoding(action_code)
         return action_fn, action_code
 

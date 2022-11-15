@@ -1,3 +1,0 @@
-"""
-Data features extractor module
-"""

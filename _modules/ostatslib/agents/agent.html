@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ostatslib.reinforcement_learning_models.model &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.agents.agent &#8212; Open Statistics Analysis Agent</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -469,7 +469,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/reinforcement_learning_models/model.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/agents/agent.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -512,58 +512,128 @@ title="Open an issue"
                 
               <div>
                 
-  <h1>Source code for ostatslib.reinforcement_learning_models.model</h1><div class="highlight"><pre>
+  <h1>Source code for ostatslib.agents.agent</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Model abstract class module</span>
+<span class="sd">Agent module</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_models</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">SupportVectorRegression</span>
+<span class="kn">from</span> <span class="nn">ostatslib.replay_memories</span> <span class="kn">import</span> <span class="n">ReplayMemory</span>
+<span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">ostatslib.exploration_strategies</span> <span class="kn">import</span> <span class="n">EpsilonGreedy</span><span class="p">,</span> <span class="n">ExplorationStrategy</span>
 
 
-<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_models.model.html#ostatslib.reinforcement_learning_models.model.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="Agent"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent">[docs]</a><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Model abstract class</span>
+<span class="sd">    Agent class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@property</span>
-    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">is_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Flags if models has already been fitted at least once</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">model</span><span class="p">:</span> <span class="n">Model</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">is_training</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">exploration_strategy</span><span class="p">:</span> <span class="n">ExplorationStrategy</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">replay_memory</span><span class="p">:</span> <span class="n">ReplayMemory</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">learning_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">.01</span><span class="p">,</span>
+                 <span class="n">discount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            bool: is fit flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="n">model</span> <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">SupportVectorRegression</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_training</span> <span class="o">=</span> <span class="n">is_training</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__exploration_strategy</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">exploration_strategy</span> <span class="k">if</span> <span class="n">exploration_strategy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">EpsilonGreedy</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__memory</span> <span class="o">=</span> <span class="n">replay_memory</span> <span class="k">if</span> <span class="n">replay_memory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ReplayMemory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__discount</span> <span class="o">=</span> <span class="n">discount</span>
+
+<div class="viewcode-block" id="Agent.remember_transition"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.remember_transition">[docs]</a>    <span class="k">def</span> <span class="nf">remember_transition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                            <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+                            <span class="n">action_code</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+                            <span class="n">next_state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+                            <span class="n">reward</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                            <span class="n">available_actions</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Stores transition in agent&#39;s memory</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (State): state</span>
+<span class="sd">            action_name (str): action taken name</span>
+<span class="sd">            next_state (State): resulting state</span>
+<span class="sd">            reward (float): reward received</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">state_qvalue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_qvalue</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action_code</span><span class="p">)</span>
+        <span class="n">next_state_qvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_qvalue</span><span class="p">(</span><span class="n">next_state</span><span class="p">,</span> <span class="n">available_actions</span><span class="p">)</span>
+        <span class="n">next_state_best_qvalue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">next_state_qvalues</span><span class="p">)</span>
+        <span class="n">discounted_next_state_qvalue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__discount</span> <span class="o">*</span> <span class="n">next_state_best_qvalue</span>
+        <span class="n">target_qvalue</span> <span class="o">=</span> <span class="n">reward</span> <span class="o">+</span> <span class="n">discounted_next_state_qvalue</span>
 
-<div class="viewcode-block" id="Model.fit"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_models.model.html#ostatslib.reinforcement_learning_models.model.Model.fit">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-            <span class="n">state_features</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
-            <span class="n">actions_features</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
-            <span class="n">expected_rewards</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">state_qvalue</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__learning_rate</span> <span class="o">*</span> <span class="p">(</span><span class="n">target_qvalue</span> <span class="o">-</span> <span class="n">state_qvalue</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__memory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="p">,</span>
+                             <span class="n">action_code</span><span class="p">,</span>
+                             <span class="n">next_state</span><span class="o">.</span><span class="n">features_vector</span><span class="p">,</span>
+                             <span class="n">state_qvalue</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_memory_full</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Model fitting method</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            state_features (ndarray): state features vector</span>
-<span class="sd">            actions_features (ndarray): actions features</span>
-<span class="sd">            expected_rewards (ndarray): rewards array</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="Model.predict"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_models.model.html#ostatslib.reinforcement_learning_models.model.Model.predict">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                <span class="n">state_features</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
-                <span class="n">available_actions</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Model predict method</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            features (ndarray): state features vector</span>
-<span class="sd">            actions_features (ndarray): actions features</span>
+<span class="sd">        Return whether memory is full</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            ndarray: predicted best action code</span>
-<span class="sd">        &quot;&quot;&quot;</span></div></div>
+<span class="sd">            bool: whether memory is full or not</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__memory</span><span class="o">.</span><span class="n">is_full</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">memory_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets memory length</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: memory length (rows count)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__memory</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Agent.update_model"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.update_model">[docs]</a>    <span class="k">def</span> <span class="nf">update_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates model used to estimate best actions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">__memory</span><span class="o">.</span><span class="n">get_sar_entries</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Agent.get_qvalue"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.get_qvalue">[docs]</a>    <span class="k">def</span> <span class="nf">get_qvalue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns QValues approximated by agent&#39;s model</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (State): state</span>
+<span class="sd">            action (np.ndarray): action(s)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: QValues for action(s)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">is_fit</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="Agent.get_action"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.get_action">[docs]</a>    <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">available_actions</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets an action</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (State): state</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: action name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_training</span><span class="p">:</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="p">,</span>
+                                               <span class="n">available_actions</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">available_actions</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">)]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__exploration_strategy</span><span class="o">.</span><span class="n">get_action</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="p">,</span>
+                                                      <span class="n">state</span><span class="p">,</span>
+                                                      <span class="n">available_actions</span><span class="p">,</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">__memory</span><span class="p">)</span></div></div>
 </pre></div>
 
               </div>

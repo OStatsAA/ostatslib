@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>ostatslib.replay_memories &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.agents.agent &#8212; Open Statistics Analysis Agent</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ostatslib.replay_memories.replay_memory" href="ostatslib.replay_memories.replay_memory.html" />
-    <link rel="prev" title="ostatslib.reinforcement_learning_models.support_vector_regression" href="ostatslib.reinforcement_learning_models.support_vector_regression.html" />
+    <link rel="next" title="ostatslib.environments" href="ostatslib.environments.html" />
+    <link rel="prev" title="ostatslib.agents" href="ostatslib.agents.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -253,18 +253,18 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="ostatslib.agents.html">
      ostatslib.agents
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
     <label for="toctree-checkbox-7">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="ostatslib.agents.agent.html">
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
        ostatslib.agents.agent
       </a>
      </li>
@@ -341,11 +341,11 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="ostatslib.replay_memories.html">
      ostatslib.replay_memories
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
     <label for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
@@ -472,7 +472,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.replay_memories.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.agents.agent.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -500,7 +500,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/api/_autosummary/ostatslib.replay_memories.rst"
+        <a href="../../_sources/api/_autosummary/ostatslib.agents.agent.rst"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -549,7 +549,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ostatslib.replay_memories</h1>
+                <h1>ostatslib.agents.agent</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -561,21 +561,114 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="module-ostatslib.replay_memories">
-<span id="ostatslib-replay-memories"></span><h1>ostatslib.replay_memories<a class="headerlink" href="#module-ostatslib.replay_memories" title="Permalink to this headline">#</a></h1>
-<p>Replay memories module</p>
-<p class="rubric">Modules</p>
+  <section id="module-ostatslib.agents.agent">
+<span id="ostatslib-agents-agent"></span><h1>ostatslib.agents.agent<a class="headerlink" href="#module-ostatslib.agents.agent" title="Permalink to this headline">#</a></h1>
+<p>Agent module</p>
+<p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.replay_memories.replay_memory.html#module-ostatslib.replay_memories.replay_memory" title="ostatslib.replay_memories.replay_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.replay_memories.replay_memory</span></code></a></p></td>
-<td><p>Replay memory module</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.agents.agent.Agent" title="ostatslib.agents.agent.Agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Agent</span></code></a>([model, is_training, ...])</p></td>
+<td><p>Agent class</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.reinforcement_learning_models.model.html#ostatslib.reinforcement_learning_models.model.Model" title="ostatslib.reinforcement_learning_models.model.Model"><span class="pre">ostatslib.reinforcement_learning_models.model.Model</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_training</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exploration_strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.exploration_strategies.exploration_strategy.html#ostatslib.exploration_strategies.exploration_strategy.ExplorationStrategy" title="ostatslib.exploration_strategies.exploration_strategy.ExplorationStrategy"><span class="pre">ostatslib.exploration_strategies.exploration_strategy.ExplorationStrategy</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replay_memory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.replay_memories.replay_memory.html#ostatslib.replay_memories.replay_memory.ReplayMemory" title="ostatslib.replay_memories.replay_memory.ReplayMemory"><span class="pre">ostatslib.replay_memories.replay_memory.ReplayMemory</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent" title="Permalink to this definition">#</a></dt>
+<dd><p>Agent class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.get_action">
+<span class="sig-name descname"><span class="pre">get_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">available_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent.get_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent.get_action" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets an action</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>action name</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.get_qvalue">
+<span class="sig-name descname"><span class="pre">get_qvalue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent.get_qvalue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent.get_qvalue" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns QValues approximated by agent’s model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p></li>
+<li><p><strong>action</strong> (<em>np.ndarray</em>) – action(s)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>QValues for action(s)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.is_memory_full">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_memory_full</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ostatslib.agents.agent.Agent.is_memory_full" title="Permalink to this definition">#</a></dt>
+<dd><p>Return whether memory is full</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>whether memory is full or not</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.memory_length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">memory_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#ostatslib.agents.agent.Agent.memory_length" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets memory length</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>memory length (rows count)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.remember_transition">
+<span class="sig-name descname"><span class="pre">remember_transition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">available_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent.remember_transition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent.remember_transition" title="Permalink to this definition">#</a></dt>
+<dd><p>Stores transition in agent’s memory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p></li>
+<li><p><strong>action_name</strong> (<em>str</em>) – action taken name</p></li>
+<li><p><strong>next_state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – resulting state</p></li>
+<li><p><strong>reward</strong> (<em>float</em>) – reward received</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.update_model">
+<span class="sig-name descname"><span class="pre">update_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent.update_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent.update_model" title="Permalink to this definition">#</a></dt>
+<dd><p>Updates model used to estimate best actions</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
     <script type="text/x-thebe-config">
@@ -605,17 +698,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ostatslib.reinforcement_learning_models.support_vector_regression.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="ostatslib.agents.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ostatslib.reinforcement_learning_models.support_vector_regression</p>
+            <p class="prev-next-title">ostatslib.agents</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="ostatslib.replay_memories.replay_memory.html" title="next page">
+    <a class='right-next' id="next-link" href="ostatslib.environments.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ostatslib.replay_memories.replay_memory</p>
+        <p class="prev-next-title">ostatslib.environments</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

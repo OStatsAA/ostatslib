@@ -8,6 +8,7 @@ OStatsLib
    :recursive:
 
    actions
+   agents
    environments
    exploration_strategies
    features_extractors

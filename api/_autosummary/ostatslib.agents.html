@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>ostatslib.replay_memories &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.agents &#8212; Open Statistics Analysis Agent</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ostatslib.replay_memories.replay_memory" href="ostatslib.replay_memories.replay_memory.html" />
-    <link rel="prev" title="ostatslib.reinforcement_learning_models.support_vector_regression" href="ostatslib.reinforcement_learning_models.support_vector_regression.html" />
+    <link rel="next" title="ostatslib.agents.agent" href="ostatslib.agents.agent.html" />
+    <link rel="prev" title="ostatslib.actions.utils.reward_cap" href="ostatslib.actions.utils.reward_cap.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -253,11 +253,11 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="ostatslib.agents.html">
+   <li class="toctree-l2 current active has-children">
+    <a class="current reference internal" href="#">
      ostatslib.agents
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
     <label for="toctree-checkbox-7">
      <i class="fas fa-chevron-down">
      </i>
@@ -341,11 +341,11 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 current active has-children">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="ostatslib.replay_memories.html">
      ostatslib.replay_memories
     </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
     <label for="toctree-checkbox-11">
      <i class="fas fa-chevron-down">
      </i>
@@ -472,7 +472,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.replay_memories.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.agents.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -500,7 +500,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/api/_autosummary/ostatslib.replay_memories.rst"
+        <a href="../../_sources/api/_autosummary/ostatslib.agents.rst"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -549,7 +549,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ostatslib.replay_memories</h1>
+                <h1>ostatslib.agents</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -561,9 +561,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="module-ostatslib.replay_memories">
-<span id="ostatslib-replay-memories"></span><h1>ostatslib.replay_memories<a class="headerlink" href="#module-ostatslib.replay_memories" title="Permalink to this headline">#</a></h1>
-<p>Replay memories module</p>
+  <section id="module-ostatslib.agents">
+<span id="ostatslib-agents"></span><h1>ostatslib.agents<a class="headerlink" href="#module-ostatslib.agents" title="Permalink to this headline">#</a></h1>
+<p>Agents module</p>
 <p class="rubric">Modules</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -571,8 +571,8 @@ title="Print to PDF"
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.replay_memories.replay_memory.html#module-ostatslib.replay_memories.replay_memory" title="ostatslib.replay_memories.replay_memory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.replay_memories.replay_memory</span></code></a></p></td>
-<td><p>Replay memory module</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.agents.agent.html#module-ostatslib.agents.agent" title="ostatslib.agents.agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.agents.agent</span></code></a></p></td>
+<td><p>Agent module</p></td>
 </tr>
 </tbody>
 </table>
@@ -605,17 +605,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ostatslib.reinforcement_learning_models.support_vector_regression.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="ostatslib.actions.utils.reward_cap.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ostatslib.reinforcement_learning_models.support_vector_regression</p>
+            <p class="prev-next-title">ostatslib.actions.utils.reward_cap</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="ostatslib.replay_memories.replay_memory.html" title="next page">
+    <a class='right-next' id="next-link" href="ostatslib.agents.agent.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ostatslib.replay_memories.replay_memory</p>
+        <p class="prev-next-title">ostatslib.agents.agent</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -62,7 +62,7 @@ jobs:
 
       - name: Generate docs
         run: |
-          jupyter-book build docs/
+          poetry run jb build docs/
     
     # Push the book's HTML to github-pages
       - name: Publish Docs to GitHub Pages

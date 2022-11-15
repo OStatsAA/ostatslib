@@ -25,6 +25,11 @@ pytest-cov = "^4.0.0"
 scipy = "^1.9.2"
 datacooker = "^0.2.0"
 
+
+[tool.poetry.group.docs.dependencies]
+jupyter-book = "^0.13.1"
+sphinxcontrib-mermaid = "^0.7.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

@@ -9,6 +9,7 @@ on:
 
 permissions:
   pull-requests: read # allows SonarCloud to decorate PRs with analysis results
+  contents: write
 
 jobs:
   Build:
@@ -66,7 +67,7 @@ jobs:
     
     # Push the book's HTML to github-pages
       - name: Publish Docs to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3.6.1
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/_build/html

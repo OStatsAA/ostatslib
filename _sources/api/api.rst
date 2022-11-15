@@ -11,7 +11,6 @@ OStatsLib
    agents
    environments
    exploration_strategies
-   features_extractors
    reinforcement_learning_models
    replay_memories
    states

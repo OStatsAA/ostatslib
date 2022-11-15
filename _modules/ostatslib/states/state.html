@@ -311,11 +311,6 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../../api/_autosummary/ostatslib.features_extractors.html">
-     ostatslib.features_extractors
-    </a>
-   </li>
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="../../../api/_autosummary/ostatslib.reinforcement_learning_models.html">
      ostatslib.reinforcement_learning_models
@@ -365,6 +360,16 @@ const thebe_selector_output = ".output, .cell_output"
      </i>
     </label>
     <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.analysis_features_set.html">
+       ostatslib.states.analysis_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">
+       ostatslib.states.data_features_set
+      </a>
+     </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.state.html">
        ostatslib.states.state
@@ -520,7 +525,8 @@ title="Open an issue"
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">fields</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">NaN</span><span class="p">,</span> <span class="n">concatenate</span><span class="p">,</span> <span class="n">isnan</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">array</span>
-<span class="kn">from</span> <span class="nn">ostatslib.features_extractors</span> <span class="kn">import</span> <span class="n">AnalysisFeaturesSet</span><span class="p">,</span> <span class="n">DataFeaturesSet</span>
+<span class="kn">from</span> <span class="nn">ostatslib.states.analysis_features_set</span> <span class="kn">import</span> <span class="n">AnalysisFeaturesSet</span>
+<span class="kn">from</span> <span class="nn">ostatslib.states.data_features_set</span> <span class="kn">import</span> <span class="n">DataFeaturesSet</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states.state_iterator</span> <span class="kn">import</span> <span class="n">StateIterator</span>
 
 

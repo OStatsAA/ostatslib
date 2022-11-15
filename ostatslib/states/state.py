@@ -5,7 +5,8 @@ State abstract class module
 from abc import ABC
 from dataclasses import fields
 from numpy import NaN, concatenate, isnan, ndarray, array
-from ostatslib.features_extractors import AnalysisFeaturesSet, DataFeaturesSet
+from ostatslib.states.analysis_features_set import AnalysisFeaturesSet
+from ostatslib.states.data_features_set import DataFeaturesSet
 from ostatslib.states.state_iterator import StateIterator
 
 

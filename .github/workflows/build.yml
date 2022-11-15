@@ -59,3 +59,14 @@ jobs:
             -Dsonar.python.version=3
             -Dsonar.tests=tests
             -Dsonar.sources=ostatslib
+
+      - name: Generate docs
+        run: |
+          jupyter-book build docs/
+    
+    # Push the book's HTML to github-pages
+      - name: Publish Docs to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3.6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/_build/html

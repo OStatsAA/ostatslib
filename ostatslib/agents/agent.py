@@ -46,7 +46,7 @@ class Agent:
             next_state (State): resulting state
             reward (float): reward received
         """
-        state_qvalue = self.get_qvalue(state, action_code)
+        state_qvalue = (1 - self.__learning_rate) * self.get_qvalue(state, action_code)
         next_state_qvalues = self.get_qvalue(next_state, available_actions)
         next_state_best_qvalue = np.amax(next_state_qvalues)
         discounted_next_state_qvalue = self.__discount * next_state_best_qvalue

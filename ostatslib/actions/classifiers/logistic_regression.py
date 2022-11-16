@@ -31,7 +31,7 @@ def logistic_regression(state: State, data: DataFrame) -> ActionResult[LogisticR
     try:
         regression = regression.fit(x_values, y_values)
     except ValueError:
-        return ActionResult(state, -100, None)
+        return ActionResult(state, -1, None)
 
     score: float = regression.score(x_values, y_values)
     reward = __calculate_reward(state, score)
@@ -49,20 +49,17 @@ def __calculate_reward(state: State, score: float) -> float:
 
 
 def __penalty_for_continous_response(state: State) -> float:
-    if state.get("is_response_quantitative") > 0:
-        return -100
+    if state.get("is_response_quantitative") == 1:
+        return -1
 
     return 0
 
 
 def __reward_for_accuracy(score: float) -> float:
     if score <= .6:
-        return (1 - score) * (-100)
+        return - (1 - score)
 
-    if .6 < score <= .9:
-        return score * 50
-
-    return score * 60
+    return score
 
 
 def __apply_state_updates(state: State, score: float) -> State:

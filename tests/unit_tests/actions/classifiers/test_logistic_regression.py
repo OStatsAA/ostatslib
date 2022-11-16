@@ -39,7 +39,7 @@ def test_binary_response_data_yields_positve_reward(dummy_binary_response_data) 
     Action should return a positve reward when applied to a linear datatset
     """
     action_result = logistic_regression(State(), dummy_binary_response_data)
-    assert action_result.reward >= 10
+    assert action_result.reward >= .1
 
 
 def test_continous_response_data_yields_negative_reward(

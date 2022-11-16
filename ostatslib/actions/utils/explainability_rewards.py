@@ -9,9 +9,9 @@ from .action_result import ActionFunction, ActionResult
 
 T = TypeVar("T")
 
-OPAQUE_PENALTY = -10
-INTERPETRABLE_REWARD = 10
-COMPREHENSIBLE_REWARD = 10
+OPAQUE_PENALTY = -.1
+INTERPETRABLE_REWARD = .1
+COMPREHENSIBLE_REWARD = .1
 
 
 def opaque_model(

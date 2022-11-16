@@ -42,7 +42,7 @@ def test_linear_data_yields_positve_reward(dummy_linear_data: DataFrame) -> None
     """
     action_result: ActionResult[RegressionResults] = linear_regression(State(),
                                                                        dummy_linear_data)
-    assert action_result.reward >= 10
+    assert action_result.reward >= .1
 
 
 def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFrame) -> None:

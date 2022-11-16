@@ -9,8 +9,8 @@ from .action_result import ActionFunction, ActionResult
 
 T = TypeVar("T")
 
-REWARD_UPPER_LIMIT = 100
-REWARD_LOWER_LIMIT = -100
+REWARD_UPPER_LIMIT = 1
+REWARD_LOWER_LIMIT = -1
 
 
 def reward_cap(action_function: ActionFunction[T]) -> ActionResult[T]:

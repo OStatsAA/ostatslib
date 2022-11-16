@@ -54,8 +54,8 @@ def __calculate_reward(state: State, regression: RegressionResults) -> float:
 
 
 def __penalty_for_dichotomous_response(state: State) -> State:
-    if state.get("is_response_dichotomous") > 0:
-        return -50
+    if state.get("is_response_dichotomous") == 1:
+        return -1
 
     return 0
 
@@ -64,21 +64,21 @@ def __reward_for_normally_distributed_errors(regression: RegressionResults) -> f
     jarque_bera_pvalue = jarque_bera(regression.wresid.values)[1]
 
     if jarque_bera_pvalue < .01:
-        return -20
+        return -.2
 
     if jarque_bera_pvalue < .05:
-        return -10
+        return -.1
 
-    return 10
+    return .1
 
 
 def __reward_for_correlation_of_error_terms(residuals: np.ndarray) -> float:
     dw_stat = durbin_watson(residuals)
 
     if 1 < dw_stat < 2:
-        return 10
+        return .1
 
-    return -10
+    return -.1
 
 
 def __reward_for_homoscedasticity(residuals: np.ndarray,
@@ -86,22 +86,19 @@ def __reward_for_homoscedasticity(residuals: np.ndarray,
     f_stat_pvalue = het_breuschpagan(residuals, explanatory_vars)[3]
 
     if f_stat_pvalue < .01:
-        return -20
+        return -.2
 
     if f_stat_pvalue < .05:
-        return -10
+        return -.1
 
-    return 10
+    return .1
 
 
 def __reward_for_model_r_squared(rsquared: float) -> float:
     if rsquared <= .6:
-        return - (1 - rsquared) * 100
-
-    if .6 < rsquared <= .9:
-        return rsquared * 50
-
-    return rsquared * 60
+        return - (1 - rsquared)
+    
+    return rsquared
 
 
 def __apply_state_updates(state: State, regression: RegressionResults) -> State:

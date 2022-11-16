@@ -26,7 +26,7 @@ def get_log_rows_count(state: State,
     log_rows_count = __calculate_log_rows_count(data)
     reward = __calculate_reward(state, log_rows_count)
     state = __update_state(state, log_rows_count)
-    return ActionResult(state, reward, None)
+    return ActionResult(state, reward, "get_log_rows_count")
 
 
 def __calculate_log_rows_count(data: DataFrame) -> float:

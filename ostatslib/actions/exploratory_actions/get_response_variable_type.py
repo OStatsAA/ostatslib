@@ -30,7 +30,7 @@ def get_response_variable_type(state: State,
     state = __update_state_response_typing_features(state, response)
     reward = __calculate_reward(state, state_copy)
 
-    return ActionResult(state, reward, None)
+    return ActionResult(state, reward, "get_response_variable_type")
 
 
 def __update_state_response_typing_features(state: State, response: Series) -> State:

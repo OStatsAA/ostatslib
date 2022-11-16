@@ -1,3 +1,4 @@
+# pylint: disable=attribute-defined-outside-init
 """
 Replay memory module
 """
@@ -11,11 +12,8 @@ class ReplayMemory:
         next states after action taken and reward.
     """
 
-    def __init__(self, max_length: int = 10000) -> None:
-        self.__states = np.empty(1)
-        self.__actions = np.empty(1)
-        self.__next_states = np.empty(1)
-        self.__rewards = np.empty(1)
+    def __init__(self, max_length: int = 100000) -> None:
+        self.__init_empty_arrays()
         self.__next_index = 0
         self.__max_length = max_length
 
@@ -73,8 +71,21 @@ class ReplayMemory:
         """
         return self.__max_length == self.__next_index
 
+    def clear(self) -> None:
+        """
+        Clears memory data
+        """
+        self.__init_empty_arrays()
+        self.__next_index = 0
+
     def __len__(self):
         return self.__next_index
+
+    def __init_empty_arrays(self):
+        self.__states = np.empty(1)
+        self.__actions = np.empty(1)
+        self.__next_states = np.empty(1)
+        self.__rewards = np.empty(1)
 
     def __initialize_arrays(self,
                             states_shape: tuple,

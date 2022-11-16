@@ -25,7 +25,7 @@ class SupportVectorRegression(Model):
             actions_features: ndarray,
             expected_rewards: ndarray) -> None:
         features = concatenate((state_features, actions_features), axis=1)
-        self.__svr.fit(features, expected_rewards)
+        self.__svr.fit(features, expected_rewards.ravel())
         self.__is_fit = True
 
     def predict(self,

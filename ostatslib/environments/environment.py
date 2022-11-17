@@ -73,7 +73,7 @@ class Environment:
             actions_deque.append(action_result)
             state = action_result.state
 
-            done = self.__is_done(action_result)
+            done = self.__is_done(state)
             if done:
                 break
 
@@ -119,7 +119,7 @@ class Environment:
             accumulated_reward += action_result.reward
             state = action_result.state
 
-            done = self.__is_done(action_result)
+            done = self.__is_done(state)
             if done:
                 break
 
@@ -131,5 +131,5 @@ class Environment:
         action_fn = self.__actions_space.get_action_by_encoding(action_code)
         return action_fn, action_code
 
-    def __is_done(self, action_result: ActionResult) -> bool:
-        return action_result.result is not None
+    def __is_done(self, state: State) -> bool:
+        return bool(state.get("score"))

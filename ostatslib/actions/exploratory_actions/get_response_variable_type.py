@@ -70,6 +70,6 @@ def __update_state_response_typing_features(state: State, response: Series) -> S
 
 def __calculate_reward(state: State, state_copy: State) -> float:
     if state == state_copy:
-        return -50
+        return -.5
 
-    return 10
+    return 1

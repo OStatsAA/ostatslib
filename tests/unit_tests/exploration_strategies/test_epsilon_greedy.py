@@ -17,7 +17,7 @@ ACTIONS_LIST = list(string.ascii_lowercase[:9]) + [BEST_ACTION]
 
 
 @pytest.fixture
-def model_mock() -> Mock:
+def predict_fn_mock() -> Mock:
     """
     Reinforcement Learning model mock
     """
@@ -25,15 +25,13 @@ def model_mock() -> Mock:
     predictions = [0] * 10
     predictions[ACTIONS_LIST.index(BEST_ACTION)] = 1
     attrs = {
-        'is_fit.return_value': False,
-        'fit.return_value': None,
-        'predict.return_value': predictions
+        'return_value': predictions
     }
     mock.configure_mock(**attrs)
     return mock
 
 
-def test_actions_taken_uniformly_if_epsilon_is_1(model_mock: Mock) -> None:
+def test_actions_taken_uniformly_if_epsilon_is_1(predict_fn_mock: Mock) -> None:
     """
     If epsilon = 1, the epsilon-greedy strategy picks actions uniformly with prob 1/n_actions.
     Kolmogorov-Smirnov test for goodness of fit used to test uniformity
@@ -42,8 +40,9 @@ def test_actions_taken_uniformly_if_epsilon_is_1(model_mock: Mock) -> None:
     explored_actions = [""] * 1000
 
     for i, _ in enumerate(explored_actions):
-        explored_actions[i] = strategy.get_action(
-            model_mock, State(), ACTIONS_LIST, State())
+        explored_actions[i] = strategy.get_action(State(),
+                                                  ACTIONS_LIST,
+                                                  predict_fn_mock)
 
     actions_count = list(Counter(explored_actions).values())
     param_a = min(actions_count)
@@ -52,7 +51,7 @@ def test_actions_taken_uniformly_if_epsilon_is_1(model_mock: Mock) -> None:
     assert kstest_result.pvalue < .01
 
 
-def test_best_action_taken_aprox_half_times_if_epsilon_is_half(model_mock: Mock) -> None:
+def test_best_action_taken_aprox_half_times_if_epsilon_is_half(predict_fn_mock: Mock) -> None:
     """
     If epsilon = 0.5,
     the epsilon-greedy strategy picks the best action approximately 50% of the times.
@@ -61,8 +60,9 @@ def test_best_action_taken_aprox_half_times_if_epsilon_is_half(model_mock: Mock)
     explored_actions = [""] * 1000
 
     for i, _ in enumerate(explored_actions):
-        explored_actions[i] = strategy.get_action(
-            model_mock, State(), ACTIONS_LIST, State())
+        explored_actions[i] = strategy.get_action(State(),
+                                                  ACTIONS_LIST,
+                                                  predict_fn_mock)
 
     actions_counter = Counter(explored_actions)
     most_freq_action, most_freq_value = actions_counter.most_common(1)[0]
@@ -70,7 +70,7 @@ def test_best_action_taken_aprox_half_times_if_epsilon_is_half(model_mock: Mock)
     assert 400 < most_freq_value < 600
 
 
-def test_best_action_is_always_taken_if_epsilon_is_0(model_mock: Mock) -> None:
+def test_best_action_is_always_taken_if_epsilon_is_0(predict_fn_mock: Mock) -> None:
     """
     If epsilon = 1, the epsilon-greedy strategy picks actions uniformly with prob 1/n_actions.
     Kolmogorov-Smirnov test for goodness of fit used to test uniformty
@@ -79,8 +79,9 @@ def test_best_action_is_always_taken_if_epsilon_is_0(model_mock: Mock) -> None:
     explored_actions = [""] * 1000
 
     for i, _ in enumerate(explored_actions):
-        explored_actions[i] = strategy.get_action(
-            model_mock, State(), ACTIONS_LIST, State())
+        explored_actions[i] = strategy.get_action(State(),
+                                                  ACTIONS_LIST,
+                                                  predict_fn_mock)
 
     actions_counter = Counter(explored_actions)
     most_freq_action, most_freq_value = actions_counter.most_common(1)[0]

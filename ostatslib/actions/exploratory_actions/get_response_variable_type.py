@@ -43,33 +43,28 @@ def __update_state_response_typing_features(state: State, response: Series) -> S
             state.set("is_response_quantitative", -1)
             state.set("is_response_dichotomous", 1)
 
-        case "floating" | "mixed-integer-float" | "decimal" | "complex":
+        case "floating" | "mixed-integer-float" | "decimal" | "complex" | "integer":
             state.set("is_response_quantitative", 1)
-            if unique_values_count != 2:
-                state.set("is_response_dichotomous", -1)
+            __set_is_response_dichotomous(state, unique_values_count)
 
-        case "categorical":
+        case "categorical" | "string":
             state.set("is_response_quantitative", -1)
-            if unique_values_count == 2:
-                state.set("is_response_dichotomous", 1)
-            else:
-                state.set("is_response_dichotomous", -1)
-
-        case "string":
-            if unique_values_count == 2:
-                state.set("is_response_dichotomous", 1)
-            else:
-                state.set("is_response_dichotomous", -1)
+            __set_is_response_dichotomous(state, unique_values_count)
 
         case _:
-            if unique_values_count != 2:
-                state.set("is_response_dichotomous", -1)
+            __set_is_response_dichotomous(state, unique_values_count)
 
     return state
+
+def __set_is_response_dichotomous(state: State, unique_values_count: int) -> None:
+    if unique_values_count == 2:
+        state.set("is_response_dichotomous", 1)
+    else:
+        state.set("is_response_dichotomous", -1)
 
 
 def __calculate_reward(state: State, state_copy: State) -> float:
     if state == state_copy:
-        return -.5
+        return -1
 
     return 1

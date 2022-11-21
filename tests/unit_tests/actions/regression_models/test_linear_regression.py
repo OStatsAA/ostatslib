@@ -42,7 +42,7 @@ def test_linear_data_yields_positve_reward(dummy_linear_data: DataFrame) -> None
     """
     action_result: ActionResult[RegressionResults] = linear_regression(State(),
                                                                        dummy_linear_data)
-    assert action_result.reward >= .1
+    assert action_result.reward >= 0.5
 
 
 def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFrame) -> None:
@@ -53,4 +53,4 @@ def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFram
     state.set("is_response_dichotomous", 1)
     action_result: ActionResult[RegressionResults] = linear_regression(state,
                                                                        dummy_binary_response_data)
-    assert action_result.reward <= 0
+    assert action_result.reward <= -0.5

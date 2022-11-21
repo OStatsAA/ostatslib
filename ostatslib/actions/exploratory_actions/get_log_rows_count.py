@@ -40,7 +40,7 @@ def __calculate_log_rows_count(data: DataFrame) -> float:
 
 def __calculate_reward(state: State, log_rows_count: float) -> float:
     if state.get("log_rows_count") == log_rows_count:
-        return -.5
+        return -1
 
     return 1
 

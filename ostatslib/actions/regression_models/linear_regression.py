@@ -97,7 +97,7 @@ def __reward_for_homoscedasticity(residuals: np.ndarray,
 def __reward_for_model_r_squared(rsquared: float) -> float:
     if rsquared <= .6:
         return - (1 - rsquared)
-    
+
     return rsquared
 
 

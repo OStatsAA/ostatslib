@@ -122,6 +122,13 @@ class SupportVectorRegression(ReinforcementLearningMethod):
     def __predict(self,
                   state_features: np.ndarray,
                   available_actions: np.ndarray) -> np.ndarray:
+        features = self.__align_state_actions_dimensions(state_features,
+                                                         available_actions)
+        return self.__svr.predict(features)
+
+    def __align_state_actions_dimensions(self,
+                                         state_features: np.ndarray,
+                                         available_actions: np.ndarray) -> np.ndarray:
         features = None
         if state_features.ndim == available_actions.ndim == 1:
             features = np.concatenate(
@@ -135,6 +142,4 @@ class SupportVectorRegression(ReinforcementLearningMethod):
             features = np.concatenate(
                 (state_features, available_actions), axis=1)
 
-        predictions = self.__svr.predict(features)
-
-        return predictions
+        return features

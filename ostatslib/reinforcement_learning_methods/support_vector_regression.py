@@ -8,7 +8,9 @@ from pandas import DataFrame
 from sklearn.svm import SVR
 
 from ostatslib.environments import Environment
+from ostatslib.exploration_strategies import ExplorationStrategy, EpsilonGreedy
 from ostatslib.states import State
+
 from .reinforcement_learning_method import ReinforcementLearningMethod
 from .utils import ModelNotFitError
 
@@ -18,8 +20,12 @@ class SupportVectorRegression(ReinforcementLearningMethod):
     Regression model for agents predictions using SVR
     """
 
-    def __init__(self, svr=None) -> None:
+    def __init__(self,
+                 svr: SVR = None,
+                 exploratory_strategy: ExplorationStrategy = None) -> None:
         self.__svr = svr if svr is not None else SVR()
+        if exploratory_strategy is None:
+            self.__exploratory_strategy = EpsilonGreedy()
         self.__is_fit: bool = False
         self.__states_features_history = []
         self.__actions_history = []
@@ -88,8 +94,14 @@ class SupportVectorRegression(ReinforcementLearningMethod):
                             data: DataFrame,
                             environment: Environment,
                             state: State):
+        action = None
         available_actions = environment.actions_space.actions_encodings_list
-        action = choice(available_actions)
+        if self.__is_fit:
+            action = self.__exploratory_strategy.get_action(state,
+                                                            available_actions,
+                                                            self.__predict)
+        else:
+            action = choice(available_actions)
 
         # Apply the sampled action in our environment
         action_result, done = environment.run_action(state,

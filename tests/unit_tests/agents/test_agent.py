@@ -37,6 +37,6 @@ def test_agent_runs_analysis(dummy_dataset: DataFrame) -> None:
     """
     agent = Agent()
     agent.train(dummy_dataset)
-    analysis = agent.run_analysis(dummy_dataset)
+    analysis = agent.analyze(dummy_dataset)
 
     assert analysis is not None

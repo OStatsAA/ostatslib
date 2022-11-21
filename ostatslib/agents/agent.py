@@ -73,7 +73,7 @@ class Agent:
         self.__is_training = False
         return episode_reward
 
-    def run_analysis(self, data: DataFrame, initial_state: State = State()) -> list:
+    def analyze(self, data: DataFrame, initial_state: State = State()) -> list:
         """
         Run an analysis
 

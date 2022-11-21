@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="OStatsLib" href="../api/api.html" />
-    <link rel="prev" title="Analysis" href="analysis.html" />
+    <link rel="prev" title="Open Statistics Analysis Agent (OStatsAA)" href="../home.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,11 +121,6 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="analysis.html">
-   Analysis
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Training
@@ -315,8 +310,8 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_models.html">
-     ostatslib.reinforcement_learning_models
+    <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.html">
+     ostatslib.reinforcement_learning_methods
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
     <label for="toctree-checkbox-10">
@@ -325,14 +320,51 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_models.model.html">
-       ostatslib.reinforcement_learning_models.model
+      <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html">
+       ostatslib.reinforcement_learning_methods.actor_critic
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_models.support_vector_regression.html">
-       ostatslib.reinforcement_learning_models.support_vector_regression
+      <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html">
+       ostatslib.reinforcement_learning_methods.reinforcement_learning_method
       </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.support_vector_regression.html">
+       ostatslib.reinforcement_learning_methods.support_vector_regression
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.html">
+       ostatslib.reinforcement_learning_methods.utils
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network.html">
+         ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor.html">
+         ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.model_not_fit_error.html">
+         ostatslib.reinforcement_learning_methods.utils.model_not_fit_error
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.normalize_values_list.html">
+         ostatslib.reinforcement_learning_methods.utils.normalize_values_list
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -340,8 +372,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="../api/_autosummary/ostatslib.replay_memories.html">
      ostatslib.replay_memories
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -357,8 +389,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="../api/_autosummary/ostatslib.states.html">
      ostatslib.states
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -598,6 +630,11 @@ title="Print to PDF"
    Training diagram
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example">
+   Example
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -622,6 +659,11 @@ title="Print to PDF"
    Training diagram
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example">
+   Example
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -640,36 +682,85 @@ title="Print to PDF"
 <div class="mermaid">
             sequenceDiagram
     autonumber
-    participant Environment
     participant Agent
-    participant QValue Model
-    Note left of QValue Model: SVR, DQN...
-    participant Replay Memory
-    participant ActionsSpace
-    participant Action
+    participant RL Method
+        Note left of RL Method: SVR, Actor-Critic...
+    participant Environment
 
     loop Episode
-        Environment-&gt;&gt;Environment: New dataset
-
+        Agent--&gt;&gt;+RL Method: Start training (Data, Initial State)
         loop Step
-            Environment-&gt;&gt;+Agent: Get action (State, Actions)
-            Agent-&gt;&gt;+QValue Model: Predict highest QValue (State, Actions)
-            QValue Model--&gt;&gt;-Agent: Best action and its QValue
-            Agent--&gt;&gt;-Environment: Return best action
-            Environment-&gt;&gt;+ActionsSpace: Get action function (Best action)
-            ActionsSpace--&gt;&gt;-Environment: return action function
-            Environment-&gt;&gt;+Action: Run action (State, Dataset)
-            Action--&gt;&gt;-Environment: Return result, next state, reward
-            Environment-&gt;&gt;Agent: Save transition (State, Action, Next State, Reward)
-            Agent-&gt;&gt;Replay Memory: Save transition (State, Action, Next State, Reward)
-            Environment-&gt;&gt;Environment: State = Next State
-            Environment-&gt;&gt;Environment: Break loop if analysis is done
+            RL Method--&gt;&gt;+Environment: Select an action following its exploration strategy
+            Environment--&gt;&gt;-RL Method: Return next state, action, reward and done flag
+            RL Method-&gt;&gt;RL Method: Store transition to memory
         end
-
-        Environment-&gt;&gt;Agent: Update model
-
+        RL Method-&gt;&gt;RL Method: Update model
+        RL Method--&gt;&gt;-Agent: Returns episode reward
     end
         </div></div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p>Training an Agent powered by SVR model on 400 datasets split between regression (odd indexes) and binary classification problems (even indexes).</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;TF_CPP_MIN_LOG_LEVEL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">docs.workflows.utils.generate_training_datasets</span> <span class="kn">import</span> <span class="n">generate_training_datasets</span>
+<span class="kn">from</span> <span class="nn">ostatslib.agents</span> <span class="kn">import</span> <span class="n">Agent</span>
+<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="n">SupportVectorRegression</span>
+
+<span class="n">datasets</span> <span class="o">=</span> <span class="n">generate_training_datasets</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">rl_method</span><span class="o">=</span><span class="n">SupportVectorRegression</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
+    <span class="n">agent</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Checking Agent analysis.</p>
+<ul class="simple">
+<li><p>Binary classification:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: get_response_variable_type, reward: 1, next state features: [0 0 1 1]
+Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.9406346 0.        1.        1.       ]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Regression:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: get_response_variable_type, reward: 1, next state features: [ 0  0 -1  1]
+Action: &lt;statsmodels.regression.linear_model.RegressionResultsWrapper object at 0x7f55ec790d60&gt;, reward: 1, next state features: [ 0.99065616  0.         -1.          1.        ]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -700,11 +791,11 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="analysis.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../home.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Analysis</p>
+            <p class="prev-next-title">Open Statistics Analysis Agent (OStatsAA)</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../api/api.html" title="next page">

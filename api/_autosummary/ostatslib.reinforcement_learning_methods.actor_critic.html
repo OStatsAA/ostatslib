@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>ostatslib.reinforcement_learning_models.model &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.reinforcement_learning_methods.actor_critic &#8212; Open Statistics Analysis Agent</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>mermaid.initialize({startOnLoad:true});</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ostatslib.reinforcement_learning_models.support_vector_regression" href="ostatslib.reinforcement_learning_models.support_vector_regression.html" />
-    <link rel="prev" title="ostatslib.reinforcement_learning_models" href="ostatslib.reinforcement_learning_models.html" />
+    <link rel="next" title="ostatslib.reinforcement_learning_methods.reinforcement_learning_method" href="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html" />
+    <link rel="prev" title="ostatslib.reinforcement_learning_methods" href="ostatslib.reinforcement_learning_methods.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,11 +121,6 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../workflows/analysis.html">
-   Analysis
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../workflows/training.html">
    Training
@@ -315,8 +310,8 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 current active has-children">
-    <a class="reference internal" href="ostatslib.reinforcement_learning_models.html">
-     ostatslib.reinforcement_learning_models
+    <a class="reference internal" href="ostatslib.reinforcement_learning_methods.html">
+     ostatslib.reinforcement_learning_methods
     </a>
     <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
     <label for="toctree-checkbox-10">
@@ -326,13 +321,50 @@ const thebe_selector_output = ".output, .cell_output"
     <ul class="current">
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       ostatslib.reinforcement_learning_models.model
+       ostatslib.reinforcement_learning_methods.actor_critic
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="ostatslib.reinforcement_learning_models.support_vector_regression.html">
-       ostatslib.reinforcement_learning_models.support_vector_regression
+      <a class="reference internal" href="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html">
+       ostatslib.reinforcement_learning_methods.reinforcement_learning_method
       </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ostatslib.reinforcement_learning_methods.support_vector_regression.html">
+       ostatslib.reinforcement_learning_methods.support_vector_regression
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.html">
+       ostatslib.reinforcement_learning_methods.utils
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network.html">
+         ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor.html">
+         ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.model_not_fit_error.html">
+         ostatslib.reinforcement_learning_methods.utils.model_not_fit_error
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.normalize_values_list.html">
+         ostatslib.reinforcement_learning_methods.utils.normalize_values_list
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -340,8 +372,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="ostatslib.replay_memories.html">
      ostatslib.replay_memories
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -357,8 +389,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="ostatslib.states.html">
      ostatslib.states
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -477,7 +509,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.reinforcement_learning_models.model.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -505,7 +537,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../../_sources/api/_autosummary/ostatslib.reinforcement_learning_models.model.rst"
+        <a href="../../_sources/api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.rst"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -554,7 +586,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>ostatslib.reinforcement_learning_models.model</h1>
+                <h1>ostatslib.reinforcement_learning_methods.actor_critic</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -566,9 +598,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="module-ostatslib.reinforcement_learning_models.model">
-<span id="ostatslib-reinforcement-learning-models-model"></span><h1>ostatslib.reinforcement_learning_models.model<a class="headerlink" href="#module-ostatslib.reinforcement_learning_models.model" title="Permalink to this headline">#</a></h1>
-<p>Model abstract class module</p>
+  <section id="module-ostatslib.reinforcement_learning_methods.actor_critic">
+<span id="ostatslib-reinforcement-learning-methods-actor-critic"></span><h1>ostatslib.reinforcement_learning_methods.actor_critic<a class="headerlink" href="#module-ostatslib.reinforcement_learning_methods.actor_critic" title="Permalink to this headline">#</a></h1>
+<p>ActorCritic module</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <colgroup>
@@ -576,33 +608,35 @@ title="Print to PDF"
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.reinforcement_learning_models.model.Model" title="ostatslib.reinforcement_learning_models.model.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a>()</p></td>
-<td><p>Model abstract class</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic" title="ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActorCritic</span></code></a>([num_hidden_layers, discount_rate])</p></td>
+<td><p>Actor-Critic implementation</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_models.model.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Model</span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_models/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_models.model.Model" title="Permalink to this definition">#</a></dt>
-<dd><p>Model abstract class</p>
+<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActorCritic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/actor_critic.html#ActorCritic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic" title="Permalink to this definition">#</a></dt>
+<dd><p>Actor-Critic implementation</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_models.model.Model.fit">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_rewards</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_models/model.html#Model.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_models.model.Model.fit" title="Permalink to this definition">#</a></dt>
-<dd><p>Model fitting method</p>
+<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.get_actions_probs_and_critic">
+<span class="sig-name descname"><span class="pre">get_actions_probs_and_critic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">tensorflow.python.framework.ops.Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/actor_critic.html#ActorCritic.get_actions_probs_and_critic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.get_actions_probs_and_critic" title="Permalink to this definition">#</a></dt>
+<dd><p>Get actions probabilities and critic value for a given state</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>state_features</strong> (<em>ndarray</em>) – state features vector</p></li>
-<li><p><strong>actions_features</strong> (<em>ndarray</em>) – actions features</p></li>
-<li><p><strong>expected_rewards</strong> (<em>ndarray</em>) – rewards array</p></li>
-</ul>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>actions probabilities and critic reward estimate</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple[tf.Tensor, float]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_models.model.Model.is_fit">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_fit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ostatslib.reinforcement_learning_models.model.Model.is_fit" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.is_fit">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_fit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.is_fit" title="Permalink to this definition">#</a></dt>
 <dd><p>Flags if models has already been fitted at least once</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -615,21 +649,45 @@ title="Print to PDF"
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_models.model.Model.predict">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">available_actions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_models/model.html#Model.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_models.model.Model.predict" title="Permalink to this definition">#</a></dt>
-<dd><p>Model predict method</p>
+<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.run_analysis">
+<span class="sig-name descname"><span class="pre">run_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><span class="pre">ostatslib.environments.environment.Environment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/actor_critic.html#ActorCritic.run_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.run_analysis" title="Permalink to this definition">#</a></dt>
+<dd><p>Run one episode with n steps, limited to max_steps parameter</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>features</strong> (<em>ndarray</em>) – state features vector</p></li>
-<li><p><strong>actions_features</strong> (<em>ndarray</em>) – actions features</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – initial state</p></li>
+<li><p><strong>data</strong> (<em>DataFrame</em>) – Dataframe</p></li>
+<li><p><strong>environment</strong> (<a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><em>Environment</em></a>) – OStatsLib environment</p></li>
+<li><p><strong>max_steps</strong> (<em>int</em>) – máximum number of steps in episode</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>predicted best action code</p>
+<dd class="field-even"><p>list of actions taken in episode</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ndarray</p>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.run_training_episode">
+<span class="sig-name descname"><span class="pre">run_training_episode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><span class="pre">ostatslib.environments.environment.Environment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/actor_critic.html#ActorCritic.run_training_episode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.run_training_episode" title="Permalink to this definition">#</a></dt>
+<dd><p>Run one episode with n steps, limited to max_steps parameter and updates internal model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – initial state</p></li>
+<li><p><strong>data</strong> (<em>DataFrame</em>) – Dataframe</p></li>
+<li><p><strong>environment</strong> (<a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><em>Environment</em></a>) – OStatsLib environment</p></li>
+<li><p><strong>max_steps</strong> (<em>int</em>) – maximum number of steps in episode</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>reward in episode</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -665,17 +723,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="ostatslib.reinforcement_learning_models.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="ostatslib.reinforcement_learning_methods.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">ostatslib.reinforcement_learning_models</p>
+            <p class="prev-next-title">ostatslib.reinforcement_learning_methods</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="ostatslib.reinforcement_learning_models.support_vector_regression.html" title="next page">
+    <a class='right-next' id="next-link" href="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ostatslib.reinforcement_learning_models.support_vector_regression</p>
+        <p class="prev-next-title">ostatslib.reinforcement_learning_methods.reinforcement_learning_method</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

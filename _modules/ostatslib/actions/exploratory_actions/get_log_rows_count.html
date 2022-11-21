@@ -119,11 +119,6 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../../workflows/analysis.html">
-   Analysis
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../../../../workflows/training.html">
    Training
   </a>
@@ -312,8 +307,8 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_models.html">
-     ostatslib.reinforcement_learning_models
+    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.html">
+     ostatslib.reinforcement_learning_methods
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
     <label for="toctree-checkbox-10">
@@ -322,14 +317,51 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_models.model.html">
-       ostatslib.reinforcement_learning_models.model
+      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html">
+       ostatslib.reinforcement_learning_methods.actor_critic
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_models.support_vector_regression.html">
-       ostatslib.reinforcement_learning_models.support_vector_regression
+      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html">
+       ostatslib.reinforcement_learning_methods.reinforcement_learning_method
       </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.support_vector_regression.html">
+       ostatslib.reinforcement_learning_methods.support_vector_regression
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.html">
+       ostatslib.reinforcement_learning_methods.utils
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network.html">
+         ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor.html">
+         ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.model_not_fit_error.html">
+         ostatslib.reinforcement_learning_methods.utils.model_not_fit_error
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.normalize_values_list.html">
+         ostatslib.reinforcement_learning_methods.utils.normalize_values_list
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -337,8 +369,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="../../../../api/_autosummary/ostatslib.replay_memories.html">
      ostatslib.replay_memories
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-    <label for="toctree-checkbox-11">
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -354,8 +386,8 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.html">
      ostatslib.states
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-    <label for="toctree-checkbox-12">
+    <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+    <label for="toctree-checkbox-13">
      <i class="fas fa-chevron-down">
      </i>
     </label>
@@ -560,7 +592,7 @@ title="Open an issue"
 
 <span class="k">def</span> <span class="nf">__calculate_reward</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">log_rows_count</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;log_rows_count&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">log_rows_count</span><span class="p">:</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mf">.5</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
     <span class="k">return</span> <span class="mi">1</span>
 

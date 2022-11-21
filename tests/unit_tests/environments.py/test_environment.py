@@ -3,59 +3,45 @@
 Environment testing module
 """
 
-from random import randrange
 from pandas import DataFrame
-from scipy.stats import norm
-from datacooker.recipes import LogitRecipe, Recipe
+from datacooker.recipes import LogitRecipe
 from datacooker.variables import ContinousVariable
 import pytest
 
+from ostatslib.actions.actions_space import ActionsSpace
+from ostatslib.actions.utils.action_result import ActionResult
 from ostatslib.environments import Environment
+from ostatslib.states import State
 
 
 @pytest.fixture
-def dummy_training_datasets() -> list[DataFrame]:
+def dummy_dataset() -> DataFrame:
     """
     Training datasets
     """
     size = 50
-    datasets = [None] * size
-    for index in range(size):
-        recipe = None
-        if index % 2:
-            recipe = Recipe(lambda variables, error: 0 +
-                            10 * variables["a"] + error)
-            recipe.add_error(lambda variables, size: norm().rvs(size=size))
-        else:
-            recipe = LogitRecipe(lambda variables, _: 0 + 10 * variables["a"])
-        recipe.add_variable(ContinousVariable("a"))
-        datasets[index] = recipe.cook(size=randrange(20, 2000))
-
-    return datasets
+    recipe = LogitRecipe(lambda variables, _: 0 + 10 * variables["a"])
+    recipe.add_variable(ContinousVariable("a"))
+    return recipe.cook(size)
 
 
-def test_environment_train_method(dummy_training_datasets: list[DataFrame]) -> None:
+def test_environment_exposes_actions_space() -> None:
     """
-    Tests environment training method
+    Tests if environment is exposing its actions space
     """
-    results = list()
-    env = Environment()
-    for dataset in dummy_training_datasets:
-        results.append(env.train_agent(dataset))
-    env.agent.update_model()
-
-    assert len(results) == len(dummy_training_datasets)
+    actions_space = ActionsSpace()
+    env = Environment(actions_space=actions_space)
+    assert isinstance(env.actions_space, ActionsSpace)
 
 
-def test_environment_run_analysis_method(dummy_training_datasets: list[DataFrame]) -> None:
+def test_environment_runs_action(dummy_dataset: DataFrame) -> None:
     """
-    Tests environment run analysis method and return a deque of actions
+    Tests if environment is able to run a valid action
     """
-    results = list()
-    env = Environment()
-    for dataset in dummy_training_datasets:
-        results.append(env.train_agent(dataset))
-        env.agent.update_model()
+    actions_space = ActionsSpace()
+    env = Environment(actions_space=actions_space)
+    valid_action = actions_space.actions_encodings_list[0]
+    action_result, done = env.run_action(State(), dummy_dataset, valid_action)
 
-    analysis, _ = env.run_analysis(dummy_training_datasets[0])
-    assert len(analysis)
+    assert isinstance(action_result, ActionResult)
+    assert not done

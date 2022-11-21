@@ -5,7 +5,7 @@ EpsilonGreedy class module
 from random import random, choice
 
 from numpy import argmax, ndarray
-from ostatslib.reinforcement_learning_models import Model
+from ostatslib.reinforcement_learning_methods import ReinforcementLearningMethod
 from ostatslib.replay_memories import ReplayMemory
 from ostatslib.states import State
 from .exploration_strategy import ExplorationStrategy
@@ -22,7 +22,7 @@ class EpsilonGreedy(ExplorationStrategy):
         self.__epsilon = epsilon
 
     def get_action(self,
-                   model: Model,
+                   model: ReinforcementLearningMethod,
                    state: State,
                    actions: ndarray,
                    agent_memory: ReplayMemory) -> ndarray:

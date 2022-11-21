@@ -7,7 +7,6 @@ parts:
 
 - caption: Workflows
   chapters:
-  - file: workflows/analysis
   - file: workflows/training
 - caption: API
   chapters:

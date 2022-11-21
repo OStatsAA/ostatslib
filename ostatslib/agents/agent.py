@@ -2,12 +2,11 @@
 Agent module
 """
 
-import numpy as np
+from pandas import DataFrame
 
-from ostatslib.reinforcement_learning_models import Model, SupportVectorRegression
-from ostatslib.replay_memories import ReplayMemory
+from ostatslib.environments import Environment
+from ostatslib.reinforcement_learning_methods import ReinforcementLearningMethod, ActorCritic
 from ostatslib.states import State
-from ostatslib.exploration_strategies import EpsilonGreedy, ExplorationStrategy
 
 
 class Agent:
@@ -16,106 +15,77 @@ class Agent:
     """
 
     def __init__(self,
-                 model: Model = None,
+                 environment: Environment = None,
+                 rl_method: ReinforcementLearningMethod = None,
                  is_training: bool = False,
-                 exploration_strategy: ExplorationStrategy = None,
-                 replay_memory: ReplayMemory = None,
-                 learning_rate: float = .01,
-                 discount: float = 1) -> None:
-
-        self.__model = model if model is not None else SupportVectorRegression()
-        self.is_training = is_training
-        self.__exploration_strategy = (
-            exploration_strategy if exploration_strategy is not None else EpsilonGreedy())
-        self.__memory = replay_memory if replay_memory is not None else ReplayMemory()
-        self.__learning_rate = learning_rate
-        self.__discount = discount
-
-    def remember_transition(self,
-                            state: State,
-                            action_code: np.ndarray,
-                            next_state: State,
-                            reward: float,
-                            available_actions: np.ndarray) -> None:
-        """
-        Stores transition in agent's memory
-
-        Args:
-            state (State): state
-            action_name (str): action taken name
-            next_state (State): resulting state
-            reward (float): reward received
-        """
-        state_qvalue = (1 - self.__learning_rate) * self.get_qvalue(state, action_code)
-        next_state_qvalues = self.get_qvalue(next_state, available_actions)
-        next_state_best_qvalue = np.amax(next_state_qvalues)
-        discounted_next_state_qvalue = self.__discount * next_state_best_qvalue
-        target_qvalue = reward + discounted_next_state_qvalue
-
-        state_qvalue += self.__learning_rate * (target_qvalue - state_qvalue)
-        self.__memory.append(state.features_vector,
-                             action_code,
-                             next_state.features_vector,
-                             state_qvalue)
+                 max_steps: int = 10) -> None:
+        self.__env = environment if environment is not None else Environment()
+        self.__rl_method = rl_method if rl_method is not None else ActorCritic()
+        self.__is_training = is_training
+        self.__max_steps = max_steps
 
     @property
-    def is_memory_full(self) -> bool:
+    def is_training(self) -> bool:
         """
-        Return whether memory is full
+        Return whether agent is in training mode
 
         Returns:
-            bool: whether memory is full or not
+            bool: is_training flag
         """
-        return self.__memory.is_full()
+        return self.__is_training
 
     @property
-    def memory_length(self) -> int:
+    def rl_method(self) -> ReinforcementLearningMethod:
         """
-        Gets memory length
+        Gets agent's Reinforcement Learning Method
 
         Returns:
-            int: memory length (rows count)
+            ReinforcementLearningMethod: Reinforcement learning method
         """
-        return len(self.__memory)
+        return self.__rl_method
 
-    def update_model(self) -> None:
+    @property
+    def environment(self) -> Environment:
         """
-        Updates model used to estimate best actions
-        """
-        self.__model.fit(*self.__memory.get_sar_entries().values())
+        Gets agent's Statistical Environment
 
-    def get_qvalue(self, state: State, action: np.ndarray) -> np.ndarray:
+        Returns:
+            Environment: statistical environment
         """
-        Returns QValues approximated by agent's model
+        return self.__env
+
+    def train(self, data: DataFrame, initial_state: State = State()) -> float:
+        """
+        Run one training episode
 
         Args:
-            state (State): state
-            action (np.ndarray): action(s)
+            data (DataFrame): data
+            initial_state (State, optional): initial state. Defaults to State().
 
         Returns:
-            np.ndarray: QValues for action(s)
+            float: episode reward
         """
-        if self.__model.is_fit:
-            return self.__model.predict(state.features_vector, action)
+        self.__is_training = True
+        episode_reward = self.__rl_method.run_training_episode(initial_state,
+                                                               data,
+                                                               self.__env,
+                                                               self.__max_steps)
+        self.__is_training = False
+        return episode_reward
 
-        return 0
-
-    def get_action(self, state: State, available_actions: np.ndarray) -> np.ndarray:
+    def run_analysis(self, data: DataFrame, initial_state: State = State()) -> list:
         """
-        Gets an action
+        Run an analysis
 
         Args:
-            state (State): state
+            data (DataFrame): data
+            initial_state (State, optional): initial state. Defaults to State().
 
         Returns:
-            str: action name
+            list: list of actions take to analyise input data
         """
-        if not self.is_training:
-            predictions = self.__model.predict(state.features_vector,
-                                               available_actions)
-            return available_actions[np.argmax(predictions)]
-
-        return self.__exploration_strategy.get_action(self.__model,
-                                                      state,
-                                                      available_actions,
-                                                      self.__memory)
+        episode_actions = self.__rl_method.run_analysis(initial_state,
+                                                        data,
+                                                        self.__env,
+                                                        self.__max_steps)
+        return episode_actions

@@ -5,7 +5,7 @@ ExplorationStrategy module
 from abc import ABC, abstractmethod
 
 from numpy import ndarray
-from ostatslib.reinforcement_learning_models import Model
+from ostatslib.reinforcement_learning_methods import ReinforcementLearningMethod
 from ostatslib.replay_memories.replay_memory import ReplayMemory
 from ostatslib.states.state import State
 
@@ -17,7 +17,7 @@ class ExplorationStrategy(ABC):
 
     @abstractmethod
     def get_action(self,
-                   model: Model,
+                   model: ReinforcementLearningMethod,
                    state: State,
                    actions: ndarray,
                    agent_memory: ReplayMemory) -> ndarray:

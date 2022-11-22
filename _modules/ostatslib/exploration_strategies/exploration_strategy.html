@@ -557,8 +557,6 @@ title="Open an issue"
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
-<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="n">ReinforcementLearningMethod</span>
-<span class="kn">from</span> <span class="nn">ostatslib.replay_memories.replay_memory</span> <span class="kn">import</span> <span class="n">ReplayMemory</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states.state</span> <span class="kn">import</span> <span class="n">State</span>
 
 
@@ -569,21 +567,19 @@ title="Open an issue"
 
 <div class="viewcode-block" id="ExplorationStrategy.get_action"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.exploration_strategies.exploration_strategy.html#ostatslib.exploration_strategies.exploration_strategy.ExplorationStrategy.get_action">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                   <span class="n">model</span><span class="p">:</span> <span class="n">ReinforcementLearningMethod</span><span class="p">,</span>
                    <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
                    <span class="n">actions</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
-                   <span class="n">agent_memory</span><span class="p">:</span> <span class="n">ReplayMemory</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
+                   <span class="n">predict_fn</span><span class="p">:</span> <span class="n">callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets actions according to exploration strategy</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            model (object): _description_</span>
-<span class="sd">            state (Dict): _description_</span>
-<span class="sd">            actions_list (list[str]): _description_</span>
-<span class="sd">            agent_memory (Dict): _description_</span>
+<span class="sd">            state (State): _description_</span>
+<span class="sd">            actions (ndarray): _description_</span>
+<span class="sd">            predict_fn (callable): _description_</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            ndarray: _description_</span>
+<span class="sd">            ndarray | int: _description_</span>
 <span class="sd">        &quot;&quot;&quot;</span></div></div>
 </pre></div>
 

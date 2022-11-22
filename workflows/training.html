@@ -728,7 +728,7 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -737,7 +737,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: get_response_variable_type, reward: 1, next state features: [0 0 1 1]
-Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.9406346 0.        1.        1.       ]
+Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.94901145 0.         1.         1.        ]
 </pre></div>
 </div>
 </div>
@@ -747,7 +747,7 @@ Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.9406346 0
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -756,7 +756,7 @@ Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.9406346 0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: get_response_variable_type, reward: 1, next state features: [ 0  0 -1  1]
-Action: &lt;statsmodels.regression.linear_model.RegressionResultsWrapper object at 0x7f55ec790d60&gt;, reward: 1, next state features: [ 0.99065616  0.         -1.          1.        ]
+Action: &lt;statsmodels.regression.linear_model.RegressionResultsWrapper object at 0x7f38e1cf5e10&gt;, reward: 1, next state features: [ 0.98935665  0.         -1.          1.        ]
 </pre></div>
 </div>
 </div>

@@ -617,6 +617,26 @@ title="Print to PDF"
 <dt class="sig sig-object py" id="ostatslib.agents.agent.Agent">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Agent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><span class="pre">ostatslib.environments.environment.Environment</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rl_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod" title="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod"><span class="pre">ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_training</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent" title="Permalink to this definition">#</a></dt>
 <dd><p>Agent class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_state:</span> <span class="pre">ostatslib.states.state.State</span> <span class="pre">=</span> <span class="pre">&lt;ostatslib.states.state.State</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent.analyze" title="Permalink to this definition">#</a></dt>
+<dd><p>Run an analysis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>DataFrame</em>) – data</p></li>
+<li><p><strong>initial_state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a><em>, </em><em>optional</em>) – initial state. Defaults to State().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of actions take to analyise input data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.environment">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">environment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><span class="pre">ostatslib.environments.environment.Environment</span></a></em><a class="headerlink" href="#ostatslib.agents.agent.Agent.environment" title="Permalink to this definition">#</a></dt>
@@ -655,26 +675,6 @@ title="Print to PDF"
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod" title="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod">ReinforcementLearningMethod</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ostatslib.agents.agent.Agent.run_analysis">
-<span class="sig-name descname"><span class="pre">run_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_state:</span> <span class="pre">ostatslib.states.state.State</span> <span class="pre">=</span> <span class="pre">&lt;ostatslib.states.state.State</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../../_modules/ostatslib/agents/agent.html#Agent.run_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.agent.Agent.run_analysis" title="Permalink to this definition">#</a></dt>
-<dd><p>Run an analysis</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>DataFrame</em>) – data</p></li>
-<li><p><strong>initial_state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a><em>, </em><em>optional</em>) – initial state. Defaults to State().</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of actions take to analyise input data</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>

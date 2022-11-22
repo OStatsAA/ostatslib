@@ -557,8 +557,6 @@ title="Open an issue"
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span><span class="p">,</span> <span class="n">choice</span>
 
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">argmax</span><span class="p">,</span> <span class="n">ndarray</span>
-<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="n">ReinforcementLearningMethod</span>
-<span class="kn">from</span> <span class="nn">ostatslib.replay_memories</span> <span class="kn">import</span> <span class="n">ReplayMemory</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 <span class="kn">from</span> <span class="nn">.exploration_strategy</span> <span class="kn">import</span> <span class="n">ExplorationStrategy</span>
 
@@ -574,13 +572,12 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="n">__epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
 
 <div class="viewcode-block" id="EpsilonGreedy.get_action"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.exploration_strategies.epsilon_greedy.html#ostatslib.exploration_strategies.epsilon_greedy.EpsilonGreedy.get_action">[docs]</a>    <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                   <span class="n">model</span><span class="p">:</span> <span class="n">ReinforcementLearningMethod</span><span class="p">,</span>
                    <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
                    <span class="n">actions</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
-                   <span class="n">agent_memory</span><span class="p">:</span> <span class="n">ReplayMemory</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
+                   <span class="n">predict_fn</span><span class="p">:</span> <span class="n">callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
         <span class="n">prob</span> <span class="o">=</span> <span class="n">random</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">prob</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__epsilon</span> <span class="ow">and</span> <span class="n">model</span><span class="o">.</span><span class="n">is_fit</span><span class="p">:</span>
-            <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prob</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__epsilon</span><span class="p">:</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="n">predict_fn</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="p">,</span> <span class="n">actions</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">actions</span><span class="p">[</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">)]</span>
 
         <span class="k">return</span> <span class="n">choice</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span></div></div>

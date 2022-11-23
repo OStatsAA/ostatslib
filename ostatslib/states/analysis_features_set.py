@@ -16,4 +16,7 @@ class AnalysisFeaturesSet:
     score: float = 0
 
     def __array__(self):
-        return np.array([self.score])
+        return np.array([
+            bool(self.response_variable_label),
+            self.score,
+        ])

@@ -90,4 +90,4 @@ def test_state_should_expose_features_vector() -> None:
     state = State()
     state.set("score", .5)
 
-    assert state.features_vector[0] == .5
+    assert state.features_vector[1] == .5

@@ -12,7 +12,10 @@ from statsmodels.stats.stattools import durbin_watson, jarque_bera
 from statsmodels.stats.diagnostic import het_breuschpagan
 from statsmodels.regression.linear_model import RegressionResults
 
-from ostatslib.actions.utils import ActionResult, reward_cap, interpretable_model
+from ostatslib.actions.utils import (ActionResult,
+                                     reward_cap,
+                                     interpretable_model,
+                                     split_response_from_explanatory_variables)
 from ostatslib.states import State
 
 
@@ -30,9 +33,8 @@ def linear_regression(state: State,
     Returns:
         ActionResult[RegressionResults]: action result
     """
-    response_var_label = state.get("response_variable_label")
-    response_var = data[response_var_label]
-    explanatory_vars = data.drop(response_var_label, axis=1)
+    response_var, explanatory_vars = split_response_from_explanatory_variables(state,
+                                                                               data)
     regression = OLS(response_var, explanatory_vars).fit()
     reward = __calculate_reward(state, regression)
     state = __apply_state_updates(state, regression)

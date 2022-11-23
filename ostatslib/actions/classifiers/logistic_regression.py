@@ -5,7 +5,10 @@ Logistic regression module
 from pandas import DataFrame
 from sklearn.linear_model import LogisticRegressionCV
 
-from ostatslib.actions.utils import ActionResult, reward_cap, interpretable_model
+from ostatslib.actions.utils import (ActionResult,
+                                     reward_cap,
+                                     interpretable_model,
+                                     split_response_from_explanatory_variables)
 from ostatslib.states import State
 
 
@@ -22,10 +25,7 @@ def logistic_regression(state: State, data: DataFrame) -> ActionResult[LogisticR
     Returns:
         ActionResult[LogisticRegressionCV]: action result
     """
-    response_var_label = state.get("response_variable_label")
-    y_values = data[response_var_label].values
-    x_values = data.drop(response_var_label, axis=1).values
-
+    y_values, x_values = split_response_from_explanatory_variables(state, data)
     regression = LogisticRegressionCV(cv=5)
 
     try:

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 import numpy as np
 
 
-@dataclass
+@dataclass(init=False)
 class AnalysisFeaturesSet:
     """
     Class to hold analysis features.

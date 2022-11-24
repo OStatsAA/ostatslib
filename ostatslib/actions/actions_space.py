@@ -7,9 +7,15 @@ from typing import TypeVar
 import numpy as np
 from ostatslib.actions.exploratory_actions import (
     get_log_rows_count,
-    get_response_variable_type
+    is_response_dichotomous_check,
+    is_response_discrete_check,
+    is_response_positive_values_only_check,
+    is_response_quantitative_check,
 )
-from ostatslib.actions.regression_models import linear_regression
+from ostatslib.actions.regression_models import (
+    linear_regression,
+    poisson_regression
+)
 from ostatslib.actions.classifiers import logistic_regression
 from ostatslib.actions.utils import ActionFunction, as_binary_array
 
@@ -21,8 +27,14 @@ ENCODING_LENGTH = 5
 EXPLORATORY_ACTIONS = {
     'get_log_rows_count': (get_log_rows_count,
                            as_binary_array(0, ENCODING_LENGTH)),
-    'get_response_variable_type': (get_response_variable_type,
-                                   as_binary_array(1, ENCODING_LENGTH))
+    'is_response_dichotomous_check': (is_response_dichotomous_check,
+                                      as_binary_array(1, ENCODING_LENGTH)),
+    'is_response_discrete_check': (is_response_discrete_check,
+                                   as_binary_array(2, ENCODING_LENGTH)),
+    'is_response_positive_values_only_check': (is_response_positive_values_only_check,
+                                               as_binary_array(3, ENCODING_LENGTH)),
+    'is_response_quantitative_check': (is_response_quantitative_check,
+                                       as_binary_array(4, ENCODING_LENGTH))
 }
 
 # Encoding: 8 to 15
@@ -34,7 +46,9 @@ CLASSIFIERS = {
 # Encoding: 16 to 23
 REGRESSION_MODELS = {
     'linear_regression': (linear_regression,
-                          as_binary_array(16, ENCODING_LENGTH))
+                          as_binary_array(16, ENCODING_LENGTH)),
+    'poisson_regression': (poisson_regression,
+                           as_binary_array(17, ENCODING_LENGTH))
 }
 
 

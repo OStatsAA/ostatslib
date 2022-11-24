@@ -33,33 +33,40 @@ def linear_regression(state: State,
     Returns:
         ActionResult[RegressionResults]: action result
     """
+    if not __is_valid_state(state):
+        return ActionResult(state, -1, "LinearRegression")
+
     response_var, explanatory_vars = split_response_from_explanatory_variables(state,
                                                                                data)
+    try:
+        regression = OLS(response_var, explanatory_vars).fit()
+    except ValueError:
+        return ActionResult(state, -1, "LinearRegression")
+
     regression = OLS(response_var, explanatory_vars).fit()
-    reward = __calculate_reward(state, regression)
+    reward = __calculate_reward(regression)
     state = __apply_state_updates(state, regression)
     return ActionResult(state, reward, regression)
 
 
-def __calculate_reward(state: State, regression: RegressionResults) -> float:
+def __is_valid_state(state: State) -> bool:
+    if state.get("is_response_quantitative") <= 0:
+        return False
+
+    return True
+
+
+def __calculate_reward(regression: RegressionResults) -> float:
     explanatory_vars: np.ndarray = regression.model.exog
     residuals: np.ndarray = regression.resid.values
     reward: float = 0
 
-    reward += __penalty_for_dichotomous_response(state)
     reward += __reward_for_normally_distributed_errors(regression)
     reward += __reward_for_correlation_of_error_terms(residuals)
     reward += __reward_for_homoscedasticity(residuals, explanatory_vars)
     reward += __reward_for_model_r_squared(regression.rsquared)
 
     return reward
-
-
-def __penalty_for_dichotomous_response(state: State) -> State:
-    if state.get("is_response_dichotomous") == 1:
-        return -1
-
-    return 0
 
 
 def __reward_for_normally_distributed_errors(regression: RegressionResults) -> float:

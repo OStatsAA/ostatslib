@@ -40,7 +40,9 @@ def test_linear_data_yields_positve_reward(dummy_linear_data: DataFrame) -> None
     """
     Action should return a positve reward when applied to a linear datatset
     """
-    action_result: ActionResult[RegressionResults] = linear_regression(State(),
+    state = State()
+    state.set("is_response_quantitative", 1)
+    action_result: ActionResult[RegressionResults] = linear_regression(state,
                                                                        dummy_linear_data)
     assert action_result.reward >= 0.5
 

@@ -188,8 +188,23 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.get_response_variable_type.html">
-         ostatslib.actions.exploratory_actions.get_response_variable_type
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">
+         ostatslib.actions.exploratory_actions.is_response_dichotomous_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html">
+         ostatslib.actions.exploratory_actions.is_response_discrete_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">
+         ostatslib.actions.exploratory_actions.is_response_positive_values_only_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">
+         ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
       </ul>
@@ -207,6 +222,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.linear_regression.html">
          ostatslib.actions.regression_models.linear_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.poisson_regression.html">
+         ostatslib.actions.regression_models.poisson_regression
         </a>
        </li>
       </ul>
@@ -239,6 +259,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.reward_cap.html">
          ostatslib.actions.utils.reward_cap
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.split_response_from_explanatory_variables.html">
+         ostatslib.actions.utils.split_response_from_explanatory_variables
         </a>
        </li>
       </ul>
@@ -567,6 +592,8 @@ title="Open an issue"
     <span class="n">log_rows_count</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">is_response_dichotomous</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">is_response_quantitative</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">is_response_discrete</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">is_response_positive_values_only</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">astuple</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>

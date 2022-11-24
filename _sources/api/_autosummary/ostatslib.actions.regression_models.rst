@@ -28,4 +28,5 @@ ostatslib.actions.regression\_models
    :recursive:
 
    ostatslib.actions.regression_models.linear_regression
+   ostatslib.actions.regression_models.poisson_regression
 

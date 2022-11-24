@@ -191,8 +191,23 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.get_response_variable_type.html">
-         ostatslib.actions.exploratory_actions.get_response_variable_type
+        <a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">
+         ostatslib.actions.exploratory_actions.is_response_dichotomous_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html">
+         ostatslib.actions.exploratory_actions.is_response_discrete_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">
+         ostatslib.actions.exploratory_actions.is_response_positive_values_only_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">
+         ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
       </ul>
@@ -210,6 +225,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../api/_autosummary/ostatslib.actions.regression_models.linear_regression.html">
          ostatslib.actions.regression_models.linear_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.actions.regression_models.poisson_regression.html">
+         ostatslib.actions.regression_models.poisson_regression
         </a>
        </li>
       </ul>
@@ -242,6 +262,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.reward_cap.html">
          ostatslib.actions.utils.reward_cap
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.split_response_from_explanatory_variables.html">
+         ostatslib.actions.utils.split_response_from_explanatory_variables
         </a>
        </li>
       </ul>
@@ -701,7 +726,16 @@ title="Print to PDF"
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
-<p>Training an Agent powered by SVR model on 400 datasets split between regression (odd indexes) and binary classification problems (even indexes).</p>
+<p>Training an Agent powered by SVR model on 400 datasets split between binary classification, linear and poisson regression problems.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docs.workflows.utils.generate_training_datasets</span> <span class="kn">import</span> <span class="n">generate_training_datasets</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="n">generate_training_datasets</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Agent training:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -710,25 +744,35 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">docs.workflows.utils.generate_training_datasets</span> <span class="kn">import</span> <span class="n">generate_training_datasets</span>
 <span class="kn">from</span> <span class="nn">ostatslib.agents</span> <span class="kn">import</span> <span class="n">Agent</span>
 <span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="n">SupportVectorRegression</span>
 
-<span class="n">datasets</span> <span class="o">=</span> <span class="n">generate_training_datasets</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">rl_method</span><span class="o">=</span><span class="n">SupportVectorRegression</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
     <span class="n">agent</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Checking Agent analysis.</p>
+<p>Getting first dataset for each trained dataset type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datacooker.recipes</span> <span class="kn">import</span> <span class="n">LogitRecipe</span><span class="p">,</span> <span class="n">PoissonRecipe</span><span class="p">,</span> <span class="n">Recipe</span>
+
+<span class="n">logistic_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">LogitRecipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">linear_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">Recipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">poisson_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">PoissonRecipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ul class="simple">
 <li><p>Binary classification:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">logistic_regression_dataset</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -736,8 +780,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: get_response_variable_type, reward: 1, next state features: [0 0 1 1]
-Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.94901145 0.         1.         1.        ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: is_response_dichotomous_check, reward: 1, next state features: [1 0 0 1 0 0 0]
+Action: is_response_discrete_check, reward: 1, next state features: [1 0 0 1 0 1 0]
+Action: is_response_quantitative, reward: 1, next state features: [1 0 0 1 1 1 0]
+Action: LogisticRegressionCV(cv=5), reward: 0.7720647773279352, next state features: [1.         0.67206478 0.         1.         1.         1.
+ 0.        ]
 </pre></div>
 </div>
 </div>
@@ -747,7 +794,7 @@ Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.94901145 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">linear_regression_dataset</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -755,8 +802,35 @@ Action: LogisticRegressionCV(cv=5), reward: 1, next state features: [0.94901145 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: get_response_variable_type, reward: 1, next state features: [ 0  0 -1  1]
-Action: &lt;statsmodels.regression.linear_model.RegressionResultsWrapper object at 0x7f38e1cf5e10&gt;, reward: 1, next state features: [ 0.98935665  0.         -1.          1.        ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: is_response_dichotomous_check, reward: 1, next state features: [ 1  0  0 -1  0  0  0]
+Action: is_response_quantitative, reward: 1, next state features: [ 1  0  0 -1  1  0  0]
+Action: is_response_discrete_check, reward: 1, next state features: [ 1  0  0 -1  1 -1  0]
+Action: is_response_positive_values_only_check, reward: 1, next state features: [ 1  0  0 -1  1 -1 -1]
+Action: &lt;statsmodels.regression.linear_model.RegressionResultsWrapper object at 0x7f1e29d443a0&gt;, reward: 1, next state features: [ 1.          0.98900398  0.         -1.          1.         -1.
+ -1.        ]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Poisson Regression</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">poisson_regression_dataset</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Action: is_response_dichotomous_check, reward: 1, next state features: [ 1  0  0 -1  0  0  0]
+Action: is_response_quantitative, reward: 1, next state features: [ 1  0  0 -1  1  0  0]
+Action: is_response_discrete_check, reward: 1, next state features: [ 1  0  0 -1  1  1  0]
+Action: is_response_positive_values_only_check, reward: 1, next state features: [ 1  0  0 -1  1  1  1]
+Action: &lt;statsmodels.genmod.generalized_linear_model.GLMResultsWrapper object at 0x7f1e720ee9b0&gt;, reward: 1, next state features: [ 1.          0.91293931  0.         -1.          1.          1.
+  1.        ]
 </pre></div>
 </div>
 </div>

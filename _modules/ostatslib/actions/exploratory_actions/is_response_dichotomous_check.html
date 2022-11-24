@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ostatslib.actions.exploratory_actions.get_response_variable_type &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.actions.exploratory_actions.is_response_dichotomous_check &#8212; Open Statistics Analysis Agent</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -188,8 +188,23 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.get_response_variable_type.html">
-         ostatslib.actions.exploratory_actions.get_response_variable_type
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">
+         ostatslib.actions.exploratory_actions.is_response_dichotomous_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html">
+         ostatslib.actions.exploratory_actions.is_response_discrete_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">
+         ostatslib.actions.exploratory_actions.is_response_positive_values_only_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">
+         ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
       </ul>
@@ -207,6 +222,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.regression_models.linear_regression.html">
          ostatslib.actions.regression_models.linear_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.regression_models.poisson_regression.html">
+         ostatslib.actions.regression_models.poisson_regression
         </a>
        </li>
       </ul>
@@ -239,6 +259,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.reward_cap.html">
          ostatslib.actions.utils.reward_cap
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.split_response_from_explanatory_variables.html">
+         ostatslib.actions.utils.split_response_from_explanatory_variables
         </a>
        </li>
       </ul>
@@ -506,7 +531,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/actions/exploratory_actions/get_response_variable_type.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/actions/exploratory_actions/is_response_dichotomous_check.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -549,70 +574,69 @@ title="Open an issue"
                 
               <div>
                 
-  <h1>Source code for ostatslib.actions.exploratory_actions.get_response_variable_type</h1><div class="highlight"><pre>
+  <h1>Source code for ostatslib.actions.exploratory_actions.is_response_dichotomous_check</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">get_response_variable_type module</span>
+<span class="sd">is_response_dichotomous_check module</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span>
 <span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">infer_dtype</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.actions.utils</span> <span class="kn">import</span> <span class="n">ActionResult</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 
 
-<div class="viewcode-block" id="get_response_variable_type"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.get_response_variable_type.html#ostatslib.actions.exploratory_actions.get_response_variable_type">[docs]</a><span class="k">def</span> <span class="nf">get_response_variable_type</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
-                               <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
+<div class="viewcode-block" id="is_response_dichotomous_check"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html#ostatslib.actions.exploratory_actions.is_response_dichotomous_check">[docs]</a><span class="k">def</span> <span class="nf">is_response_dichotomous_check</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Infer about response variable type. Relies on Pandas&#39;s infer_dtype function:</span>
-<span class="sd">    https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.api.types.infer_dtype.html</span>
+<span class="sd">    Check if response variable is dichotomous</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        state (State): state</span>
 <span class="sd">        data (DataFrame): data</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        ActionResult[None]: action result</span>
+<span class="sd">        ActionResult[str]: action result</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">state_copy</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="n">state_copy</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
     <span class="n">response_var_label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response_variable_label&quot;</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">response_var_label</span><span class="p">]</span>
+    <span class="n">response</span><span class="p">:</span> <span class="n">Series</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">response_var_label</span><span class="p">]</span>
 
-    <span class="n">state</span> <span class="o">=</span> <span class="n">__update_state_response_typing_features</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-    <span class="n">reward</span> <span class="o">=</span> <span class="n">__calculate_reward</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">state_copy</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">ActionResult</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="s2">&quot;get_response_variable_type&quot;</span><span class="p">)</span></div>
-
-
-<span class="k">def</span> <span class="nf">__update_state_response_typing_features</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
-    <span class="n">unique_values_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-    <span class="n">inferred_dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">infer_dtype</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-    <span class="k">match</span> <span class="n">inferred_dtype</span><span class="p">:</span>
-
-        <span class="k">case</span> <span class="s2">&quot;boolean&quot;</span><span class="p">:</span>
-            <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;is_response_quantitative&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;is_response_dichotomous&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-        <span class="k">case</span> <span class="s2">&quot;floating&quot;</span> <span class="o">|</span> <span class="s2">&quot;mixed-integer-float&quot;</span> <span class="o">|</span> <span class="s2">&quot;decimal&quot;</span> <span class="o">|</span> <span class="s2">&quot;complex&quot;</span> <span class="o">|</span> <span class="s2">&quot;integer&quot;</span><span class="p">:</span>
-            <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;is_response_quantitative&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">__set_is_response_dichotomous</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">unique_values_count</span><span class="p">)</span>
-
-        <span class="k">case</span> <span class="s2">&quot;categorical&quot;</span> <span class="o">|</span> <span class="s2">&quot;string&quot;</span><span class="p">:</span>
-            <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;is_response_quantitative&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">__set_is_response_dichotomous</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">unique_values_count</span><span class="p">)</span>
-
-        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
-            <span class="n">__set_is_response_dichotomous</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">unique_values_count</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">state</span>
-
-<span class="k">def</span> <span class="nf">__set_is_response_dichotomous</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">unique_values_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">unique_values_count</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">is_dichotomous</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">__is_dichotomous_check</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_dichotomous</span><span class="p">:</span>
         <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;is_response_dichotomous&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;is_response_dichotomous&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">__calculate_reward</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">state_copy</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ActionResult</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="s2">&quot;is_response_dichotomous_check&quot;</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">__is_dichotomous_check</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="n">inferred_dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">infer_dtype</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inferred_dtype</span> <span class="o">==</span> <span class="s2">&quot;boolean&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="n">unique_values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">match</span> <span class="n">inferred_dtype</span><span class="p">:</span>
+        <span class="k">case</span> <span class="s2">&quot;categorical&quot;</span> <span class="o">|</span> <span class="s2">&quot;string&quot;</span> <span class="o">|</span> <span class="s2">&quot;object&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">case</span> <span class="s2">&quot;integer&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">__is_within_possible_boolean_range_of_integers</span><span class="p">(</span><span class="n">unique_values</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
+        <span class="k">case</span> <span class="s2">&quot;floating&quot;</span> <span class="o">|</span> <span class="s2">&quot;decimal&quot;</span> <span class="o">|</span> <span class="s2">&quot;mixed-integer-float&quot;</span><span class="p">:</span>
+            <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">unique_values</span>
+            <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">first</span><span class="o">.</span><span class="n">is_integer</span><span class="p">()</span> <span class="ow">and</span> <span class="n">second</span><span class="o">.</span><span class="n">is_integer</span><span class="p">()</span> <span class="ow">and</span> \
+                <span class="n">__is_within_possible_boolean_range_of_integers</span><span class="p">(</span><span class="n">unique_values</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
+        <span class="k">case</span> <span class="k">_</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">__is_within_possible_boolean_range_of_integers</span><span class="p">(</span><span class="n">unique_values</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">((</span><span class="n">unique_values</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">unique_values</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">__calculate_reward</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">state_copy</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>

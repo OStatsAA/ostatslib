@@ -1,6 +1,6 @@
-ostatslib.actions.exploratory\_actions.get\_response\_variable\_type
+ostatslib.actions.exploratory\_actions.is\_response\_discrete\_check
 ====================================================================
 
 .. currentmodule:: ostatslib.actions.exploratory_actions
 
-.. autofunction:: get_response_variable_type
+.. autofunction:: is_response_discrete_check

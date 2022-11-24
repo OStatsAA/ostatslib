@@ -188,8 +188,23 @@ const thebe_selector_output = ".output, .cell_output"
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.get_response_variable_type.html">
-         ostatslib.actions.exploratory_actions.get_response_variable_type
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">
+         ostatslib.actions.exploratory_actions.is_response_dichotomous_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html">
+         ostatslib.actions.exploratory_actions.is_response_discrete_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">
+         ostatslib.actions.exploratory_actions.is_response_positive_values_only_check
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">
+         ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
       </ul>
@@ -207,6 +222,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.linear_regression.html">
          ostatslib.actions.regression_models.linear_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.poisson_regression.html">
+         ostatslib.actions.regression_models.poisson_regression
         </a>
        </li>
       </ul>
@@ -239,6 +259,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.reward_cap.html">
          ostatslib.actions.utils.reward_cap
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.split_response_from_explanatory_variables.html">
+         ostatslib.actions.utils.split_response_from_explanatory_variables
         </a>
        </li>
       </ul>
@@ -559,7 +584,7 @@ title="Open an issue"
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="AnalysisFeaturesSet"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.analysis_features_set.html#ostatslib.states.analysis_features_set.AnalysisFeaturesSet">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="AnalysisFeaturesSet"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.analysis_features_set.html#ostatslib.states.analysis_features_set.AnalysisFeaturesSet">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">AnalysisFeaturesSet</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to hold analysis features.</span>
@@ -568,7 +593,10 @@ title="Open an issue"
     <span class="n">score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+            <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">response_variable_label</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">,</span>
+        <span class="p">])</span></div>
 </pre></div>
 
               </div>

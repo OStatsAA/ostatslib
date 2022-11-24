@@ -31,4 +31,5 @@ ostatslib.actions.utils
    ostatslib.actions.utils.as_binary_array
    ostatslib.actions.utils.explainability_rewards
    ostatslib.actions.utils.reward_cap
+   ostatslib.actions.utils.split_response_from_explanatory_variables
 

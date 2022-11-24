@@ -257,7 +257,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "datacooker"
-version = "0.2.0"
+version = "0.3.0"
 description = "Library for data generation based on model specs (Recipes)"
 category = "dev"
 optional = false
@@ -2462,7 +2462,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.11"
-content-hash = "1c5cd98842b63481787909ff438af048d9b23fc30fb9748f51ecd1fe3cd9088b"
+content-hash = "24093db6b7adffcf9f7825d3a9212f8b2c37f303d940dc16ed4fa4ac0c91a656"
 
 [metadata.files]
 absl-py = [
@@ -2683,8 +2683,8 @@ coverage = [
     {file = "coverage-6.5.0.tar.gz", hash = "sha256:f642e90754ee3e06b0e7e51bce3379590e76b7f76b708e1a71ff043f87025c84"},
 ]
 datacooker = [
-    {file = "datacooker-0.2.0-py3-none-any.whl", hash = "sha256:d5705831d833bef48ccbca05c88ab37bbc2f8c455207fd3fe0e89a96216eb247"},
-    {file = "datacooker-0.2.0.tar.gz", hash = "sha256:a24daa1c1095a8e760d0b3ee2bc8155cb787262332c25b0ec575748671066087"},
+    {file = "datacooker-0.3.0-py3-none-any.whl", hash = "sha256:580f19a3960db85a9a4902e55855f8f6610d364dcb9066b7d784cbbd2b560116"},
+    {file = "datacooker-0.3.0.tar.gz", hash = "sha256:0ea0c344aac1dee3a0d1788c989357f005b1a7064cf702ebc482b893f0479e2e"},
 ]
 debugpy = [
     {file = "debugpy-1.6.3-cp310-cp310-macosx_10_15_x86_64.whl", hash = "sha256:c4b2bd5c245eeb49824bf7e539f95fb17f9a756186e51c3e513e32999d8846f3"},

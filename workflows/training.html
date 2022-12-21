@@ -729,8 +729,8 @@ title="Print to PDF"
 <p>Training an Agent powered by SVR model on 400 datasets split between binary classification, linear and poisson regression problems.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docs.workflows.utils.generate_training_datasets</span> <span class="kn">import</span> <span class="n">generate_training_datasets</span>
-<span class="n">datasets</span> <span class="o">=</span> <span class="n">generate_training_datasets</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from docs.workflows.utils.generate_training_datasets import generate_training_datasets
+datasets = generate_training_datasets(500)
 </pre></div>
 </div>
 </div>
@@ -738,18 +738,18 @@ title="Print to PDF"
 <p>Agent training:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;TF_CPP_MIN_LOG_LEVEL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import os
+os.environ[&#39;TF_CPP_MIN_LOG_LEVEL&#39;] = &#39;3&#39;
 
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+import warnings
+warnings.filterwarnings(&#39;ignore&#39;)
 
-<span class="kn">from</span> <span class="nn">ostatslib.agents</span> <span class="kn">import</span> <span class="n">Agent</span>
-<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="n">SupportVectorRegression</span>
+from ostatslib.agents import Agent
+from ostatslib.reinforcement_learning_methods import SupportVectorRegression
 
-<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">rl_method</span><span class="o">=</span><span class="n">SupportVectorRegression</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
-    <span class="n">agent</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+agent = Agent(rl_method=SupportVectorRegression())
+for index, (dataset_type, dataset) in enumerate(datasets):
+    agent.train(dataset)
 </pre></div>
 </div>
 </div>
@@ -758,11 +758,11 @@ title="Print to PDF"
 <p>Getting first dataset for each trained dataset type:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datacooker.recipes</span> <span class="kn">import</span> <span class="n">LogitRecipe</span><span class="p">,</span> <span class="n">PoissonRecipe</span><span class="p">,</span> <span class="n">Recipe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from datacooker.recipes import LogitRecipe, PoissonRecipe, Recipe
 
-<span class="n">logistic_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">LogitRecipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">linear_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">Recipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">poisson_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">PoissonRecipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+logistic_regression_dataset = [dataset for dataset_type, dataset in datasets if dataset_type == LogitRecipe][0]
+linear_regression_dataset = [dataset for dataset_type, dataset in datasets if dataset_type == Recipe][0]
+poisson_regression_dataset = [dataset for (dataset_type, dataset) in datasets if dataset_type == PoissonRecipe][0]
 </pre></div>
 </div>
 </div>
@@ -772,10 +772,10 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">logistic_regression_dataset</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis = agent.analyze(logistic_regression_dataset)
 
-<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+for step in analysis:
+    print(f&#39;Action: {step.result}, reward: {step.reward}, next state features: {step.state.features_vector}&#39;)
 </pre></div>
 </div>
 </div>
@@ -794,10 +794,10 @@ Action: LogisticRegressionCV(cv=5), reward: 0.7720647773279352, next state featu
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">linear_regression_dataset</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis = agent.analyze(linear_regression_dataset)
 
-<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+for step in analysis:
+    print(f&#39;Action: {step.result}, reward: {step.reward}, next state features: {step.state.features_vector}&#39;)
 </pre></div>
 </div>
 </div>
@@ -817,10 +817,10 @@ Action: &lt;statsmodels.regression.linear_model.RegressionResultsWrapper object 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">poisson_regression_dataset</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>analysis = agent.analyze(poisson_regression_dataset)
 
-<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">analysis</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s1">, reward: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">reward</span><span class="si">}</span><span class="s1">, next state features: </span><span class="si">{</span><span class="n">step</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_vector</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+for step in analysis:
+    print(f&#39;Action: {step.result}, reward: {step.reward}, next state features: {step.state.features_vector}&#39;)
 </pre></div>
 </div>
 </div>

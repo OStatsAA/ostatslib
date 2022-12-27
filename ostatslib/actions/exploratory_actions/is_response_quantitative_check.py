@@ -44,4 +44,4 @@ def __calculate_reward(state: State, state_copy: State) -> float:
     if state == state_copy:
         return -1
 
-    return 1
+    return 0.75

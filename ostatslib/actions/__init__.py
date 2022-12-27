@@ -8,6 +8,9 @@ from .classifiers import (
     support_vector_classification,
     decision_tree
 )
+from .clustering import (
+    k_means
+)
 from .exploratory_actions import (
     get_log_rows_count,
     is_response_dichotomous_check,

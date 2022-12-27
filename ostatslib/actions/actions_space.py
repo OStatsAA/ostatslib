@@ -23,6 +23,9 @@ from ostatslib.actions.classifiers import (
     support_vector_classification,
     decision_tree
 )
+from ostatslib.actions.clustering import (
+    k_means
+)
 from ostatslib.actions.utils import ActionFunction, as_binary_array
 
 T = TypeVar("T")
@@ -62,7 +65,13 @@ REGRESSION_MODELS = {
     'support_vector_regression': (support_vector_regression,
                                   as_binary_array(18, ENCODING_LENGTH)),
     'decision_tree_regression': (decision_tree_regression,
-                                  as_binary_array(19, ENCODING_LENGTH))
+                                 as_binary_array(19, ENCODING_LENGTH))
+}
+
+# Encoding: 24 to 31
+CLUSTERING = {
+    'k_means': (k_means,
+                as_binary_array(24, ENCODING_LENGTH)),
 }
 
 
@@ -72,7 +81,7 @@ class ActionsSpace:
     """
 
     def __init__(self) -> None:
-        self.__actions = EXPLORATORY_ACTIONS | CLASSIFIERS | REGRESSION_MODELS
+        self.__actions = EXPLORATORY_ACTIONS | CLASSIFIERS | REGRESSION_MODELS | CLUSTERING
 
     @cached_property
     def actions(self) -> dict[str, tuple[ActionFunction, np.array]]:

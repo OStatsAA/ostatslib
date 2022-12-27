@@ -166,8 +166,18 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.classifiers.decision_tree.html">
+         ostatslib.actions.classifiers.decision_tree
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.classifiers.logistic_regression.html">
          ostatslib.actions.classifiers.logistic_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.classifiers.support_vector_classification.html">
+         ostatslib.actions.classifiers.support_vector_classification
         </a>
        </li>
       </ul>
@@ -220,6 +230,11 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.decision_tree_regression.html">
+         ostatslib.actions.regression_models.decision_tree_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.linear_regression.html">
          ostatslib.actions.regression_models.linear_regression
         </a>
@@ -227,6 +242,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.poisson_regression.html">
          ostatslib.actions.regression_models.poisson_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.support_vector_regression.html">
+         ostatslib.actions.regression_models.support_vector_regression
         </a>
        </li>
       </ul>
@@ -591,9 +611,15 @@ title="Open an issue"
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ostatslib.actions.regression_models</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">linear_regression</span><span class="p">,</span>
-    <span class="n">poisson_regression</span>
+    <span class="n">poisson_regression</span><span class="p">,</span>
+    <span class="n">support_vector_regression</span><span class="p">,</span>
+    <span class="n">decision_tree_regression</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ostatslib.actions.classifiers</span> <span class="kn">import</span> <span class="n">logistic_regression</span>
+<span class="kn">from</span> <span class="nn">ostatslib.actions.classifiers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">logistic_regression</span><span class="p">,</span>
+    <span class="n">support_vector_classification</span><span class="p">,</span>
+    <span class="n">decision_tree</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ostatslib.actions.utils</span> <span class="kn">import</span> <span class="n">ActionFunction</span><span class="p">,</span> <span class="n">as_binary_array</span>
 
 <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
@@ -617,7 +643,11 @@ title="Open an issue"
 <span class="c1"># Encoding: 8 to 15</span>
 <span class="n">CLASSIFIERS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;logistic_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">logistic_regression</span><span class="p">,</span>
-                            <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+                            <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+    <span class="s1">&#39;support_vector_classification&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">support_vector_classification</span><span class="p">,</span>
+                                      <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+    <span class="s1">&#39;decision_tree&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">decision_tree</span><span class="p">,</span>
+                      <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># Encoding: 16 to 23</span>
@@ -625,7 +655,11 @@ title="Open an issue"
     <span class="s1">&#39;linear_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">linear_regression</span><span class="p">,</span>
                           <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;poisson_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">poisson_regression</span><span class="p">,</span>
-                           <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+                           <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+    <span class="s1">&#39;support_vector_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">support_vector_regression</span><span class="p">,</span>
+                                  <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+    <span class="s1">&#39;decision_tree_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">decision_tree_regression</span><span class="p">,</span>
+                                  <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 

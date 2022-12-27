@@ -27,5 +27,7 @@ ostatslib.actions.classifiers
    :toctree:
    :recursive:
 
+   ostatslib.actions.classifiers.decision_tree
    ostatslib.actions.classifiers.logistic_regression
+   ostatslib.actions.classifiers.support_vector_classification
 

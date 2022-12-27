@@ -27,6 +27,8 @@ ostatslib.actions.regression\_models
    :toctree:
    :recursive:
 
+   ostatslib.actions.regression_models.decision_tree_regression
    ostatslib.actions.regression_models.linear_regression
    ostatslib.actions.regression_models.poisson_regression
+   ostatslib.actions.regression_models.support_vector_regression
 

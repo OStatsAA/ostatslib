@@ -19,7 +19,8 @@ from ostatslib.actions.regression_models import (
 )
 from ostatslib.actions.classifiers import (
     logistic_regression,
-    support_vector_classification
+    support_vector_classification,
+    decision_tree
 )
 from ostatslib.actions.utils import ActionFunction, as_binary_array
 
@@ -46,7 +47,9 @@ CLASSIFIERS = {
     'logistic_regression': (logistic_regression,
                             as_binary_array(8, ENCODING_LENGTH)),
     'support_vector_classification': (support_vector_classification,
-                            as_binary_array(9, ENCODING_LENGTH))
+                                      as_binary_array(9, ENCODING_LENGTH)),
+    'decision_tree': (decision_tree,
+                      as_binary_array(10, ENCODING_LENGTH))
 }
 
 # Encoding: 16 to 23
@@ -56,7 +59,7 @@ REGRESSION_MODELS = {
     'poisson_regression': (poisson_regression,
                            as_binary_array(17, ENCODING_LENGTH)),
     'support_vector_regression': (support_vector_regression,
-                           as_binary_array(18, ENCODING_LENGTH))
+                                  as_binary_array(18, ENCODING_LENGTH))
 }
 
 

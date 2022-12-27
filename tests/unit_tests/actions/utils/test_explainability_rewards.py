@@ -1,3 +1,4 @@
+# pylint: disable=unused-argument
 """
 explainability rewards decorators functions tests module
 """
@@ -22,10 +23,10 @@ def test_opaque_model() -> None:
     random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
 
     @opaque_model
-    def action_fn():
+    def action_fn(*args):
         return ActionResult(None, random_reward, None)
 
-    action_result = action_fn()
+    action_result = action_fn(None, None)
     assert action_result.reward == (random_reward + OPAQUE_PENALTY)
 
 
@@ -36,10 +37,10 @@ def test_interpetrable_model() -> None:
     random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
 
     @interpretable_model
-    def action_fn():
+    def action_fn(*args):
         return ActionResult(None, random_reward, None)
 
-    action_result = action_fn()
+    action_result = action_fn(None, None)
     assert action_result.reward == (random_reward + INTERPETRABLE_REWARD)
 
 
@@ -50,8 +51,8 @@ def test_comprehensible_model() -> None:
     random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
 
     @comprehensible_model
-    def action_fn():
+    def action_fn(*args):
         return ActionResult(None, random_reward, None)
 
-    action_result = action_fn()
+    action_result = action_fn(None, None)
     assert action_result.reward == (random_reward + COMPREHENSIBLE_REWARD)

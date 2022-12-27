@@ -5,6 +5,10 @@ reward_cap function module
 from functools import wraps
 from typing import TypeVar
 
+from pandas import DataFrame
+
+from ostatslib.states import State
+
 from .action_result import ActionFunction, ActionResult
 
 T = TypeVar("T")
@@ -25,8 +29,8 @@ def reward_cap(action_function: ActionFunction[T]) -> ActionResult[T]:
     """
     wraps(action_function)
 
-    def function_wrapper(*args, **kargs):
-        action_result = action_function(*args, **kargs)
+    def function_wrapper(state: State, data: DataFrame):
+        action_result = action_function(state, data)
 
         if action_result.reward < REWARD_LOWER_LIMIT:
             action_result.reward = REWARD_LOWER_LIMIT

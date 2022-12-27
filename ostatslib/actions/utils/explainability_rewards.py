@@ -5,6 +5,10 @@ explainability rewards decorators module
 from functools import wraps
 from typing import TypeVar
 
+from pandas import DataFrame
+
+from ostatslib.states import State
+
 from .action_result import ActionFunction, ActionResult
 
 T = TypeVar("T")
@@ -27,8 +31,8 @@ def opaque_model(
     """
     wraps(action_function)
 
-    def function_wrapper(*args, **kargs):
-        action_result = action_function(*args, **kargs)
+    def function_wrapper(state: State, data: DataFrame):
+        action_result = action_function(state, data)
         action_result.reward += OPAQUE_PENALTY
         return action_result
 
@@ -48,8 +52,8 @@ def interpretable_model(
     """
     wraps(action_function)
 
-    def function_wrapper(*args, **kargs):
-        action_result = action_function(*args, **kargs)
+    def function_wrapper(state: State, data: DataFrame):
+        action_result = action_function(state, data)
         action_result.reward += INTERPETRABLE_REWARD
         return action_result
 
@@ -69,8 +73,8 @@ def comprehensible_model(
     """
     wraps(action_function)
 
-    def function_wrapper(*args, **kargs):
-        action_result = action_function(*args, **kargs)
+    def function_wrapper(state: State, data: DataFrame):
+        action_result = action_function(state, data)
         action_result.reward += COMPREHENSIBLE_REWARD
         return action_result
 

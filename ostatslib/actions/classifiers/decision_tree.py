@@ -33,9 +33,13 @@ def decision_tree(state: State,
 
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier = DecisionTreeClassifier()
-    scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
-    score: float = scores.mean() - scores.std()
 
+    try:
+        scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
+    except ValueError:
+        return ActionResult(state, -1, "DecisionTreeClassifier")
+
+    score: float = scores.mean() - scores.std()
     reward = __calculate_reward(score)
     state = __apply_state_updates(state, score)
     return ActionResult(state, reward, classifier.fit(X=x_values, y=y_values))

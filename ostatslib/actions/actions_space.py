@@ -24,7 +24,8 @@ from ostatslib.actions.classifiers import (
     decision_tree
 )
 from ostatslib.actions.clustering import (
-    k_means
+    k_means,
+    dbscan
 )
 from ostatslib.actions.utils import ActionFunction, as_binary_array
 
@@ -72,6 +73,8 @@ REGRESSION_MODELS = {
 CLUSTERING = {
     'k_means': (k_means,
                 as_binary_array(24, ENCODING_LENGTH)),
+    'dbscan': (dbscan,
+                as_binary_array(25, ENCODING_LENGTH))
 }
 
 

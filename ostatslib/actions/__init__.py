@@ -9,6 +9,7 @@ from .classifiers import (
     decision_tree
 )
 from .clustering import (
+    dbscan,
     k_means
 )
 from .exploratory_actions import (

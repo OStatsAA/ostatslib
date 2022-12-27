@@ -56,4 +56,4 @@ class Environment:
         return action_result, done
 
     def __is_done(self, state: State) -> bool:
-        return bool(state.get("score"))
+        return bool(state.get("score") > 0.5)

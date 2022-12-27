@@ -35,16 +35,6 @@ def dummy_binary_response_data() -> DataFrame:
     return recipe.cook()
 
 
-def test_linear_data_yields_positve_reward(dummy_linear_data: DataFrame) -> None:
-    """
-    Action should return a positve reward when applied to a quantitative response datatset
-    """
-    state = State()
-    state.set("is_response_quantitative", 1)
-    action_result = support_vector_regression(state, dummy_linear_data)
-    assert action_result.reward >= 0.5
-
-
 def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFrame) -> None:
     """
     Action should return a positve reward when applied to a linear datatset

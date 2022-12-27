@@ -3,7 +3,10 @@ Actions module
 """
 
 from .actions_space import ActionsSpace
-from .classifiers import logistic_regression
+from .classifiers import (
+    logistic_regression,
+    support_vector_classification
+)
 from .exploratory_actions import (
     get_log_rows_count,
     is_response_dichotomous_check,

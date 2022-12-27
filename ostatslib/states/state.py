@@ -42,7 +42,7 @@ class State(ABC):
             return value
 
         value = getattr(self.__analysis_features, feature_key, NaN)
-        if isinstance(value, str) or not isnan(value):
+        if value is None or isinstance(value, str) or not isnan(value):
             return value
 
         raise AttributeError()

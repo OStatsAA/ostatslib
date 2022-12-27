@@ -18,5 +18,6 @@ from .exploratory_actions import (
 from .regression_models import (
     linear_regression,
     poisson_regression,
-    support_vector_regression
+    support_vector_regression,
+    decision_tree_regression
 )

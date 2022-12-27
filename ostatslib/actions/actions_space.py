@@ -14,7 +14,8 @@ from ostatslib.actions.exploratory_actions import (
 )
 from ostatslib.actions.regression_models import (
     linear_regression,
-    poisson_regression
+    poisson_regression,
+    support_vector_regression
 )
 from ostatslib.actions.classifiers import (
     logistic_regression,
@@ -53,7 +54,9 @@ REGRESSION_MODELS = {
     'linear_regression': (linear_regression,
                           as_binary_array(16, ENCODING_LENGTH)),
     'poisson_regression': (poisson_regression,
-                           as_binary_array(17, ENCODING_LENGTH))
+                           as_binary_array(17, ENCODING_LENGTH)),
+    'support_vector_regression': (support_vector_regression,
+                           as_binary_array(18, ENCODING_LENGTH))
 }
 
 

@@ -8,6 +8,7 @@ from statsmodels.api import GLM, families
 from statsmodels.genmod.generalized_linear_model import GLMResults
 
 from ostatslib.actions.utils import (ActionResult,
+                                     calculate_score_reward,
                                      reward_cap,
                                      interpretable_model,
                                      split_response_from_explanatory_variables)
@@ -58,18 +59,8 @@ def __is_valid_state(state: State) -> bool:
 
 def __calculate_reward(regression: GLMResults) -> float:
     reward: float = 0
-    reward += __reward_for_model_r_squared(regression.pseudo_rsquared())
+    reward += calculate_score_reward(regression.pseudo_rsquared())
     return reward
-
-
-def __reward_for_model_r_squared(rsquared: float) -> float:
-    if math.isnan(rsquared):
-        return -1
-
-    if rsquared <= .6:
-        return - (1 - rsquared)
-
-    return rsquared
 
 
 def __apply_state_updates(state: State, regression: GLMResults) -> State:

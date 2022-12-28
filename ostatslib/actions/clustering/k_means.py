@@ -6,7 +6,7 @@ from pandas import DataFrame
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
-from ostatslib.actions.utils import ActionResult, reward_cap
+from ostatslib.actions.utils import ActionResult, calculate_score_reward, reward_cap
 from ostatslib.states import State
 
 
@@ -31,8 +31,8 @@ def k_means(state: State, data: DataFrame) -> ActionResult[KMeans]:
 
     score: float = silhouette_score(data, kmeans.labels_)
 
-    reward = __calculate_reward(score)
-    state = __apply_state_updates(state, score)
+    reward: float = calculate_score_reward(score)
+    state: State = __apply_state_updates(state, score)
     return ActionResult(state, reward, kmeans)
 
 
@@ -41,13 +41,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
-
-
-def __calculate_reward(score: float) -> float:
-    if score <= .6:
-        return - (1 - score)
-
-    return score
 
 
 def __apply_state_updates(state: State, score: float) -> State:

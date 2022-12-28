@@ -13,6 +13,7 @@ from statsmodels.stats.diagnostic import het_breuschpagan
 from statsmodels.regression.linear_model import RegressionResults
 
 from ostatslib.actions.utils import (ActionResult,
+                                     calculate_score_reward,
                                      reward_cap,
                                      interpretable_model,
                                      split_response_from_explanatory_variables)
@@ -64,7 +65,7 @@ def __calculate_reward(regression: RegressionResults) -> float:
     reward += __reward_for_normally_distributed_errors(regression)
     reward += __reward_for_correlation_of_error_terms(residuals)
     reward += __reward_for_homoscedasticity(residuals, explanatory_vars)
-    reward += __reward_for_model_r_squared(regression.rsquared)
+    reward += calculate_score_reward(regression.rsquared)
 
     return reward
 
@@ -101,13 +102,6 @@ def __reward_for_homoscedasticity(residuals: np.ndarray,
         return -.1
 
     return .1
-
-
-def __reward_for_model_r_squared(rsquared: float) -> float:
-    if rsquared <= .6:
-        return - (1 - rsquared)
-
-    return rsquared
 
 
 def __apply_state_updates(state: State, regression: RegressionResults) -> State:

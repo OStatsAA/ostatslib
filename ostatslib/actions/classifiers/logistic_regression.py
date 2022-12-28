@@ -5,7 +5,7 @@ Logistic regression module
 from pandas import DataFrame
 from sklearn.linear_model import LogisticRegressionCV
 
-from ostatslib.actions.utils import (ActionResult,
+from ostatslib.actions.utils import (ActionResult, calculate_score_reward,
                                      reward_cap,
                                      interpretable_model,
                                      split_response_from_explanatory_variables)
@@ -37,8 +37,8 @@ def logistic_regression(state: State, data: DataFrame) -> ActionResult[LogisticR
         return ActionResult(state, -1, "LogisticRegression")
 
     score: float = regression.score(x_values, y_values)
-    reward = __calculate_reward(score)
-    state = __apply_state_updates(state, score)
+    reward: float = calculate_score_reward(score)
+    state: State = __apply_state_updates(state, score)
     return ActionResult(state, reward, regression)
 
 
@@ -47,19 +47,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
-
-
-def __calculate_reward(score: float) -> float:
-    reward: float = 0
-    reward += __reward_for_accuracy(score)
-    return reward
-
-
-def __reward_for_accuracy(score: float) -> float:
-    if score <= .6:
-        return - (1 - score)
-
-    return score
 
 
 def __apply_state_updates(state: State, score: float) -> State:

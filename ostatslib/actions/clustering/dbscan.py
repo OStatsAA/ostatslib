@@ -6,7 +6,7 @@ from pandas import DataFrame
 from sklearn.cluster import DBSCAN
 from sklearn.metrics import silhouette_score
 
-from ostatslib.actions.utils import ActionResult, reward_cap
+from ostatslib.actions.utils import ActionResult, calculate_score_reward, reward_cap
 from ostatslib.states import State
 
 
@@ -30,8 +30,8 @@ def dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
 
     score: float = silhouette_score(data, db_scan.labels_)
 
-    reward = __calculate_reward(score)
-    state = __apply_state_updates(state, score)
+    reward: float = calculate_score_reward(score)
+    state: State = __apply_state_updates(state, score)
     return ActionResult(state, reward, db_scan)
 
 
@@ -40,13 +40,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
-
-
-def __calculate_reward(score: float) -> float:
-    if score <= .6:
-        return - (1 - score)
-
-    return score
 
 
 def __apply_state_updates(state: State, score: float) -> State:

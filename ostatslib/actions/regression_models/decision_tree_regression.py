@@ -8,6 +8,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeRegressor
 
 from ostatslib.actions.utils import (ActionResult,
+                                     calculate_score_reward,
                                      reward_cap,
                                      comprehensible_model,
                                      split_response_from_explanatory_variables)
@@ -36,8 +37,8 @@ def decision_tree_regression(state: State,
     scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
     score: float = scores.mean() - scores.std()
 
-    reward = __calculate_reward(score)
-    state = __apply_state_updates(state, score)
+    reward: float = calculate_score_reward(score)
+    state: State = __apply_state_updates(state, score)
     return ActionResult(state, reward, classifier.fit(X=x_values, y=y_values))
 
 
@@ -48,13 +49,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
-
-
-def __calculate_reward(score: float) -> float:
-    if score <= .6:
-        return - (1 - score)
-
-    return score
 
 
 def __apply_state_updates(state: State, score: float) -> State:

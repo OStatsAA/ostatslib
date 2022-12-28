@@ -4,55 +4,58 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ostatslib.actions.utils.action_result &#8212; Open Statistics Analysis Agent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ostatslib.actions.utils.calculate_score_reward &#8212; Open Statistics Analysis Agent</title>
     
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-    <script src="../../../../_static/jquery.js"></script>
-    <script src="../../../../_static/underscore.js"></script>
-    <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/clipboard.min.js"></script>
-    <script src="../../../../_static/copybutton.js"></script>
-    <script src="../../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ostatslib.actions.utils.explainability_rewards" href="ostatslib.actions.utils.explainability_rewards.html" />
+    <link rel="prev" title="ostatslib.actions.utils.as_binary_array" href="ostatslib.actions.utils.as_binary_array.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -87,19 +90,19 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="bd-sidebar noprint" id="site-navigation">
     <div class="bd-sidebar__content">
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../../../index.html">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="../../../../_static/logo.png" class="logo" alt="logo">
+      <img src="../../_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Open Statistics Analysis Agent</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -107,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../../../../home.html">
+                <a class="reference internal" href="../../home.html">
                     Open Statistics Analysis Agent (OStatsAA)
                 </a>
             </li>
@@ -119,7 +122,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../../../workflows/training.html">
+  <a class="reference internal" href="../../workflows/training.html">
    Training
   </a>
  </li>
@@ -129,34 +132,34 @@ const thebe_selector_output = ".output, .cell_output"
   API
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../../../api/api.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../api.html">
    OStatsLib
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.html">
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="ostatslib.actions.html">
      ostatslib.actions
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
     <label for="toctree-checkbox-2">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
+    <ul class="current">
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.actions_space.html">
+      <a class="reference internal" href="ostatslib.actions.actions_space.html">
        ostatslib.actions.actions_space
       </a>
      </li>
      <li class="toctree-l3 has-children">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.classifiers.html">
+      <a class="reference internal" href="ostatslib.actions.classifiers.html">
        ostatslib.actions.classifiers
       </a>
       <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -166,24 +169,24 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.classifiers.decision_tree.html">
+        <a class="reference internal" href="ostatslib.actions.classifiers.decision_tree.html">
          ostatslib.actions.classifiers.decision_tree
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.classifiers.logistic_regression.html">
+        <a class="reference internal" href="ostatslib.actions.classifiers.logistic_regression.html">
          ostatslib.actions.classifiers.logistic_regression
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.classifiers.support_vector_classification.html">
+        <a class="reference internal" href="ostatslib.actions.classifiers.support_vector_classification.html">
          ostatslib.actions.classifiers.support_vector_classification
         </a>
        </li>
       </ul>
      </li>
      <li class="toctree-l3 has-children">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.clustering.html">
+      <a class="reference internal" href="ostatslib.actions.clustering.html">
        ostatslib.actions.clustering
       </a>
       <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -193,19 +196,19 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.clustering.dbscan.html">
+        <a class="reference internal" href="ostatslib.actions.clustering.dbscan.html">
          ostatslib.actions.clustering.dbscan
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.clustering.k_means.html">
+        <a class="reference internal" href="ostatslib.actions.clustering.k_means.html">
          ostatslib.actions.clustering.k_means
         </a>
        </li>
       </ul>
      </li>
      <li class="toctree-l3 has-children">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.html">
+      <a class="reference internal" href="ostatslib.actions.exploratory_actions.html">
        ostatslib.actions.exploratory_actions
       </a>
       <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
@@ -215,34 +218,34 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.get_log_rows_count.html">
+        <a class="reference internal" href="ostatslib.actions.exploratory_actions.get_log_rows_count.html">
          ostatslib.actions.exploratory_actions.get_log_rows_count
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">
+        <a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">
          ostatslib.actions.exploratory_actions.is_response_dichotomous_check
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html">
+        <a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_discrete_check.html">
          ostatslib.actions.exploratory_actions.is_response_discrete_check
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">
+        <a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">
          ostatslib.actions.exploratory_actions.is_response_positive_values_only_check
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">
+        <a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">
          ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
       </ul>
      </li>
      <li class="toctree-l3 has-children">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.regression_models.html">
+      <a class="reference internal" href="ostatslib.actions.regression_models.html">
        ostatslib.actions.regression_models
       </a>
       <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
@@ -252,69 +255,69 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.regression_models.decision_tree_regression.html">
+        <a class="reference internal" href="ostatslib.actions.regression_models.decision_tree_regression.html">
          ostatslib.actions.regression_models.decision_tree_regression
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.regression_models.linear_regression.html">
+        <a class="reference internal" href="ostatslib.actions.regression_models.linear_regression.html">
          ostatslib.actions.regression_models.linear_regression
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.regression_models.poisson_regression.html">
+        <a class="reference internal" href="ostatslib.actions.regression_models.poisson_regression.html">
          ostatslib.actions.regression_models.poisson_regression
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.regression_models.support_vector_regression.html">
+        <a class="reference internal" href="ostatslib.actions.regression_models.support_vector_regression.html">
          ostatslib.actions.regression_models.support_vector_regression
         </a>
        </li>
       </ul>
      </li>
-     <li class="toctree-l3 has-children">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.html">
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="ostatslib.actions.utils.html">
        ostatslib.actions.utils
       </a>
-      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
       <label for="toctree-checkbox-7">
        <i class="fas fa-chevron-down">
        </i>
       </label>
-      <ul>
+      <ul class="current">
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.action_result.html">
+        <a class="reference internal" href="ostatslib.actions.utils.action_result.html">
          ostatslib.actions.utils.action_result
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.as_binary_array.html">
+        <a class="reference internal" href="ostatslib.actions.utils.as_binary_array.html">
          ostatslib.actions.utils.as_binary_array
         </a>
        </li>
-       <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.calculate_score_reward.html">
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
          ostatslib.actions.utils.calculate_score_reward
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.explainability_rewards.html">
+        <a class="reference internal" href="ostatslib.actions.utils.explainability_rewards.html">
          ostatslib.actions.utils.explainability_rewards
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.reward_cap.html">
+        <a class="reference internal" href="ostatslib.actions.utils.reward_cap.html">
          ostatslib.actions.utils.reward_cap
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.split_response_from_explanatory_variables.html">
+        <a class="reference internal" href="ostatslib.actions.utils.split_response_from_explanatory_variables.html">
          ostatslib.actions.utils.split_response_from_explanatory_variables
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.actions.utils.update_state_score.html">
+        <a class="reference internal" href="ostatslib.actions.utils.update_state_score.html">
          ostatslib.actions.utils.update_state_score
         </a>
        </li>
@@ -323,7 +326,7 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.agents.html">
+    <a class="reference internal" href="ostatslib.agents.html">
      ostatslib.agents
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
@@ -333,14 +336,14 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.agents.agent.html">
+      <a class="reference internal" href="ostatslib.agents.agent.html">
        ostatslib.agents.agent
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.html">
+    <a class="reference internal" href="ostatslib.environments.html">
      ostatslib.environments
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
@@ -350,14 +353,14 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.environment.html">
+      <a class="reference internal" href="ostatslib.environments.environment.html">
        ostatslib.environments.environment
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.exploration_strategies.html">
+    <a class="reference internal" href="ostatslib.exploration_strategies.html">
      ostatslib.exploration_strategies
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
@@ -367,24 +370,24 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.exploration_strategies.epsilon_greedy.html">
+      <a class="reference internal" href="ostatslib.exploration_strategies.epsilon_greedy.html">
        ostatslib.exploration_strategies.epsilon_greedy
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.exploration_strategies.exploration_strategy.html">
+      <a class="reference internal" href="ostatslib.exploration_strategies.exploration_strategy.html">
        ostatslib.exploration_strategies.exploration_strategy
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.exploration_strategies.upper_confidence_bounds.html">
+      <a class="reference internal" href="ostatslib.exploration_strategies.upper_confidence_bounds.html">
        ostatslib.exploration_strategies.upper_confidence_bounds
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.html">
+    <a class="reference internal" href="ostatslib.reinforcement_learning_methods.html">
      ostatslib.reinforcement_learning_methods
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
@@ -394,22 +397,22 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html">
+      <a class="reference internal" href="ostatslib.reinforcement_learning_methods.actor_critic.html">
        ostatslib.reinforcement_learning_methods.actor_critic
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html">
+      <a class="reference internal" href="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html">
        ostatslib.reinforcement_learning_methods.reinforcement_learning_method
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.support_vector_regression.html">
+      <a class="reference internal" href="ostatslib.reinforcement_learning_methods.support_vector_regression.html">
        ostatslib.reinforcement_learning_methods.support_vector_regression
       </a>
      </li>
      <li class="toctree-l3 has-children">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.html">
+      <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.html">
        ostatslib.reinforcement_learning_methods.utils
       </a>
       <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
@@ -419,22 +422,22 @@ const thebe_selector_output = ".output, .cell_output"
       </label>
       <ul>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network.html">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network.html">
          ostatslib.reinforcement_learning_methods.utils.build_actor_critic_neural_network
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor.html">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor.html">
          ostatslib.reinforcement_learning_methods.utils.convert_state_to_tensor
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.model_not_fit_error.html">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.model_not_fit_error.html">
          ostatslib.reinforcement_learning_methods.utils.model_not_fit_error
         </a>
        </li>
        <li class="toctree-l4">
-        <a class="reference internal" href="../../../../api/_autosummary/ostatslib.reinforcement_learning_methods.utils.normalize_values_list.html">
+        <a class="reference internal" href="ostatslib.reinforcement_learning_methods.utils.normalize_values_list.html">
          ostatslib.reinforcement_learning_methods.utils.normalize_values_list
         </a>
        </li>
@@ -443,7 +446,7 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.replay_memories.html">
+    <a class="reference internal" href="ostatslib.replay_memories.html">
      ostatslib.replay_memories
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
@@ -453,14 +456,14 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.replay_memories.replay_memory.html">
+      <a class="reference internal" href="ostatslib.replay_memories.replay_memory.html">
        ostatslib.replay_memories.replay_memory
       </a>
      </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.html">
+    <a class="reference internal" href="ostatslib.states.html">
      ostatslib.states
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
@@ -470,22 +473,22 @@ const thebe_selector_output = ".output, .cell_output"
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.analysis_features_set.html">
+      <a class="reference internal" href="ostatslib.states.analysis_features_set.html">
        ostatslib.states.analysis_features_set
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.data_features_set.html">
+      <a class="reference internal" href="ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.state.html">
+      <a class="reference internal" href="ostatslib.states.state.html">
        ostatslib.states.state
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.state_iterator.html">
+      <a class="reference internal" href="ostatslib.states.state_iterator.html">
        ostatslib.states.state_iterator
       </a>
      </li>
@@ -583,7 +586,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/actions/utils/action_result.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.actions.utils.calculate_score_reward.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -603,6 +606,52 @@ title="Open an issue"
   </div>
 </div>
 
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/api/_autosummary/ostatslib.actions.utils.calculate_score_reward.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
@@ -614,7 +663,7 @@ title="Open an issue"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
+                <h1>ostatslib.actions.utils.calculate_score_reward</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -626,35 +675,46 @@ title="Open an issue"
                 
               <div>
                 
-  <h1>Source code for ostatslib.actions.utils.action_result</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">ActionResult module</span>
-<span class="sd">&quot;&quot;&quot;</span>
+  <section id="ostatslib-actions-utils-calculate-score-reward">
+<h1>ostatslib.actions.utils.calculate_score_reward<a class="headerlink" href="#ostatslib-actions-utils-calculate-score-reward" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="ostatslib.actions.utils.calculate_score_reward">
+<span class="sig-name descname"><span class="pre">calculate_score_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/utils/calculate_score_reward.html#calculate_score_reward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.utils.calculate_score_reward" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculates reward based on standard score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>score</strong> (<em>float</em>) – standard score</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>reward</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span>
+</section>
 
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
-
-<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="ActionResult"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.utils.action_result.html#ostatslib.actions.utils.action_result.ActionResult">[docs]</a><span class="k">class</span> <span class="nc">ActionResult</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Class holding state, reward and return object after an executed action</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        Generic (_type_): generic resulting object</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">reward</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">result</span></div>
-
-
-<span class="n">ActionFunction</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">State</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">],</span> <span class="n">ActionResult</span><span class="p">[</span><span class="n">T</span><span class="p">]]</span>
-</pre></div>
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./api/_autosummary"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -663,6 +723,20 @@ title="Open an issue"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="ostatslib.actions.utils.as_binary_array.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">ostatslib.actions.utils.as_binary_array</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ostatslib.actions.utils.explainability_rewards.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ostatslib.actions.utils.explainability_rewards</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
@@ -684,7 +758,7 @@ title="Open an issue"
     </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
 
   </body>

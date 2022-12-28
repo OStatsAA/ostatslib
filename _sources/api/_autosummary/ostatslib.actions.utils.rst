@@ -29,7 +29,9 @@ ostatslib.actions.utils
 
    ostatslib.actions.utils.action_result
    ostatslib.actions.utils.as_binary_array
+   ostatslib.actions.utils.calculate_score_reward
    ostatslib.actions.utils.explainability_rewards
    ostatslib.actions.utils.reward_cap
    ostatslib.actions.utils.split_response_from_explanatory_variables
+   ostatslib.actions.utils.update_state_score
 

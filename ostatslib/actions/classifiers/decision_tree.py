@@ -11,7 +11,8 @@ from ostatslib.actions.utils import (ActionResult,
                                      calculate_score_reward,
                                      reward_cap,
                                      comprehensible_model,
-                                     split_response_from_explanatory_variables)
+                                     split_response_from_explanatory_variables,
+                                     update_state_score)
 from ostatslib.states import State
 
 
@@ -42,7 +43,7 @@ def decision_tree(state: State,
 
     score: float = scores.mean() - scores.std()
     reward: float = calculate_score_reward(score)
-    state: State = __apply_state_updates(state, score)
+    state: State = update_state_score(state, score)
     return ActionResult(state, reward, classifier.fit(X=x_values, y=y_values))
 
 
@@ -51,8 +52,3 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
-
-
-def __apply_state_updates(state: State, score: float) -> State:
-    state.set('score', score)
-    return state

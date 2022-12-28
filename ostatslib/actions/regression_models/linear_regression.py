@@ -16,7 +16,8 @@ from ostatslib.actions.utils import (ActionResult,
                                      calculate_score_reward,
                                      reward_cap,
                                      interpretable_model,
-                                     split_response_from_explanatory_variables)
+                                     split_response_from_explanatory_variables,
+                                     update_state_score)
 from ostatslib.states import State
 
 
@@ -44,9 +45,8 @@ def linear_regression(state: State,
     except ValueError:
         return ActionResult(state, -1, "LinearRegression")
 
-    regression = OLS(response_var, explanatory_vars).fit()
     reward = __calculate_reward(regression)
-    state = __apply_state_updates(state, regression)
+    state = update_state_score(state, regression.rsquared)
     return ActionResult(state, reward, regression)
 
 
@@ -102,8 +102,3 @@ def __reward_for_homoscedasticity(residuals: np.ndarray,
         return -.1
 
     return .1
-
-
-def __apply_state_updates(state: State, regression: RegressionResults) -> State:
-    state.set('score', regression.rsquared)
-    return state

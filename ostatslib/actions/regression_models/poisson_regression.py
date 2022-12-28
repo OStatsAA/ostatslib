@@ -11,7 +11,8 @@ from ostatslib.actions.utils import (ActionResult,
                                      calculate_score_reward,
                                      reward_cap,
                                      interpretable_model,
-                                     split_response_from_explanatory_variables)
+                                     split_response_from_explanatory_variables,
+                                     update_state_score)
 from ostatslib.states import State
 
 
@@ -43,7 +44,7 @@ def poisson_regression(state: State,
         return ActionResult(state, -1, "PoissonRegression")
 
     reward = __calculate_reward(regression)
-    state = __apply_state_updates(state, regression)
+    state = update_state_score(state, regression.pseudo_rsquared())
     return ActionResult(state, reward, regression)
 
 
@@ -61,12 +62,3 @@ def __calculate_reward(regression: GLMResults) -> float:
     reward: float = 0
     reward += calculate_score_reward(regression.pseudo_rsquared())
     return reward
-
-
-def __apply_state_updates(state: State, regression: GLMResults) -> State:
-    rsquared = regression.pseudo_rsquared()
-    if math.isnan(rsquared):
-        return state
-
-    state.set('score', regression.pseudo_rsquared())
-    return state

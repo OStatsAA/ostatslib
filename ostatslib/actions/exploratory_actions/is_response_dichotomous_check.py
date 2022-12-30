@@ -46,7 +46,7 @@ def __is_dichotomous_check(values: Series) -> bool:
         return False
 
     match inferred_dtype:
-        case "categorical" | "string" | "object":
+        case "categorical" | "string" | "object" | "mixed-integer":
             return True
         case "integer":
             return True if __is_within_possible_boolean_range_of_integers(unique_values) else False

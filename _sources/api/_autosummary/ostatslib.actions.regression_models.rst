@@ -31,4 +31,5 @@ ostatslib.actions.regression\_models
    ostatslib.actions.regression_models.linear_regression
    ostatslib.actions.regression_models.poisson_regression
    ostatslib.actions.regression_models.support_vector_regression
+   ostatslib.actions.regression_models.time_series_auto_arima
 

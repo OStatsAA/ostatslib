@@ -32,4 +32,5 @@ ostatslib.actions.exploratory\_actions
    ostatslib.actions.exploratory_actions.is_response_discrete_check
    ostatslib.actions.exploratory_actions.is_response_positive_values_only_check
    ostatslib.actions.exploratory_actions.is_response_quantitative_check
+   ostatslib.actions.exploratory_actions.time_convertable_variable_search
 

@@ -242,6 +242,11 @@ const thebe_selector_output = ".output, .cell_output"
          ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertable_variable_search.html">
+         ostatslib.actions.exploratory_actions.time_convertable_variable_search
+        </a>
+       </li>
       </ul>
      </li>
      <li class="toctree-l3 has-children">
@@ -272,6 +277,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="ostatslib.actions.regression_models.support_vector_regression.html">
          ostatslib.actions.regression_models.support_vector_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="ostatslib.actions.regression_models.time_series_auto_arima.html">
+         ostatslib.actions.regression_models.time_series_auto_arima
         </a>
        </li>
       </ul>
@@ -694,6 +704,20 @@ title="Print to PDF"
 <dt class="sig sig-object py" id="ostatslib.states.analysis_features_set.AnalysisFeaturesSet">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AnalysisFeaturesSet</span></span><a class="reference internal" href="../../_modules/ostatslib/states/analysis_features_set.html#AnalysisFeaturesSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.states.analysis_features_set.AnalysisFeaturesSet" title="Permalink to this definition">#</a></dt>
 <dd><p>Class to hold analysis features.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="ostatslib.states.analysis_features_set.AnalysisFeaturesSet.time_convertable_variable">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_convertable_variable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ostatslib.states.analysis_features_set.AnalysisFeaturesSet.time_convertable_variable" title="Permalink to this definition">#</a></dt>
+<dd><p>Feature indicating if there’s a variable that may be converted to date format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>name of convertable variable</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ostatslib.actions.utils.update_state_score &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.actions.exploratory_actions.time_convertable_variable_search &#8212; Open Statistics Analysis Agent</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -593,7 +593,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/actions/utils/update_state_score.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/actions/exploratory_actions/time_convertable_variable_search.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -636,32 +636,84 @@ title="Open an issue"
                 
               <div>
                 
-  <h1>Source code for ostatslib.actions.utils.update_state_score</h1><div class="highlight"><pre>
+  <h1>Source code for ostatslib.actions.exploratory_actions.time_convertable_variable_search</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">update state score helper function module</span>
+<span class="sd">time_convertable_variable_search module</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">math</span>
-
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">infer_dtype</span>
+<span class="kn">from</span> <span class="nn">ostatslib.actions.utils</span> <span class="kn">import</span> <span class="n">ActionResult</span><span class="p">,</span> <span class="n">split_response_from_explanatory_variables</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 
+<span class="n">ORDERED_LIST_OF_POSSIBLE_TIME_DTYPES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;datetime64&quot;</span><span class="p">,</span> <span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;period&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timedelta64&quot;</span><span class="p">,</span> <span class="s2">&quot;timedelta&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 
-<div class="viewcode-block" id="update_state_score"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.utils.update_state_score.html#ostatslib.actions.utils.update_state_score">[docs]</a><span class="k">def</span> <span class="nf">update_state_score</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">score</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+
+<div class="viewcode-block" id="time_convertable_variable_search"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.time_convertable_variable_search.html#ostatslib.actions.exploratory_actions.time_convertable_variable_search">[docs]</a><span class="k">def</span> <span class="nf">time_convertable_variable_search</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+                                     <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Updates State score attribute</span>
+<span class="sd">    Gets log rows count: log(#rows)/c, where c is a compression constant</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        state (State): state</span>
-<span class="sd">        score (float): action score</span>
+<span class="sd">        data (DataFrame): data</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        State: state</span>
+<span class="sd">        ActionResult[None]: action result</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">state</span>
+    <span class="n">variables_dataframe</span><span class="p">:</span> <span class="n">DataFrame</span> <span class="o">=</span> <span class="n">split_response_from_explanatory_variables</span><span class="p">(</span><span class="n">state</span><span class="p">,</span>
+                                                                               <span class="n">data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">date_convertable_variable</span> <span class="o">=</span> <span class="n">__date_variable_search</span><span class="p">(</span><span class="n">variables_dataframe</span><span class="p">)</span>
 
-    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">state</span></div>
+    <span class="n">reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">__calculate_reward</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">date_convertable_variable</span><span class="p">)</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">__update_state</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">date_convertable_variable</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ActionResult</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="s2">&quot;time_convertable_variable&quot;</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">__date_variable_search</span><span class="p">(</span><span class="n">variables_dataframe</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">time_related_variables</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">variables_dataframe</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">inferred_dtype_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">infer_dtype</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">inferred_dtype_name</span> <span class="ow">in</span> <span class="n">ORDERED_LIST_OF_POSSIBLE_TIME_DTYPES</span><span class="p">:</span>
+            <span class="n">time_related_variables</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">var_name</span><span class="p">,</span> <span class="n">inferred_dtype_name</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">time_related_variables</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_related_variables</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">time_related_variables</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">__select_best_time_related_variable</span><span class="p">(</span><span class="n">time_related_variables</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">__select_best_time_related_variable</span><span class="p">(</span><span class="n">time_related_variables</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">time_dtype</span> <span class="ow">in</span> <span class="n">ORDERED_LIST_OF_POSSIBLE_TIME_DTYPES</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">inferred_dtype_name</span> <span class="ow">in</span> <span class="n">time_related_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">time_dtype</span> <span class="o">==</span> <span class="n">inferred_dtype_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">var_name</span>
+
+    <span class="k">return</span> <span class="n">time_related_variables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">__calculate_reward</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">date_convertable_variable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time_convertable_variable&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">date_convertable_variable</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">date_convertable_variable</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.5</span>
+
+    <span class="k">return</span> <span class="mf">0.75</span>
+
+
+<span class="k">def</span> <span class="nf">__update_state</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">date_convertable_variable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;time_convertable_variable&quot;</span><span class="p">,</span> <span class="n">date_convertable_variable</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">state</span>
 </pre></div>
 
               </div>

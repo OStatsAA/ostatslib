@@ -239,6 +239,11 @@ const thebe_selector_output = ".output, .cell_output"
          ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.time_convertable_variable_search.html">
+         ostatslib.actions.exploratory_actions.time_convertable_variable_search
+        </a>
+       </li>
       </ul>
      </li>
      <li class="toctree-l3 has-children">
@@ -269,6 +274,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.support_vector_regression.html">
          ostatslib.actions.regression_models.support_vector_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.time_series_auto_arima.html">
+         ostatslib.actions.regression_models.time_series_auto_arima
         </a>
        </li>
       </ul>
@@ -640,12 +650,14 @@ title="Open an issue"
     <span class="n">is_response_discrete_check</span><span class="p">,</span>
     <span class="n">is_response_positive_values_only_check</span><span class="p">,</span>
     <span class="n">is_response_quantitative_check</span><span class="p">,</span>
+    <span class="n">time_convertable_variable_search</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ostatslib.actions.regression_models</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">linear_regression</span><span class="p">,</span>
     <span class="n">poisson_regression</span><span class="p">,</span>
     <span class="n">support_vector_regression</span><span class="p">,</span>
-    <span class="n">decision_tree_regression</span>
+    <span class="n">decision_tree_regression</span><span class="p">,</span>
+    <span class="n">time_series_auto_arima</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ostatslib.actions.classifiers</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">logistic_regression</span><span class="p">,</span>
@@ -673,7 +685,9 @@ title="Open an issue"
     <span class="s1">&#39;is_response_positive_values_only_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_positive_values_only_check</span><span class="p">,</span>
                                                <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;is_response_quantitative_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_quantitative_check</span><span class="p">,</span>
-                                       <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+                                       <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+    <span class="s1">&#39;time_convertable_variable_search&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">time_convertable_variable_search</span><span class="p">,</span>
+                                         <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># Encoding: 8 to 15</span>
@@ -695,7 +709,9 @@ title="Open an issue"
     <span class="s1">&#39;support_vector_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">support_vector_regression</span><span class="p">,</span>
                                   <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;decision_tree_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">decision_tree_regression</span><span class="p">,</span>
-                                 <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+                                 <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+    <span class="s1">&#39;time_series_auto_arima&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">time_series_auto_arima</span><span class="p">,</span>
+                               <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># Encoding: 24 to 31</span>
@@ -703,7 +719,7 @@ title="Open an issue"
     <span class="s1">&#39;k_means&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">k_means</span><span class="p">,</span>
                 <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;dbscan&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">dbscan</span><span class="p">,</span>
-                <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+               <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 

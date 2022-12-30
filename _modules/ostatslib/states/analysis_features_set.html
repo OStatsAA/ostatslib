@@ -239,6 +239,11 @@ const thebe_selector_output = ".output, .cell_output"
          ostatslib.actions.exploratory_actions.is_response_quantitative_check
         </a>
        </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.time_convertable_variable_search.html">
+         ostatslib.actions.exploratory_actions.time_convertable_variable_search
+        </a>
+       </li>
       </ul>
      </li>
      <li class="toctree-l3 has-children">
@@ -269,6 +274,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toctree-l4">
         <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.support_vector_regression.html">
          ostatslib.actions.regression_models.support_vector_regression
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.regression_models.time_series_auto_arima.html">
+         ostatslib.actions.regression_models.time_series_auto_arima
         </a>
        </li>
       </ul>
@@ -644,13 +654,36 @@ title="Open an issue"
     <span class="n">response_variable_label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;result&quot;</span>
     <span class="n">score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">clusters_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">__time_convertable_variable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time_convertable_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Feature indicating if there&#39;s a variable that may be converted to date format</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: name of convertable variable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__time_convertable_variable</span>
+
+    <span class="nd">@time_convertable_variable</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">time_convertable_variable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__time_convertable_variable</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
             <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">response_variable_label</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">,</span>
-            <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters_count</span><span class="p">)</span>
-        <span class="p">])</span></div>
+            <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters_count</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__time_convertable_variable_to_feature</span><span class="p">()</span>
+        <span class="p">])</span>
+
+
+    <span class="k">def</span> <span class="nf">__time_convertable_variable_to_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__time_convertable_variable</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__time_convertable_variable</span><span class="p">)</span></div>
 </pre></div>
 
               </div>

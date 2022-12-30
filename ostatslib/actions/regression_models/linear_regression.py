@@ -45,7 +45,7 @@ def linear_regression(state: State,
     except ValueError:
         return ActionResult(state, -1, "LinearRegression")
 
-    reward = __calculate_reward(regression)
+    reward = __calculate_reward(state, regression)
     state = update_state_score(state, regression.rsquared)
     return ActionResult(state, reward, regression)
 
@@ -57,13 +57,13 @@ def __is_valid_state(state: State) -> bool:
     return True
 
 
-def __calculate_reward(regression: RegressionResults) -> float:
+def __calculate_reward(state: State, regression: RegressionResults) -> float:
     explanatory_vars: np.ndarray = regression.model.exog
     residuals: np.ndarray = regression.resid.values
     reward: float = 0
 
     reward += __reward_for_normally_distributed_errors(regression)
-    reward += __reward_for_correlation_of_error_terms(residuals)
+    reward += __penalty_for_correlation_of_error_terms(state, residuals)
     reward += __reward_for_homoscedasticity(residuals, explanatory_vars)
     reward += calculate_score_reward(regression.rsquared)
 
@@ -82,12 +82,14 @@ def __reward_for_normally_distributed_errors(regression: RegressionResults) -> f
     return .1
 
 
-def __reward_for_correlation_of_error_terms(residuals: np.ndarray) -> float:
+def __penalty_for_correlation_of_error_terms(state: State, residuals: np.ndarray) -> float:
     dw_stat = durbin_watson(residuals)
 
     if 1 < dw_stat < 2:
+        state.set("are_linear_model_residuals_correlated", -1)
         return .1
 
+    state.set("are_linear_model_residuals_correlated", 1)
     return -.1
 
 

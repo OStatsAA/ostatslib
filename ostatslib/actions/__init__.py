@@ -18,10 +18,12 @@ from .exploratory_actions import (
     is_response_discrete_check,
     is_response_positive_values_only_check,
     is_response_quantitative_check,
+    time_convertable_variable_search
 )
 from .regression_models import (
     linear_regression,
     poisson_regression,
     support_vector_regression,
-    decision_tree_regression
+    decision_tree_regression,
+    time_series_auto_arima
 )

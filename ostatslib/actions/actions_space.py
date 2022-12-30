@@ -11,12 +11,14 @@ from ostatslib.actions.exploratory_actions import (
     is_response_discrete_check,
     is_response_positive_values_only_check,
     is_response_quantitative_check,
+    time_convertable_variable_search
 )
 from ostatslib.actions.regression_models import (
     linear_regression,
     poisson_regression,
     support_vector_regression,
-    decision_tree_regression
+    decision_tree_regression,
+    time_series_auto_arima
 )
 from ostatslib.actions.classifiers import (
     logistic_regression,
@@ -44,7 +46,9 @@ EXPLORATORY_ACTIONS = {
     'is_response_positive_values_only_check': (is_response_positive_values_only_check,
                                                as_binary_array(3, ENCODING_LENGTH)),
     'is_response_quantitative_check': (is_response_quantitative_check,
-                                       as_binary_array(4, ENCODING_LENGTH))
+                                       as_binary_array(4, ENCODING_LENGTH)),
+    'time_convertable_variable_search': (time_convertable_variable_search,
+                                         as_binary_array(5, ENCODING_LENGTH))
 }
 
 # Encoding: 8 to 15
@@ -66,7 +70,9 @@ REGRESSION_MODELS = {
     'support_vector_regression': (support_vector_regression,
                                   as_binary_array(18, ENCODING_LENGTH)),
     'decision_tree_regression': (decision_tree_regression,
-                                 as_binary_array(19, ENCODING_LENGTH))
+                                 as_binary_array(19, ENCODING_LENGTH)),
+    'time_series_auto_arima': (time_series_auto_arima,
+                               as_binary_array(20, ENCODING_LENGTH))
 }
 
 # Encoding: 24 to 31
@@ -74,7 +80,7 @@ CLUSTERING = {
     'k_means': (k_means,
                 as_binary_array(24, ENCODING_LENGTH)),
     'dbscan': (dbscan,
-                as_binary_array(25, ENCODING_LENGTH))
+               as_binary_array(25, ENCODING_LENGTH))
 }
 
 

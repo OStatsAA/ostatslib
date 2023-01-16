@@ -1,18 +1,18 @@
 """
-State abstract class module
+State module
 """
 
-from abc import ABC
 from dataclasses import fields
-from numpy import NaN, concatenate, isnan, ndarray, array
+from numpy import concatenate, ndarray, array
 from ostatslib.states.analysis_features_set import AnalysisFeaturesSet
 from ostatslib.states.data_features_set import DataFeaturesSet
+from ostatslib.states.features_set import KnownFeaturesList
 from ostatslib.states.state_iterator import StateIterator
 
 
-class State(ABC):
+class State:
     """
-    State abstract class
+    State class
     """
 
     def __init__(self,
@@ -37,13 +37,11 @@ class State(ABC):
         Returns:
             int | float | bool: feature value
         """
-        value = getattr(self.__data_features, feature_key, NaN)
-        if isinstance(value, dict) or not isnan(value):
-            return value
+        if hasattr(self.__data_features, feature_key):
+            return getattr(self.__data_features, feature_key)
 
-        value = getattr(self.__analysis_features, feature_key, NaN)
-        if value is None or isinstance(value, str) or not isnan(value):
-            return value
+        if hasattr(self.__analysis_features, feature_key):
+            return getattr(self.__analysis_features, feature_key)
 
         raise AttributeError()
 
@@ -59,11 +57,12 @@ class State(ABC):
             AttributeError: If feature is not found
         """
         if hasattr(self.__data_features, feature_key):
-            setattr(self.__data_features, feature_key, value)
-        elif hasattr(self.__analysis_features, feature_key):
-            setattr(self.__analysis_features, feature_key, value)
-        else:
-            raise AttributeError()
+            return setattr(self.__data_features, feature_key, value)
+
+        if hasattr(self.__analysis_features, feature_key):
+            return setattr(self.__analysis_features, feature_key, value)
+
+        raise AttributeError()
 
     def keys(self) -> list[str]:
         """
@@ -89,6 +88,18 @@ class State(ABC):
             array(self.__data_features)
         ))
 
+    def list_known_features(self) -> KnownFeaturesList:
+        """
+        Lists fields that have values different from default (unkown state attribute)
+
+        Returns:
+            KnownFeaturesList: list of non-default values
+        """
+        return [
+            *self.__analysis_features.list_known_features(),
+            *self.__data_features.list_known_features()
+        ]
+
     def __iter__(self):
         return StateIterator(self)
 
@@ -105,3 +116,14 @@ class State(ABC):
                 return False
 
         return True
+
+    def __sub__(self, other):
+        diff_state: State = State()
+        sub_sets = [self.__analysis_features, self.__data_features]
+        for sub_set in sub_sets:
+            for field in fields(sub_set):
+                value = getattr(sub_set, field.name)
+                if value != other.get(field.name):
+                    diff_state.set(field.name, value)
+
+        return diff_state

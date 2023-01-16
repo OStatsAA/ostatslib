@@ -91,3 +91,19 @@ def test_state_should_expose_features_vector() -> None:
     state.set("score", .5)
 
     assert state.features_vector[1] == .5
+
+
+def test_state_should_expose_known_features() -> None:
+    """
+    Tests if state is able to expose known features
+    """
+    known_features = [
+        ("score", .5),
+        ("time_convertable_variable", None),
+        ("is_response_discrete", 1)
+    ]
+    state = State()
+    for (feature, value) in known_features:
+        state.set(feature, value)
+
+    assert state.list_known_features() == known_features

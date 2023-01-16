@@ -1,35 +1,23 @@
 """
-AnalysisFeaturesSet  module
+AnalysisFeaturesSet module
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import numpy as np
 
+from ostatslib.states.features_set import FeaturesSet
+
 
 @dataclass(init=False)
-class AnalysisFeaturesSet:
+class AnalysisFeaturesSet(FeaturesSet):
     """
     Class to hold analysis features.
     """
-    response_variable_label: str = "result"
-    score: float = 0
-    clusters_count: int = 0
-    __time_convertable_variable: str = ""
-
-    @property
-    def time_convertable_variable(self) -> str:
-        """
-        Feature indicating if there's a variable that may be converted to date format
-
-        Returns:
-            str: name of convertable variable
-        """
-        return self.__time_convertable_variable
-
-    @time_convertable_variable.setter
-    def time_convertable_variable(self, value: str | None) -> None:
-        self.__time_convertable_variable = value
+    response_variable_label: str = field(default="result")
+    score: float = field(default=0)
+    clusters_count: int = field(default=0)
+    time_convertable_variable: str = field(default="")
 
     def __array__(self):
         return np.array([
@@ -39,9 +27,8 @@ class AnalysisFeaturesSet:
             self.__time_convertable_variable_to_feature()
         ])
 
-
     def __time_convertable_variable_to_feature(self) -> float:
-        if self.__time_convertable_variable is None:
+        if self.time_convertable_variable is None:
             return -1
 
-        return bool(self.__time_convertable_variable)
+        return bool(self.time_convertable_variable)

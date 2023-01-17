@@ -67,9 +67,9 @@ def __calculate_reward(state: State, date_convertable_variable: str | None) -> f
         return -1
 
     if date_convertable_variable == "":
-        return 0.5
+        return 0.25
 
-    return 0.75
+    return 0.5
 
 
 def __update_state(state: State, date_convertable_variable: str | None) -> State:

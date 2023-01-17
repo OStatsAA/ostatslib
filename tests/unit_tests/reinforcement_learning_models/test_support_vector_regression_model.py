@@ -47,6 +47,7 @@ def test_svr_run_training(dummy_dataset: DataFrame, svr_mock: Mock) -> None:
                                              dummy_dataset,
                                              environment,
                                              max_steps=10)
+    svr_method.fit()
     assert svr_method.is_fit
     assert reward is not None
     svr_mock.fit.assert_called()
@@ -62,6 +63,7 @@ def test_svr_run_analysis(dummy_dataset: DataFrame, svr_mock) -> None:
                                     dummy_dataset,
                                     environment,
                                     max_steps=10)
+    svr_method.fit()
 
     analysis = svr_method.run_analysis(State(),
                                        dummy_dataset,

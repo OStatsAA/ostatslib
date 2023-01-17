@@ -26,11 +26,17 @@ class ReinforcementLearningMethod(ABC):
         """
 
     @abstractmethod
+    def fit(self) -> None:
+        """
+        Fits model
+        """
+
+    @abstractmethod
     def run_analysis(self,
-                    state: State,
-                    data: DataFrame,
-                    environment: Environment,
-                    max_steps: int) -> list:
+                     state: State,
+                     data: DataFrame,
+                     environment: Environment,
+                     max_steps: int) -> tuple[list, bool]:
         """
         Run one episode with n steps, limited to max_steps parameter
 
@@ -41,7 +47,7 @@ class ReinforcementLearningMethod(ABC):
             max_steps (int): máximum number of steps in episode
 
         Returns:
-            list: list of actions taken in episode
+            tuple[list, bool]: tuple with steps and done flag
         """
 
     @abstractmethod

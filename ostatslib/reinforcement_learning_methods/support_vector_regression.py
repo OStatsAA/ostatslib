@@ -39,7 +39,7 @@ class SupportVectorRegression(ReinforcementLearningMethod):
                      state: State,
                      data: DataFrame,
                      environment: Environment,
-                     max_steps: int) -> list:
+                     max_steps: int) -> tuple[list, bool]:
         if not self.__is_fit:
             raise ModelNotFitError()
 
@@ -54,7 +54,7 @@ class SupportVectorRegression(ReinforcementLearningMethod):
             if done:
                 break
 
-        return steps
+        return steps, done
 
     def run_training_episode(self,
                              state: State,
@@ -74,8 +74,6 @@ class SupportVectorRegression(ReinforcementLearningMethod):
             if done:
                 break
 
-        self.__fit()
-        self.__is_fit = True
         return episode_reward
 
     def __run_analysis_step(self,
@@ -112,7 +110,7 @@ class SupportVectorRegression(ReinforcementLearningMethod):
         self.__rewards_history.append(action_result.reward)
         return action_result, done
 
-    def __fit(self) -> None:
+    def fit(self) -> None:
         features = np.concatenate((self.__states_features_history,
                                    self.__actions_history),
                                   axis=1)

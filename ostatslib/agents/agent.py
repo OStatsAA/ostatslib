@@ -3,9 +3,12 @@ Agent module
 """
 
 from pandas import DataFrame
-
+from ostatslib.agents.analysis_result import AnalysisResult
 from ostatslib.environments import Environment
-from ostatslib.reinforcement_learning_methods import ReinforcementLearningMethod, ActorCritic
+from ostatslib.reinforcement_learning_methods import (
+    ReinforcementLearningMethod,
+    SupportVectorRegression
+)
 from ostatslib.states import State
 
 
@@ -20,7 +23,7 @@ class Agent:
                  is_training: bool = False,
                  max_steps: int = 10) -> None:
         self.__env = environment if environment is not None else Environment()
-        self.__rl_method = rl_method if rl_method is not None else ActorCritic()
+        self.__rl_method = rl_method if rl_method is not None else SupportVectorRegression()
         self.__is_training = is_training
         self.__max_steps = max_steps
 
@@ -73,7 +76,7 @@ class Agent:
         self.__is_training = False
         return episode_reward
 
-    def analyze(self, data: DataFrame, initial_state: State = State()) -> list:
+    def analyze(self, data: DataFrame, initial_state: State = State()) -> AnalysisResult:
         """
         Run an analysis
 
@@ -82,10 +85,10 @@ class Agent:
             initial_state (State, optional): initial state. Defaults to State().
 
         Returns:
-            list: list of actions take to analyise input data
+            AnalysisResult: Analysis result
         """
-        episode_actions = self.__rl_method.run_analysis(initial_state,
-                                                        data,
-                                                        self.__env,
-                                                        self.__max_steps)
-        return episode_actions
+        steps, done = self.__rl_method.run_analysis(initial_state,
+                                                    data,
+                                                    self.__env,
+                                                    self.__max_steps)
+        return AnalysisResult(initial_state, steps, done)

@@ -35,7 +35,7 @@ class ActorCritic(ReinforcementLearningMethod):
                      state: State,
                      data: DataFrame,
                      environment: Environment,
-                     max_steps: int) -> list:
+                     max_steps: int) -> tuple[list, bool]:
         if not self.__is_fit:
             raise ModelNotFitError()
 
@@ -50,7 +50,7 @@ class ActorCritic(ReinforcementLearningMethod):
             if done:
                 break
 
-        return steps
+        return steps, done
 
     def run_training_episode(self,
                              state: State,
@@ -122,6 +122,9 @@ class ActorCritic(ReinforcementLearningMethod):
         state_tensor = convert_state_to_tensor(state)
         action_probs, critic_value = self.__neural_network(state_tensor)
         return action_probs, critic_value
+    
+    def fit(self) -> None:
+        pass
 
     def __run_analysis_step(self,
                             data: DataFrame,

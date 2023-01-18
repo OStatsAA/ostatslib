@@ -347,6 +347,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -487,6 +492,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -642,14 +652,17 @@ title="Open an issue"
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-
+<span class="kn">from</span> <span class="nn">ostatslib.agents.analysis_result</span> <span class="kn">import</span> <span class="n">AnalysisResult</span>
 <span class="kn">from</span> <span class="nn">ostatslib.environments</span> <span class="kn">import</span> <span class="n">Environment</span>
-<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="n">ReinforcementLearningMethod</span><span class="p">,</span> <span class="n">ActorCritic</span>
+<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ReinforcementLearningMethod</span><span class="p">,</span>
+    <span class="n">SupportVectorRegression</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 
 
 <div class="viewcode-block" id="Agent"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent">[docs]</a><span class="k">class</span> <span class="nc">Agent</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Agent class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -659,13 +672,13 @@ title="Open an issue"
                  <span class="n">is_training</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__env</span> <span class="o">=</span> <span class="n">environment</span> <span class="k">if</span> <span class="n">environment</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Environment</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__rl_method</span> <span class="o">=</span> <span class="n">rl_method</span> <span class="k">if</span> <span class="n">rl_method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">ActorCritic</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__rl_method</span> <span class="o">=</span> <span class="n">rl_method</span> <span class="k">if</span> <span class="n">rl_method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">SupportVectorRegression</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__is_training</span> <span class="o">=</span> <span class="n">is_training</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__max_steps</span> <span class="o">=</span> <span class="n">max_steps</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">is_training</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return whether agent is in training mode</span>
 
 <span class="sd">        Returns:</span>
@@ -675,7 +688,7 @@ title="Open an issue"
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">rl_method</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReinforcementLearningMethod</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets agent&#39;s Reinforcement Learning Method</span>
 
 <span class="sd">        Returns:</span>
@@ -685,7 +698,7 @@ title="Open an issue"
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">environment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Environment</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets agent&#39;s Statistical Environment</span>
 
 <span class="sd">        Returns:</span>
@@ -694,7 +707,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__env</span>
 
 <div class="viewcode-block" id="Agent.train"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">State</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run one training episode</span>
 
 <span class="sd">        Args:</span>
@@ -712,8 +725,8 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="n">__is_training</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">episode_reward</span></div>
 
-<div class="viewcode-block" id="Agent.analyze"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.analyze">[docs]</a>    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">State</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Agent.analyze"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.analyze">[docs]</a>    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">State</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">AnalysisResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run an analysis</span>
 
 <span class="sd">        Args:</span>
@@ -721,13 +734,13 @@ title="Open an issue"
 <span class="sd">            initial_state (State, optional): initial state. Defaults to State().</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            list: list of actions take to analyise input data</span>
+<span class="sd">            AnalysisResult: Analysis result</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">episode_actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rl_method</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span>
-                                                        <span class="n">data</span><span class="p">,</span>
-                                                        <span class="bp">self</span><span class="o">.</span><span class="n">__env</span><span class="p">,</span>
-                                                        <span class="bp">self</span><span class="o">.</span><span class="n">__max_steps</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">episode_actions</span></div></div>
+        <span class="n">steps</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__rl_method</span><span class="o">.</span><span class="n">run_analysis</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span>
+                                                    <span class="n">data</span><span class="p">,</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">__env</span><span class="p">,</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">__max_steps</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AnalysisResult</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">done</span><span class="p">)</span></div></div>
 </pre></div>
 
               </div>

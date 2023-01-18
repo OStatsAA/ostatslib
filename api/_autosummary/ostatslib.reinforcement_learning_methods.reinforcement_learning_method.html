@@ -350,6 +350,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -490,6 +495,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -704,6 +714,12 @@ title="Print to PDF"
 <dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReinforcementLearningMethod</span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/reinforcement_learning_method.html#ReinforcementLearningMethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod" title="Permalink to this definition">#</a></dt>
 <dd><p>Model abstract class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.fit">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/reinforcement_learning_method.html#ReinforcementLearningMethod.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.fit" title="Permalink to this definition">#</a></dt>
+<dd><p>Fits model</p>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.is_fit">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_fit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.is_fit" title="Permalink to this definition">#</a></dt>
@@ -720,7 +736,7 @@ title="Print to PDF"
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.run_analysis">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><span class="pre">ostatslib.environments.environment.Environment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/reinforcement_learning_method.html#ReinforcementLearningMethod.run_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.run_analysis" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.environments.environment.html#ostatslib.environments.environment.Environment" title="ostatslib.environments.environment.Environment"><span class="pre">ostatslib.environments.environment.Environment</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/reinforcement_learning_methods/reinforcement_learning_method.html#ReinforcementLearningMethod.run_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.run_analysis" title="Permalink to this definition">#</a></dt>
 <dd><p>Run one episode with n steps, limited to max_steps parameter</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -732,10 +748,10 @@ title="Print to PDF"
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of actions taken in episode</p>
+<dd class="field-even"><p>tuple with steps and done flag</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
+<dd class="field-odd"><p>tuple[list, bool]</p>
 </dd>
 </dl>
 </dd></dl>

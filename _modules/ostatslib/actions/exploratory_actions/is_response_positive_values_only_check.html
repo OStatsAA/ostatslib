@@ -347,6 +347,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -487,6 +492,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -651,7 +661,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="is_response_positive_values_only_check"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html#ostatslib.actions.exploratory_actions.is_response_positive_values_only_check">[docs]</a><span class="k">def</span> <span class="nf">is_response_positive_values_only_check</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Check if response variable values are positive only</span>
 
 <span class="sd">    Args:</span>
@@ -692,7 +702,7 @@ title="Open an issue"
     <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">state_copy</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="k">return</span> <span class="mf">0.75</span>
+    <span class="k">return</span> <span class="mf">0.5</span>
 </pre></div>
 
               </div>

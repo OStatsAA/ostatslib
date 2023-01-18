@@ -347,6 +347,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -487,6 +492,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -648,7 +658,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="ExplorationStrategy"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.exploration_strategies.exploration_strategy.html#ostatslib.exploration_strategies.exploration_strategy.ExplorationStrategy">[docs]</a><span class="k">class</span> <span class="nc">ExplorationStrategy</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exploration Strategy abstract class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -657,7 +667,7 @@ title="Open an issue"
                    <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
                    <span class="n">actions</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
                    <span class="n">predict_fn</span><span class="p">:</span> <span class="n">callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets actions according to exploration strategy</span>
 
 <span class="sd">        Args:</span>

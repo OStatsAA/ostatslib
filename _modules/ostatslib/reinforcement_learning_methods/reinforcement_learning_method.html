@@ -347,6 +347,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -487,6 +492,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -650,27 +660,33 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="ReinforcementLearningMethod"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod">[docs]</a><span class="k">class</span> <span class="nc">ReinforcementLearningMethod</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Model abstract class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">is_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Flags if models has already been fitted at least once</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: is fit flag</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="ReinforcementLearningMethod.fit"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.fit">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fits model</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
 <div class="viewcode-block" id="ReinforcementLearningMethod.run_analysis"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.run_analysis">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">run_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                    <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
-                    <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
-                    <span class="n">environment</span><span class="p">:</span> <span class="n">Environment</span><span class="p">,</span>
-                    <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+                     <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+                     <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+                     <span class="n">environment</span><span class="p">:</span> <span class="n">Environment</span><span class="p">,</span>
+                     <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run one episode with n steps, limited to max_steps parameter</span>
 
 <span class="sd">        Args:</span>
@@ -680,7 +696,7 @@ title="Open an issue"
 <span class="sd">            max_steps (int): máximum number of steps in episode</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            list: list of actions taken in episode</span>
+<span class="sd">            tuple[list, bool]: tuple with steps and done flag</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="ReinforcementLearningMethod.run_training_episode"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.reinforcement_learning_method.html#ostatslib.reinforcement_learning_methods.reinforcement_learning_method.ReinforcementLearningMethod.run_training_episode">[docs]</a>    <span class="nd">@abstractmethod</span>
@@ -689,7 +705,7 @@ title="Open an issue"
                              <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
                              <span class="n">environment</span><span class="p">:</span> <span class="n">Environment</span><span class="p">,</span>
                              <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Run one episode with n steps, limited to max_steps parameter and updates internal model</span>
 
 <span class="sd">        Args:</span>

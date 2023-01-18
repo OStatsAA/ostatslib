@@ -347,6 +347,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -487,6 +492,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -646,7 +656,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="ReplayMemory"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.replay_memories.replay_memory.html#ostatslib.replay_memories.replay_memory.ReplayMemory">[docs]</a><span class="k">class</span> <span class="nc">ReplayMemory</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dataset containing an agent&#39;s memory of past states, actions,\</span>
 <span class="sd">        next states after action taken and reward.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -661,7 +671,7 @@ title="Open an issue"
                <span class="n">action_code</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
                <span class="n">next_state_features</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
                <span class="n">reward</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Appends new information to replay memory</span>
 
 <span class="sd">        Args:</span>
@@ -680,7 +690,7 @@ title="Open an issue"
         <span class="bp">self</span><span class="o">.</span><span class="n">__next_index</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
 <div class="viewcode-block" id="ReplayMemory.get_sar_entries"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.replay_memories.replay_memory.html#ostatslib.replay_memories.replay_memory.ReplayMemory.get_sar_entries">[docs]</a>    <span class="k">def</span> <span class="nf">get_sar_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns dictionary with State, Action and Rewards entries</span>
 
 <span class="sd">        Returns:</span>
@@ -693,7 +703,7 @@ title="Open an issue"
         <span class="p">}</span></div>
 
 <div class="viewcode-block" id="ReplayMemory.get_free_space_count"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.replay_memories.replay_memory.html#ostatslib.replay_memories.replay_memory.ReplayMemory.get_free_space_count">[docs]</a>    <span class="k">def</span> <span class="nf">get_free_space_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns number of empty rows</span>
 
 <span class="sd">        Returns:</span>
@@ -702,7 +712,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__max_length</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__next_index</span></div>
 
 <div class="viewcode-block" id="ReplayMemory.is_full"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.replay_memories.replay_memory.html#ostatslib.replay_memories.replay_memory.ReplayMemory.is_full">[docs]</a>    <span class="k">def</span> <span class="nf">is_full</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns whether the memory is at full capacity or not</span>
 
 <span class="sd">        Returns:</span>
@@ -711,7 +721,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__max_length</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">__next_index</span></div>
 
 <div class="viewcode-block" id="ReplayMemory.clear"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.replay_memories.replay_memory.html#ostatslib.replay_memories.replay_memory.ReplayMemory.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clears memory data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__init_empty_arrays</span><span class="p">()</span>

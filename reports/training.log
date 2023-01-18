@@ -34,6 +34,6 @@ Here is a preview of the cell contents:
 -------------------
 ['import os', "os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'", '', 'import warnings', "warnings.filterwarnings('ignore')"]
 ...
-['from ostatslib.reinforcement_learning_methods import SupportVectorRegression', '', 'agent = Agent(rl_method=SupportVectorRegression())', 'for index, (dataset_type, dataset) in enumerate(datasets):', '    agent.train(dataset)']
+['agent = Agent(rl_method=SupportVectorRegression())', 'for index, (dataset_type, dataset) in enumerate(datasets):', '    agent.train(dataset)', '', 'agent.rl_method.fit()']
 -------------------
 

@@ -28,4 +28,5 @@
    :recursive:
 
    ostatslib.agents.agent
+   ostatslib.agents.analysis_result
 

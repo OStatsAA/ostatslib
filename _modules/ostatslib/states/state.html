@@ -347,6 +347,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -487,6 +492,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -638,20 +648,20 @@ title="Open an issue"
                 
   <h1>Source code for ostatslib.states.state</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">State abstract class module</span>
+<span class="sd">State module</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">fields</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">NaN</span><span class="p">,</span> <span class="n">concatenate</span><span class="p">,</span> <span class="n">isnan</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">concatenate</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">array</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states.analysis_features_set</span> <span class="kn">import</span> <span class="n">AnalysisFeaturesSet</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states.data_features_set</span> <span class="kn">import</span> <span class="n">DataFeaturesSet</span>
+<span class="kn">from</span> <span class="nn">ostatslib.states.features_set</span> <span class="kn">import</span> <span class="n">KnownFeaturesList</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states.state_iterator</span> <span class="kn">import</span> <span class="n">StateIterator</span>
 
 
-<div class="viewcode-block" id="State"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State">[docs]</a><span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    State abstract class</span>
+<div class="viewcode-block" id="State"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State">[docs]</a><span class="k">class</span> <span class="nc">State</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    State class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
@@ -663,7 +673,7 @@ title="Open an issue"
             <span class="n">analysis_features</span> <span class="k">if</span> <span class="n">analysis_features</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">AnalysisFeaturesSet</span><span class="p">())</span>
 
 <div class="viewcode-block" id="State.get"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets feature value by passing feature key (feature name).</span>
 <span class="sd">        If feature is not found, returns NaN.</span>
 
@@ -676,18 +686,16 @@ title="Open an issue"
 <span class="sd">        Returns:</span>
 <span class="sd">            int | float | bool: feature value</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">NaN</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">)</span>
 
-        <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">NaN</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">isnan</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">)</span>
 
         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="State.set"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets value to feature</span>
 
 <span class="sd">        Args:</span>
@@ -698,14 +706,15 @@ title="Open an issue"
 <span class="sd">            AttributeError: If feature is not found</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">):</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">):</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">()</span></div>
+            <span class="k">return</span> <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="State.keys"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.keys">[docs]</a>    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns features keys (names)</span>
 
 <span class="sd">        Returns:</span>
@@ -717,7 +726,7 @@ title="Open an issue"
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">features_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns features vector</span>
 
 <span class="sd">        Returns:</span>
@@ -727,6 +736,18 @@ title="Open an issue"
             <span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">),</span>
             <span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">)</span>
         <span class="p">))</span>
+
+<div class="viewcode-block" id="State.list_known_features"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.list_known_features">[docs]</a>    <span class="k">def</span> <span class="nf">list_known_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">KnownFeaturesList</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lists fields that have values different from default (unkown state attribute)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            KnownFeaturesList: list of non-default values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="o">.</span><span class="n">list_known_features</span><span class="p">(),</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="o">.</span><span class="n">list_known_features</span><span class="p">()</span>
+        <span class="p">]</span></div>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">StateIterator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -743,7 +764,18 @@ title="Open an issue"
             <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
                 <span class="k">return</span> <span class="kc">False</span>
 
-        <span class="k">return</span> <span class="kc">True</span></div>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="n">diff_state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+        <span class="n">sub_sets</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__analysis_features</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__data_features</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">sub_set</span> <span class="ow">in</span> <span class="n">sub_sets</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">sub_set</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sub_set</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+                    <span class="n">diff_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">diff_state</span></div>
 </pre></div>
 
               </div>

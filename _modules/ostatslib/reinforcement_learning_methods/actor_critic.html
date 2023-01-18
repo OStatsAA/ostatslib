@@ -347,6 +347,11 @@ const thebe_selector_output = ".output, .cell_output"
        ostatslib.agents.agent
       </a>
      </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.agents.analysis_result.html">
+       ostatslib.agents.analysis_result
+      </a>
+     </li>
     </ul>
    </li>
    <li class="toctree-l2 has-children">
@@ -487,6 +492,11 @@ const thebe_selector_output = ".output, .cell_output"
      <li class="toctree-l3">
       <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">
        ostatslib.states.data_features_set
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../api/_autosummary/ostatslib.states.features_set.html">
+       ostatslib.states.features_set
       </a>
      </li>
      <li class="toctree-l3">
@@ -656,7 +666,7 @@ title="Open an issue"
 
 
 <div class="viewcode-block" id="ActorCritic"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic">[docs]</a><span class="k">class</span> <span class="nc">ActorCritic</span><span class="p">(</span><span class="n">ReinforcementLearningMethod</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Actor-Critic implementation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -674,7 +684,7 @@ title="Open an issue"
                      <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
                      <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
                      <span class="n">environment</span><span class="p">:</span> <span class="n">Environment</span><span class="p">,</span>
-                     <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+                     <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_fit</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ModelNotFitError</span><span class="p">()</span>
 
@@ -689,7 +699,7 @@ title="Open an issue"
             <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
                 <span class="k">break</span>
 
-        <span class="k">return</span> <span class="n">steps</span></div>
+        <span class="k">return</span> <span class="n">steps</span><span class="p">,</span> <span class="n">done</span></div>
 
 <div class="viewcode-block" id="ActorCritic.run_training_episode"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.run_training_episode">[docs]</a>    <span class="k">def</span> <span class="nf">run_training_episode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                              <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
@@ -749,7 +759,7 @@ title="Open an issue"
         <span class="k">return</span> <span class="n">action_result</span><span class="p">,</span> <span class="n">done</span>
 
 <div class="viewcode-block" id="ActorCritic.get_actions_probs_and_critic"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.get_actions_probs_and_critic">[docs]</a>    <span class="k">def</span> <span class="nf">get_actions_probs_and_critic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get actions probabilities and critic value for a given state</span>
 
 <span class="sd">        Args:</span>
@@ -761,6 +771,9 @@ title="Open an issue"
         <span class="n">state_tensor</span> <span class="o">=</span> <span class="n">convert_state_to_tensor</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
         <span class="n">action_probs</span><span class="p">,</span> <span class="n">critic_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__neural_network</span><span class="p">(</span><span class="n">state_tensor</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">action_probs</span><span class="p">,</span> <span class="n">critic_value</span></div>
+    
+<div class="viewcode-block" id="ActorCritic.fit"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.reinforcement_learning_methods.actor_critic.html#ostatslib.reinforcement_learning_methods.actor_critic.ActorCritic.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
 
     <span class="k">def</span> <span class="nf">__run_analysis_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                             <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>

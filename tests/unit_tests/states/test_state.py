@@ -5,12 +5,24 @@ State testing module
 """
 
 from copy import deepcopy
+from gymnasium.spaces import Dict
 import pytest
 
 from ostatslib.states import State
 
 NON_EXISTING_KEY = "NON_EXISTING_KEY_IN_STATE_FEATURES_BLABLABLA"
 KNOWN_FEATURE_KEY = "is_response_dichotomous"
+
+
+def test_state_copy() -> None:
+    """
+    Tests if copy method returns a deep copy
+    """
+    state = State()
+    state_copy = state.copy()
+
+    assert state == state_copy
+    assert state is not state_copy
 
 
 def test_state_gets_method() -> None:
@@ -91,6 +103,30 @@ def test_state_should_expose_features_vector() -> None:
     state.set("score", .5)
 
     assert state.features_vector[1] == .5
+
+
+def test_state_should_expose_features_dict() -> None:
+    """
+    Tests if state is able to expose its features as dictionary
+    """
+    state = State()
+    state.set("score", .5)
+
+    state_dictionary = state.features_dict
+
+    assert isinstance(state_dictionary, dict)
+    assert state_dictionary['score'] == .5
+
+
+def test_state_should_expose_features_as_gym_space() -> None:
+    """
+    Tests if state is able to expose its features as gym space
+    """
+    state = State()
+    gym_space = state.as_gymnasium_space()
+
+    assert isinstance(gym_space, Dict)
+    assert len(gym_space) == len(state)
 
 
 def test_state_should_expose_known_features() -> None:

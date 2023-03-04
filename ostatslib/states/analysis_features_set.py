@@ -3,10 +3,26 @@ AnalysisFeaturesSet module
 """
 
 from dataclasses import dataclass, field
-
-import numpy as np
+from gymnasium.spaces import Discrete, Box
 
 from ostatslib.states.features_set import FeaturesSet
+
+
+def time_convertable_variable_to_feature(time_convertable_variable: str) -> bool:
+    """
+    Returns -1 if field is set to None, else returns boolean from string.
+    Empty string = False and any valid string = True
+
+    Args:
+        time_convertable_variable (str): analysis features set field
+
+    Returns:
+        bool: time_convertable_variable feature value
+    """
+    if time_convertable_variable is None:
+        return -1
+
+    return bool(time_convertable_variable)
 
 
 @dataclass(init=False)
@@ -14,21 +30,30 @@ class AnalysisFeaturesSet(FeaturesSet):
     """
     Class to hold analysis features.
     """
-    response_variable_label: str = field(default="result")
-    score: float = field(default=0)
-    clusters_count: int = field(default=0)
-    time_convertable_variable: str = field(default="")
+    response_variable_label: str = field(
+        default="result",
+        metadata={
+            'gym_space': Discrete(2),
+            'get_value_fn': bool
+        })
 
-    def __array__(self):
-        return np.array([
-            bool(self.response_variable_label),
-            self.score,
-            bool(self.clusters_count),
-            self.__time_convertable_variable_to_feature()
-        ])
+    score: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(0, 1),
+            'get_value_fn': None
+        })
 
-    def __time_convertable_variable_to_feature(self) -> float:
-        if self.time_convertable_variable is None:
-            return -1
+    clusters_count: int = field(
+        default=0,
+        metadata={
+            'gym_space': Discrete(100),
+            'get_value_fn': None
+        })
 
-        return bool(self.time_convertable_variable)
+    time_convertable_variable: str = field(
+        default="",
+        metadata={
+            'gym_space': Discrete(3, start=-1),
+            'get_value_fn': time_convertable_variable_to_feature
+        })

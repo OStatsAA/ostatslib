@@ -2,8 +2,10 @@
 State module
 """
 
+from copy import deepcopy
 from dataclasses import fields
 from numpy import concatenate, ndarray, array
+from gymnasium.spaces import Dict
 from ostatslib.states.analysis_features_set import AnalysisFeaturesSet
 from ostatslib.states.data_features_set import DataFeaturesSet
 from ostatslib.states.features_set import KnownFeaturesList
@@ -22,6 +24,15 @@ class State:
             data_features if data_features is not None else DataFeaturesSet())
         self.__analysis_features = (
             analysis_features if analysis_features is not None else AnalysisFeaturesSet())
+
+    def copy(self) -> 'State':
+        """
+        Deep copies State instance
+
+        Returns:
+            State: state instance deep copy
+        """
+        return deepcopy(self)
 
     def get(self, feature_key: str) -> int | float | bool:
         """
@@ -88,6 +99,19 @@ class State:
             array(self.__data_features)
         ))
 
+    @property
+    def features_dict(self) -> dict:
+        """
+        Returns features dictionary
+
+        Returns:
+            ndarray: array of values
+        """
+        features_dict = (
+            self.__analysis_features.as_features_dict() |
+            self.__data_features.as_features_dict())
+        return features_dict
+
     def list_known_features(self) -> KnownFeaturesList:
         """
         Lists fields that have values different from default (unkown state attribute)
@@ -99,6 +123,18 @@ class State:
             *self.__analysis_features.list_known_features(),
             *self.__data_features.list_known_features()
         ]
+
+    def as_gymnasium_space(self) -> Dict:
+        """
+        Returns Gymnasium space Dict
+        https://gymnasium.farama.org/api/spaces/composite/#dict
+
+        Returns:
+            Dict: Gymnasium space Dict
+        """
+        return Dict(
+            self.__analysis_features.as_gymnasium_space() |
+            self.__data_features.as_gymnasium_space())
 
     def __iter__(self):
         return StateIterator(self)
@@ -127,3 +163,6 @@ class State:
                     diff_state.set(field.name, value)
 
         return diff_state
+
+    def __len__(self) -> int:
+        return len(self.features_vector)

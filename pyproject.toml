@@ -30,7 +30,7 @@ datacooker = "0.3.0"
 
 
 [tool.poetry.group.docs.dependencies]
-jupyter-book = "^0.13.1"
+jupyter-book = ">=0.13.1,<0.15.0"
 sphinxcontrib-mermaid = "^0.7.1"
 
 [build-system]

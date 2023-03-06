@@ -4,7 +4,11 @@ ActionsSpace module
 
 from functools import cached_property
 from typing import TypeVar
+from gymnasium.spaces import MultiBinary
+
 import numpy as np
+import numpy.typing as npt
+
 from ostatslib.actions.exploratory_actions import (
     get_log_rows_count,
     is_response_dichotomous_check,
@@ -31,8 +35,9 @@ from ostatslib.actions.clustering import (
 )
 from ostatslib.actions.utils import ActionFunction, as_binary_array
 
-T = TypeVar("T")
 
+T = TypeVar("T")
+MaskNDArray = npt.NDArray[np.int8]
 ENCODING_LENGTH = 5
 
 # Encoding: 0 to 7
@@ -84,13 +89,14 @@ CLUSTERING = {
 }
 
 
-class ActionsSpace:
+class ActionsSpace(MultiBinary):
     """
     Actions space
     """
 
     def __init__(self) -> None:
         self.__actions = EXPLORATORY_ACTIONS | CLASSIFIERS | REGRESSION_MODELS | CLUSTERING
+        super().__init__(ENCODING_LENGTH)
 
     @cached_property
     def actions(self) -> dict[str, tuple[ActionFunction, np.array]]:
@@ -118,7 +124,7 @@ class ActionsSpace:
         Gets actions encodings list
 
         Returns:
-            list[str]: actions names
+            ndarray: actions codes
         """
         actions_array = np.ndarray(shape=(len(self), ENCODING_LENGTH))
         index = 0
@@ -150,6 +156,21 @@ class ActionsSpace:
         """
         return self.__actions[action_name][0]
 
+    def is_valid_action_by_encoding(self, action_code: np.array) -> bool:
+        """Check if action code is valid
+
+        Args:
+            action_code (np.array): action code
+
+        Returns:
+            bool: True if it is valid action code
+        """
+        for action in self.__actions.values():
+            if np.array_equal(action[1], action_code):
+                return True
+
+        return False
+
     def get_action_by_encoding(self, action_code: np.array) -> ActionFunction[T]:
         """
         Gets action function
@@ -165,6 +186,15 @@ class ActionsSpace:
                 return action[0]
 
         raise ValueError(f"Action code not found: {action_code}")
+
+    def sample(self, mask: MaskNDArray | None = None) -> np.ndarray[np.int8]:
+        for _ in range(self.n * 100):
+            sampled_action = super().sample(mask)
+            if self.is_valid_action_by_encoding(sampled_action):
+                return sampled_action
+
+        raise ValueError(
+            f"No valid action code could be found after {self.n * 100} attempts.")
 
     def __len__(self):
         return len(self.__actions)

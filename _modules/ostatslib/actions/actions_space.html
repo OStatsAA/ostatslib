@@ -739,7 +739,7 @@ title="Open an issue"
 
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="ActionsSpace.get_action_by_encoding"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_by_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">get_action_by_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_code</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionFunction</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<div class="viewcode-block" id="ActionsSpace.get_action_by_encoding"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_by_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">get_action_by_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_code</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionFunction</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets action function</span>
 
@@ -753,18 +753,11 @@ title="Open an issue"
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">action_code</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="kc">None</span> <span class="c1">#raise ValueError(f&quot;Action code not found: {action_code}&quot;)</span></div>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="ActionsSpace.sample"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">MaskNDArray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">actions_encodings_list</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions_encodings_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
-        <span class="c1">#for _ in range(self.n * 10000):</span>
-        <span class="c1">#    sampled_action = super().sample(mask)</span>
-        <span class="c1">#    if self.is_valid_action_by_encoding(sampled_action):</span>
-        <span class="c1">#        return sampled_action</span>
-        <span class="c1">#</span>
-        <span class="c1">#raise ValueError(</span>
-        <span class="c1">#    f&quot;No valid action code could be found after {self.n * 100} attempts.&quot;)</span>
 
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="p">)</span></div>

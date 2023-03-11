@@ -49,11 +49,11 @@ def __is_dichotomous_check(values: Series) -> bool:
         case "categorical" | "string" | "object" | "mixed-integer":
             return True
         case "integer":
-            return True if __is_within_possible_boolean_range_of_integers(unique_values) else False
+            return bool(__is_within_possible_boolean_range_of_integers(unique_values))
         case "floating" | "decimal" | "mixed-integer-float":
             first, second = unique_values
-            return True if first.is_integer() and second.is_integer() and \
-                __is_within_possible_boolean_range_of_integers(unique_values) else False
+            return bool(first.is_integer() and second.is_integer() and
+                bool(__is_within_possible_boolean_range_of_integers(unique_values)))
         case _:
             return False
 

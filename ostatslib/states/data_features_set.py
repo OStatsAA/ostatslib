@@ -3,7 +3,7 @@ DataFeaturesSets module
 """
 
 from dataclasses import dataclass, field
-from gymnasium.spaces import Discrete, Box
+from gymnasium.spaces import Box
 
 from ostatslib.states.features_set import FeaturesSet
 
@@ -23,34 +23,34 @@ class DataFeaturesSet(FeaturesSet):
     is_response_dichotomous: int = field(
         default=0,
         metadata={
-            'gym_space': Discrete(3, start=-1),
+            'gym_space': Box(-1, 1),
             'get_value_fn': None
         })
 
     is_response_quantitative: int = field(
         default=0,
         metadata={
-            'gym_space': Discrete(3, start=-1),
+            'gym_space': Box(-1, 1),
             'get_value_fn': None
         })
 
     is_response_discrete: int = field(
         default=0,
         metadata={
-            'gym_space': Discrete(3, start=-1),
+            'gym_space': Box(-1, 1),
             'get_value_fn': None
         })
 
     is_response_positive_values_only: int = field(
         default=0,
         metadata={
-            'gym_space': Discrete(3, start=-1),
+            'gym_space': Box(-1, 1),
             'get_value_fn': None
         })
 
     are_linear_model_residuals_correlated: int = field(
         default=0,
         metadata={
-            'gym_space': Discrete(3, start=-1),
+            'gym_space': Box(-1, 1),
             'get_value_fn': None
         })

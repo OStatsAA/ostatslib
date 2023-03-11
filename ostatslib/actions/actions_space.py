@@ -171,7 +171,7 @@ class ActionsSpace(MultiBinary):
 
         return False
 
-    def get_action_by_encoding(self, action_code: np.ndarray) -> ActionFunction[T]:
+    def get_action_by_encoding(self, action_code: np.ndarray) -> ActionFunction[T] | None:
         """
         Gets action function
 
@@ -185,18 +185,11 @@ class ActionsSpace(MultiBinary):
             if np.array_equal(action[1], action_code):
                 return action[0]
 
-        return None #raise ValueError(f"Action code not found: {action_code}")
+        return None
 
     def sample(self, mask: MaskNDArray | None = None) -> np.ndarray:
         index = np.random.choice(len(self.actions_encodings_list))
         return self.actions_encodings_list[index]
-        #for _ in range(self.n * 10000):
-        #    sampled_action = super().sample(mask)
-        #    if self.is_valid_action_by_encoding(sampled_action):
-        #        return sampled_action
-        #
-        #raise ValueError(
-        #    f"No valid action code could be found after {self.n * 100} attempts.")
 
     def __len__(self):
         return len(self.__actions)

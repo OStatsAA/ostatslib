@@ -10,7 +10,4 @@ OStatsLib
    actions
    agents
    environments
-   exploration_strategies
-   reinforcement_learning_methods
-   replay_memories
    states

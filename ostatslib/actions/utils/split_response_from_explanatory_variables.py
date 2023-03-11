@@ -8,7 +8,8 @@ from ostatslib.states import State
 
 def split_response_from_explanatory_variables(state: State,
                                               data: DataFrame) -> tuple[Series, DataFrame]:
-    """Split Dataframe in a response variable values Serie and other potential explanatory variables values in another dataframe without response column
+    """Split Dataframe in a response variable values Serie and 
+    other potential explanatory variables values in another dataframe without response column
 
     Args:
         state (State): state

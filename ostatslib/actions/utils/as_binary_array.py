@@ -2,10 +2,10 @@
 as_binary_array helper function module
 """
 
-from numpy import array
+from numpy import ndarray, array
 
 
-def as_binary_array(number: int, array_length: int) -> array:
+def as_binary_array(number: int, array_length: int) -> ndarray:
     """
     Converts an integer to a np.array of binary digits
 

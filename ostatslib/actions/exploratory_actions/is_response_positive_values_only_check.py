@@ -46,7 +46,7 @@ def __positive_only_check(values: Series) -> bool:
         except Exception:
             return False
 
-    return True if unique_values.min() >= 0 else False
+    return unique_values.min() >= 0
 
 
 def __calculate_reward(state: State, state_copy: State) -> float:

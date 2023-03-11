@@ -2,7 +2,6 @@
 Poisson regression module
 """
 
-import math
 from pandas import DataFrame
 from statsmodels.api import GLM, families
 from statsmodels.genmod.generalized_linear_model import GLMResults

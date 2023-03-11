@@ -9,6 +9,12 @@ ostatslib.states.analysis\_features\_set
 
    
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      time_convertable_variable_to_feature
+   
    
 
    

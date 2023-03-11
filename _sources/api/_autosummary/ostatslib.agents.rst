@@ -29,4 +29,5 @@
 
    ostatslib.agents.agent
    ostatslib.agents.analysis_result
+   ostatslib.agents.ppo_agent
 

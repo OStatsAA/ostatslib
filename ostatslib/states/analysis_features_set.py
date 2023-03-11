@@ -47,13 +47,13 @@ class AnalysisFeaturesSet(FeaturesSet):
     clusters_count: int = field(
         default=0,
         metadata={
-            'gym_space': Discrete(100),
+            'gym_space': Box(0, 10),
             'get_value_fn': None
         })
 
     time_convertable_variable: str = field(
         default="",
         metadata={
-            'gym_space': Discrete(3, start=-1),
+            'gym_space': Box(-1, 1),
             'get_value_fn': time_convertable_variable_to_feature
         })

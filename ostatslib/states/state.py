@@ -18,8 +18,8 @@ class State:
     """
 
     def __init__(self,
-                 data_features: DataFeaturesSet = None,
-                 analysis_features: AnalysisFeaturesSet = None) -> None:
+                 data_features: DataFeaturesSet | None = None,
+                 analysis_features: AnalysisFeaturesSet | None = None) -> None:
         self.__data_features = (
             data_features if data_features is not None else DataFeaturesSet())
         self.__analysis_features = (
@@ -34,7 +34,7 @@ class State:
         """
         return deepcopy(self)
 
-    def get(self, feature_key: str) -> int | float | bool:
+    def get(self, feature_key: str) -> str | int | float | bool:
         """
         Gets feature value by passing feature key (feature name).
         If feature is not found, returns NaN.
@@ -46,7 +46,7 @@ class State:
             AttributeError: raises error if feature is not found
 
         Returns:
-            int | float | bool: feature value
+            str | int | float | bool: feature value
         """
         if hasattr(self.__data_features, feature_key):
             return getattr(self.__data_features, feature_key)
@@ -56,13 +56,13 @@ class State:
 
         raise AttributeError()
 
-    def set(self, feature_key: str, value: int | float | bool) -> None:
+    def set(self, feature_key: str, value: str | int | float | bool) -> None:
         """
         Sets value to feature
 
         Args:
             feature_key (str): feature key (name)
-            value (int | float | bool): value
+            value (str | int | float | bool): value
 
         Raises:
             AttributeError: If feature is not found
@@ -100,7 +100,7 @@ class State:
         ))
 
     @property
-    def features_dict(self) -> dict:
+    def features_dict(self) -> dict[str, float | int | bool]:
         """
         Returns features dictionary
 

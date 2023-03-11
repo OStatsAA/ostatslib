@@ -99,7 +99,7 @@ class ActionsSpace(MultiBinary):
         super().__init__(ENCODING_LENGTH)
 
     @cached_property
-    def actions(self) -> dict[str, tuple[ActionFunction, np.array]]:
+    def actions(self) -> dict[str, tuple[ActionFunction, np.ndarray]]:
         """
         Gets actions dictionary
 
@@ -156,7 +156,7 @@ class ActionsSpace(MultiBinary):
         """
         return self.__actions[action_name][0]
 
-    def is_valid_action_by_encoding(self, action_code: np.array) -> bool:
+    def is_valid_action_by_encoding(self, action_code: np.ndarray) -> bool:
         """Check if action code is valid
 
         Args:
@@ -171,7 +171,7 @@ class ActionsSpace(MultiBinary):
 
         return False
 
-    def get_action_by_encoding(self, action_code: np.array) -> ActionFunction[T]:
+    def get_action_by_encoding(self, action_code: np.ndarray) -> ActionFunction[T]:
         """
         Gets action function
 
@@ -185,16 +185,18 @@ class ActionsSpace(MultiBinary):
             if np.array_equal(action[1], action_code):
                 return action[0]
 
-        raise ValueError(f"Action code not found: {action_code}")
+        return None #raise ValueError(f"Action code not found: {action_code}")
 
-    def sample(self, mask: MaskNDArray | None = None) -> np.ndarray[np.int8]:
-        for _ in range(self.n * 100):
-            sampled_action = super().sample(mask)
-            if self.is_valid_action_by_encoding(sampled_action):
-                return sampled_action
-
-        raise ValueError(
-            f"No valid action code could be found after {self.n * 100} attempts.")
+    def sample(self, mask: MaskNDArray | None = None) -> np.ndarray:
+        index = np.random.choice(len(self.actions_encodings_list))
+        return self.actions_encodings_list[index]
+        #for _ in range(self.n * 10000):
+        #    sampled_action = super().sample(mask)
+        #    if self.is_valid_action_by_encoding(sampled_action):
+        #        return sampled_action
+        #
+        #raise ValueError(
+        #    f"No valid action code could be found after {self.n * 100} attempts.")
 
     def __len__(self):
         return len(self.__actions)

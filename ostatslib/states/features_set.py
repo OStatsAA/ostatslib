@@ -56,6 +56,6 @@ class FeaturesSet(ABC):
         get_value_fn = _field.metadata['get_value_fn']
         value = getattr(self, _field.name)
         if get_value_fn is None:
-            return value
+            return np.array(value).reshape((1,))
 
-        return get_value_fn(value)
+        return np.array(get_value_fn(value)).reshape((1,))

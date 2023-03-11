@@ -9,7 +9,7 @@ from ostatslib.actions.utils import ActionResult
 from ostatslib.states import State
 
 
-StepsRows = list[tuple[int, str, float, State]]
+StepsRows = list[tuple[int, str, float, str]]
 
 
 @dataclass(init=True, frozen=True)
@@ -43,7 +43,7 @@ class AnalysisResult:
         diff = self.initial_state - State()
         return tabulate(diff.list_known_features(), tablefmt="plain")
 
-    def __fill_summary_table_steps_rows(self) -> StepsRows:
+    def __fill_summary_table_steps_rows(self) -> str:
         steps_headers: list[str] = ['Order', 'Step', 'Reward', 'State Change']
         table_rows: StepsRows = []
 
@@ -60,9 +60,9 @@ class AnalysisResult:
     def __get_steps_diff_table(self, i: int, step: ActionResult) -> str:
         diff: State
         if i:
-            diff = (step.state - self.steps[i-1].state)
+            diff = step.state - self.steps[i-1].state
         else:
-            diff = (step.state - self.initial_state)
+            diff = step.state - self.initial_state
 
         diff_table = tabulate(diff.list_known_features(), tablefmt="plain")
         return diff_table

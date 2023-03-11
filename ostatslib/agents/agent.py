@@ -1,94 +1,84 @@
 """
-Agent module
+Open Stats Agent abstract module
 """
 
+from abc import ABC, abstractmethod
+from typing import Tuple
+from numpy import ndarray
 from pandas import DataFrame
+
 from ostatslib.agents.analysis_result import AnalysisResult
-from ostatslib.environments import Environment
-from ostatslib.reinforcement_learning_methods import (
-    ReinforcementLearningMethod,
-    SupportVectorRegression
-)
-from ostatslib.states import State
+from ostatslib.environments import GymEnvironment
+from ostatslib.states.state import State
 
 
-class Agent:
+class Agent(ABC):
     """
-    Agent class
+    Open Stats Agent abstract class
     """
 
-    def __init__(self,
-                 environment: Environment = None,
-                 rl_method: ReinforcementLearningMethod = None,
-                 is_training: bool = False,
-                 max_steps: int = 10) -> None:
-        self.__env = environment if environment is not None else Environment()
-        self.__rl_method = rl_method if rl_method is not None else SupportVectorRegression()
-        self.__is_training = is_training
-        self.__max_steps = max_steps
-
-    @property
-    def is_training(self) -> bool:
+    @abstractmethod
+    def train(self, steps: int = 100000) -> None:
         """
-        Return whether agent is in training mode
-
-        Returns:
-            bool: is_training flag
-        """
-        return self.__is_training
-
-    @property
-    def rl_method(self) -> ReinforcementLearningMethod:
-        """
-        Gets agent's Reinforcement Learning Method
-
-        Returns:
-            ReinforcementLearningMethod: Reinforcement learning method
-        """
-        return self.__rl_method
-
-    @property
-    def environment(self) -> Environment:
-        """
-        Gets agent's Statistical Environment
-
-        Returns:
-            Environment: statistical environment
-        """
-        return self.__env
-
-    def train(self, data: DataFrame, initial_state: State = State()) -> float:
-        """
-        Run one training episode
+        Trains an agent
 
         Args:
-            data (DataFrame): data
-            initial_state (State, optional): initial state. Defaults to State().
-
-        Returns:
-            float: episode reward
+            steps (int, optional): Maximum number of steps during training. Defaults to 100e3.
         """
-        self.__is_training = True
-        episode_reward = self.__rl_method.run_training_episode(initial_state,
-                                                               data,
-                                                               self.__env,
-                                                               self.__max_steps)
-        self.__is_training = False
-        return episode_reward
 
-    def analyze(self, data: DataFrame, initial_state: State = State()) -> AnalysisResult:
+    @abstractmethod
+    def save(self, path: str) -> None:
         """
-        Run an analysis
+        Saves agent prediction model
 
         Args:
-            data (DataFrame): data
-            initial_state (State, optional): initial state. Defaults to State().
+            path (str): path to file
+        """
+
+    @abstractmethod
+    def _predict(self, observation: dict) -> ndarray:
+        """
+        Gets predicted action from agent's model
+
+        Args:
+            observation (dict): environment observation
 
         Returns:
-            AnalysisResult: Analysis result
+            ndarray: action
         """
-        steps, done = self.__rl_method.run_analysis(initial_state,
-                                                    data,
-                                                    self.__env,
-                                                    self.__max_steps)
-        return AnalysisResult(initial_state, steps, done)
+
+    def analyze(self,
+                data: DataFrame,
+                initial_state: State = State(),
+                max_steps: int = 20) -> AnalysisResult:
+        """
+        Analyzes a dataset
+
+        Args:
+            data (DataFrame): dataset
+            initial_state (State, optional): initial state. Defaults to State().
+            max_steps (int, optional): maximum number of steps. Defaults to 20.
+
+        Returns:
+            AnalysisResult: analysis result
+        """
+        environment = GymEnvironment()
+        environment.set_data(data)
+        actions_results = []
+        observation = initial_state.features_dict
+        terminated = False
+
+        for _ in range(max_steps):
+            action = self._predict(observation)
+            observation, terminated, truncated, info = self._step(environment,
+                                                                  action)
+            actions_results.append(info['action_result'])
+
+            if terminated or truncated:
+                break
+
+        return AnalysisResult(initial_state, actions_results, terminated)
+
+    def _step(self, environment: GymEnvironment, action: ndarray) -> Tuple[dict, bool, bool, dict]:
+        observation, _, terminated, truncated, info = environment.step(action)
+        return observation, terminated, truncated, info

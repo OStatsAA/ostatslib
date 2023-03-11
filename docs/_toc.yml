@@ -5,9 +5,11 @@ format: jb-book
 root: home
 parts:
 
-- caption: Workflows
+- caption: Getting Started
   chapters:
-  - file: workflows/training
+  - file: getting_started/installation
+  - file: getting_started/training
+  - file: getting_started/analysis
 - caption: API
   chapters:
   - file: api/api

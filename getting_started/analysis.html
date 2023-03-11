@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Training &#8212; Open Statistics Analysis Agent</title>
+    <title>Analysis &#8212; Open Statistics Analysis Agent</title>
   
   
   
@@ -60,13 +60,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'workflows/training';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/analysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="OStatsLib" href="../api/api.html" />
-    <link rel="prev" title="Open Statistics Analysis Agent (OStatsAA)" href="../home.html" />
+    <link rel="prev" title="Training" href="training.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -157,9 +157,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Training</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="nav bd-sidenav">
@@ -301,7 +303,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fworkflows/training.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fgetting_started/analysis.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -331,7 +333,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/workflows/training.ipynb" target="_blank"
+      <li><a href="../_sources/getting_started/analysis.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -400,9 +402,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -413,20 +413,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Training</h1>
+    <h1>Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-diagram">Training diagram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -436,156 +427,88 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="training">
-<h1>Training<a class="headerlink" href="#training" title="Permalink to this headline">#</a></h1>
-<section id="training-diagram">
-<h2>Training diagram<a class="headerlink" href="#training-diagram" title="Permalink to this headline">#</a></h2>
-<div class="full-width docutils">
-<div class="mermaid">
-            sequenceDiagram
-    autonumber
-    participant Agent
-    participant RL Method
-        Note left of RL Method: SVR, Actor-Critic...
-    participant Environment
-
-    loop Episode
-        Agent--&gt;&gt;+RL Method: Start training (Data, Initial State)
-        loop Step
-            RL Method--&gt;&gt;+Environment: Select an action following its exploration strategy
-            Environment--&gt;&gt;-RL Method: Return next state, action, reward and done flag
-            RL Method-&gt;&gt;RL Method: Store transition to memory
-        end
-        RL Method-&gt;&gt;RL Method: Update model
-        RL Method--&gt;&gt;-Agent: Returns episode reward
-    end
-        </div></div>
-</section>
-<section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
-<p>Training an Agent powered by SVR model on 6000 datasets split between binary classification, linear and poisson regression problems.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="analysis">
+<h1>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docs.workflows.utils.generate_training_datasets</span> <span class="kn">import</span> <span class="n">generate_training_datasets</span>
-<span class="n">datasets</span> <span class="o">=</span> <span class="n">generate_training_datasets</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Agent training:</p>
-<div class="cell tag_remove-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;TF_CPP_MIN_LOG_LEVEL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ostatslib.agents</span> <span class="kn">import</span> <span class="n">PPOAgent</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
 
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="c1"># loading trained agent</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="s1">&#39;../trained_ppo_model&#39;</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">ostatslib.agents</span> <span class="kn">import</span> <span class="n">Agent</span>
-<span class="kn">from</span> <span class="nn">ostatslib.reinforcement_learning_methods</span> <span class="kn">import</span> <span class="n">SupportVectorRegression</span>
+<span class="c1"># generating data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">()</span>
+<span class="n">classification_data</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">classification_data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
 
-<span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">rl_method</span><span class="o">=</span><span class="n">SupportVectorRegression</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
-    <span class="n">agent</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="c1"># running analysis</span>
+<span class="n">classification_analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">classification_data</span><span class="p">)</span>
 
-<span class="n">agent</span><span class="o">.</span><span class="n">rl_method</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Checking Agent analysis.</p>
-<p>Getting first dataset for each trained dataset type:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datacooker.recipes</span> <span class="kn">import</span> <span class="n">LogitRecipe</span><span class="p">,</span> <span class="n">PoissonRecipe</span><span class="p">,</span> <span class="n">Recipe</span>
-
-<span class="n">logistic_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">LogitRecipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">linear_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">Recipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">poisson_regression_dataset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dataset</span> <span class="k">for</span> <span class="p">(</span><span class="n">dataset_type</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="ow">in</span> <span class="n">datasets</span> <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">PoissonRecipe</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>Binary classification:</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">logistic_regression_dataset</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">analysis</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="c1"># printing results</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_analysis</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-01-17 23:10:10.852220
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-11 19:15:33.837087
 Final status is Complete
 Initial State known features:
 
 Steps:
   Order  Step                             Reward  State Change
 -------  -----------------------------  --------  --------------------------
-      1  is_response_dichotomous_check  0.5       is_response_dichotomous  1
-      2  LogisticRegressionCV(cv=5)     0.778261  score  0.678261
+      1  is_response_dichotomous_check       0.5  is_response_dichotomous  1
+      2  LogisticRegressionCV(cv=5)          1    score  0.91
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:458: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
 </pre></div>
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Regression:</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">linear_regression_dataset</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">analysis</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+
+<span class="c1"># generating data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">()</span>
+<span class="n">regression_data</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">regression_data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># running analysis</span>
+<span class="n">regression_analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">regression_data</span><span class="p">)</span>
+
+<span class="c1"># printing results</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">regression_analysis</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-01-17 23:10:11.148657
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-11 19:15:33.909822
 Final status is Complete
 Initial State known features:
 
 Steps:
-  Order  Step                             Reward  State Change
--------  -----------------------------  --------  ---------------------------
-      1  is_response_dichotomous_check       0.5  is_response_dichotomous  -1
-      2  is_response_quantitative            0.5  is_response_quantitative  1
-      3  is_response_discrete_check          0.5  is_response_discrete  -1
-      4  DecisionTreeRegressor()             1    score  0.978191
+  Order  Step                                                                                       Reward  State Change
+-------  ---------------------------------------------------------------------------------------  --------  -----------------------------------------
+      1  is_response_dichotomous_check                                                                 0.5  is_response_dichotomous  -1
+      2  is_response_quantitative                                                                      0.5  is_response_quantitative  1
+      3  is_response_discrete_check                                                                    0.5  is_response_discrete  -1
+      4  &lt;statsmodels.regression.linear_model.RegressionResultsWrapper object at 0x7f4594a2f130&gt;       1    score                                   1
+                                                                                                            are_linear_model_residuals_correlated  -1
 </pre></div>
 </div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Poisson Regression</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">poisson_regression_dataset</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">analysis</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-01-17 23:10:11.381655
-Final status is Complete
-Initial State known features:
-
-Steps:
-  Order  Step                                                                                        Reward  State Change
--------  ----------------------------------------------------------------------------------------  --------  -----------------------------------
-      1  is_response_dichotomous_check                                                             0.5       is_response_dichotomous  -1
-      2  is_response_quantitative                                                                  0.5       is_response_quantitative  1
-      3  is_response_discrete_check                                                                0.5       is_response_discrete  1
-      4  time_convertable_variable                                                                 0.5       time_convertable_variable
-      5  is_response_positive_values_only_check                                                    0.5       is_response_positive_values_only  1
-      6  get_log_rows_count                                                                        0.5       log_rows_count  0.24949
-      7  &lt;statsmodels.genmod.generalized_linear_model.GLMResultsWrapper object at 0x7f0eb6ebace0&gt;  0.878294  score  0.778294
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -601,7 +524,7 @@ Steps:
         },
         kernelOptions: {
             name: "python3",
-            path: "./workflows"
+            path: "./getting_started"
         },
         predefinedOutput: true
     }
@@ -617,12 +540,12 @@ Steps:
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../home.html"
+       href="training.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Open Statistics Analysis Agent (OStatsAA)</p>
+        <p class="prev-next-title">Training</p>
       </div>
     </a>
     <a class="right-next"
@@ -640,21 +563,6 @@ Steps:
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-diagram">Training diagram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

@@ -19,6 +19,17 @@
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
+			"launch":{
+				"version": "0.2.0",
+				"configurations": [
+					{
+						"name": "Debug Unit Test",
+						"type": "python",
+						"request": "test",
+						"justMyCode": false,
+					}
+				]
+			},
 			// Set *default* container specific settings.json values on container create.
 			"settings": { 
 				"python.defaultInterpreterPath": "/workspaces/ostatslib/.venv/bin/python",
@@ -35,7 +46,12 @@
 					"tests"
 				],
 				"python.testing.unittestEnabled": false,
-				"python.testing.pytestEnabled": true
+				"python.testing.pytestEnabled": true,
+				"python.analysis.typeCheckingMode": "basic",
+				"cSpell.words": [
+					"ndarray",
+					"ostatslib"
+				]
 			},
 			
 			// Add the IDs of extensions you want installed when the container is created.
@@ -44,7 +60,8 @@
 				"ms-python.vscode-pylance",
 				"njpwerner.autodocstring",
 				"eamodio.gitlens",
-				"executablebookproject.myst-highlight"
+				"executablebookproject.myst-highlight",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	},

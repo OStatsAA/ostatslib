@@ -5,6 +5,7 @@ Poisson regression module
 from pandas import DataFrame
 from statsmodels.api import GLM, families
 from statsmodels.genmod.generalized_linear_model import GLMResults
+from statsmodels.tools.sm_exceptions import PerfectSeparationError
 
 from ostatslib.actions.utils import (ActionResult,
                                      calculate_score_reward,
@@ -40,6 +41,9 @@ def poisson_regression(state: State,
                                      explanatory_vars,
                                      poisson_family).fit()
     except ValueError:
+        return ActionResult(state, -1, "PoissonRegression")
+    except PerfectSeparationError:
+        state.set('score', -1)
         return ActionResult(state, -1, "PoissonRegression")
 
     reward = __calculate_reward(regression)

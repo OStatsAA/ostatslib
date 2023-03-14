@@ -2,12 +2,19 @@
 PPO Agent module
 """
 
+import torch as th
 from numpy import ndarray
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
 
 from ostatslib.agents.agent import Agent
 from ostatslib.environments import GymEnvironment
+
+POLICY = "MultiInputPolicy"
+POLICY_KWARGS = {
+    'activation_fn': th.nn.ReLU,
+    'share_features_extractor': False
+}
 
 
 class PPOAgent(Agent):
@@ -28,10 +35,9 @@ class PPOAgent(Agent):
         action, _ = self.__model.predict(observation, deterministic=True)
         return action[0]
 
-    def __init__model(self, path, training_envs_count) -> PPO:
+    def __init__model(self, path: str | None, training_envs_count: int) -> PPO:
         if path is None:
-            environments = make_vec_env(GymEnvironment,
-                                        n_envs=training_envs_count)
-            return PPO("MultiInputPolicy", environments, verbose=1)
+            environments = make_vec_env(GymEnvironment, training_envs_count)
+            return PPO(POLICY, environments, verbose=1, policy_kwargs=POLICY_KWARGS)
 
         return PPO.load(path)

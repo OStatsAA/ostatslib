@@ -21,5 +21,9 @@ def update_state_score(state: State, score: float) -> State:
     if math.isnan(score):
         return state
 
+    if not -1 <= score <= 1:
+        state.set('score', -1)
+        return state
+
     state.set('score', score)
     return state

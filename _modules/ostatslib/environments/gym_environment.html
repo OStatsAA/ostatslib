@@ -441,19 +441,27 @@ document.write(`
 
 <div class="viewcode-block" id="GymEnvironment.set_data"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.environments.gym_environment.html#ostatslib.environments.gym_environment.GymEnvironment.set_data">[docs]</a>    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Set dataset to be used untill next reset</span>
+<span class="sd">        Set dataset to be used until next reset</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            data (DataFrame): dataset</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__data</span> <span class="o">=</span> <span class="n">data</span></div>
 
+<div class="viewcode-block" id="GymEnvironment.set_state"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.environments.gym_environment.html#ostatslib.environments.gym_environment.GymEnvironment.set_state">[docs]</a>    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set analysis state</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (State): State</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">state</span></div>
+
     <span class="k">def</span> <span class="nf">__is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.6</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__steps_taken</span> <span class="o">&gt;=</span> <span class="mi">10</span>
 
     <span class="k">def</span> <span class="nf">__init_state_and_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span> <span class="o">=</span> <span class="n">generate_training_dataset</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">generate_training_dataset</span><span class="p">()</span></div>
 </pre></div>
 
                 </article>

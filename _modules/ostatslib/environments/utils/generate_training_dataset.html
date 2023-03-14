@@ -381,33 +381,23 @@ document.write(`
 <span class="sd">generate dataset function module</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span><span class="p">,</span> <span class="n">randrange</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">datacooker.recipes</span> <span class="kn">import</span> <span class="n">LogitRecipe</span><span class="p">,</span> <span class="n">PoissonRecipe</span><span class="p">,</span> <span class="n">Recipe</span>
-<span class="kn">from</span> <span class="nn">datacooker.variables</span> <span class="kn">import</span> <span class="n">ContinousVariable</span>
+
+<span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">._generate_from_datacooker</span> <span class="kn">import</span> <span class="n">generate_from_datacooker</span>
+<span class="kn">from</span> <span class="nn">._generate_from_sklearn</span> <span class="kn">import</span> <span class="n">generate_from_sklearn</span>
 
 
-<div class="viewcode-block" id="generate_training_dataset"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.environments.utils.generate_training_dataset.html#ostatslib.environments.utils.generate_training_dataset">[docs]</a><span class="k">def</span> <span class="nf">generate_training_dataset</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="generate_training_dataset"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.environments.utils.generate_training_dataset.html#ostatslib.environments.utils.generate_training_dataset">[docs]</a><span class="k">def</span> <span class="nf">generate_training_dataset</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">State</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a dataset</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">       DataFrame: dataset</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dataset_type</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span><span class="n">LogitRecipe</span><span class="p">,</span> <span class="n">PoissonRecipe</span><span class="p">,</span> <span class="n">Recipe</span><span class="p">])</span>
-    <span class="n">recipe</span> <span class="o">=</span> <span class="n">__init_recipe</span><span class="p">(</span><span class="n">dataset_type</span><span class="p">)</span>
-    <span class="n">recipe</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">ContinousVariable</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">recipe</span><span class="o">.</span><span class="n">cook</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">randrange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span></div>
-
-
-<span class="k">def</span> <span class="nf">__init_recipe</span><span class="p">(</span><span class="n">dataset_type</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">dataset_type</span> <span class="o">==</span> <span class="n">Recipe</span><span class="p">:</span>
-        <span class="n">recipe</span> <span class="o">=</span> <span class="n">dataset_type</span><span class="p">(</span><span class="k">lambda</span> <span class="n">variables</span><span class="p">,</span> <span class="n">error</span><span class="p">:</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">variables</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">error</span><span class="p">)</span>
-        <span class="n">recipe</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="k">lambda</span> <span class="n">variables</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">norm</span><span class="p">()</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">recipe</span> <span class="o">=</span> <span class="n">dataset_type</span><span class="p">(</span><span class="k">lambda</span> <span class="n">variables</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">variables</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">recipe</span>
+    <span class="n">generator_fn</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span><span class="n">generate_from_datacooker</span><span class="p">,</span> <span class="n">generate_from_sklearn</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">generator_fn</span><span class="p">()</span></div>
 </pre></div>
 
                 </article>

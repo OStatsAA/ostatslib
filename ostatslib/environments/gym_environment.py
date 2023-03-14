@@ -62,16 +62,24 @@ class GymEnvironment(Env):
 
     def set_data(self, data: DataFrame) -> None:
         """
-        Set dataset to be used untill next reset
+        Set dataset to be used until next reset
 
         Args:
             data (DataFrame): dataset
         """
         self.__data = data
 
+    def set_state(self, state: State) -> None:
+        """
+        Set analysis state
+
+        Args:
+            state (State): State
+        """
+        self.__state = state
+
     def __is_done(self, state: State) -> bool:
         return bool(state.get("score") > 0.6) or self.__steps_taken >= 10
 
     def __init_state_and_data(self):
-        self.__state = State()
-        self.__data = generate_training_dataset()
+        self.__data, self.__state = generate_training_dataset()

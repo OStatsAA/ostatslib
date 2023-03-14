@@ -63,7 +63,9 @@ class Agent(ABC):
             AnalysisResult: analysis result
         """
         environment = GymEnvironment()
+        environment.reset()
         environment.set_data(data)
+        environment.set_state(initial_state)
         actions_results = []
         observation = initial_state.features_dict
         terminated = False
@@ -77,6 +79,7 @@ class Agent(ABC):
             if terminated or truncated:
                 break
 
+        environment.reset()
         return AnalysisResult(initial_state, actions_results, terminated)
 
     def _step(self, environment: GymEnvironment, action: ndarray) -> Tuple[dict, bool, bool, dict]:

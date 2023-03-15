@@ -2,14 +2,19 @@
 State module
 """
 
+from collections import ChainMap
 from copy import deepcopy
 from dataclasses import fields
+from functools import cached_property
+from itertools import chain
 from numpy import concatenate, ndarray, array
 from gymnasium.spaces import Dict
 from ostatslib.states.analysis_features_set import AnalysisFeaturesSet
 from ostatslib.states.data_features_set import DataFeaturesSet
+from ostatslib.states.models_features_set import ModelsFeaturesSet
 from ostatslib.states.features_set import KnownFeaturesList
 from ostatslib.states.state_iterator import StateIterator
+from ostatslib.states.utils import init_features_set
 
 
 class State:
@@ -19,11 +24,13 @@ class State:
 
     def __init__(self,
                  data_features: DataFeaturesSet | None = None,
-                 analysis_features: AnalysisFeaturesSet | None = None) -> None:
-        self.__data_features = (
-            data_features if data_features is not None else DataFeaturesSet())
-        self.__analysis_features = (
-            analysis_features if analysis_features is not None else AnalysisFeaturesSet())
+                 analysis_features: AnalysisFeaturesSet | None = None,
+                 models_features: ModelsFeaturesSet | None = None) -> None:
+        self.__features_sets = (
+            init_features_set(analysis_features, AnalysisFeaturesSet),
+            init_features_set(data_features, DataFeaturesSet),
+            init_features_set(models_features, ModelsFeaturesSet)
+        )
 
     def copy(self) -> 'State':
         """
@@ -48,11 +55,9 @@ class State:
         Returns:
             str | int | float | bool: feature value
         """
-        if hasattr(self.__data_features, feature_key):
-            return getattr(self.__data_features, feature_key)
-
-        if hasattr(self.__analysis_features, feature_key):
-            return getattr(self.__analysis_features, feature_key)
+        for features_set in self.__features_sets:
+            if hasattr(features_set, feature_key):
+                return getattr(features_set, feature_key)
 
         raise AttributeError()
 
@@ -67,24 +72,25 @@ class State:
         Raises:
             AttributeError: If feature is not found
         """
-        if hasattr(self.__data_features, feature_key):
-            return setattr(self.__data_features, feature_key, value)
-
-        if hasattr(self.__analysis_features, feature_key):
-            return setattr(self.__analysis_features, feature_key, value)
+        for features_set in self.__features_sets:
+            if hasattr(features_set, feature_key):
+                return setattr(features_set, feature_key, value)
 
         raise AttributeError()
 
-    def keys(self) -> list[str]:
+    @cached_property
+    def keys(self) -> tuple[str]:
         """
         Returns features keys (names)
 
         Returns:
             list[str]: list of features keys (names)
         """
-        features_fields = fields(self.__data_features)
-        features_fields += fields(self.__analysis_features)
-        return list(map(lambda field: field.name, features_fields))
+        keys = []
+        for features_set in self.__features_sets:
+            keys += [field.name for field in fields(features_set)]
+
+        return tuple(keys)
 
     @property
     def features_vector(self) -> ndarray[float]:
@@ -94,10 +100,9 @@ class State:
         Returns:
             ndarray: array of values
         """
-        return concatenate((
-            array(self.__analysis_features),
-            array(self.__data_features)
-        ))
+        features_set_list = [array(features_set)
+                             for features_set in self.__features_sets]
+        return concatenate(features_set_list).flatten()
 
     @property
     def features_dict(self) -> dict[str, float | int | bool]:
@@ -107,10 +112,9 @@ class State:
         Returns:
             ndarray: array of values
         """
-        features_dict = (
-            self.__analysis_features.as_features_dict() |
-            self.__data_features.as_features_dict())
-        return features_dict
+        features_dicts = [features_set.as_features_dict()
+                          for features_set in self.__features_sets]
+        return dict(ChainMap(*features_dicts))
 
     def list_known_features(self) -> KnownFeaturesList:
         """
@@ -119,11 +123,11 @@ class State:
         Returns:
             KnownFeaturesList: list of non-default values
         """
-        return [
-            *self.__analysis_features.list_known_features(),
-            *self.__data_features.list_known_features()
-        ]
+        known_features_list = [features_set.list_known_features()
+                               for features_set in self.__features_sets]
+        return list(chain(*known_features_list))
 
+    @cached_property
     def as_gymnasium_space(self) -> Dict:
         """
         Returns Gymnasium space Dict
@@ -132,35 +136,28 @@ class State:
         Returns:
             Dict: Gymnasium space Dict
         """
-        return Dict(
-            self.__analysis_features.as_gymnasium_space() |
-            self.__data_features.as_gymnasium_space())
+        gym_spaces = [features_set.as_gymnasium_space()
+                      for features_set in self.__features_sets]
+        return Dict(dict(ChainMap(*gym_spaces)))
 
     def __iter__(self):
         return StateIterator(self)
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: 'State') -> bool:
         return self is other or self.__check_if_features_match(other)
 
-    def __check_if_features_match(self, other) -> bool:
-        for field in fields(self.__data_features):
-            if getattr(self.__data_features, field.name) != other.get(field.name):
-                return False
-
-        for field in fields(self.__analysis_features):
-            if getattr(self.__analysis_features, field.name) != other.get(field.name):
+    def __check_if_features_match(self, other: 'State') -> bool:
+        for key, value in self:
+            if value != other.get(key):
                 return False
 
         return True
 
-    def __sub__(self, other):
+    def __sub__(self, other: 'State'):
         diff_state: State = State()
-        sub_sets = [self.__analysis_features, self.__data_features]
-        for sub_set in sub_sets:
-            for field in fields(sub_set):
-                value = getattr(sub_set, field.name)
-                if value != other.get(field.name):
-                    diff_state.set(field.name, value)
+        for key, value in self:
+            if value != other.get(key):
+                diff_state.set(key, value)
 
         return diff_state
 

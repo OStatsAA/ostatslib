@@ -16,7 +16,7 @@ class FeaturesSet(ABC):
 
     def list_known_features(self) -> KnownFeaturesList:
         """
-        Lists fields that have values different from default (unkown state attribute)
+        Lists fields that have values different from default (unknown state attribute)
 
         Returns:
             KnownFeaturesList: list of non-default values

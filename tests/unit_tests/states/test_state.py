@@ -31,7 +31,7 @@ def test_state_gets_method() -> None:
     """
     state = State()
     try:
-        for key in state.keys():
+        for key in state.keys:
             state.get(key)
     except Exception as exception:
         assert False, f"getting and existing key raised an exception {exception}"
@@ -123,7 +123,7 @@ def test_state_should_expose_features_as_gym_space() -> None:
     Tests if state is able to expose its features as gym space
     """
     state = State()
-    gym_space = state.as_gymnasium_space()
+    gym_space = state.as_gymnasium_space
 
     assert isinstance(gym_space, Dict)
     assert len(gym_space) == len(state)

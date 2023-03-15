@@ -11,7 +11,7 @@ class StateIterator:
 
     def __init__(self, state) -> None:
         self.__state = state
-        self.__features_keys_list = state.keys()
+        self.__features_keys_list = state.keys
         self.__index = 0
 
     def __next__(self) -> tuple[str, int | float | bool]:

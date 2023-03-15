@@ -2,6 +2,27 @@
 Generate datasets from SciKit Learn for agent training module
 
 https://scikit-learn.org/stable/datasets.html
+
+The following sklearn generated datasets functions may be applied later
+as the agent states and actions evolves:
+
+# "make_biclusters",
+# "make_circles",
+# "make_checkerboard",
+# "make_friedman1",
+# "make_friedman2",
+# "make_friedman3",
+# "make_gaussian_quantiles",
+# "make_hastie_10_2",
+# "make_low_rank_matrix",
+# "make_moons",
+# "make_multilabel_classification",
+# "make_s_curve",
+# "make_sparse_coded_signal",
+# "make_sparse_spd_matrix",
+# "make_sparse_uncorrelated",
+# "make_spd_matrix",
+# "make_swiss_roll",
 """
 
 from random import choice
@@ -44,26 +65,9 @@ def _from_toy(toy_fns=_TOY_FUNCTIONS) -> tuple[DataFrame, State]:
 
 def __from_generated() -> tuple[DataFrame, State]:
     sample_gen_fn = choice([
-        # "make_biclusters",
         __make_blobs,
-        # "make_circles",
         __make_classification,
-        # "make_checkerboard",
-        # "make_friedman1",
-        # "make_friedman2",
-        # "make_friedman3",
-        # "make_gaussian_quantiles",
-        # "make_hastie_10_2",
-        # "make_low_rank_matrix",
-        # "make_moons",
-        # "make_multilabel_classification",
         __make_regression
-        # "make_s_curve",
-        # "make_sparse_coded_signal",
-        # "make_sparse_spd_matrix",
-        # "make_sparse_uncorrelated",
-        # "make_spd_matrix",
-        # "make_swiss_roll",
     ])
     x_values, y_values = sample_gen_fn()
     data = DataFrame(x_values)

@@ -26,7 +26,7 @@ class GymEnvironment(Env):
 
     def __init__(self) -> None:
         self.__init_state_and_data()
-        self.observation_space = State().as_gymnasium_space()
+        self.observation_space = State().as_gymnasium_space
         self.action_space: ActionsSpace = ActionsSpace()
         self.reward_range = REWARD_RANGE
         self.__steps_taken = 0
@@ -45,10 +45,11 @@ class GymEnvironment(Env):
 
     def step(self, action: ndarray) -> tuple[dict, float, bool, bool, dict]:
         action_fn = self.action_space.get_action_by_encoding(action)
-        action_result = ActionResult(self.__state, -1, "Invalid")
-        if action_fn is not None:
-            action_result = action_fn(self.__state.copy(), self.__data)
-            self.__steps_taken += 1
+        if action_fn is None:
+            return self.__invalid_action_step()
+
+        action_result = action_fn(self.__state.copy(), self.__data)
+        self.__steps_taken += 1
 
         self.__state = action_result.state
         observation = action_result.state.features_dict
@@ -83,3 +84,13 @@ class GymEnvironment(Env):
 
     def __init_state_and_data(self):
         self.__data, self.__state = generate_training_dataset()
+
+    def __invalid_action_step(self) -> tuple[dict, float, bool, bool, dict]:
+        return (
+            self.__state.features_dict,
+            REWARD_RANGE[0],
+            False,
+            False,
+            dict({'action_result': ActionResult(
+                self.__state, REWARD_RANGE[0], "Invalid")})
+        )

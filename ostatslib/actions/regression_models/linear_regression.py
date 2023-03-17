@@ -5,11 +5,12 @@ ref:
 https://www.kirenz.com/post/2021-11-14-linear-regression-diagnostics-in-python/linear-regression-diagnostics-in-python/
 """
 
+from math import nan
 import numpy as np
 from pandas import DataFrame
 from statsmodels.api import OLS
 from statsmodels.stats.stattools import durbin_watson, jarque_bera
-from statsmodels.stats.diagnostic import het_breuschpagan
+from statsmodels.stats.diagnostic import het_breuschpagan, linear_harvey_collier
 from statsmodels.regression.linear_model import RegressionResults
 
 from ostatslib.actions.utils import (ActionResult,
@@ -62,45 +63,87 @@ def __calculate_reward(state: State, regression: RegressionResults) -> float:
     residuals: np.ndarray = regression.resid.values
     reward: float = 0
 
-    reward += __reward_for_normally_distributed_errors(regression)
+    reward += __reward_for_normally_distributed_errors(state, regression)
     reward += __penalty_for_correlation_of_error_terms(state, residuals)
-    reward += __reward_for_homoscedasticity(residuals, explanatory_vars)
+    reward += __reward_for_homoscedasticity(state, residuals, explanatory_vars)
+    reward += __reward_for_recursive_residuals_mean(state, regression)
     reward += calculate_score_reward(regression.rsquared)
 
     return reward
 
 
-def __reward_for_normally_distributed_errors(regression: RegressionResults) -> float:
+def __reward_for_normally_distributed_errors(state: State,
+                                             regression: RegressionResults) -> float:
     jarque_bera_pvalue = jarque_bera(regression.wresid.values)[1]
 
     if jarque_bera_pvalue < .01:
-        return -.2
+        state.set("are_linear_model_regression_residuals_normally_distributed", -1)
+        return -.5
 
     if jarque_bera_pvalue < .05:
+        state.set(
+            "are_linear_model_regression_residuals_normally_distributed", -0.5)
         return -.1
 
-    return .1
+    if jarque_bera_pvalue < .1:
+        state.set("are_linear_model_regression_residuals_normally_distributed", 0.5)
+        return -.05
+
+    state.set("are_linear_model_regression_residuals_normally_distributed", 1)
+    return 0
 
 
 def __penalty_for_correlation_of_error_terms(state: State, residuals: np.ndarray) -> float:
     dw_stat = durbin_watson(residuals)
 
     if 1 < dw_stat < 2:
-        state.set("are_linear_model_residuals_correlated", -1)
-        return .1
+        state.set("are_linear_model_regression_residuals_correlated", -1)
+        return 0
 
-    state.set("are_linear_model_residuals_correlated", 1)
-    return -.1
+    state.set("are_linear_model_regression_residuals_correlated", 1)
+    return -.5
 
 
-def __reward_for_homoscedasticity(residuals: np.ndarray,
+def __reward_for_homoscedasticity(state: State,
+                                  residuals: np.ndarray,
                                   explanatory_vars: np.ndarray) -> float:
     f_stat_pvalue = het_breuschpagan(residuals, explanatory_vars)[3]
 
     if f_stat_pvalue < .01:
-        return -.2
+        state.set("are_linear_model_regression_residuals_heteroscedastic", 1)
+        return -.5
 
     if f_stat_pvalue < .05:
+        state.set("are_linear_model_regression_residuals_heteroscedastic", 0.5)
         return -.1
 
-    return .1
+    if f_stat_pvalue < .1:
+        state.set("are_linear_model_regression_residuals_heteroscedastic", -0.5)
+        return 0.05
+
+    state.set("are_linear_model_regression_residuals_heteroscedastic", -1)
+    return 0
+
+
+def __reward_for_recursive_residuals_mean(state: State,
+                                          regression: RegressionResults) -> float:
+    try:
+        pvalue = linear_harvey_collier(regression)[1]
+    except ValueError:
+        state.set("is_linear_model_regression_recursive_residuals_mean_zero", -1)
+        return -.5
+
+    if pvalue < .01 or pvalue is nan:
+        state.set("is_linear_model_regression_recursive_residuals_mean_zero", -1)
+        return -.5
+
+    if pvalue < .05:
+        state.set("is_linear_model_regression_recursive_residuals_mean_zero", -0.5)
+        return -.1
+
+    if pvalue < .1:
+        state.set("is_linear_model_regression_recursive_residuals_mean_zero", 0.5)
+        return 0.05
+
+    state.set("is_linear_model_regression_recursive_residuals_mean_zero", 1)
+    return 0

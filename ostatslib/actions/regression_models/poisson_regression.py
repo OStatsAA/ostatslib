@@ -43,9 +43,11 @@ def poisson_regression(state: State,
     except ValueError:
         return ActionResult(state, -1, "PoissonRegression")
     except PerfectSeparationError:
+        state.set('does_poisson_regression_raises_perfect_separation_error', 1)
         state.set('score', -1)
         return ActionResult(state, -1, "PoissonRegression")
 
+    state.set('does_poisson_regression_raises_perfect_separation_error', -1)
     reward = __calculate_reward(regression)
     state = update_state_score(state, regression.pseudo_rsquared())
     return ActionResult(state, reward, regression)

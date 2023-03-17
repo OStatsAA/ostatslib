@@ -6,5 +6,5 @@ warnings.filterwarnings("ignore")
 
 
 agent = PPOAgent(training_envs_count=4)
-agent.train(200000)
+agent.train(int(250e3))
 agent.save(f'ppo_agent_{datetime.now()}')

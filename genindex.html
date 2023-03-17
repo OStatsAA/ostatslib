@@ -223,8 +223,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="api/_autosummary/ostatslib.states.analysis_features_set.html">ostatslib.states.analysis_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/_autosummary/ostatslib.states.data_features_set.html">ostatslib.states.data_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/_autosummary/ostatslib.states.features_set.html">ostatslib.states.features_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/_autosummary/ostatslib.states.models_features_set.html">ostatslib.states.models_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/_autosummary/ostatslib.states.state.html">ostatslib.states.state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/_autosummary/ostatslib.states.state_iterator.html">ostatslib.states.state_iterator</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="api/_autosummary/ostatslib.states.utils.html">ostatslib.states.utils</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/_autosummary/ostatslib.states.utils.init_features_set.html">ostatslib.states.utils.init_features_set</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -425,12 +430,10 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ostatslib.states.features_set.html#ostatslib.states.features_set.FeaturesSet.as_features_dict">as_features_dict() (FeaturesSet method)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.states.features_set.html#ostatslib.states.features_set.FeaturesSet.as_gymnasium_space">as_gymnasium_space() (FeaturesSet method)</a>
-
-      <ul>
-        <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.as_gymnasium_space">(State method)</a>
+      <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.as_gymnasium_space">as_gymnasium_space (State property)</a>
 </li>
-      </ul></li>
+      <li><a href="api/_autosummary/ostatslib.states.features_set.html#ostatslib.states.features_set.FeaturesSet.as_gymnasium_space">as_gymnasium_space() (FeaturesSet method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -509,14 +512,16 @@ document.write(`
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.states.utils.init_features_set.html#ostatslib.states.utils.init_features_set">init_features_set() (in module ostatslib.states.utils)</a>
+</li>
       <li><a href="api/_autosummary/ostatslib.actions.utils.explainability_rewards.html#ostatslib.actions.utils.explainability_rewards.interpretable_model">interpretable_model() (in module ostatslib.actions.utils.explainability_rewards)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html#ostatslib.actions.exploratory_actions.is_response_dichotomous_check">is_response_dichotomous_check() (in module ostatslib.actions.exploratory_actions)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html#ostatslib.actions.exploratory_actions.is_response_discrete_check">is_response_discrete_check() (in module ostatslib.actions.exploratory_actions)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html#ostatslib.actions.exploratory_actions.is_response_discrete_check">is_response_discrete_check() (in module ostatslib.actions.exploratory_actions)</a>
+</li>
       <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html#ostatslib.actions.exploratory_actions.is_response_positive_values_only_check">is_response_positive_values_only_check() (in module ostatslib.actions.exploratory_actions)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html#ostatslib.actions.exploratory_actions.is_response_quantitative_check">is_response_quantitative_check() (in module ostatslib.actions.exploratory_actions)</a>
@@ -533,7 +538,7 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.keys">keys() (State method)</a>
+      <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.keys">keys (State property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -559,6 +564,8 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.states.models_features_set.html#ostatslib.states.models_features_set.ModelsFeaturesSet">ModelsFeaturesSet (class in ostatslib.states.models_features_set)</a>
+</li>
       <li>
     module
 
@@ -603,9 +610,13 @@ document.write(`
 </li>
         <li><a href="api/_autosummary/ostatslib.states.features_set.html#module-ostatslib.states.features_set">ostatslib.states.features_set</a>
 </li>
+        <li><a href="api/_autosummary/ostatslib.states.models_features_set.html#module-ostatslib.states.models_features_set">ostatslib.states.models_features_set</a>
+</li>
         <li><a href="api/_autosummary/ostatslib.states.state.html#module-ostatslib.states.state">ostatslib.states.state</a>
 </li>
         <li><a href="api/_autosummary/ostatslib.states.state_iterator.html#module-ostatslib.states.state_iterator">ostatslib.states.state_iterator</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.states.utils.html#module-ostatslib.states.utils">ostatslib.states.utils</a>
 </li>
       </ul></li>
   </ul></td>
@@ -693,8 +704,6 @@ document.write(`
         <li><a href="api/_autosummary/ostatslib.agents.agent.html#module-ostatslib.agents.agent">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ostatslib.agents.analysis_result
 
@@ -702,6 +711,8 @@ document.write(`
         <li><a href="api/_autosummary/ostatslib.agents.analysis_result.html#module-ostatslib.agents.analysis_result">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ostatslib.agents.ppo_agent
 
@@ -759,6 +770,13 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    ostatslib.states.models_features_set
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.states.models_features_set.html#module-ostatslib.states.models_features_set">module</a>
+</li>
+      </ul></li>
+      <li>
     ostatslib.states.state
 
       <ul>
@@ -770,6 +788,13 @@ document.write(`
 
       <ul>
         <li><a href="api/_autosummary/ostatslib.states.state_iterator.html#module-ostatslib.states.state_iterator">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.states.utils
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.states.utils.html#module-ostatslib.states.utils">module</a>
 </li>
       </ul></li>
   </ul></td>

@@ -223,8 +223,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.analysis_features_set.html">ostatslib.states.analysis_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.data_features_set.html">ostatslib.states.data_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.features_set.html">ostatslib.states.features_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.models_features_set.html">ostatslib.states.models_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.state.html">ostatslib.states.state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.state_iterator.html">ostatslib.states.state_iterator</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.utils.html">ostatslib.states.utils</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.states.utils.init_features_set.html">ostatslib.states.utils.init_features_set</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -405,7 +410,7 @@ document.write(`
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__init_state_and_data</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span><span class="o">.</span><span class="n">as_gymnasium_space</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span><span class="o">.</span><span class="n">as_gymnasium_space</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span><span class="p">:</span> <span class="n">ActionsSpace</span> <span class="o">=</span> <span class="n">ActionsSpace</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reward_range</span> <span class="o">=</span> <span class="n">REWARD_RANGE</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__steps_taken</span> <span class="o">=</span> <span class="mi">0</span>
@@ -424,17 +429,19 @@ document.write(`
 
 <div class="viewcode-block" id="GymEnvironment.step"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.environments.gym_environment.html#ostatslib.environments.gym_environment.GymEnvironment.step">[docs]</a>    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
         <span class="n">action_fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">get_action_by_encoding</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
-        <span class="n">action_result</span> <span class="o">=</span> <span class="n">ActionResult</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Invalid&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">action_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">action_result</span> <span class="o">=</span> <span class="n">action_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__steps_taken</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">action_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__invalid_action_step</span><span class="p">()</span>
+
+        <span class="n">action_result</span> <span class="o">=</span> <span class="n">action_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__steps_taken</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">action_result</span><span class="o">.</span><span class="n">state</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="n">action_result</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">features_dict</span>
-        <span class="n">terminated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_done</span><span class="p">(</span><span class="n">action_result</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">action_result</span><span class="o">.</span><span class="n">reward</span>
+        <span class="n">terminated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_done</span><span class="p">(</span><span class="n">action_result</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">(</span><span class="n">observation</span><span class="p">,</span>
-                <span class="n">action_result</span><span class="o">.</span><span class="n">reward</span><span class="p">,</span>
+                <span class="n">reward</span><span class="p">,</span>
                 <span class="n">terminated</span><span class="p">,</span>
                 <span class="kc">False</span><span class="p">,</span>
                 <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;action_result&#39;</span><span class="p">:</span> <span class="n">action_result</span><span class="p">}))</span></div>
@@ -457,11 +464,21 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">state</span></div>
 
-    <span class="k">def</span> <span class="nf">__is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.6</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__steps_taken</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+    <span class="k">def</span> <span class="nf">__is_done</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">reward</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.6</span> <span class="ow">and</span> <span class="n">reward</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__steps_taken</span> <span class="o">&gt;=</span> <span class="mi">10</span>
 
     <span class="k">def</span> <span class="nf">__init_state_and_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">generate_training_dataset</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">generate_training_dataset</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__invalid_action_step</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="o">.</span><span class="n">features_dict</span><span class="p">,</span>
+            <span class="n">REWARD_RANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="kc">False</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
+            <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;action_result&#39;</span><span class="p">:</span> <span class="n">ActionResult</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="p">,</span> <span class="n">REWARD_RANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;Invalid&quot;</span><span class="p">)})</span>
+        <span class="p">)</span></div>
 </pre></div>
 
                 </article>

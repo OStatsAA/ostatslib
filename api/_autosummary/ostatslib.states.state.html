@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="ostatslib.states.state_iterator" href="ostatslib.states.state_iterator.html" />
-    <link rel="prev" title="ostatslib.states.features_set" href="ostatslib.states.features_set.html" />
+    <link rel="prev" title="ostatslib.states.models_features_set" href="ostatslib.states.models_features_set.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -226,8 +226,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.states.analysis_features_set.html">ostatslib.states.analysis_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.states.data_features_set.html">ostatslib.states.data_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.states.features_set.html">ostatslib.states.features_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ostatslib.states.models_features_set.html">ostatslib.states.models_features_set</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">ostatslib.states.state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.states.state_iterator.html">ostatslib.states.state_iterator</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.states.utils.html">ostatslib.states.utils</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.states.utils.init_features_set.html">ostatslib.states.utils.init_features_set</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -437,18 +442,18 @@ document.write(`
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.states.state.State" title="ostatslib.states.state.State"><code class="xref py py-obj docutils literal notranslate"><span class="pre">State</span></code></a>([data_features, analysis_features])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.states.state.State" title="ostatslib.states.state.State"><code class="xref py py-obj docutils literal notranslate"><span class="pre">State</span></code></a>([data_features, analysis_features, ...])</p></td>
 <td><p>State class</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.states.state.State">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.data_features_set.html#ostatslib.states.data_features_set.DataFeaturesSet" title="ostatslib.states.data_features_set.DataFeaturesSet"><span class="pre">ostatslib.states.data_features_set.DataFeaturesSet</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analysis_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.analysis_features_set.html#ostatslib.states.analysis_features_set.AnalysisFeaturesSet" title="ostatslib.states.analysis_features_set.AnalysisFeaturesSet"><span class="pre">ostatslib.states.analysis_features_set.AnalysisFeaturesSet</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/states/state.html#State"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.states.state.State" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.data_features_set.html#ostatslib.states.data_features_set.DataFeaturesSet" title="ostatslib.states.data_features_set.DataFeaturesSet"><span class="pre">ostatslib.states.data_features_set.DataFeaturesSet</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analysis_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.analysis_features_set.html#ostatslib.states.analysis_features_set.AnalysisFeaturesSet" title="ostatslib.states.analysis_features_set.AnalysisFeaturesSet"><span class="pre">ostatslib.states.analysis_features_set.AnalysisFeaturesSet</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models_features</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.models_features_set.html#ostatslib.states.models_features_set.ModelsFeaturesSet" title="ostatslib.states.models_features_set.ModelsFeaturesSet"><span class="pre">ostatslib.states.models_features_set.ModelsFeaturesSet</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/states/state.html#State"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.states.state.State" title="Permalink to this definition">#</a></dt>
 <dd><p>State class</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="ostatslib.states.state.State.as_gymnasium_space">
-<span class="sig-name descname"><span class="pre">as_gymnasium_space</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">gymnasium.spaces.dict.Dict</span></span></span><a class="reference internal" href="../../_modules/ostatslib/states/state.html#State.as_gymnasium_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.states.state.State.as_gymnasium_space" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_gymnasium_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">gymnasium.spaces.dict.Dict</span></em><a class="headerlink" href="#ostatslib.states.state.State.as_gymnasium_space" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns Gymnasium space Dict
 <a class="reference external" href="https://gymnasium.farama.org/api/spaces/composite/#dict">https://gymnasium.farama.org/api/spaces/composite/#dict</a></p>
 <dl class="field-list simple">
@@ -524,9 +529,9 @@ If feature is not found, returns NaN.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="ostatslib.states.state.State.keys">
-<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/states/state.html#State.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.states.state.State.keys" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ostatslib.states.state.State.keys" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns features keys (names)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -602,12 +607,12 @@ If feature is not found, returns NaN.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ostatslib.states.features_set.html"
+       href="ostatslib.states.models_features_set.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ostatslib.states.features_set</p>
+        <p class="prev-next-title">ostatslib.states.models_features_set</p>
       </div>
     </a>
     <a class="right-next"

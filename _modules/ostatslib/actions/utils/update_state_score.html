@@ -223,8 +223,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.analysis_features_set.html">ostatslib.states.analysis_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.data_features_set.html">ostatslib.states.data_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.features_set.html">ostatslib.states.features_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.models_features_set.html">ostatslib.states.models_features_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.state.html">ostatslib.states.state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.state_iterator.html">ostatslib.states.state_iterator</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.utils.html">ostatslib.states.utils</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.utils.init_features_set.html">ostatslib.states.utils.init_features_set</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -398,6 +403,7 @@ document.write(`
 <span class="sd">        State: state</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">state</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>

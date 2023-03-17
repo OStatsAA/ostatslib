@@ -53,10 +53,11 @@ class GymEnvironment(Env):
 
         self.__state = action_result.state
         observation = action_result.state.features_dict
-        terminated = self.__is_done(action_result.state)
+        reward = action_result.reward
+        terminated = self.__is_done(action_result.state, reward)
 
         return (observation,
-                action_result.reward,
+                reward,
                 terminated,
                 False,
                 dict({'action_result': action_result}))
@@ -79,8 +80,8 @@ class GymEnvironment(Env):
         """
         self.__state = state
 
-    def __is_done(self, state: State) -> bool:
-        return bool(state.get("score") > 0.6) or self.__steps_taken >= 10
+    def __is_done(self, state: State, reward: float) -> bool:
+        return (state.get("score") > 0.6 and reward > 0.5) or self.__steps_taken >= 10
 
     def __init_state_and_data(self):
         self.__data, self.__state = generate_training_dataset()

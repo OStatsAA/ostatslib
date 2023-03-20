@@ -2033,37 +2033,37 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pmdarima"
-version = "2.0.2"
+version = "2.0.3"
 description = "Python's forecast::auto.arima equivalent"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pmdarima-2.0.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:e54f1d9a01bac815e461c9a4089ea67e976a87c17d5770388d833820bbbe4362"},
-    {file = "pmdarima-2.0.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:81b03950d65cbc3c758567db82b603416f341ff2ced8f344079401d8c0d7046a"},
-    {file = "pmdarima-2.0.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:853c0a3b9565e37ed3982a0a238a75487b399a08ea91aa0c58c86427445b899a"},
-    {file = "pmdarima-2.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:7f20d79097b31ab6bf032b319c88874b38360f55b0463da2c8094aa316249a5f"},
-    {file = "pmdarima-2.0.2-cp310-cp310-win_amd64.whl", hash = "sha256:4746f4dcba743109576a9a7afe5da96a44ae5f7fd1dfd876bbca68b5871b8d30"},
-    {file = "pmdarima-2.0.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:80ccf9dea20ee264aa2f18db3e6b1e38c3248424db579712d60c57cf2768fb5f"},
-    {file = "pmdarima-2.0.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:8b20c207f546b1ddb02cc5d97e5759789615da6aa8c8ee32ee2710a5fe1183c4"},
-    {file = "pmdarima-2.0.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6ea64c8fc00343e9fdfd9d4e303d8fb2f60449071e638a45f68352a06ee204ce"},
-    {file = "pmdarima-2.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d7b9220a607e07708a322447c6e3a594c4f7b58df193251ef090608438d621e9"},
-    {file = "pmdarima-2.0.2-cp311-cp311-win_amd64.whl", hash = "sha256:cc48882962f757d53b74cf16ec4706d006c40ae25fc4a509dadc65ac7c96fb6c"},
-    {file = "pmdarima-2.0.2-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:fc4b38de2d0e816d075777c2082591fe38db715ffb01e1637e46553f9323e60e"},
-    {file = "pmdarima-2.0.2-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ba36d38bdd69a0c41095cb784370f52041498fb4c8a088ff83fd6349e75c2029"},
-    {file = "pmdarima-2.0.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:e6800acca7e3343d60d8197cec1f3c194748128663a379287f03cfc4bba6a541"},
-    {file = "pmdarima-2.0.2-cp37-cp37m-win_amd64.whl", hash = "sha256:e94901c9d2a8c8f5b299ddb51a4133d688277ac4a282bf34d577235c283eaaa2"},
-    {file = "pmdarima-2.0.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:9882af95f30a3676711014f24191dbf37a6d027c10d729c0cae882474dfc9c29"},
-    {file = "pmdarima-2.0.2-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:e089c4304fc87505084d263ac6c51fb5610782162eb460857377af09e9e7cd04"},
-    {file = "pmdarima-2.0.2-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3e50c538bf7e21deb3eff63fdbde61ee801566ccb821233d67c36666d3082b8e"},
-    {file = "pmdarima-2.0.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:34a06fa0cb996416784e7abf66ef068bd6e2774f2c59b8ede5e547b5c5c2c404"},
-    {file = "pmdarima-2.0.2-cp38-cp38-win_amd64.whl", hash = "sha256:ffd983738509194b612362449914e4997d07a3b087559e34e16ea78b230986f5"},
-    {file = "pmdarima-2.0.2-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:d13623b511554b2de48e5f03d9ae98636d8e4b2021285c05673da90144ccf5ff"},
-    {file = "pmdarima-2.0.2-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:b23e133ba306aa7c10ec185e5ad47b3702fbe4a99f4118a141677f7c46a46a2f"},
-    {file = "pmdarima-2.0.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:678a307c97b4549ebd4f86500d4c1166b171413b81228527425fc671cdcd4527"},
-    {file = "pmdarima-2.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:fc612a700546a1b2d1e18a9670c7687779e1b5225ef59eabb89efaf28ed316b0"},
-    {file = "pmdarima-2.0.2-cp39-cp39-win_amd64.whl", hash = "sha256:09462430b363fbb7074ec97705b33fe02f2e979dec869652356e0f3489f3af49"},
-    {file = "pmdarima-2.0.2.tar.gz", hash = "sha256:1c86897632dd105532d7e92c5d8681d43ae763c40bd3fffef43e740ce0b6b5d5"},
+    {file = "pmdarima-2.0.3-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:6091a48a9e7eb3e48fdcd748bb7bdfa90635cfde110c2a5fd1ebc0c30f6c8ef5"},
+    {file = "pmdarima-2.0.3-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:a9da525af80651e9d44e71c7483052e6bc68eb741768a15fb0142dbffdf50f42"},
+    {file = "pmdarima-2.0.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:14b606363f777b4ab17821c989637aa11f209ec8285d46666a7744236995798c"},
+    {file = "pmdarima-2.0.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:68be6ce7f4f66247236c44f20ac27d7252a096bd61971cd766cd7b01c34f38b4"},
+    {file = "pmdarima-2.0.3-cp310-cp310-win_amd64.whl", hash = "sha256:95e2e4629932b7b657ea7e6f9db610a71cafce704d8f44d51b7643853a78c2fe"},
+    {file = "pmdarima-2.0.3-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:8749730e7911715de6e4087011c5d5bcd93b4b5f6ae150e6ff615d29ca0bf49d"},
+    {file = "pmdarima-2.0.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:fe5f3ed46eadb72f66fc295983331a8e25a84c7873f06b292ed0bad196007b56"},
+    {file = "pmdarima-2.0.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d90729d8574966dbfc198ec1e3d7f30604e5b899fff0f8683b8160ee0bc24654"},
+    {file = "pmdarima-2.0.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ffa898354370612df043c9ea12b536cf31ef88eb9f2558a4a73983420362fd06"},
+    {file = "pmdarima-2.0.3-cp311-cp311-win_amd64.whl", hash = "sha256:d74124f5eac7a273bc03a04bdffe3ed59f4960b5ada85fdfc5c6d5fe4a56dcc2"},
+    {file = "pmdarima-2.0.3-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:e89c69b5908777789fb20efe9202ab8ea8a2c7a19b6a9d3f65102483bdb3e4a1"},
+    {file = "pmdarima-2.0.3-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:77258305437a235c890bacb0a847e1cfbbc670ca8f92a7feab67f03088d3d3ef"},
+    {file = "pmdarima-2.0.3-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:cce9784abe6b4742b6c557432342585de4236a29978df037d17a6c3116a16940"},
+    {file = "pmdarima-2.0.3-cp37-cp37m-win_amd64.whl", hash = "sha256:076f4904865f43510f8a82b3bdcd9d5e0f54de67217a9898d633ef6f625825c4"},
+    {file = "pmdarima-2.0.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:b4b0840080fbbbdc0eaaa988f268b8471087ca5f16047d3a95363418da1544b2"},
+    {file = "pmdarima-2.0.3-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:a9b0f49f36dc85b6b8fec2a8d1c56d5b6d2706ca478d1d90c95e37688bed4a01"},
+    {file = "pmdarima-2.0.3-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:47522b466e3894bfbbd58a39150a89ccf75ef0cb661e3ecb96c199e749e5f60b"},
+    {file = "pmdarima-2.0.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:0914aab1dfd840e49b67964c664db7439f2a59b10af3c8635eac32061707f436"},
+    {file = "pmdarima-2.0.3-cp38-cp38-win_amd64.whl", hash = "sha256:09d24b4bae78b04c496c9f99bd6bd050813bdda38e149b57bfa0fe1642613b93"},
+    {file = "pmdarima-2.0.3-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:d941ee5940f4a9796d7bd19e720b58a44eaa5331b28ccd7194f2bf6fc2d5ee1e"},
+    {file = "pmdarima-2.0.3-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:849bc7d1ec929df538698f3eca752a5526090cbe5d625c11c28bf1885bd6509a"},
+    {file = "pmdarima-2.0.3-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f8ba53a952e374747e5be1263d74e10c9f780503fbd1a1e6156417a7d8e67507"},
+    {file = "pmdarima-2.0.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:d3cfaeaf31ff5c89ab60b4fc2e671c5ecd5d1bba99f3cd93c4a2bb19cba79d51"},
+    {file = "pmdarima-2.0.3-cp39-cp39-win_amd64.whl", hash = "sha256:e53685f08e971cdb1bf077418af55e7aae8397fcdefb3a335b7293d420245c62"},
+    {file = "pmdarima-2.0.3.tar.gz", hash = "sha256:91acb3f7c12f3cfd6263efe323d3b8f94b58dcd242d68f11560a6c717001b01f"},
 ]
 
 [package.dependencies]

@@ -52,7 +52,7 @@ class GymEnvironment(Env):
         state, reward, info = action_fn(self.__state.copy(), self.__data)
 
         self.__steps_taken += 1
-
+        info["state_delta"] = state - self.__state
         self.__state = state
         observation = state.features_dict
         terminated = self.__is_done(state, reward)

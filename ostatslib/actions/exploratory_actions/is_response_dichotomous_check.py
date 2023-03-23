@@ -6,8 +6,10 @@ from pandas import DataFrame, Series
 from pandas.api.types import infer_dtype
 import numpy as np
 
-from ostatslib.actions import Action, ActionResult
+from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
+
+_ACTION_NAME = "Is Response Dichotomous Check"
 
 
 def _is_response_dichotomous_check(state: State, data: DataFrame) -> ActionResult[None]:
@@ -26,7 +28,10 @@ def _is_response_dichotomous_check(state: State, data: DataFrame) -> ActionResul
     response: Series = data[response_var_label]
     state.set("is_response_dichotomous", __get_is_dichotomous_feature_value(response))
     reward = __calculate_reward(state, state_copy)
-    return state, reward, {'model': None, 'raised_exception': False}
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_is_response_dichotomous_check,
+                                     model=None,
+                                     raised_exception=False)
 
 
 def __get_is_dichotomous_feature_value(values: Series) -> int:

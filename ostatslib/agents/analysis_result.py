@@ -5,7 +5,7 @@ Analysis module
 from dataclasses import dataclass, field
 from datetime import datetime
 from tabulate import tabulate
-from ostatslib.actions import ActionResult
+from ostatslib.actions import ActionInfo
 from ostatslib.states import State
 
 
@@ -18,7 +18,7 @@ class AnalysisResult:
     Analysis class
     """
     initial_state: State
-    steps: list[ActionResult]
+    steps: list[tuple[float, ActionInfo]]
     done: bool
     timestamp: datetime = field(init=False)
 
@@ -47,19 +47,12 @@ class AnalysisResult:
         steps_headers: list[str] = ['Order', 'Step', 'Reward', 'State Change']
         table_rows: StepsRows = []
 
-        for i, (state, reward, info) in enumerate(self.steps):
+        for i, (reward, info) in enumerate(self.steps):
             table_rows.append((
                 i+1,
                 str(info['action_name']),
                 reward,
-                self.__get_steps_diff_table(i, state)
+                tabulate(info['state_delta'].list_known_features(), tablefmt="plain")
             ))
 
         return tabulate(table_rows, steps_headers)
-
-    def __get_steps_diff_table(self, i: int, state: State) -> str:
-        previous_state = self.steps[i-1][0] if i else self.initial_state
-        diff = state - previous_state
-
-        diff_table = tabulate(diff.list_known_features(), tablefmt="plain")
-        return diff_table

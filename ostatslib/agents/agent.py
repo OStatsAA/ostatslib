@@ -66,22 +66,17 @@ class Agent(ABC):
         environment.reset()
         environment.set_data(data)
         environment.set_state(initial_state)
-        actions_results = []
+        analysis_steps = []
         observation = initial_state.features_dict
         terminated = False
 
         for _ in range(max_steps):
             action = self._predict(observation)
-            observation, terminated, truncated, info = self._step(environment,
-                                                                  action)
-            actions_results.append(info)
+            observation, reward, terminated, truncated, info = environment.step(action)
+            analysis_steps.append((reward, info))
 
             if terminated or truncated:
                 break
 
         environment.reset()
-        return AnalysisResult(initial_state, actions_results, terminated)
-
-    def _step(self, environment: GymEnvironment, action: ndarray) -> Tuple[dict, bool, bool, dict]:
-        observation, _, terminated, truncated, info = environment.step(action)
-        return observation, terminated, truncated, info
+        return AnalysisResult(initial_state, analysis_steps, terminated)

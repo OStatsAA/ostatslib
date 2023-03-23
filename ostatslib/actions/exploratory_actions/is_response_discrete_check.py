@@ -5,8 +5,10 @@ is_response_discrete_check module
 from pandas import DataFrame, Series
 import numpy as np
 
-from ostatslib.actions import Action, ActionResult
+from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
+
+_ACTION_NAME = "Is Response Discrete Check"
 
 
 def _is_response_discrete_check(state: State, data: DataFrame) -> ActionResult[None]:
@@ -31,7 +33,10 @@ def _is_response_discrete_check(state: State, data: DataFrame) -> ActionResult[N
         state.set("is_response_discrete", -1)
 
     reward = __calculate_reward(state, state_copy)
-    return state, reward, {'model': None, 'raised_exception': False}
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_is_response_discrete_check,
+                                     model=None,
+                                     raised_exception=False)
 
 
 def __is_discrete_check(values: Series) -> bool:

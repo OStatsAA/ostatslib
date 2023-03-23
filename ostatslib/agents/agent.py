@@ -74,7 +74,7 @@ class Agent(ABC):
             action = self._predict(observation)
             observation, terminated, truncated, info = self._step(environment,
                                                                   action)
-            actions_results.append(info['action_result'])
+            actions_results.append(info)
 
             if terminated or truncated:
                 break

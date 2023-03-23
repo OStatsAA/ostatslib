@@ -31,8 +31,8 @@ def test_log_rows_count_yields_negative_rewards_if_feature_is_known(
     if the rows count has not changed
     """
     state = State()
-    action_result = get_log_rows_count(state, dummy_data)
-    assert action_result.reward > 0
+    reward = get_log_rows_count(state, dummy_data)[1]
+    assert reward > 0
 
-    action_result = get_log_rows_count(state, dummy_data)
-    assert action_result.reward < 0
+    reward = get_log_rows_count(state, dummy_data)[1]
+    assert reward < 0

@@ -41,5 +41,5 @@ def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFram
     """
     state = State()
     state.set("is_response_dichotomous", 1)
-    action_result = support_vector_regression(state, dummy_binary_response_data)
-    assert action_result.reward <= -0.5
+    reward = support_vector_regression(state, dummy_binary_response_data)[1]
+    assert reward <= -0.5

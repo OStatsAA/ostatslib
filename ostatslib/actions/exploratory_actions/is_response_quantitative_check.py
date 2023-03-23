@@ -2,15 +2,13 @@
 is_response_quantitative_check module
 """
 
-from copy import deepcopy
 from pandas import DataFrame, Series
 import numpy as np
-
-from ostatslib.actions.utils import ActionResult
+from ostatslib.actions import Action, ActionResult
 from ostatslib.states import State
 
 
-def is_response_quantitative_check(state: State, data: DataFrame) -> ActionResult[str]:
+def _is_response_quantitative_check(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Check if response variable is quantitative
 
@@ -19,9 +17,9 @@ def is_response_quantitative_check(state: State, data: DataFrame) -> ActionResul
         data (DataFrame): data
 
     Returns:
-        ActionResult[str]: action result
+        ActionResult[None]: action result
     """
-    state_copy: State = deepcopy(state)
+    state_copy: State = state.copy()
     response_var_label: str = state.get("response_variable_label")
     response: Series = data[response_var_label]
 
@@ -32,7 +30,7 @@ def is_response_quantitative_check(state: State, data: DataFrame) -> ActionResul
         state.set("is_response_quantitative", -1)
 
     reward = __calculate_reward(state, state_copy)
-    return ActionResult(state, reward, "is_response_quantitative")
+    return state, reward, {'model': None, 'raised_exception': False}
 
 
 def __is_quantitative_check(values: Series) -> bool:
@@ -45,3 +43,6 @@ def __calculate_reward(state: State, state_copy: State) -> float:
         return -1
 
     return 0.5
+
+
+is_response_quantitative_check: Action[None] = _is_response_quantitative_check

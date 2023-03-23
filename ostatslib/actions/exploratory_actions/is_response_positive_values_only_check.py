@@ -3,15 +3,13 @@
 is_response_positive_values_only_check module
 """
 
-from copy import deepcopy
 from pandas import DataFrame, Series
 import numpy as np
-
-from ostatslib.actions.utils import ActionResult
+from ostatslib.actions import Action, ActionResult
 from ostatslib.states import State
 
 
-def is_response_positive_values_only_check(state: State, data: DataFrame) -> ActionResult[str]:
+def _is_response_positive_values_only_check(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Check if response variable values are positive only
 
@@ -20,9 +18,9 @@ def is_response_positive_values_only_check(state: State, data: DataFrame) -> Act
         data (DataFrame): data
 
     Returns:
-        ActionResult[str]: action result
+        ActionResult[None]: action result
     """
-    state_copy: State = deepcopy(state)
+    state_copy: State = state.copy()
     response_var_label: str = state.get("response_variable_label")
     response: Series = data[response_var_label]
 
@@ -33,7 +31,7 @@ def is_response_positive_values_only_check(state: State, data: DataFrame) -> Act
         state.set("is_response_positive_values_only", -1)
 
     reward = __calculate_reward(state, state_copy)
-    return ActionResult(state, reward, "is_response_positive_values_only_check")
+    return state, reward, {'model': None, 'raised_exception': False}
 
 
 def __positive_only_check(values: Series) -> bool:
@@ -54,3 +52,6 @@ def __calculate_reward(state: State, state_copy: State) -> float:
         return -1
 
     return 0.5
+
+
+is_response_positive_values_only_check: Action[None] = _is_response_positive_values_only_check

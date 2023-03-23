@@ -40,8 +40,8 @@ def test_binary_response_data_yields_positve_reward(dummy_binary_response_data) 
     """
     state = State()
     state.set("is_response_dichotomous", 1)
-    action_result = decision_tree(state, dummy_binary_response_data)
-    assert action_result.reward >= 0.5
+    reward = decision_tree(state, dummy_binary_response_data)[1]
+    assert reward >= 0.5
 
 
 def test_continous_response_data_yields_negative_reward(
@@ -52,5 +52,5 @@ def test_continous_response_data_yields_negative_reward(
     state = State()
     state.set("is_response_quantitative", 1)
     state.set("is_response_dichotomous", -1)
-    action_result = decision_tree(state, dummy_continous_response_data)
-    assert action_result.reward <= -0.5
+    reward = decision_tree(state, dummy_continous_response_data)[1]
+    assert reward <= -0.5

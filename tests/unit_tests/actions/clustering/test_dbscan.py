@@ -44,8 +44,8 @@ def test_small_deviation_data_yields_positive_reward(
     """
     state = State()
     state.set("response_variable_label", None)
-    action_result = dbscan(state, dummy_small_deviation_blobs_data)
-    assert action_result.reward >= 0.6
+    reward = dbscan(state, dummy_small_deviation_blobs_data)[1]
+    assert reward >= 0.6
 
 
 def test_big_deviation_data_yields_negative_reward(
@@ -55,8 +55,8 @@ def test_big_deviation_data_yields_negative_reward(
     """
     state = State()
     state.set("response_variable_label", None)
-    action_result = dbscan(state, dummy_big_deviation_blobs_data)
-    assert action_result.reward < 0
+    reward = dbscan(state, dummy_big_deviation_blobs_data)[1]
+    assert reward < 0
 
 def test_cluster_count_is_known_yields_negative_reward(
         dummy_small_deviation_blobs_data: DataFrame) -> None:
@@ -66,5 +66,5 @@ def test_cluster_count_is_known_yields_negative_reward(
     state = State()
     state.set("response_variable_label", None)
     state.set("clusters_count", N_CLUSTERS)
-    action_result = dbscan(state, dummy_small_deviation_blobs_data)
-    assert action_result.reward < 0
+    reward = dbscan(state, dummy_small_deviation_blobs_data)[1]
+    assert reward < 0

@@ -1,20 +1,21 @@
 """
-K-Means module
+DBSCAN module
 """
 
 from pandas import DataFrame
 from sklearn.cluster import DBSCAN
 from sklearn.metrics import silhouette_score
-
-from ostatslib.actions.utils import (ActionResult,
-                                     calculate_score_reward,
+from ostatslib.actions import Action, ActionInfo, ActionResult
+from ostatslib.actions.utils import (calculate_score_reward,
                                      reward_cap,
                                      update_state_score)
 from ostatslib.states import State
 
+_ACTION_NAME = "DBSCAN"
+
 
 @reward_cap
-def dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
+def _dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
     """
     Fits data to a DBSCAN cluster
 
@@ -26,7 +27,10 @@ def dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
         ActionResult[DBSCAN]: action result
     """
     if not __is_valid_state(state):
-        return ActionResult(state, -1, "DBSCAN")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_dbscan,
+                                     model=None,
+                                     raised_exception=False)
 
     db_scan = DBSCAN()
     db_scan.fit(data)
@@ -34,8 +38,11 @@ def dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
     score: float = silhouette_score(data, db_scan.labels_)
 
     reward: float = calculate_score_reward(score)
-    state: State = update_state_score(state, score)
-    return ActionResult(state, reward, db_scan)
+    update_state_score(state, score)
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_dbscan,
+                                     model=db_scan,
+                                     raised_exception=False)
 
 
 def __is_valid_state(state: State) -> bool:
@@ -43,3 +50,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
+
+
+dbscan: Action[DBSCAN] = _dbscan

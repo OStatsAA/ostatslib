@@ -1,10 +1,11 @@
 """
-time_convertable_variable_search module
+time_convertible_variable_search module
 """
 
 from pandas import DataFrame
 from pandas.api.types import infer_dtype
-from ostatslib.actions.utils import ActionResult, split_response_from_explanatory_variables
+from ostatslib.actions import Action, ActionResult
+from ostatslib.actions.utils import split_response_from_explanatory_variables
 from ostatslib.states import State
 
 ORDERED_LIST_OF_POSSIBLE_TIME_DTYPES = [
@@ -15,8 +16,7 @@ ORDERED_LIST_OF_POSSIBLE_TIME_DTYPES = [
 ]
 
 
-def time_convertable_variable_search(state: State,
-                                     data: DataFrame) -> ActionResult[str]:
+def _time_convertible_variable_search(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Gets log rows count: log(#rows)/c, where c is a compression constant
 
@@ -29,11 +29,11 @@ def time_convertable_variable_search(state: State,
     """
     variables_dataframe: DataFrame = split_response_from_explanatory_variables(state,
                                                                                data)[1]
-    date_convertable_variable = __date_variable_search(variables_dataframe)
+    date_convertible_variable = __date_variable_search(variables_dataframe)
 
-    reward: float = __calculate_reward(state, date_convertable_variable)
-    state: State = __update_state(state, date_convertable_variable)
-    return ActionResult(state, reward, "time_convertable_variable")
+    reward: float = __calculate_reward(state, date_convertible_variable)
+    __update_state(state, date_convertible_variable)
+    return state, reward, {'model': None, 'raised_exception': False}
 
 
 def __date_variable_search(variables_dataframe: DataFrame) -> str | None:
@@ -62,16 +62,19 @@ def __select_best_time_related_variable(time_related_variables) -> str:
     return time_related_variables[0]
 
 
-def __calculate_reward(state: State, date_convertable_variable: str | None) -> float:
-    if state.get("time_convertable_variable") == date_convertable_variable:
+def __calculate_reward(state: State, date_convertible_variable: str | None) -> float:
+    if state.get("time_convertible_variable") == date_convertible_variable:
         return -1
 
-    if date_convertable_variable == "":
+    if date_convertible_variable == "":
         return 0.25
 
     return 0.5
 
 
-def __update_state(state: State, date_convertable_variable: str | None) -> State:
-    state.set("time_convertable_variable", date_convertable_variable)
+def __update_state(state: State, date_convertible_variable: str | None) -> State:
+    state.set("time_convertible_variable", date_convertible_variable)
     return state
+
+
+time_convertible_variable_search: Action[None] = _time_convertible_variable_search

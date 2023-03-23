@@ -1,0 +1,33 @@
+"""
+Action type definitions module
+"""
+
+from typing import Callable, Generic, TypeVar, TypedDict
+
+from pandas import DataFrame
+from sklearn.base import BaseEstimator
+from statsmodels.base.model import LikelihoodModelResults, Results
+from statsmodels.tsa.base.tsa_model import TimeSeriesModelResults
+from ostatslib.states import State
+
+TModel = TypeVar('TModel',
+                 None,
+                 BaseEstimator,
+                 LikelihoodModelResults,
+                 Results,
+                 TimeSeriesModelResults)  # pylint: disable=invalid-name
+
+
+class ActionInfo(TypedDict, Generic[TModel]):
+    """
+    Action results information
+    """
+    action_name: str
+    action_fn: 'Action[TModel]'
+    model: None | TModel
+    raised_exception: bool
+
+
+ActionResult = tuple[State, float, ActionInfo[TModel]]
+
+Action = Callable[[State, DataFrame], ActionResult[TModel]]

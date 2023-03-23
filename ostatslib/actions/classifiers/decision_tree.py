@@ -6,20 +6,20 @@ from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
-
-from ostatslib.actions.utils import (ActionResult,
-                                     calculate_score_reward,
+from ostatslib.actions import Action, ActionInfo, ActionResult
+from ostatslib.actions.utils import (calculate_score_reward,
                                      reward_cap,
                                      comprehensible_model,
                                      split_response_from_explanatory_variables,
                                      update_state_score)
 from ostatslib.states import State
 
+_ACTION_NAME = "Decision Tree"
+
 
 @reward_cap
 @comprehensible_model
-def decision_tree(state: State,
-                  data: DataFrame) -> ActionResult[DecisionTreeClassifier]:
+def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeClassifier]:
     """
     Fits data to a decision tree classifier
 
@@ -31,7 +31,10 @@ def decision_tree(state: State,
         ActionResult[DecisionTreeClassifier]: action result
     """
     if not __is_valid_state(state):
-        return ActionResult(state, -1, "DecisionTreeClassifier")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_decision_tree,
+                                     model=None,
+                                     raised_exception=False)
 
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier = DecisionTreeClassifier()
@@ -39,16 +42,27 @@ def decision_tree(state: State,
     try:
         scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
     except ValueError:
-        return ActionResult(state, -1, "DecisionTreeClassifier")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_decision_tree,
+                                     model=None,
+                                     raised_exception=True)
 
     score: float = scores.mean() - scores.std()
     reward: float = calculate_score_reward(score)
-    state: State = update_state_score(state, score)
-    return ActionResult(state, reward, classifier.fit(X=x_values, y=y_values))
+    update_state_score(state, score)
+    model = classifier.fit(X=x_values, y=y_values)
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_decision_tree,
+                                     model=model,
+                                     raised_exception=False)
 
 
 def __is_valid_state(state: State) -> bool:
-    if state.get("is_response_quantitative") > 0 or not bool(state.get("response_variable_label")):
+    if state.get("is_response_quantitative") > 0 or\
+            not bool(state.get("response_variable_label")):
         return False
 
     return True
+
+
+decision_tree: Action[DecisionTreeClassifier] = _decision_tree

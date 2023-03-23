@@ -6,20 +6,21 @@ from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeRegressor
-
-from ostatslib.actions.utils import (ActionResult,
-                                     calculate_score_reward,
+from ostatslib.actions import Action, ActionInfo, ActionResult
+from ostatslib.actions.utils import (calculate_score_reward,
                                      reward_cap,
                                      comprehensible_model,
                                      split_response_from_explanatory_variables,
                                      update_state_score)
 from ostatslib.states import State
 
+_ACTION_NAME = "Decision Tree Regression"
+
 
 @reward_cap
 @comprehensible_model
-def decision_tree_regression(state: State,
-                             data: DataFrame) -> ActionResult[DecisionTreeRegressor]:
+def _decision_tree_regression(state: State,
+                              data: DataFrame) -> ActionResult[DecisionTreeRegressor]:
     """
     Fits data to a decision tree regressor
 
@@ -31,7 +32,10 @@ def decision_tree_regression(state: State,
         ActionResult[DecisionTreeRegressor]: action result
     """
     if not __is_valid_state(state):
-        return ActionResult(state, -1, "DecisionTreeRegressor")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_decision_tree_regression,
+                                     model=None,
+                                     raised_exception=False)
 
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier = DecisionTreeRegressor()
@@ -39,8 +43,11 @@ def decision_tree_regression(state: State,
     score: float = scores.mean() - scores.std()
 
     reward: float = calculate_score_reward(score)
-    state: State = update_state_score(state, score)
-    return ActionResult(state, reward, classifier.fit(X=x_values, y=y_values))
+    update_state_score(state, score)
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_decision_tree_regression,
+                                     model=classifier,
+                                     raised_exception=False)
 
 
 def __is_valid_state(state: State) -> bool:
@@ -50,3 +57,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
+
+
+decision_tree_regression: Action[DecisionTreeRegressor] = _decision_tree_regression

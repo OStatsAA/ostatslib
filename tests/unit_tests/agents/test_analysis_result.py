@@ -2,12 +2,14 @@
 AnalysisResult testing module
 """
 
-
-from ostatslib.actions.utils import ActionResult
+from ostatslib.actions import ActionInfo
 from ostatslib.agents import AnalysisResult
 from ostatslib.states import State
 from ostatslib.states.analysis_features_set import AnalysisFeaturesSet
 from ostatslib.states.data_features_set import DataFeaturesSet
+
+def __action_fn(*args):
+    return State(), 0, ActionInfo()
 
 
 def test_analysis_summary() -> None:
@@ -22,9 +24,27 @@ def test_analysis_summary() -> None:
     diff_analysis_features_set = AnalysisFeaturesSet()
     diff_analysis_features_set.score = 0.9
     steps = [
-        ActionResult(State(diff_data_features_set), 0.5, "AnyExploratory"),
-        ActionResult(State(analysis_features=diff_analysis_features_set), 0.9, "AnyModel"),
+        (
+            State(diff_data_features_set),
+            0.5,
+            ActionInfo(action_name='Teste',
+                                     action_fn=__action_fn,
+                                     model=None,
+                                     raised_exception=False)
+        ),
+        (
+            State(analysis_features=diff_analysis_features_set),
+            0.9,
+            ActionInfo(action_name='Teste',
+                                     action_fn=__action_fn,
+                                     model=None,
+                                     raised_exception=False)
+        ),
     ]
-    analysis = AnalysisResult(State(analysis_features=initial_analysis_features_set), steps, True)
+    analysis = AnalysisResult(
+        State(analysis_features=initial_analysis_features_set),
+        steps,
+        True
+    )
 
     assert analysis.summary()

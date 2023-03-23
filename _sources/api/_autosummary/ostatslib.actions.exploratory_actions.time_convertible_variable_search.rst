@@ -1,6 +1,6 @@
-ostatslib.actions.exploratory\_actions.time\_convertable\_variable\_search
+ostatslib.actions.exploratory\_actions.time\_convertible\_variable\_search
 ==========================================================================
 
 .. currentmodule:: ostatslib.actions.exploratory_actions
 
-.. autofunction:: time_convertable_variable_search
+.. autofunction:: time_convertible_variable_search

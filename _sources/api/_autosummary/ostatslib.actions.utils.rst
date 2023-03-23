@@ -27,7 +27,6 @@ ostatslib.actions.utils
    :toctree:
    :recursive:
 
-   ostatslib.actions.utils.action_result
    ostatslib.actions.utils.as_binary_array
    ostatslib.actions.utils.calculate_score_reward
    ostatslib.actions.utils.explainability_rewards

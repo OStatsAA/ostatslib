@@ -13,7 +13,7 @@ ostatslib.states.analysis\_features\_set
 
    .. autosummary::
    
-      time_convertable_variable_to_feature
+      time_convertible_variable_to_feature
    
    
 

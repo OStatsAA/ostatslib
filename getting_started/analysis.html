@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Analysis &#8212; Open Statistics Analysis Agent</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="OStatsLib" href="../api/api.html" />
     <link rel="prev" title="Training" href="training.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -167,6 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api/api.html">OStatsLib</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.html">ostatslib.actions</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.action.html">ostatslib.actions.action</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.actions_space.html">ostatslib.actions.actions_space</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.classifiers.html">ostatslib.actions.classifiers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.classifiers.decision_tree.html">ostatslib.actions.classifiers.decision_tree</a></li>
@@ -185,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html">ostatslib.actions.exploratory_actions.is_response_discrete_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">ostatslib.actions.exploratory_actions.is_response_positive_values_only_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">ostatslib.actions.exploratory_actions.is_response_quantitative_check</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.time_convertable_variable_search.html">ostatslib.actions.exploratory_actions.time_convertable_variable_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.exploratory_actions.time_convertible_variable_search.html">ostatslib.actions.exploratory_actions.time_convertible_variable_search</a></li>
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.regression_models.html">ostatslib.actions.regression_models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -197,7 +199,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.html">ostatslib.actions.utils</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.action_result.html">ostatslib.actions.utils.action_result</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.as_binary_array.html">ostatslib.actions.utils.as_binary_array</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.calculate_score_reward.html">ostatslib.actions.utils.calculate_score_reward</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.explainability_rewards.html">ostatslib.actions.utils.explainability_rewards</a></li>
@@ -433,7 +434,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analysis">
-<h1>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">#</a></h1>
+<h1>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ostatslib.agents</span> <span class="kn">import</span> <span class="n">PPOAgent</span>
@@ -458,62 +459,59 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">classification_data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># running analysis</span>
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">classification_analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">classification_data</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># printing results</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="nb">print</span><span class="p">(</span><span class="n">classification_analysis</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># loading trained agent</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="s1">&#39;../trained_ppo_model&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># generating data</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">()</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/agent.py:74,</span> in <span class="ni">Agent.analyze</span><span class="nt">(self, data, initial_state, max_steps)</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_steps</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">74</span>     <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="n">observation</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_step</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span>                                                           <span class="n">action</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="n">actions_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;action_result&#39;</span><span class="p">])</span>
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:26,</span> in <span class="ni">PPOAgent.__init__</span><span class="nt">(self, path, training_envs_count)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:35,</span> in <span class="ni">PPOAgent._predict</span><span class="nt">(self, observation)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="k">def</span> <span class="nf">_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="n">action</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">deterministic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="k">return</span> <span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:43,</span> in <span class="ni">PPOAgent.__init__model</span><span class="nt">(self, path, training_envs_count)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="n">environments</span> <span class="o">=</span> <span class="n">make_vec_env</span><span class="p">(</span><span class="n">GymEnvironment</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span> <span class="n">environments</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">43</span> <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.10/site-packages/stable_baselines3/common/base_class.py:542,</span> in <span class="ni">BaseAlgorithm.predict</span><span class="nt">(self, observation, state, episode_start, deterministic)</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span> <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">observation</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">527</span>     <span class="n">deterministic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">528</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">529</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">530</span><span class="sd">     Get the policy action from an observation (and optional hidden state).</span>
-<span class="g g-Whitespace">    </span><span class="mi">531</span><span class="sd">     Includes sugar-coating to handle different observations (e.g. normalizing images).</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span><span class="sd">         (used in recurrent policies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">542</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">episode_start</span><span class="p">,</span> <span class="n">deterministic</span><span class="p">)</span>
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:666,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== CURRENT SYSTEM INFO ==&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">664</span>     <span class="n">get_system_info</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">666</span> <span class="n">data</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">pytorch_variables</span> <span class="o">=</span> <span class="n">load_from_zip_file</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span>     <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span>     <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">670</span>     <span class="n">print_system_info</span><span class="o">=</span><span class="n">print_system_info</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="c1"># Remove stored device information and replace with ours</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span> <span class="k">if</span> <span class="s2">&quot;policy_kwargs&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.10/site-packages/stable_baselines3/common/policies.py:328,</span> in <span class="ni">BasePolicy.predict</span><span class="nt">(self, observation, state, episode_start, deterministic)</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span> <span class="c1"># TODO (GH/1): add support for RNN policies</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="c1"># if state is None:</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span> <span class="c1">#     state = self.initial_state</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="c1"># if episode_start is None:</span>
-<span class="g g-Whitespace">    </span><span class="mi">324</span> <span class="c1">#     episode_start = [False for _ in range(self.n_envs)]</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="c1"># Switch to eval mode (this affects batch norm / dropout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_training_mode</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">328</span> <span class="n">observation</span><span class="p">,</span> <span class="n">vectorized_env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs_to_tensor</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">330</span> <span class="k">with</span> <span class="n">th</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span>     <span class="n">actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">deterministic</span><span class="o">=</span><span class="n">deterministic</span><span class="p">)</span>
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/save_util.py:421,</span> in <span class="ni">load_from_zip_file</span><span class="nt">(load_path, load_data, custom_objects, device, verbose, print_system_info)</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="k">if</span> <span class="s2">&quot;data&quot;</span> <span class="ow">in</span> <span class="n">namelist</span> <span class="ow">and</span> <span class="n">load_data</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span>     <span class="c1"># Load class parameters that are stored</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>     <span class="c1"># with either JSON or pickle (not PyTorch variables).</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>     <span class="n">json_data</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">421</span>     <span class="n">data</span> <span class="o">=</span> <span class="n">json_to_data</span><span class="p">(</span><span class="n">json_data</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">423</span> <span class="c1"># Check for all .pth files and load them using th.load.</span>
+<span class="g g-Whitespace">    </span><span class="mi">424</span> <span class="c1"># &quot;pytorch_variables.pth&quot; stores PyTorch variables, and any other .pth</span>
+<span class="g g-Whitespace">    </span><span class="mi">425</span> <span class="c1"># files store state_dicts of variables with custom names (e.g. policy, policy.optimizer)</span>
+<span class="g g-Whitespace">    </span><span class="mi">426</span> <span class="n">pth_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">file_name</span> <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">namelist</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.pth&quot;</span><span class="p">]</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.10/site-packages/stable_baselines3/common/policies.py:224,</span> in <span class="ni">BaseModel.obs_to_tensor</span><span class="nt">(self, observation)</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span> <span class="n">observation</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observation</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="ne">--&gt; </span><span class="mi">224</span>     <span class="n">obs_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">225</span>     <span class="k">if</span> <span class="n">is_image_space</span><span class="p">(</span><span class="n">obs_space</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">226</span>         <span class="n">obs_</span> <span class="o">=</span> <span class="n">maybe_transpose</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">obs_space</span><span class="p">)</span>
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/save_util.py:164,</span> in <span class="ni">json_to_data</span><span class="nt">(json_string, custom_objects)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="n">base64_object</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">serialization</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+<span class="ne">--&gt; </span><span class="mi">164</span>     <span class="n">deserialized_object</span> <span class="o">=</span> <span class="n">cloudpickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">base64_object</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="k">except</span> <span class="p">(</span><span class="ne">RuntimeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="sa">f</span><span class="s2">&quot;Could not deserialize object </span><span class="si">{</span><span class="n">data_key</span><span class="si">}</span><span class="s2">. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>         <span class="s2">&quot;Consider using `custom_objects` argument to replace &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="s2">&quot;this object.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>         <span class="sa">f</span><span class="s2">&quot;Exception: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span>     <span class="p">)</span>
 
-<span class="ne">KeyError</span>: &#39;are_linear_model_regression_residuals_correlated&#39;
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;ostatslib.actions.exploratory_actions.time_convertable_variable_search&#39;
 </pre></div>
 </div>
 </div>

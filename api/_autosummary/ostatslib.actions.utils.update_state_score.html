@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ostatslib.actions.utils.update_state_score &#8212; Open Statistics Analysis Agent</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -68,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="ostatslib.agents" href="ostatslib.agents.html" />
     <link rel="prev" title="ostatslib.actions.utils.split_response_from_explanatory_variables" href="ostatslib.actions.utils.split_response_from_explanatory_variables.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -167,6 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../api.html">OStatsLib</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="ostatslib.actions.html">ostatslib.actions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.action.html">ostatslib.actions.action</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.actions_space.html">ostatslib.actions.actions_space</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.classifiers.html">ostatslib.actions.classifiers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.classifiers.decision_tree.html">ostatslib.actions.classifiers.decision_tree</a></li>
@@ -185,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_discrete_check.html">ostatslib.actions.exploratory_actions.is_response_discrete_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">ostatslib.actions.exploratory_actions.is_response_positive_values_only_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">ostatslib.actions.exploratory_actions.is_response_quantitative_check</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertable_variable_search.html">ostatslib.actions.exploratory_actions.time_convertable_variable_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertible_variable_search.html">ostatslib.actions.exploratory_actions.time_convertible_variable_search</a></li>
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.regression_models.html">ostatslib.actions.regression_models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -197,7 +199,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l3 current active has-children"><a class="reference internal" href="ostatslib.actions.utils.html">ostatslib.actions.utils</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.action_result.html">ostatslib.actions.utils.action_result</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.as_binary_array.html">ostatslib.actions.utils.as_binary_array</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.calculate_score_reward.html">ostatslib.actions.utils.calculate_score_reward</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.explainability_rewards.html">ostatslib.actions.utils.explainability_rewards</a></li>
@@ -433,22 +434,22 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="ostatslib-actions-utils-update-state-score">
-<h1>ostatslib.actions.utils.update_state_score<a class="headerlink" href="#ostatslib-actions-utils-update-state-score" title="Permalink to this headline">#</a></h1>
+<h1>ostatslib.actions.utils.update_state_score<a class="headerlink" href="#ostatslib-actions-utils-update-state-score" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ostatslib.actions.utils.update_state_score">
-<span class="sig-name descname"><span class="pre">update_state_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/utils/update_state_score.html#update_state_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.utils.update_state_score" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">update_state_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/utils/update_state_score.html#update_state_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.utils.update_state_score" title="Permalink to this definition">#</a></dt>
 <dd><p>Updates State score attribute</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p></li>
 <li><p><strong>score</strong> (<em>float</em>) – action score</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>state</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a></p>
 </dd>
 </dl>

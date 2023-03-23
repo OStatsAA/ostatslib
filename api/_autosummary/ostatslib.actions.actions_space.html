@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>ostatslib.actions.actions_space &#8212; Open Statistics Analysis Agent</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -66,9 +67,9 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="ostatslib.actions.classifiers" href="ostatslib.actions.classifiers.html" />
-    <link rel="prev" title="ostatslib.actions" href="ostatslib.actions.html" />
+    <link rel="prev" title="ostatslib.actions.action" href="ostatslib.actions.action.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -167,6 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../api.html">OStatsLib</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="ostatslib.actions.html">ostatslib.actions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.action.html">ostatslib.actions.action</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">ostatslib.actions.actions_space</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.classifiers.html">ostatslib.actions.classifiers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.classifiers.decision_tree.html">ostatslib.actions.classifiers.decision_tree</a></li>
@@ -185,7 +187,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_discrete_check.html">ostatslib.actions.exploratory_actions.is_response_discrete_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">ostatslib.actions.exploratory_actions.is_response_positive_values_only_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_quantitative_check.html">ostatslib.actions.exploratory_actions.is_response_quantitative_check</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertable_variable_search.html">ostatslib.actions.exploratory_actions.time_convertable_variable_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertible_variable_search.html">ostatslib.actions.exploratory_actions.time_convertible_variable_search</a></li>
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.regression_models.html">ostatslib.actions.regression_models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -197,7 +199,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.utils.html">ostatslib.actions.utils</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.action_result.html">ostatslib.actions.utils.action_result</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.as_binary_array.html">ostatslib.actions.utils.as_binary_array</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.calculate_score_reward.html">ostatslib.actions.utils.calculate_score_reward</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.explainability_rewards.html">ostatslib.actions.utils.explainability_rewards</a></li>
@@ -433,14 +434,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="module-ostatslib.actions.actions_space">
-<span id="ostatslib-actions-actions-space"></span><h1>ostatslib.actions.actions_space<a class="headerlink" href="#module-ostatslib.actions.actions_space" title="Permalink to this headline">#</a></h1>
+<span id="ostatslib-actions-actions-space"></span><h1>ostatslib.actions.actions_space<a class="headerlink" href="#module-ostatslib.actions.actions_space" title="Permalink to this heading">#</a></h1>
 <p>ActionsSpace module</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.actions_space.ActionsSpace" title="ostatslib.actions.actions_space.ActionsSpace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionsSpace</span></code></a>()</p></td>
 <td><p>Actions space</p></td>
@@ -453,13 +450,13 @@ document.write(`
 <dd><p>Actions space</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="ostatslib.actions.actions_space.ActionsSpace.actions">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.utils.action_result.html#ostatslib.actions.utils.action_result.ActionResult" title="ostatslib.actions.utils.action_result.ActionResult"><span class="pre">ostatslib.actions.utils.action_result.ActionResult</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.actions" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.action.html#ostatslib.actions.action.ActionInfo" title="ostatslib.actions.action.ActionInfo"><span class="pre">ostatslib.actions.action.ActionInfo</span></a><span class="p"><span class="pre">[</span></span><span class="pre">TModel</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.actions" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets actions dictionary</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>actions dictionary</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>dict</p>
 </dd>
 </dl>
@@ -467,13 +464,13 @@ document.write(`
 
 <dl class="py property">
 <dt class="sig sig-object py" id="ostatslib.actions.actions_space.ActionsSpace.actions_encodings_list">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions_encodings_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.actions_encodings_list" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions_encodings_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.actions_encodings_list" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets actions encodings list</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>actions codes</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>ndarray</p>
 </dd>
 </dl>
@@ -484,10 +481,10 @@ document.write(`
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">actions_names_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.actions_names_list" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets actions names list (keys in actions dictionary)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>actions names</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[str]</p>
 </dd>
 </dl>
@@ -498,10 +495,10 @@ document.write(`
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encoding_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.encoding_length" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns encoding length (# of digits in the)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p># of digits in the encoding</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>int</p>
 </dd>
 </dl>
@@ -509,16 +506,16 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.actions_space.ActionsSpace.get_action_by_encoding">
-<span class="sig-name descname"><span class="pre">get_action_by_encoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.utils.action_result.html#ostatslib.actions.utils.action_result.ActionResult" title="ostatslib.actions.utils.action_result.ActionResult"><span class="pre">ostatslib.actions.utils.action_result.ActionResult</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ostatslib.actions.actions_space.T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.get_action_by_encoding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.get_action_by_encoding" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_action_by_encoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.action.html#ostatslib.actions.action.ActionInfo" title="ostatslib.actions.action.ActionInfo"><span class="pre">ostatslib.actions.action.ActionInfo</span></a><span class="p"><span class="pre">[</span></span><span class="pre">TModel</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.get_action_by_encoding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.get_action_by_encoding" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets action function</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>action_code</strong> (<em>ndarray</em>) – action code</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>action function</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ActionFunction[T]</p>
 </dd>
 </dl>
@@ -526,16 +523,16 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.actions_space.ActionsSpace.get_action_by_name">
-<span class="sig-name descname"><span class="pre">get_action_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.utils.action_result.html#ostatslib.actions.utils.action_result.ActionResult" title="ostatslib.actions.utils.action_result.ActionResult"><span class="pre">ostatslib.actions.utils.action_result.ActionResult</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ostatslib.actions.actions_space.T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.get_action_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.get_action_by_name" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_action_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.action.html#ostatslib.actions.action.ActionInfo" title="ostatslib.actions.action.ActionInfo"><span class="pre">ostatslib.actions.action.ActionInfo</span></a><span class="p"><span class="pre">[</span></span><span class="pre">TModel</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.get_action_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.get_action_by_name" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets action function</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>action_name</strong> (<em>str</em>) – action name</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>action function</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ActionFunction[T]</p>
 </dd>
 </dl>
@@ -543,16 +540,16 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.actions_space.ActionsSpace.is_valid_action_by_encoding">
-<span class="sig-name descname"><span class="pre">is_valid_action_by_encoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.is_valid_action_by_encoding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.is_valid_action_by_encoding" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">is_valid_action_by_encoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.is_valid_action_by_encoding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.is_valid_action_by_encoding" title="Permalink to this definition">#</a></dt>
 <dd><p>Check if action code is valid</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>action_code</strong> (<em>np.array</em>) – action code</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if it is valid action code</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -560,16 +557,16 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.actions_space.ActionsSpace.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.int8</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray</span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.sample" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.int8</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/actions_space.html#ActionsSpace.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.actions_space.ActionsSpace.sample" title="Permalink to this definition">#</a></dt>
 <dd><p>Generates a single random sample from this space.</p>
 <p>A sample is drawn by independent, fair coin tosses (one toss per binary variable of the space).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mask</strong> – An optional np.ndarray to mask samples with expected shape of <code class="docutils literal notranslate"><span class="pre">space.shape</span></code>.
 For mask == 0 then the samples will be 0 and mask == 1 then random samples will be generated.
 The expected mask shape is the space shape and mask dtype is <cite>np.int8</cite>.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Sampled values from space</p>
 </dd>
 </dl>
@@ -608,12 +605,12 @@ The expected mask shape is the space shape and mask dtype is <cite>np.int8</cite
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ostatslib.actions.html"
+       href="ostatslib.actions.action.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ostatslib.actions</p>
+        <p class="prev-next-title">ostatslib.actions.action</p>
       </div>
     </a>
     <a class="right-next"

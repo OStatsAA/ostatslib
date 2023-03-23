@@ -437,7 +437,7 @@ document.write(`
         <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">action_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__steps_taken</span> <span class="o">+=</span> <span class="mi">1</span>
-
+        <span class="n">info</span><span class="p">[</span><span class="s2">&quot;state_delta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__state</span> <span class="o">=</span> <span class="n">state</span>
         <span class="n">observation</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">features_dict</span>
         <span class="n">terminated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__is_done</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">)</span>

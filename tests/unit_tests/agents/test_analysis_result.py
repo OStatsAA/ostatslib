@@ -8,6 +8,7 @@ from ostatslib.states import State
 from ostatslib.states.analysis_features_set import AnalysisFeaturesSet
 from ostatslib.states.data_features_set import DataFeaturesSet
 
+
 def __action_fn(*args):
     return State(), 0, ActionInfo()
 
@@ -25,20 +26,20 @@ def test_analysis_summary() -> None:
     diff_analysis_features_set.score = 0.9
     steps = [
         (
-            State(diff_data_features_set),
             0.5,
             ActionInfo(action_name='Teste',
-                                     action_fn=__action_fn,
-                                     model=None,
-                                     raised_exception=False)
+                       action_fn=__action_fn,
+                       model=None,
+                       raised_exception=False,
+                       state_delta=State(diff_data_features_set))
         ),
         (
-            State(analysis_features=diff_analysis_features_set),
             0.9,
             ActionInfo(action_name='Teste',
-                                     action_fn=__action_fn,
-                                     model=None,
-                                     raised_exception=False)
+                       action_fn=__action_fn,
+                       model=None,
+                       raised_exception=False,
+                       state_delta=State(diff_data_features_set))
         ),
     ]
     analysis = AnalysisResult(

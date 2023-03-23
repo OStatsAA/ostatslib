@@ -4,9 +4,12 @@ time_convertible_variable_search module
 
 from pandas import DataFrame
 from pandas.api.types import infer_dtype
-from ostatslib.actions import Action, ActionResult
+from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.actions.utils import split_response_from_explanatory_variables
 from ostatslib.states import State
+
+_ACTION_NAME = "Time Convertible Variable Search"
+
 
 ORDERED_LIST_OF_POSSIBLE_TIME_DTYPES = [
     "datetime64", "datetime", "date",
@@ -33,7 +36,10 @@ def _time_convertible_variable_search(state: State, data: DataFrame) -> ActionRe
 
     reward: float = __calculate_reward(state, date_convertible_variable)
     __update_state(state, date_convertible_variable)
-    return state, reward, {'model': None, 'raised_exception': False}
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_time_convertible_variable_search,
+                                     model=None,
+                                     raised_exception=False)
 
 
 def __date_variable_search(variables_dataframe: DataFrame) -> str | None:

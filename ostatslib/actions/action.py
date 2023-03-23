@@ -18,7 +18,7 @@ TModel = TypeVar('TModel',
                  TimeSeriesModelResults)  # pylint: disable=invalid-name
 
 
-class ActionInfo(TypedDict, Generic[TModel]):
+class ActionInfo(TypedDict, Generic[TModel], total=False):
     """
     Action results information
     """
@@ -26,6 +26,7 @@ class ActionInfo(TypedDict, Generic[TModel]):
     action_fn: 'Action[TModel]'
     model: None | TModel
     raised_exception: bool
+    state_delta: State
 
 
 ActionResult = tuple[State, float, ActionInfo[TModel]]

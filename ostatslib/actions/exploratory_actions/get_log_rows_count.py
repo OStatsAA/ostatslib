@@ -4,8 +4,11 @@ get_log_rows_count module
 
 import numpy as np
 from pandas import DataFrame
-from ostatslib.actions import Action, ActionResult
+from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
+
+_ACTION_NAME = "Get Log Rows Count"
+
 
 ROW_COUNT_UPPER_LIMIT = 150000
 LOG_COMPRESSION_CONSTANT = 12
@@ -26,7 +29,10 @@ def _get_log_rows_count(state: State,
     log_rows_count = __calculate_log_rows_count(data)
     reward = __calculate_reward(state, log_rows_count)
     state = __update_state(state, log_rows_count)
-    return state, reward, {'model': None, 'raised_exception': False}
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_get_log_rows_count,
+                                     model=None,
+                                     raised_exception=False)
 
 
 def __calculate_log_rows_count(data: DataFrame) -> float:

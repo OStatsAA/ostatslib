@@ -6,12 +6,10 @@ ref: https://www.machinelearningplus.com/time-series/arima-model-time-series-for
 
 from pandas import DataFrame, Series, to_datetime
 from pmdarima import auto_arima, ARIMA as AUTOARIMA
-from statsmodels.tsa.statespace.sarimax import SARIMAXResultsWrapper
-
+from statsmodels.tsa.statespace.sarimax import SARIMAXResults
 import numpy as np
-
-from ostatslib.actions.utils import (ActionResult,
-                                     calculate_score_reward,
+from ostatslib.actions import Action, ActionInfo, ActionResult
+from ostatslib.actions.utils import (calculate_score_reward,
                                      reward_cap,
                                      interpretable_model,
                                      split_response_from_explanatory_variables)
@@ -19,9 +17,13 @@ from ostatslib.states import State
 
 TRAINING_FRACTION: float = 0.9
 
+_ACTION_NAME = "Time Series - SARIMAX"
+
+
 @reward_cap
 @interpretable_model
-def time_series_auto_arima(state: State, data: DataFrame) -> ActionResult[SARIMAXResultsWrapper]:
+def _time_series_auto_arima(state: State,
+                            data: DataFrame) -> ActionResult[SARIMAXResults]:
     """
     Fits data to an ARIMA model
 
@@ -30,10 +32,13 @@ def time_series_auto_arima(state: State, data: DataFrame) -> ActionResult[SARIMA
         data (DataFrame): data under analysis
 
     Returns:
-        ActionResult[ARIMA]: action result
+        ActionResult[SARIMAXResults]: action result
     """
     if not __is_valid_state(state):
-        return ActionResult(state, -1, "AutoARIMA")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_time_series_auto_arima,
+                                     model=None,
+                                     raised_exception=False)
 
     y_data, x_data = __build_time_index_dataframes_for_y_and_x(state, data)
     data_length = len(y_data)
@@ -47,30 +52,36 @@ def time_series_auto_arima(state: State, data: DataFrame) -> ActionResult[SARIMA
                                  x_data.iloc[training_split_index:])
 
     auto_arima_model: AUTOARIMA = auto_arima(y_training, x_training)
-    model: SARIMAXResultsWrapper = auto_arima_model.arima_res_
+    model: SARIMAXResults = auto_arima_model.arima_res_
 
     forecast: Series = model.forecast(data_length - training_split_index,
                                       exog=x_testing)
-    score: float = 1 - __calculate_mean_abs_percentage_error(forecast, y_testing)
+    score: float = 1 - \
+        __calculate_mean_abs_percentage_error(forecast, y_testing)
 
     reward: float = __calculate_reward(model, score)
-    return ActionResult(state, reward, model)
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_time_series_auto_arima,
+                                     model=model,
+                                     raised_exception=False)
 
 
 def __is_valid_state(state: State) -> bool:
-    if bool(state.get("time_convertable_variable")) and \
+    if bool(state.get("time_convertible_variable")) and \
         state.get("is_response_quantitative") > 0 and \
             bool(state.get("response_variable_label")):
         return True
 
     return False
 
+
 def __calculate_mean_abs_percentage_error(forecast: Series, y_testing: DataFrame) -> float:
     forecast_values = forecast.values.flatten()
     y_testing_values = y_testing.values.flatten()
     return np.mean(np.abs(forecast_values - y_testing_values)/np.abs(y_testing_values))
 
-def __calculate_reward(model: SARIMAXResultsWrapper, correlation_coef: float) -> float:
+
+def __calculate_reward(model: SARIMAXResults, correlation_coef: float) -> float:
     reward: float = 0
     reward += __penalty_for_correlated_residuals(model)
     reward += __penalty_for_heteroskedasticity_residuals(model)
@@ -79,7 +90,7 @@ def __calculate_reward(model: SARIMAXResultsWrapper, correlation_coef: float) ->
     return reward
 
 
-def __penalty_for_correlated_residuals(model: SARIMAXResultsWrapper) -> float:
+def __penalty_for_correlated_residuals(model: SARIMAXResults) -> float:
     lag_correlations = model.test_serial_correlation(method='ljungbox')[:, 1]
     max_corr = np.max(lag_correlations)
 
@@ -112,13 +123,16 @@ def __build_time_index_dataframes_for_y_and_x(
     data: DataFrame
 ) -> tuple[DataFrame, DataFrame | None]:
     y_values, x_data = split_response_from_explanatory_variables(state, data)
-    time = to_datetime(x_data[state.get("time_convertable_variable")])
+    time = to_datetime(x_data[state.get("time_convertible_variable")])
 
     if len(x_data.columns) == 1:
         x_data = None
     else:
-        x_data = x_data.set_index(state.get("time_convertable_variable"))
+        x_data = x_data.set_index(state.get("time_convertible_variable"))
 
     y_data = DataFrame({y_values.name: y_values.values}, index=time)
 
     return y_data, x_data
+
+
+time_series_auto_arima: Action[SARIMAXResults] = _time_series_auto_arima

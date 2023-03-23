@@ -30,9 +30,9 @@ def test_is_response_discrete_check_yields_negative_rewards_if_feature_is_known(
     any other attempt to run the same action should yield a negative reward
     """
     state = State()
-    action_result = is_response_discrete_check(state, dummy_data)
-    assert action_result.reward > 0
+    state, reward, _ = is_response_discrete_check(state, dummy_data)
+    assert reward > 0
     assert state.get("is_response_discrete") == -1
 
-    action_result = is_response_discrete_check(state, dummy_data)
-    assert action_result.reward < 0
+    reward = is_response_discrete_check(state, dummy_data)[1]
+    assert reward < 0

@@ -52,8 +52,8 @@ def test_if_state_is_valid(dummy_ar_1_dataset) -> None:
     Tests if action yields negative reward if state is invalid
     """
     state = State()
-    result = time_series_auto_arima(state, dummy_ar_1_dataset)
-    assert result.reward < 0
+    reward = time_series_auto_arima(state, dummy_ar_1_dataset)[1]
+    assert reward < 0
 
 
 def test_simple_time_series(dummy_ar_1_dataset) -> None:
@@ -61,10 +61,10 @@ def test_simple_time_series(dummy_ar_1_dataset) -> None:
     Tests simple ar1
     """
     state = State()
-    state.set("time_convertable_variable", "time")
+    state.set("time_convertible_variable", "time")
     state.set("is_response_quantitative", 1)
-    result = time_series_auto_arima(state, dummy_ar_1_dataset)
-    assert result.reward > 0
+    reward = time_series_auto_arima(state, dummy_ar_1_dataset)[1]
+    assert reward > 0
 
 
 def test_time_series_with_1_variable(dummy_one_variable_dataset) -> None:
@@ -72,7 +72,7 @@ def test_time_series_with_1_variable(dummy_one_variable_dataset) -> None:
     Tests ar1 with one variable
     """
     state = State()
-    state.set("time_convertable_variable", "time")
+    state.set("time_convertible_variable", "time")
     state.set("is_response_quantitative", 1)
-    result = time_series_auto_arima(state, dummy_one_variable_dataset)
-    assert result.reward > 0
+    reward = time_series_auto_arima(state, dummy_one_variable_dataset)[1]
+    assert reward > 0

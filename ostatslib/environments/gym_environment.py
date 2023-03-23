@@ -8,7 +8,8 @@ from pandas import DataFrame
 from gymnasium import Env
 from gymnasium.spaces import Dict
 from ostatslib.actions import ActionsSpace
-from ostatslib.actions.utils.action_result import ActionResult
+from ostatslib.actions.action import ActionInfo
+from ostatslib.actions.actions_space import _invalid_action_step
 from ostatslib.states import State
 from .utils import generate_training_dataset
 
@@ -41,26 +42,22 @@ class GymEnvironment(Env):
         self.__init_state_and_data()
         self.__steps_taken = 0
         super().reset(seed=seed, options=options)
-        return self.__state.features_dict, dict({'action_result': None})
+        return self.__state.features_dict, ActionInfo(action_name='Invalid Action',
+                                                      action_fn=_invalid_action_step,
+                                                      model=None,
+                                                      raised_exception=False)
 
     def step(self, action: ndarray) -> tuple[dict, float, bool, bool, dict]:
         action_fn = self.action_space.get_action_by_encoding(action)
-        if action_fn is None:
-            return self.__invalid_action_step()
+        state, reward, info = action_fn(self.__state.copy(), self.__data)
 
-        action_result = action_fn(self.__state.copy(), self.__data)
         self.__steps_taken += 1
 
-        self.__state = action_result.state
-        observation = action_result.state.features_dict
-        reward = action_result.reward
-        terminated = self.__is_done(action_result.state, reward)
+        self.__state = state
+        observation = state.features_dict
+        terminated = self.__is_done(state, reward)
 
-        return (observation,
-                reward,
-                terminated,
-                False,
-                dict({'action_result': action_result}))
+        return observation, reward, terminated, False, info
 
     def set_data(self, data: DataFrame) -> None:
         """
@@ -85,13 +82,3 @@ class GymEnvironment(Env):
 
     def __init_state_and_data(self):
         self.__data, self.__state = generate_training_dataset()
-
-    def __invalid_action_step(self) -> tuple[dict, float, bool, bool, dict]:
-        return (
-            self.__state.features_dict,
-            REWARD_RANGE[0],
-            False,
-            False,
-            dict({'action_result': ActionResult(
-                self.__state, REWARD_RANGE[0], "Invalid")})
-        )

@@ -41,8 +41,8 @@ def test_linear_data_yields_positve_reward(dummy_linear_data: DataFrame) -> None
     """
     state = State()
     state.set("is_response_quantitative", 1)
-    action_result = decision_tree_regression(state, dummy_linear_data)
-    assert action_result.reward >= 0.5
+    reward = decision_tree_regression(state, dummy_linear_data)[1]
+    assert reward >= 0.5
 
 
 def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFrame) -> None:
@@ -51,5 +51,5 @@ def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFram
     """
     state = State()
     state.set("is_response_dichotomous", 1)
-    action_result = decision_tree_regression(state, dummy_binary_response_data)
-    assert action_result.reward <= -0.5
+    reward = decision_tree_regression(state, dummy_binary_response_data)[1]
+    assert reward <= -0.5

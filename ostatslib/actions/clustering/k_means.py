@@ -5,16 +5,17 @@ K-Means module
 from pandas import DataFrame
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
-
-from ostatslib.actions.utils import (ActionResult,
-                                     calculate_score_reward,
+from ostatslib.actions import Action, ActionInfo, ActionResult
+from ostatslib.actions.utils import (calculate_score_reward,
                                      reward_cap,
                                      update_state_score)
 from ostatslib.states import State
 
+_ACTION_NAME = "K-Means"
+
 
 @reward_cap
-def k_means(state: State, data: DataFrame) -> ActionResult[KMeans]:
+def _k_means(state: State, data: DataFrame) -> ActionResult[KMeans]:
     """
     Fits data to a KMeans cluster
 
@@ -26,7 +27,10 @@ def k_means(state: State, data: DataFrame) -> ActionResult[KMeans]:
         ActionResult[KMeans]: action result
     """
     if not __is_valid_state(state):
-        return ActionResult(state, -1, "KMeans")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_k_means,
+                                     model=None,
+                                     raised_exception=False)
 
     clusters_count: int = state.get("clusters_count")
     kmeans = KMeans(n_clusters=clusters_count)
@@ -35,8 +39,11 @@ def k_means(state: State, data: DataFrame) -> ActionResult[KMeans]:
     score: float = silhouette_score(data, kmeans.labels_)
 
     reward: float = calculate_score_reward(score)
-    state: State = update_state_score(state, score)
-    return ActionResult(state, reward, kmeans)
+    update_state_score(state, score)
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_k_means,
+                                     model=kmeans,
+                                     raised_exception=False)
 
 
 def __is_valid_state(state: State) -> bool:
@@ -44,3 +51,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
+
+
+k_means: Action[KMeans] = _k_means

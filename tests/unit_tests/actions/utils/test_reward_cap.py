@@ -3,10 +3,12 @@
 reward_cap decorator function tests module
 """
 
-from ostatslib.actions.utils import (ActionResult,
-                                     reward_cap,
+from pandas import DataFrame
+from ostatslib.actions import ActionInfo
+from ostatslib.actions.utils import (reward_cap,
                                      REWARD_LOWER_LIMIT,
                                      REWARD_UPPER_LIMIT)
+from ostatslib.states import State
 
 
 def test_enforces_reward_lower_limit() -> None:
@@ -15,10 +17,13 @@ def test_enforces_reward_lower_limit() -> None:
     """
     @reward_cap
     def too_low_reward_action(*args):
-        return ActionResult(None, REWARD_LOWER_LIMIT - 1, None)
+        return State(), REWARD_LOWER_LIMIT - 1, ActionInfo(action_name="Test",
+                                                           action_fn=too_low_reward_action,
+                                                           model=None,
+                                                           raised_exception=False)
 
-    action_result = too_low_reward_action(None, None)
-    assert action_result.reward == REWARD_LOWER_LIMIT
+    reward = too_low_reward_action(State(), DataFrame())[1]
+    assert reward == REWARD_LOWER_LIMIT
 
 
 def test_enforces_reward_upper_limit() -> None:
@@ -27,10 +32,13 @@ def test_enforces_reward_upper_limit() -> None:
     """
     @reward_cap
     def too_high_reward_action(*args):
-        return ActionResult(None, REWARD_UPPER_LIMIT + 1, None)
+        return State(), REWARD_UPPER_LIMIT + 1, ActionInfo(action_name="Test",
+                                                           action_fn=too_high_reward_action,
+                                                           model=None,
+                                                           raised_exception=False)
 
-    action_result = too_high_reward_action(None, None)
-    assert action_result.reward == REWARD_UPPER_LIMIT
+    reward = too_high_reward_action(State(), DataFrame())[1]
+    assert reward == REWARD_UPPER_LIMIT
 
 
 def test_do_not_change_reward_if_it_is_within_limits() -> None:
@@ -42,7 +50,10 @@ def test_do_not_change_reward_if_it_is_within_limits() -> None:
 
     @reward_cap
     def within_limits_reward_action(*args):
-        return ActionResult(None, reward, None)
+        return State(), reward, ActionInfo(action_name="Test",
+                                           action_fn=within_limits_reward_action,
+                                           model=None,
+                                           raised_exception=False)
 
-    action_result = within_limits_reward_action(None, None)
-    assert action_result.reward == reward
+    reward = within_limits_reward_action(State(), DataFrame())[1]
+    assert reward == reward

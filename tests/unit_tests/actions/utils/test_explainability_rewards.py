@@ -5,54 +5,60 @@ explainability rewards decorators functions tests module
 
 from random import uniform
 
-from ostatslib.actions.utils import (ActionResult,
-                                     comprehensible_model,
+from pandas import DataFrame
+from ostatslib.actions import ActionInfo
+
+from ostatslib.actions.utils import (comprehensible_model,
                                      interpretable_model,
                                      opaque_model,
                                      REWARD_LOWER_LIMIT,
                                      REWARD_UPPER_LIMIT)
 from ostatslib.actions.utils.explainability_rewards import (COMPREHENSIBLE_REWARD,
-                                                            INTERPETRABLE_REWARD,
+                                                            INTERPRETABLE_REWARD,
                                                             OPAQUE_PENALTY)
+from ostatslib.states import State
+
+random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
+
+
+def __action_fn(*args):
+    return State(), random_reward, ActionInfo(action_name="Test",
+                                                action_fn=__action_fn,
+                                                model=None,
+                                                raised_exception=False)
 
 
 def test_opaque_model() -> None:
     """
     Tests if opaque models penalty is applied to action_fn
     """
-    random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
-
     @opaque_model
     def action_fn(*args):
-        return ActionResult(None, random_reward, None)
+        return __action_fn()
 
-    action_result = action_fn(None, None)
-    assert action_result.reward == (random_reward + OPAQUE_PENALTY)
+    reward = action_fn(State(), DataFrame())[1]
+    assert reward == (random_reward + OPAQUE_PENALTY)
 
 
 def test_interpetrable_model() -> None:
     """
-    Tests if interpetrable models reward is applied to action_fn
+    Tests if interpretable models reward is applied to action_fn
     """
-    random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
-
     @interpretable_model
     def action_fn(*args):
-        return ActionResult(None, random_reward, None)
+        return __action_fn()
 
-    action_result = action_fn(None, None)
-    assert action_result.reward == (random_reward + INTERPETRABLE_REWARD)
+    reward = action_fn(State(), DataFrame())[1]
+    assert reward == (random_reward + INTERPRETABLE_REWARD)
 
 
 def test_comprehensible_model() -> None:
     """
     Tests if comprehensible models reward is applied to action_fn
     """
-    random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
-
     @comprehensible_model
     def action_fn(*args):
-        return ActionResult(None, random_reward, None)
+        return __action_fn()
 
-    action_result = action_fn(None, None)
-    assert action_result.reward == (random_reward + COMPREHENSIBLE_REWARD)
+    reward = action_fn(State(), DataFrame())[1]
+    assert reward == (random_reward + COMPREHENSIBLE_REWARD)

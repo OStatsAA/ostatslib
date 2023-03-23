@@ -135,7 +135,7 @@ def test_state_should_expose_known_features() -> None:
     """
     known_features = [
         ("score", .5),
-        ("time_convertable_variable", None),
+        ("time_convertible_variable", None),
         ("is_response_discrete", 1)
     ]
     state = State()

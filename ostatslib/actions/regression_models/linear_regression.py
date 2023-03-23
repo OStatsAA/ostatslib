@@ -12,20 +12,20 @@ from statsmodels.api import OLS
 from statsmodels.stats.stattools import durbin_watson, jarque_bera
 from statsmodels.stats.diagnostic import het_breuschpagan, linear_harvey_collier
 from statsmodels.regression.linear_model import RegressionResults
-
-from ostatslib.actions.utils import (ActionResult,
-                                     calculate_score_reward,
+from ostatslib.actions import Action, ActionInfo, ActionResult
+from ostatslib.actions.utils import (calculate_score_reward,
                                      reward_cap,
                                      interpretable_model,
                                      split_response_from_explanatory_variables,
                                      update_state_score)
 from ostatslib.states import State
 
+_ACTION_NAME = "Linear Regression"
+
 
 @reward_cap
 @interpretable_model
-def linear_regression(state: State,
-                      data: DataFrame) -> ActionResult[RegressionResults]:
+def _linear_regression(state: State, data: DataFrame) -> ActionResult[RegressionResults]:
     """
     Fits data to a linear regression model.
 
@@ -37,18 +37,27 @@ def linear_regression(state: State,
         ActionResult[RegressionResults]: action result
     """
     if not __is_valid_state(state):
-        return ActionResult(state, -1, "LinearRegression")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_linear_regression,
+                                     model=None,
+                                     raised_exception=False)
 
-    response_var, explanatory_vars = split_response_from_explanatory_variables(state,
-                                                                               data)
+    response_var, explanatory_vars = split_response_from_explanatory_variables(
+        state, data)
     try:
-        regression = OLS(response_var, explanatory_vars).fit()
+        regression: RegressionResults = OLS(response_var, explanatory_vars).fit()
     except ValueError:
-        return ActionResult(state, -1, "LinearRegression")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_linear_regression,
+                                     model=None,
+                                     raised_exception=True)
 
     reward = __calculate_reward(state, regression)
-    state = update_state_score(state, regression.rsquared)
-    return ActionResult(state, reward, regression)
+    update_state_score(state, regression.rsquared)
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_linear_regression,
+                                     model=regression,
+                                     raised_exception=False)
 
 
 def __is_valid_state(state: State) -> bool:
@@ -147,3 +156,6 @@ def __reward_for_recursive_residuals_mean(state: State,
 
     state.set("is_linear_model_regression_recursive_residuals_mean_zero", 1)
     return 0
+
+
+linear_regression: Action[RegressionResults] = _linear_regression

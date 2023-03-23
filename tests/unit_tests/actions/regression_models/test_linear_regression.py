@@ -7,11 +7,9 @@ from pandas import DataFrame
 from datacooker.recipes import LogitRecipe, Recipe
 from datacooker.variables import ContinousVariable
 from scipy.stats import norm
-from statsmodels.regression.linear_model import RegressionResults
 import pytest
 
 from ostatslib.actions import linear_regression
-from ostatslib.actions.utils import ActionResult
 from ostatslib.states import State
 
 
@@ -22,7 +20,7 @@ def dummy_linear_data() -> DataFrame:
     """
     recipe = Recipe(lambda variables, error: 0 + 10 * variables["a"] + error)
     recipe.add_variable(ContinousVariable("a"))
-    recipe.add_error(lambda variables, size: norm().rvs(size=size))
+    recipe.add_error(lambda _, size: norm().rvs(size=size))
     return recipe.cook()
 
 
@@ -38,13 +36,12 @@ def dummy_binary_response_data() -> DataFrame:
 
 def test_linear_data_yields_positve_reward(dummy_linear_data: DataFrame) -> None:
     """
-    Action should return a positve reward when applied to a linear datatset
+    Action should return a positive reward when applied to a linear dataset
     """
     state = State()
     state.set("is_response_quantitative", 1)
-    action_result: ActionResult[RegressionResults] = linear_regression(state,
-                                                                       dummy_linear_data)
-    assert action_result.reward >= 0.5
+    _, reward, _ = linear_regression(state, dummy_linear_data)
+    assert reward >= 0.5
 
 
 def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFrame) -> None:
@@ -53,6 +50,5 @@ def test_binary_data_yields_negative_reward(dummy_binary_response_data: DataFram
     """
     state = State()
     state.set("is_response_dichotomous", 1)
-    action_result: ActionResult[RegressionResults] = linear_regression(state,
-                                                                       dummy_binary_response_data)
-    assert action_result.reward <= -0.5
+    _, reward, _  = linear_regression(state, dummy_binary_response_data)
+    assert reward <= -0.5

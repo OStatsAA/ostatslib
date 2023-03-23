@@ -8,74 +8,73 @@ from typing import TypeVar
 from pandas import DataFrame
 
 from ostatslib.states import State
-
-from .action_result import ActionFunction, ActionResult
+from ostatslib.actions import Action, TModel
 
 T = TypeVar("T")
 
 OPAQUE_PENALTY = -.1
-INTERPETRABLE_REWARD = .1
+INTERPRETABLE_REWARD = .1
 COMPREHENSIBLE_REWARD = .075
 
 
 def opaque_model(
-        action_function: ActionFunction[T]) -> ActionResult[T]:
+        action_function: Action[TModel]) -> Action[TModel]:
     """
     Penalty for actions resulting in an opaque model
 
     Args:
-        action_function (Callable[[State, DataFrame], ActionResult[T]]): action function
+        action_function (Action[TModel]): action
 
     Returns:
-        ActionResult[T]: action results
+        Action[TModel]: action
     """
     wraps(action_function)
 
     def function_wrapper(state: State, data: DataFrame):
-        action_result = action_function(state, data)
-        action_result.reward += OPAQUE_PENALTY
-        return action_result
+        state, reward, info = action_function(state, data)
+        reward += OPAQUE_PENALTY
+        return state, reward, info
 
     return function_wrapper
 
 
 def interpretable_model(
-        action_function: ActionFunction[T]) -> ActionResult[T]:
+        action_function: Action[TModel]) -> Action[TModel]:
     """
-    Reward for actions resulting in an interpetrable model
+    Reward for actions resulting in an interpretable model
 
     Args:
-        action_function (Callable[[State, DataFrame], ActionResult[T]]): action function
+        action_function (Action[TModel]): action
 
     Returns:
-        ActionResult[T]: action results
+        Action[TModel]: action
     """
     wraps(action_function)
 
     def function_wrapper(state: State, data: DataFrame):
-        action_result = action_function(state, data)
-        action_result.reward += INTERPETRABLE_REWARD
-        return action_result
+        state, reward, info = action_function(state, data)
+        reward += INTERPRETABLE_REWARD
+        return state, reward, info
 
     return function_wrapper
 
 
 def comprehensible_model(
-        action_function: ActionFunction[T]) -> ActionResult[T]:
+        action_function: Action[TModel]) -> Action[TModel]:
     """
     Reward for actions resulting in an comprehensible model
 
     Args:
-        action_function (Callable[[State, DataFrame], ActionResult[T]]): action function
+        action_function (Action[TModel]): action
 
     Returns:
-        ActionResult[T]: action results
+        Action[TModel]: action
     """
     wraps(action_function)
 
     def function_wrapper(state: State, data: DataFrame):
-        action_result = action_function(state, data)
-        action_result.reward += COMPREHENSIBLE_REWARD
-        return action_result
+        state, reward, info = action_function(state, data)
+        reward += COMPREHENSIBLE_REWARD
+        return state, reward, info
 
     return function_wrapper

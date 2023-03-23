@@ -6,19 +6,20 @@ from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import cross_val_score
 from sklearn.svm import SVC
-
-from ostatslib.actions.utils import (ActionResult,
-                                     calculate_score_reward,
+from ostatslib.actions import Action, ActionInfo, ActionResult
+from ostatslib.actions.utils import (calculate_score_reward,
                                      reward_cap,
                                      opaque_model,
                                      split_response_from_explanatory_variables,
                                      update_state_score)
 from ostatslib.states import State
 
+_ACTION_NAME = "Support Vector Classification"
+
 
 @reward_cap
 @opaque_model
-def support_vector_classification(state: State, data: DataFrame) -> ActionResult[SVC]:
+def _support_vector_classification(state: State, data: DataFrame) -> ActionResult[SVC]:
     """
     Fits data to a SVC model
 
@@ -30,7 +31,10 @@ def support_vector_classification(state: State, data: DataFrame) -> ActionResult
         ActionResult[SVC]: action result
     """
     if not __is_valid_state(state):
-        return ActionResult(state, -1, "SVC")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_support_vector_classification,
+                                     model=None,
+                                     raised_exception=False)
 
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier = SVC()
@@ -38,12 +42,18 @@ def support_vector_classification(state: State, data: DataFrame) -> ActionResult
     try:
         scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
     except ValueError:
-        return ActionResult(state, -1, "SVC")
+        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_support_vector_classification,
+                                     model=None,
+                                     raised_exception=True)
 
     score: float = scores.mean() - scores.std()
     reward: float = calculate_score_reward(score)
-    state: State = update_state_score(state, score)
-    return ActionResult(state, reward, classifier)
+    update_state_score(state, score)
+    return state, reward, ActionInfo(action_name=_ACTION_NAME,
+                                     action_fn=_support_vector_classification,
+                                     model=classifier,
+                                     raised_exception=False)
 
 
 def __is_valid_state(state: State) -> bool:
@@ -51,3 +61,6 @@ def __is_valid_state(state: State) -> bool:
         return False
 
     return True
+
+
+support_vector_classification: Action[SVC] = _support_vector_classification

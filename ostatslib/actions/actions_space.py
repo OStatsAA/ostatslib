@@ -3,11 +3,11 @@ ActionsSpace module
 """
 
 from functools import cached_property
-from typing import TypeVar
 from gymnasium.spaces import MultiBinary
 
 import numpy as np
 import numpy.typing as npt
+from pandas import DataFrame
 
 from ostatslib.actions.exploratory_actions import (
     get_log_rows_count,
@@ -15,7 +15,7 @@ from ostatslib.actions.exploratory_actions import (
     is_response_discrete_check,
     is_response_positive_values_only_check,
     is_response_quantitative_check,
-    time_convertable_variable_search
+    time_convertible_variable_search
 )
 from ostatslib.actions.regression_models import (
     linear_regression,
@@ -33,10 +33,11 @@ from ostatslib.actions.clustering import (
     k_means,
     dbscan
 )
-from ostatslib.actions.utils import ActionFunction, as_binary_array
+from ostatslib.actions.utils import as_binary_array
+from ostatslib.states import State
+from .action import Action, ActionInfo, ActionResult
 
 
-T = TypeVar("T")
 MaskNDArray = npt.NDArray[np.int8]
 ENCODING_LENGTH = 5
 
@@ -52,7 +53,7 @@ EXPLORATORY_ACTIONS = {
                                                as_binary_array(3, ENCODING_LENGTH)),
     'is_response_quantitative_check': (is_response_quantitative_check,
                                        as_binary_array(4, ENCODING_LENGTH)),
-    'time_convertable_variable_search': (time_convertable_variable_search,
+    'time_convertible_variable_search': (time_convertible_variable_search,
                                          as_binary_array(5, ENCODING_LENGTH))
 }
 
@@ -89,6 +90,15 @@ CLUSTERING = {
 }
 
 
+def _invalid_action_step(state: State, data: DataFrame) -> ActionResult[None]:
+    reward = float(-1)
+    info = ActionInfo(action_name='Invalid Action',
+                      action_fn=_invalid_action_step,
+                      model=None,
+                      raised_exception=False)
+    return state, reward, info
+
+
 class ActionsSpace(MultiBinary):
     """
     Actions space
@@ -99,7 +109,7 @@ class ActionsSpace(MultiBinary):
         super().__init__(ENCODING_LENGTH)
 
     @cached_property
-    def actions(self) -> dict[str, tuple[ActionFunction, np.ndarray]]:
+    def actions(self) -> dict[str, tuple[Action, np.ndarray]]:
         """
         Gets actions dictionary
 
@@ -144,7 +154,7 @@ class ActionsSpace(MultiBinary):
         """
         return ENCODING_LENGTH
 
-    def get_action_by_name(self, action_name: str) -> ActionFunction[T]:
+    def get_action_by_name(self, action_name: str) -> Action:
         """
         Gets action function
 
@@ -171,7 +181,7 @@ class ActionsSpace(MultiBinary):
 
         return False
 
-    def get_action_by_encoding(self, action_code: np.ndarray) -> ActionFunction[T] | None:
+    def get_action_by_encoding(self, action_code: np.ndarray) -> Action:
         """
         Gets action function
 
@@ -185,7 +195,7 @@ class ActionsSpace(MultiBinary):
             if np.array_equal(action[1], action_code):
                 return action[0]
 
-        return None
+        return _invalid_action_step
 
     def sample(self, mask: MaskNDArray | None = None) -> np.ndarray:
         index = np.random.choice(len(self.actions_encodings_list))

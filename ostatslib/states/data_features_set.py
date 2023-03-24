@@ -3,7 +3,7 @@ DataFeaturesSets module
 """
 
 from dataclasses import dataclass, field
-from gymnasium.spaces import Box
+from gymnasium.spaces import Box, Discrete
 
 from ostatslib.states.features_set import FeaturesSet
 
@@ -18,6 +18,13 @@ class DataFeaturesSet(FeaturesSet):
         metadata={
             'gym_space': Box(0, 1),
             'get_value_fn': None
+        })
+
+    response_inferred_dtype: str = field(
+        default="",
+        metadata={
+            'gym_space': Discrete(2),
+            'get_value_fn': bool
         })
 
     is_response_dichotomous: int = field(

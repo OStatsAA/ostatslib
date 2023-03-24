@@ -14,6 +14,7 @@ from .clustering import (
 )
 from .exploratory_actions import (
     get_log_rows_count,
+    infer_response_dtype,
     is_response_dichotomous_check,
     is_response_discrete_check,
     is_response_positive_values_only_check,

@@ -11,6 +11,7 @@ from pandas import DataFrame
 
 from ostatslib.actions.exploratory_actions import (
     get_log_rows_count,
+    infer_response_dtype,
     is_response_dichotomous_check,
     is_response_discrete_check,
     is_response_positive_values_only_check,
@@ -54,7 +55,9 @@ EXPLORATORY_ACTIONS = {
     'is_response_quantitative_check': (is_response_quantitative_check,
                                        as_binary_array(4, ENCODING_LENGTH)),
     'time_convertible_variable_search': (time_convertible_variable_search,
-                                         as_binary_array(5, ENCODING_LENGTH))
+                                         as_binary_array(5, ENCODING_LENGTH)),
+    'infer_response_dtype': (infer_response_dtype,
+                             as_binary_array(6, ENCODING_LENGTH))
 }
 
 # Encoding: 8 to 15

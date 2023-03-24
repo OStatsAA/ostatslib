@@ -6,6 +6,7 @@ from pandas import DataFrame, Series
 import numpy as np
 from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
+from ._get_exploratory_reward import get_exploratory_reward
 
 _ACTION_NAME = "Is Response Quantitative Check"
 
@@ -31,7 +32,7 @@ def _is_response_quantitative_check(state: State, data: DataFrame) -> ActionResu
     else:
         state.set("is_response_quantitative", -1)
 
-    reward = __calculate_reward(state, state_copy)
+    reward = get_exploratory_reward(state, state_copy)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_is_response_quantitative_check,
                                      model=None,
@@ -41,13 +42,6 @@ def _is_response_quantitative_check(state: State, data: DataFrame) -> ActionResu
 def __is_quantitative_check(values: Series) -> bool:
     unique_values = values.unique()
     return np.issubdtype(unique_values.dtype, np.number)
-
-
-def __calculate_reward(state: State, state_copy: State) -> float:
-    if state == state_copy:
-        return -1
-
-    return 0.5
 
 
 is_response_quantitative_check: Action[None] = _is_response_quantitative_check

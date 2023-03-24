@@ -8,6 +8,7 @@ import numpy as np
 
 from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
+from ._get_exploratory_reward import get_exploratory_reward
 
 _ACTION_NAME = "Is Response Dichotomous Check"
 
@@ -27,7 +28,7 @@ def _is_response_dichotomous_check(state: State, data: DataFrame) -> ActionResul
     response_var_label: str = state.get("response_variable_label")
     response: Series = data[response_var_label]
     state.set("is_response_dichotomous", __get_is_dichotomous_feature_value(response))
-    reward = __calculate_reward(state, state_copy)
+    reward = get_exploratory_reward(state, state_copy)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_is_response_dichotomous_check,
                                      model=None,
@@ -62,13 +63,6 @@ def __is_dichotomous_check(values: Series) -> bool:
 
 def __is_within_possible_boolean_range_of_integers(unique_values):
     return np.any((unique_values >= -1) | (unique_values <= 2))
-
-
-def __calculate_reward(state: State, state_copy: State) -> float:
-    if state == state_copy:
-        return -1
-
-    return 0.5
 
 
 is_response_dichotomous_check: Action[None] = _is_response_dichotomous_check

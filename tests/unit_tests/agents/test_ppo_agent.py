@@ -17,6 +17,6 @@ def dummy_dataset() -> DataFrame:
     return recipe.cook(size)
 
 def test_training(dummy_dataset: DataFrame) -> None:
-    agent = PPOAgent()
-    agent.train(steps=1e2)
+    agent = PPOAgent(training_envs_count=2)
+    agent.train(steps=int(1e2))
     agent.analyze(dummy_dataset)

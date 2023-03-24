@@ -7,6 +7,7 @@ import numpy as np
 
 from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
+from ._get_exploratory_reward import get_exploratory_reward
 
 _ACTION_NAME = "Is Response Discrete Check"
 
@@ -32,7 +33,7 @@ def _is_response_discrete_check(state: State, data: DataFrame) -> ActionResult[N
     else:
         state.set("is_response_discrete", -1)
 
-    reward = __calculate_reward(state, state_copy)
+    reward = get_exploratory_reward(state, state_copy)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_is_response_discrete_check,
                                      model=None,
@@ -54,13 +55,6 @@ def __is_discrete_check(values: Series) -> bool:
                 return False
 
     return True
-
-
-def __calculate_reward(state: State, state_copy: State) -> float:
-    if state == state_copy:
-        return -1
-
-    return 0.5
 
 
 is_response_discrete_check: Action[None] = _is_response_discrete_check

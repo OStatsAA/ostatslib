@@ -3,12 +3,13 @@ AnalysisFeaturesSet module
 """
 
 from dataclasses import dataclass, field
+from typing import Literal
 from gymnasium.spaces import Discrete, Box
 
 from ostatslib.states.features_set import FeaturesSet
 
 
-def time_convertible_variable_to_feature(time_convertible_variable: str) -> bool:
+def time_convertible_variable_to_feature(time_convertible_variable: str) -> bool | Literal[-1]:
     """
     Returns -1 if field is set to None, else returns boolean from string.
     Empty string = False and any valid string = True

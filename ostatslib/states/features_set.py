@@ -1,10 +1,11 @@
 """
-FeaturesSet abstract classe module
+FeaturesSet abstract class module
 """
 
 from abc import ABC
 from dataclasses import Field, fields
 import numpy as np
+from numpy.typing import NDArray
 
 KnownFeaturesList = list[tuple[str, float | int | str]]
 
@@ -45,17 +46,19 @@ class FeaturesSet(ABC):
         Returns:
             dict: dictionary with features values
         """
-        keys = [field.name for field in fields(self)]
-        values = self.__array__()
-        return dict(zip(keys, values))
+        return dict([(field.name, self.__get_feature_value(field)) for field in fields(self)])
 
     def __array__(self):
-        return np.array([self.__get_feature_value(field) for field in fields(self)])
+        return np.concatenate([self.__get_feature_value(field) for field in fields(self)])
 
-    def __get_feature_value(self, _field: Field) -> str | float | int:
+    def __get_feature_value(self, _field: Field) -> NDArray[np.float64]:
         get_value_fn = _field.metadata['get_value_fn']
-        value = getattr(self, _field.name)
+        field_value = getattr(self, _field.name)
         if get_value_fn is None:
-            return np.array(value).reshape((1,))
+            return np.array(field_value).reshape((1,))
 
-        return np.array(get_value_fn(value)).reshape((1,))
+        feature_value = get_value_fn(field_value)
+        if isinstance(feature_value, np.ndarray):
+            return feature_value
+
+        return np.array(feature_value).reshape((1,))

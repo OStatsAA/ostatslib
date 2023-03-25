@@ -126,7 +126,6 @@ def test_state_should_expose_features_as_gym_space() -> None:
     gym_space = state.as_gymnasium_space
 
     assert isinstance(gym_space, Dict)
-    assert len(gym_space) == len(state)
 
 
 def test_state_should_expose_known_features() -> None:

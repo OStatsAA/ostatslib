@@ -180,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.html">ostatslib.actions.exploratory_actions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.get_log_rows_count.html">ostatslib.actions.exploratory_actions.get_log_rows_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.infer_response_dtype.html">ostatslib.actions.exploratory_actions.infer_response_dtype</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">ostatslib.actions.exploratory_actions.is_response_dichotomous_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html">ostatslib.actions.exploratory_actions.is_response_discrete_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">ostatslib.actions.exploratory_actions.is_response_positive_values_only_check</a></li>
@@ -387,10 +388,46 @@ document.write(`
 <span class="sd">DataFeaturesSets module</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">gymnasium.spaces</span> <span class="kn">import</span> <span class="n">Box</span>
+<span class="kn">from</span> <span class="nn">gymnasium.spaces</span> <span class="kn">import</span> <span class="n">Box</span><span class="p">,</span> <span class="n">MultiBinary</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">NDArray</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.states.features_set</span> <span class="kn">import</span> <span class="n">FeaturesSet</span>
+
+
+<span class="n">MAX_INFERRED_DTYPE_INDEX</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">INFERRABLE_DTYPES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;string&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;floating&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;integer&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;mixed-integer&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;mixed-integer-float&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;decimal&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;complex&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;categorical&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s2">&quot;boolean&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;datetime64&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;datetime&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;timedelta64&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;timedelta&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;mixed&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="s2">&quot;unknown-array&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="nd">@cache</span>
+<span class="k">def</span> <span class="nf">_map_inferred_dtype_to_binary_array</span><span class="p">(</span><span class="n">inferred_dtype</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+    <span class="n">feature_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">dtype_index</span> <span class="o">=</span> <span class="n">INFERRABLE_DTYPES</span><span class="p">[</span><span class="n">inferred_dtype</span><span class="p">]</span>
+    <span class="n">feature_vector</span><span class="p">[</span><span class="n">dtype_index</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">feature_vector</span>
 
 
 <div class="viewcode-block" id="DataFeaturesSet"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.data_features_set.html#ostatslib.states.data_features_set.DataFeaturesSet">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -403,6 +440,13 @@ document.write(`
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
             <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">response_inferred_dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;unknown-array&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">MultiBinary</span><span class="p">(</span><span class="n">MAX_INFERRED_DTYPE_INDEX</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="n">_map_inferred_dtype_to_binary_array</span>
         <span class="p">})</span>
 
     <span class="n">is_response_dichotomous</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>

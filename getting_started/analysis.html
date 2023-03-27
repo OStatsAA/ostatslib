@@ -446,7 +446,7 @@ document.write(`
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="c1"># loading trained agent</span>
-<span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="s1">&#39;../trained_ppo_model.zip&#39;</span><span class="p">)</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="s1">&#39;../trained_ppo_model&#39;</span><span class="p">)</span>
 
 <span class="c1"># generating data</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">()</span>
@@ -462,19 +462,62 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-27 10:38:55.287802
-Final status is Complete
-Initial State known features:
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">17</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">classification_data</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># running analysis</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">classification_analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">classification_data</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># printing results</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="nb">print</span><span class="p">(</span><span class="n">classification_analysis</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  -----------------------------------
-      1  Is Response Positive Values Only Check      0.5   is_response_positive_values_only  1
-      2  Time Convertible Variable Search            0.5   time_convertible_variable
-      3  Is Response Discrete Check                  0.5   is_response_discrete  1
-      4  Is Response Dichotomous Check               0.5   is_response_dichotomous  1
-      5  Get Log Rows Count                          0.5   log_rows_count  0.166667
-      6  Logistic Regression                         0.97  score  0.87
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/agent.py:74,</span> in <span class="ni">Agent.analyze</span><span class="nt">(self, data, initial_state, max_steps)</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_steps</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">74</span>     <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>     <span class="n">analysis_steps</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">reward</span><span class="p">,</span> <span class="n">info</span><span class="p">))</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:35,</span> in <span class="ni">PPOAgent._predict</span><span class="nt">(self, observation)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="k">def</span> <span class="nf">_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="n">action</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">deterministic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="k">return</span> <span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:542,</span> in <span class="ni">BaseAlgorithm.predict</span><span class="nt">(self, observation, state, episode_start, deterministic)</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span> <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">observation</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span>     <span class="n">deterministic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">529</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span><span class="sd">     Get the policy action from an observation (and optional hidden state).</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span><span class="sd">     Includes sugar-coating to handle different observations (e.g. normalizing images).</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span><span class="sd">         (used in recurrent policies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">542</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">episode_start</span><span class="p">,</span> <span class="n">deterministic</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/policies.py:328,</span> in <span class="ni">BasePolicy.predict</span><span class="nt">(self, observation, state, episode_start, deterministic)</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span> <span class="c1"># TODO (GH/1): add support for RNN policies</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="c1"># if state is None:</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span> <span class="c1">#     state = self.initial_state</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="c1"># if episode_start is None:</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span> <span class="c1">#     episode_start = [False for _ in range(self.n_envs)]</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span> <span class="c1"># Switch to eval mode (this affects batch norm / dropout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_training_mode</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">328</span> <span class="n">observation</span><span class="p">,</span> <span class="n">vectorized_env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obs_to_tensor</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span> <span class="k">with</span> <span class="n">th</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span>     <span class="n">actions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">observation</span><span class="p">,</span> <span class="n">deterministic</span><span class="o">=</span><span class="n">deterministic</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/policies.py:224,</span> in <span class="ni">BaseModel.obs_to_tensor</span><span class="nt">(self, observation)</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span> <span class="n">observation</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observation</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">224</span>     <span class="n">obs_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">spaces</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span>     <span class="k">if</span> <span class="n">is_image_space</span><span class="p">(</span><span class="n">obs_space</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span>         <span class="n">obs_</span> <span class="o">=</span> <span class="n">maybe_transpose</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">obs_space</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &#39;response_inferred_dtype&#39;
 </pre></div>
 </div>
 </div>
@@ -497,7 +540,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-27 10:38:57.965279
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-23 19:20:43.692574
 Final status is Complete
 Initial State known features:
 
@@ -505,8 +548,8 @@ Steps:
   Order  Step                                      Reward  State Change
 -------  --------------------------------------  --------  --------------------------------------------------------------
       1  Is Response Positive Values Only Check       0.5  is_response_positive_values_only  -1
-      2  Infer Response DType                         0.5  response_inferred_dtype  floating
-      3  Is Response Dichotomous Check                0.5  is_response_dichotomous  -1
+      2  Is Response Dichotomous Check                0.5  is_response_dichotomous  -1
+      3  Time Convertible Variable Search             0.5  time_convertible_variable
       4  Is Response Quantitative Check               0.5  is_response_quantitative  1
       5  Get Log Rows Count                           0.5  log_rows_count  0.166667
       6  Linear Regression                            1    score                                                        1
@@ -713,7 +756,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-27 10:39:01.976526
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-23 19:20:45.442512
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -721,11 +764,9 @@ Steps:
   Order  Step                                      Reward  State Change
 -------  --------------------------------------  --------  -----------------------------------
       1  Is Response Positive Values Only Check       0.5  is_response_positive_values_only  1
-      2  Time Convertible Variable Search             0.5  time_convertible_variable
-      3  Is Response Discrete Check                   0.5  is_response_discrete  1
-      4  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
-      5  Get Log Rows Count                           0.5  log_rows_count  0.229593
-      6  Logistic Regression                          1    score  0.954306
+      2  Get Log Rows Count                           0.5  log_rows_count  0.229593
+      3  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
+      4  Logistic Regression                          1    score  0.968366
 </pre></div>
 </div>
 </div>

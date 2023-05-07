@@ -10,12 +10,12 @@ from statsmodels.base.model import LikelihoodModelResults, Results
 from statsmodels.tsa.base.tsa_model import TimeSeriesModelResults
 from ostatslib.states import State
 
-TModel = TypeVar('TModel',
+TModel = TypeVar('TModel', # pylint: disable=invalid-name
                  None,
                  BaseEstimator,
                  LikelihoodModelResults,
                  Results,
-                 TimeSeriesModelResults)  # pylint: disable=invalid-name
+                 TimeSeriesModelResults)
 
 
 class ActionInfo(TypedDict, Generic[TModel], total=False):

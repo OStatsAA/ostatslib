@@ -8,7 +8,7 @@ from typing import TypeVar
 from pandas import DataFrame
 
 from ostatslib.states import State
-from ostatslib.actions import Action, TModel
+from ..action import Action, TModel
 
 T = TypeVar("T")
 

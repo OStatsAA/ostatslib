@@ -4,9 +4,10 @@ is_response_quantitative_check module
 
 from pandas import DataFrame, Series
 import numpy as np
-from ostatslib.actions import Action, ActionInfo, ActionResult
+
 from ostatslib.states import State
 from ._get_exploratory_reward import get_exploratory_reward
+from ..action import Action, ActionInfo, ActionResult
 
 _ACTION_NAME = "Is Response Quantitative Check"
 

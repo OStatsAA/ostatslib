@@ -6,9 +6,9 @@ from pandas import DataFrame, Series
 from pandas.api.types import infer_dtype
 import numpy as np
 
-from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
 from ._get_exploratory_reward import get_exploratory_reward
+from ..action import Action, ActionInfo, ActionResult
 
 _ACTION_NAME = "Is Response Dichotomous Check"
 

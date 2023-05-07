@@ -4,8 +4,9 @@ get_log_rows_count module
 
 import numpy as np
 from pandas import DataFrame
-from ostatslib.actions import Action, ActionInfo, ActionResult
 from ostatslib.states import State
+
+from ..action import Action, ActionInfo, ActionResult
 
 _ACTION_NAME = "Get Log Rows Count"
 

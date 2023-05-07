@@ -6,13 +6,14 @@ from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeRegressor
-from ostatslib.actions import Action, ActionInfo, ActionResult
-from ostatslib.actions.utils import (calculate_score_reward,
-                                     reward_cap,
-                                     comprehensible_model,
-                                     split_response_from_explanatory_variables,
-                                     update_state_score)
+
 from ostatslib.states import State
+from ..action import Action, ActionInfo, ActionResult
+from ..utils import (calculate_score_reward,
+                     reward_cap,
+                     comprehensible_model,
+                     split_response_from_explanatory_variables,
+                     update_state_score)
 
 _ACTION_NAME = "Decision Tree Regression"
 

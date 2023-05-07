@@ -5,8 +5,8 @@ reward_cap function module
 from functools import wraps
 from typing import TypeVar
 from pandas import DataFrame
-from ostatslib.actions import Action, TModel
 from ostatslib.states import State
+from ..action import Action, TModel
 
 REWARD_UPPER_LIMIT = float(1)
 REWARD_LOWER_LIMIT = float(-1)

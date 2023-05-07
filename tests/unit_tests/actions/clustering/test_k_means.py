@@ -8,7 +8,7 @@ from sklearn.datasets import make_blobs
 
 import pytest
 
-from ostatslib.actions import k_means
+from ostatslib.actions.clustering import k_means
 from ostatslib.states import State
 
 CENTERS = [[1, 1], [-1, -1], [1, -1]]

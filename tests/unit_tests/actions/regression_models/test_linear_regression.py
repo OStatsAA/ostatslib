@@ -9,7 +9,7 @@ from datacooker.variables import ContinousVariable
 from scipy.stats import norm
 import pytest
 
-from ostatslib.actions import linear_regression
+from ostatslib.actions.regression_models import linear_regression
 from ostatslib.states import State
 
 

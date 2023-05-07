@@ -7,7 +7,7 @@ from pandas import DataFrame
 from pandas.api.types import infer_dtype
 import pytest
 
-from ostatslib.actions import infer_response_dtype
+from ostatslib.actions.exploratory_actions import infer_response_dtype
 from ostatslib.states import State
 
 

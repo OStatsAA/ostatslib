@@ -8,7 +8,7 @@ from scipy.stats import norm
 import numpy as np
 import pytest
 
-from ostatslib.actions import time_series_auto_arima
+from ostatslib.actions.regression_models import time_series_auto_arima
 from ostatslib.states import State
 
 

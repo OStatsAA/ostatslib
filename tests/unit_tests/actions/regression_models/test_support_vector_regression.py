@@ -10,7 +10,7 @@ from scipy.stats import norm
 
 import pytest
 
-from ostatslib.actions import support_vector_regression
+from ostatslib.actions.regression_models import support_vector_regression
 from ostatslib.states import State
 
 

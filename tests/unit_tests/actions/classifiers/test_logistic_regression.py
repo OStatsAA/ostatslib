@@ -9,7 +9,7 @@ from datacooker.variables import ContinousVariable
 from scipy.stats import norm
 import pytest
 
-from ostatslib.actions import logistic_regression
+from ostatslib.actions.classifiers import logistic_regression
 from ostatslib.states import State
 
 

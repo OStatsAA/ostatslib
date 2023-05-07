@@ -9,7 +9,7 @@ from datacooker.variables import ContinousVariable
 from scipy.stats import norm
 import pytest
 
-from ostatslib.actions import support_vector_classification
+from ostatslib.actions.classifiers import support_vector_classification
 from ostatslib.states import State
 
 

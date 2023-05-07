@@ -8,7 +8,7 @@ from datacooker.recipes import Recipe
 from datacooker.variables import ContinousVariable
 import pytest
 
-from ostatslib.actions import is_response_discrete_check
+from ostatslib.actions.exploratory_actions import is_response_discrete_check
 from ostatslib.states import State
 
 

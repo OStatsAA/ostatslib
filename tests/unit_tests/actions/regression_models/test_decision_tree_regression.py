@@ -10,7 +10,7 @@ from scipy.stats import norm
 
 import pytest
 
-from ostatslib.actions import decision_tree_regression
+from ostatslib.actions.regression_models import decision_tree_regression
 from ostatslib.states import State
 
 

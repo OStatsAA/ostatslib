@@ -7,7 +7,7 @@ from pandas import DataFrame, date_range, timedelta_range
 import numpy as np
 import pytest
 
-from ostatslib.actions import time_convertible_variable_search
+from ostatslib.actions.exploratory_actions import time_convertible_variable_search
 from ostatslib.states import State
 
 

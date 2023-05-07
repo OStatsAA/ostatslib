@@ -8,7 +8,7 @@ from datacooker.recipes import Recipe
 from datacooker.variables import ContinousVariable
 import pytest
 
-from ostatslib.actions import get_log_rows_count
+from ostatslib.actions.exploratory_actions import get_log_rows_count
 from ostatslib.states import State
 
 

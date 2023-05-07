@@ -9,7 +9,7 @@ from datacooker.variables import ContinousVariable
 import numpy as np
 import pytest
 
-from ostatslib.actions import is_response_dichotomous_check
+from ostatslib.actions.exploratory_actions import is_response_dichotomous_check
 from ostatslib.states import State
 
 

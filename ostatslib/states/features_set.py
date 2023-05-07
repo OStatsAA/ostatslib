@@ -37,7 +37,7 @@ class FeaturesSet(ABC):
         Returns:
             dict: dictionary of features and their Gymnasium spaces
         """
-        return dict((field.name, field.metadata['gym_space']) for field in fields(self))
+        return {field.name: field.metadata['gym_space'] for field in fields(self)}
 
     def as_features_dict(self) -> dict:
         """
@@ -46,7 +46,7 @@ class FeaturesSet(ABC):
         Returns:
             dict: dictionary with features values
         """
-        return dict([(field.name, self.__get_feature_value(field)) for field in fields(self)])
+        return {field.name: self.__get_feature_value(field) for field in fields(self)}
 
     def __array__(self):
         return np.concatenate([self.__get_feature_value(field) for field in fields(self)])

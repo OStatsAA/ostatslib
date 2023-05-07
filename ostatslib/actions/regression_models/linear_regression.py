@@ -12,13 +12,14 @@ from statsmodels.api import OLS
 from statsmodels.stats.stattools import durbin_watson, jarque_bera
 from statsmodels.stats.diagnostic import het_breuschpagan, linear_harvey_collier
 from statsmodels.regression.linear_model import RegressionResults
-from ostatslib.actions import Action, ActionInfo, ActionResult
-from ostatslib.actions.utils import (calculate_score_reward,
-                                     reward_cap,
-                                     interpretable_model,
-                                     split_response_from_explanatory_variables,
-                                     update_state_score)
+
 from ostatslib.states import State
+from ..action import Action, ActionInfo, ActionResult
+from ..utils import (calculate_score_reward,
+                     reward_cap,
+                     interpretable_model,
+                     split_response_from_explanatory_variables,
+                     update_state_score)
 
 _ACTION_NAME = "Linear Regression"
 
@@ -45,7 +46,8 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
     response_var, explanatory_vars = split_response_from_explanatory_variables(
         state, data)
     try:
-        regression: RegressionResults = OLS(response_var, explanatory_vars).fit()
+        regression: RegressionResults = OLS(
+            response_var, explanatory_vars).fit()
     except ValueError:
         return state, -1, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_linear_regression,

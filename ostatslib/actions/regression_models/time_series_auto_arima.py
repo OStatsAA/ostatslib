@@ -8,12 +8,13 @@ from pandas import DataFrame, Series, to_datetime
 from pmdarima import auto_arima, ARIMA as AUTOARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAXResults
 import numpy as np
-from ostatslib.actions import Action, ActionInfo, ActionResult
-from ostatslib.actions.utils import (calculate_score_reward,
-                                     reward_cap,
-                                     interpretable_model,
-                                     split_response_from_explanatory_variables)
+
 from ostatslib.states import State
+from ..action import Action, ActionInfo, ActionResult
+from ..utils import (calculate_score_reward,
+                     reward_cap,
+                     interpretable_model,
+                     split_response_from_explanatory_variables)
 
 TRAINING_FRACTION: float = 0.9
 

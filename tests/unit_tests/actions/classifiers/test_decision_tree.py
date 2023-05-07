@@ -9,7 +9,7 @@ from datacooker.variables import ContinousVariable
 from scipy.stats import norm
 import pytest
 
-from ostatslib.actions import decision_tree
+from ostatslib.actions.classifiers import decision_tree
 from ostatslib.states import State
 
 

@@ -4,9 +4,10 @@ time_convertible_variable_search module
 
 from pandas import DataFrame
 from pandas.api.types import infer_dtype
-from ostatslib.actions import Action, ActionInfo, ActionResult
+
 from ostatslib.actions.utils import split_response_from_explanatory_variables
 from ostatslib.states import State
+from ..action import Action, ActionInfo, ActionResult
 
 _ACTION_NAME = "Time Convertible Variable Search"
 

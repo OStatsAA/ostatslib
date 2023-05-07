@@ -4,13 +4,14 @@ Logistic regression module
 
 from pandas import DataFrame
 from sklearn.linear_model import LogisticRegressionCV
-from ostatslib.actions import Action, ActionInfo, ActionResult
-from ostatslib.actions.utils import (calculate_score_reward,
-                                     reward_cap,
-                                     interpretable_model,
-                                     split_response_from_explanatory_variables,
-                                     update_state_score)
 from ostatslib.states import State
+
+from ..action import Action, ActionInfo, ActionResult
+from ..utils import (calculate_score_reward,
+                     reward_cap,
+                     interpretable_model,
+                     split_response_from_explanatory_variables,
+                     update_state_score)
 
 _ACTION_NAME = "Logistic Regression"
 
@@ -52,6 +53,7 @@ def _logistic_regression(state: State, data: DataFrame) -> ActionResult[Logistic
                                      action_fn=_logistic_regression,
                                      model=regression,
                                      raised_exception=False)
+
 
 def __is_valid_state(state: State) -> bool:
     if state.get("is_response_dichotomous") <= 0:

@@ -3,7 +3,6 @@ Open Stats Agent abstract module
 """
 
 from abc import ABC, abstractmethod
-from typing import Tuple
 from numpy import ndarray
 from pandas import DataFrame
 

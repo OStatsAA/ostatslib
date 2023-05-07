@@ -9,7 +9,9 @@ import numpy as np
 import numpy.typing as npt
 from pandas import DataFrame
 
-from ostatslib.actions.exploratory_actions import (
+from ostatslib.states import State
+
+from .exploratory_actions import (
     get_log_rows_count,
     infer_response_dtype,
     is_response_dichotomous_check,
@@ -18,25 +20,40 @@ from ostatslib.actions.exploratory_actions import (
     is_response_quantitative_check,
     time_convertible_variable_search
 )
-from ostatslib.actions.regression_models import (
+from .regression_models import (
     linear_regression,
     poisson_regression,
     support_vector_regression,
     decision_tree_regression,
     time_series_auto_arima
 )
-from ostatslib.actions.classifiers import (
+from .classifiers import (
     logistic_regression,
     support_vector_classification,
     decision_tree
 )
-from ostatslib.actions.clustering import (
+from .clustering import (
     k_means,
     dbscan
 )
-from ostatslib.actions.utils import as_binary_array
-from ostatslib.states import State
+
 from .action import Action, ActionInfo, ActionResult
+
+
+def _as_binary_array(number: int, array_length: int) -> np.ndarray:
+    """
+    Converts an integer to a np.array of binary digits
+
+    Args:
+        number (int): integer number to be converted
+
+    Returns:
+        array: numpy array of converted digits
+    """
+    binary_str = bin(number)[2:].zfill(array_length)
+
+    return np.array([int(digit) for digit in binary_str])
+
 
 
 MaskNDArray = npt.NDArray[np.int8]
@@ -45,61 +62,64 @@ ENCODING_LENGTH = 5
 # Encoding: 0 to 7
 EXPLORATORY_ACTIONS = {
     'get_log_rows_count': (get_log_rows_count,
-                           as_binary_array(0, ENCODING_LENGTH)),
+                           _as_binary_array(0, ENCODING_LENGTH)),
     'is_response_dichotomous_check': (is_response_dichotomous_check,
-                                      as_binary_array(1, ENCODING_LENGTH)),
+                                      _as_binary_array(1, ENCODING_LENGTH)),
     'is_response_discrete_check': (is_response_discrete_check,
-                                   as_binary_array(2, ENCODING_LENGTH)),
+                                   _as_binary_array(2, ENCODING_LENGTH)),
     'is_response_positive_values_only_check': (is_response_positive_values_only_check,
-                                               as_binary_array(3, ENCODING_LENGTH)),
+                                               _as_binary_array(3, ENCODING_LENGTH)),
     'is_response_quantitative_check': (is_response_quantitative_check,
-                                       as_binary_array(4, ENCODING_LENGTH)),
+                                       _as_binary_array(4, ENCODING_LENGTH)),
     'time_convertible_variable_search': (time_convertible_variable_search,
-                                         as_binary_array(5, ENCODING_LENGTH)),
+                                         _as_binary_array(5, ENCODING_LENGTH)),
     'infer_response_dtype': (infer_response_dtype,
-                             as_binary_array(6, ENCODING_LENGTH))
+                             _as_binary_array(6, ENCODING_LENGTH))
 }
 
 # Encoding: 8 to 15
 CLASSIFIERS = {
     'logistic_regression': (logistic_regression,
-                            as_binary_array(8, ENCODING_LENGTH)),
+                            _as_binary_array(8, ENCODING_LENGTH)),
     'support_vector_classification': (support_vector_classification,
-                                      as_binary_array(9, ENCODING_LENGTH)),
+                                      _as_binary_array(9, ENCODING_LENGTH)),
     'decision_tree': (decision_tree,
-                      as_binary_array(10, ENCODING_LENGTH))
+                      _as_binary_array(10, ENCODING_LENGTH))
 }
 
 # Encoding: 16 to 23
 REGRESSION_MODELS = {
     'linear_regression': (linear_regression,
-                          as_binary_array(16, ENCODING_LENGTH)),
+                          _as_binary_array(16, ENCODING_LENGTH)),
     'poisson_regression': (poisson_regression,
-                           as_binary_array(17, ENCODING_LENGTH)),
+                           _as_binary_array(17, ENCODING_LENGTH)),
     'support_vector_regression': (support_vector_regression,
-                                  as_binary_array(18, ENCODING_LENGTH)),
+                                  _as_binary_array(18, ENCODING_LENGTH)),
     'decision_tree_regression': (decision_tree_regression,
-                                 as_binary_array(19, ENCODING_LENGTH)),
+                                 _as_binary_array(19, ENCODING_LENGTH)),
     'time_series_auto_arima': (time_series_auto_arima,
-                               as_binary_array(20, ENCODING_LENGTH))
+                               _as_binary_array(20, ENCODING_LENGTH))
 }
 
 # Encoding: 24 to 31
 CLUSTERING = {
     'k_means': (k_means,
-                as_binary_array(24, ENCODING_LENGTH)),
+                _as_binary_array(24, ENCODING_LENGTH)),
     'dbscan': (dbscan,
-               as_binary_array(25, ENCODING_LENGTH))
+               _as_binary_array(25, ENCODING_LENGTH))
 }
 
 
 def _invalid_action_step(state: State, data: DataFrame) -> ActionResult[None]:
-    reward = float(-1)
-    info = ActionInfo(action_name='Invalid Action',
-                      action_fn=_invalid_action_step,
-                      model=None,
-                      raised_exception=False)
-    return state, reward, info
+    if state and data is not None:
+        reward = float(-1)
+        info = ActionInfo(action_name='Invalid Action',
+                        action_fn=_invalid_action_step,
+                        model=None,
+                        raised_exception=False)
+        return state, reward, info
+
+    raise ValueError("State and Data must be valid.")
 
 
 class ActionsSpace(MultiBinary):

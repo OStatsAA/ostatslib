@@ -6,13 +6,14 @@ from pandas import DataFrame
 from statsmodels.api import GLM, families
 from statsmodels.genmod.generalized_linear_model import GLMResults
 from statsmodels.tools.sm_exceptions import PerfectSeparationError
-from ostatslib.actions import Action, ActionInfo, ActionResult
-from ostatslib.actions.utils import (calculate_score_reward,
-                                     reward_cap,
-                                     interpretable_model,
-                                     split_response_from_explanatory_variables,
-                                     update_state_score)
+
 from ostatslib.states import State
+from ..action import Action, ActionInfo, ActionResult
+from ..utils import (calculate_score_reward,
+                     reward_cap,
+                     interpretable_model,
+                     split_response_from_explanatory_variables,
+                     update_state_score)
 
 _ACTION_NAME = "Poisson Regression"
 

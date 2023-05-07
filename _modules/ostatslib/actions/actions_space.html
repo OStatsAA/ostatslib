@@ -197,7 +197,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.html">ostatslib.actions.utils</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.as_binary_array.html">ostatslib.actions.utils.as_binary_array</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.calculate_score_reward.html">ostatslib.actions.utils.calculate_score_reward</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.explainability_rewards.html">ostatslib.actions.utils.explainability_rewards</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.reward_cap.html">ostatslib.actions.utils.reward_cap</a></li>
@@ -395,7 +394,9 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
 
-<span class="kn">from</span> <span class="nn">ostatslib.actions.exploratory_actions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
+
+<span class="kn">from</span> <span class="nn">.exploratory_actions</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">get_log_rows_count</span><span class="p">,</span>
     <span class="n">infer_response_dtype</span><span class="p">,</span>
     <span class="n">is_response_dichotomous_check</span><span class="p">,</span>
@@ -404,25 +405,40 @@ document.write(`
     <span class="n">is_response_quantitative_check</span><span class="p">,</span>
     <span class="n">time_convertible_variable_search</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ostatslib.actions.regression_models</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">.regression_models</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">linear_regression</span><span class="p">,</span>
     <span class="n">poisson_regression</span><span class="p">,</span>
     <span class="n">support_vector_regression</span><span class="p">,</span>
     <span class="n">decision_tree_regression</span><span class="p">,</span>
     <span class="n">time_series_auto_arima</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ostatslib.actions.classifiers</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">.classifiers</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">logistic_regression</span><span class="p">,</span>
     <span class="n">support_vector_classification</span><span class="p">,</span>
     <span class="n">decision_tree</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ostatslib.actions.clustering</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">.clustering</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">k_means</span><span class="p">,</span>
     <span class="n">dbscan</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ostatslib.actions.utils</span> <span class="kn">import</span> <span class="n">as_binary_array</span>
-<span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
+
 <span class="kn">from</span> <span class="nn">.action</span> <span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">,</span> <span class="n">ActionResult</span>
+
+
+<span class="k">def</span> <span class="nf">_as_binary_array</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">array_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts an integer to a np.array of binary digits</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        number (int): integer number to be converted</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array: numpy array of converted digits</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">binary_str</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">number</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">array_length</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">digit</span><span class="p">)</span> <span class="k">for</span> <span class="n">digit</span> <span class="ow">in</span> <span class="n">binary_str</span><span class="p">])</span>
+
 
 
 <span class="n">MaskNDArray</span> <span class="o">=</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">]</span>
@@ -431,61 +447,64 @@ document.write(`
 <span class="c1"># Encoding: 0 to 7</span>
 <span class="n">EXPLORATORY_ACTIONS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;get_log_rows_count&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">get_log_rows_count</span><span class="p">,</span>
-                           <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                           <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;is_response_dichotomous_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_dichotomous_check</span><span class="p">,</span>
-                                      <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                      <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;is_response_discrete_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_discrete_check</span><span class="p">,</span>
-                                   <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                   <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;is_response_positive_values_only_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_positive_values_only_check</span><span class="p">,</span>
-                                               <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                               <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;is_response_quantitative_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_quantitative_check</span><span class="p">,</span>
-                                       <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                       <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;time_convertible_variable_search&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">time_convertible_variable_search</span><span class="p">,</span>
-                                         <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                         <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;infer_response_dtype&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">infer_response_dtype</span><span class="p">,</span>
-                             <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+                             <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># Encoding: 8 to 15</span>
 <span class="n">CLASSIFIERS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;logistic_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">logistic_regression</span><span class="p">,</span>
-                            <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                            <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;support_vector_classification&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">support_vector_classification</span><span class="p">,</span>
-                                      <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                      <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;decision_tree&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">decision_tree</span><span class="p">,</span>
-                      <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+                      <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># Encoding: 16 to 23</span>
 <span class="n">REGRESSION_MODELS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;linear_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">linear_regression</span><span class="p">,</span>
-                          <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                          <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;poisson_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">poisson_regression</span><span class="p">,</span>
-                           <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                           <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;support_vector_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">support_vector_regression</span><span class="p">,</span>
-                                  <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                  <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;decision_tree_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">decision_tree_regression</span><span class="p">,</span>
-                                 <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                                 <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;time_series_auto_arima&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">time_series_auto_arima</span><span class="p">,</span>
-                               <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+                               <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 <span class="c1"># Encoding: 24 to 31</span>
 <span class="n">CLUSTERING</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;k_means&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">k_means</span><span class="p">,</span>
-                <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
+                <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">)),</span>
     <span class="s1">&#39;dbscan&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">dbscan</span><span class="p">,</span>
-               <span class="n">as_binary_array</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+               <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
 <span class="p">}</span>
 
 
 <span class="k">def</span> <span class="nf">_invalid_action_step</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
-    <span class="n">reward</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">info</span> <span class="o">=</span> <span class="n">ActionInfo</span><span class="p">(</span><span class="n">action_name</span><span class="o">=</span><span class="s1">&#39;Invalid Action&#39;</span><span class="p">,</span>
-                      <span class="n">action_fn</span><span class="o">=</span><span class="n">_invalid_action_step</span><span class="p">,</span>
-                      <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                      <span class="n">raised_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">and</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">ActionInfo</span><span class="p">(</span><span class="n">action_name</span><span class="o">=</span><span class="s1">&#39;Invalid Action&#39;</span><span class="p">,</span>
+                        <span class="n">action_fn</span><span class="o">=</span><span class="n">_invalid_action_step</span><span class="p">,</span>
+                        <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">raised_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;State and Data must be valid.&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ActionsSpace"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace">[docs]</a><span class="k">class</span> <span class="nc">ActionsSpace</span><span class="p">(</span><span class="n">MultiBinary</span><span class="p">):</span>

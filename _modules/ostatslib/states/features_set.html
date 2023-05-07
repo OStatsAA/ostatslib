@@ -197,7 +197,6 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.html">ostatslib.actions.utils</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.as_binary_array.html">ostatslib.actions.utils.as_binary_array</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.calculate_score_reward.html">ostatslib.actions.utils.calculate_score_reward</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.explainability_rewards.html">ostatslib.actions.utils.explainability_rewards</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api/_autosummary/ostatslib.actions.utils.reward_cap.html">ostatslib.actions.utils.reward_cap</a></li>
@@ -423,7 +422,7 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: dictionary of features and their Gymnasium spaces</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;gym_space&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">field</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;gym_space&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">)}</span></div>
 
 <div class="viewcode-block" id="FeaturesSet.as_features_dict"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.features_set.html#ostatslib.states.features_set.FeaturesSet.as_features_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_features_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -432,7 +431,7 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: dictionary with features values</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_feature_value</span><span class="p">(</span><span class="n">field</span><span class="p">))</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">)])</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_feature_value</span><span class="p">(</span><span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">)}</span></div>
 
     <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">__get_feature_value</span><span class="p">(</span><span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">)])</span>

@@ -2449,6 +2449,26 @@ statsmodels = ">=0.13.2"
 urllib3 = "*"
 
 [[package]]
+name = "pmlb"
+version = "1.0.1.post3"
+description = "A Python wrapper for the Penn Machine Learning Benchmark data repository."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pmlb-1.0.1.post3-py3-none-any.whl", hash = "sha256:bca36d3cc749978d986c86728387ac35785e41c3e22d5ae508b665903b3360aa"},
+    {file = "pmlb-1.0.1.post3.tar.gz", hash = "sha256:ff1195abf0b54f2e06ea8f30c95a746e6561c5d5e01ef83950158cb7ff58a315"},
+]
+
+[package.dependencies]
+pandas = ">=1.0.5"
+pyyaml = ">=5.3.1"
+requests = ">=2.24.0"
+
+[package.extras]
+dev = ["matplotlib", "nose", "numpy", "pandas-profiling", "parameterized", "scipy", "seaborn", "tabulate"]
+
+[[package]]
 name = "prompt-toolkit"
 version = "3.0.38"
 description = "Library for building powerful interactive command lines in Python"
@@ -2847,7 +2867,7 @@ files = [
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -4135,4 +4155,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "f4984e55efc10f20496bb1f3db8cc49b766abe7110605bfc0755ec3dcc7bfa89"
+content-hash = "2d0bc27d7980936f2806f45e1d4cd58dcbd29a5578e6e7bc400334ea9c73cf80"

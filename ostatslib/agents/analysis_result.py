@@ -21,9 +21,15 @@ class AnalysisResult:
     steps: list[tuple[float, ActionInfo]]
     done: bool
     timestamp: datetime = field(init=False)
+    steps_count: int = field(init=False)
+    actions_names_list: list[str] = field(init=False)
 
     def __post_init__(self):
         object.__setattr__(self, 'timestamp', datetime.now())
+        object.__setattr__(self, 'steps_count', len(self.steps))
+        object.__setattr__(self,
+                           'actions_names_list',
+                           [info['action_name'] for _, info in self.steps])
 
     def summary(self) -> str:
         """
@@ -52,7 +58,8 @@ class AnalysisResult:
                 i+1,
                 str(info['action_name']),
                 reward,
-                tabulate(info['state_delta'].list_known_features(), tablefmt="plain")
+                tabulate(info['state_delta'].list_known_features(),
+                         tablefmt="plain")
             ))
 
         return tabulate(table_rows, steps_headers)

@@ -27,7 +27,7 @@ def test_analysis_summary() -> None:
     steps = [
         (
             0.5,
-            ActionInfo(action_name='Teste',
+            ActionInfo(action_name='Test',
                        action_fn=__action_fn,
                        model=None,
                        raised_exception=False,
@@ -35,7 +35,7 @@ def test_analysis_summary() -> None:
         ),
         (
             0.9,
-            ActionInfo(action_name='Teste',
+            ActionInfo(action_name='Test',
                        action_fn=__action_fn,
                        model=None,
                        raised_exception=False,
@@ -49,3 +49,5 @@ def test_analysis_summary() -> None:
     )
 
     assert analysis.summary()
+    assert analysis.steps_count == len(steps)
+    assert analysis.actions_names_list == ['Test', 'Test']

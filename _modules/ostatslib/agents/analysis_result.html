@@ -406,9 +406,15 @@ document.write(`
     <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">]]</span>
     <span class="n">done</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">steps_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">actions_names_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;steps_count&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">))</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                           <span class="s1">&#39;actions_names_list&#39;</span><span class="p">,</span>
+                           <span class="p">[</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;action_name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">])</span>
 
 <div class="viewcode-block" id="AnalysisResult.summary"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.analysis_result.html#ostatslib.agents.analysis_result.AnalysisResult.summary">[docs]</a>    <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -437,7 +443,8 @@ document.write(`
                 <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
                 <span class="nb">str</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;action_name&#39;</span><span class="p">]),</span>
                 <span class="n">reward</span><span class="p">,</span>
-                <span class="n">tabulate</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;state_delta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">list_known_features</span><span class="p">(),</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;plain&quot;</span><span class="p">)</span>
+                <span class="n">tabulate</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;state_delta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">list_known_features</span><span class="p">(),</span>
+                         <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;plain&quot;</span><span class="p">)</span>
             <span class="p">))</span>
 
         <span class="k">return</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">table_rows</span><span class="p">,</span> <span class="n">steps_headers</span><span class="p">)</span></div>

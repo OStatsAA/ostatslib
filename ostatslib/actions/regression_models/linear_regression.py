@@ -6,6 +6,7 @@ https://www.kirenz.com/post/2021-11-14-linear-regression-diagnostics-in-python/l
 """
 
 from math import nan
+import operator
 import numpy as np
 from pandas import DataFrame
 from statsmodels.api import OLS
@@ -19,11 +20,14 @@ from ..utils import (calculate_score_reward,
                      reward_cap,
                      interpretable_model,
                      split_response_from_explanatory_variables,
-                     update_state_score)
+                     update_state_score,
+                     validate_state)
 
 _ACTION_NAME = "Linear Regression"
+_VALIDATIONS = [('is_response_quantitative', operator.gt, 0)]
 
 
+@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @interpretable_model
 def _linear_regression(state: State, data: DataFrame) -> ActionResult[RegressionResults]:
@@ -37,12 +41,6 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
     Returns:
         ActionResult[RegressionResults]: action result
     """
-    if not __is_valid_state(state):
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_linear_regression,
-                                     model=None,
-                                     raised_exception=False)
-
     response_var, explanatory_vars = split_response_from_explanatory_variables(
         state, data)
     try:
@@ -60,13 +58,6 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
                                      action_fn=_linear_regression,
                                      model=regression,
                                      raised_exception=False)
-
-
-def __is_valid_state(state: State) -> bool:
-    if state.get("is_response_quantitative") <= 0:
-        return False
-
-    return True
 
 
 def __calculate_reward(state: State, regression: RegressionResults) -> float:

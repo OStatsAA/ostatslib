@@ -2,6 +2,7 @@
 Decision Tree module
 """
 
+import operator
 from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import cross_val_score
@@ -13,11 +14,15 @@ from ..utils import (calculate_score_reward,
                      reward_cap,
                      comprehensible_model,
                      split_response_from_explanatory_variables,
-                     update_state_score)
+                     update_state_score,
+                     validate_state)
 
 _ACTION_NAME = "Decision Tree"
+_VALIDATIONS = [('is_response_quantitative', operator.lt, 0),
+                ('response_variable_label', operator.truth, None)]
 
 
+@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @comprehensible_model
 def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeClassifier]:
@@ -31,12 +36,6 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
     Returns:
         ActionResult[DecisionTreeClassifier]: action result
     """
-    if not __is_valid_state(state):
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_decision_tree,
-                                     model=None,
-                                     raised_exception=False)
-
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier = DecisionTreeClassifier()
 
@@ -56,14 +55,6 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
                                      action_fn=_decision_tree,
                                      model=model,
                                      raised_exception=False)
-
-
-def __is_valid_state(state: State) -> bool:
-    if state.get("is_response_quantitative") > 0 or\
-            not bool(state.get("response_variable_label")):
-        return False
-
-    return True
 
 
 decision_tree: Action[DecisionTreeClassifier] = _decision_tree

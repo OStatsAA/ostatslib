@@ -2,16 +2,19 @@
 infer_response_dtype module
 """
 
+import operator
 from pandas import DataFrame, Series
 from pandas.api.types import infer_dtype
 
 from ostatslib.states import State
 from ._get_exploratory_reward import get_exploratory_reward
 from ..action import Action, ActionInfo, ActionResult
+from ..utils import validate_state
 
 _ACTION_NAME = "Infer Response DType"
+_VALIDATIONS = [('response_variable_label', operator.truth, None)]
 
-
+@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 def _infer_response_dtype(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Infer response dtype
@@ -25,12 +28,6 @@ def _infer_response_dtype(state: State, data: DataFrame) -> ActionResult[None]:
     """
     state_copy: State = state.copy()
     response_var_label: str = state.get("response_variable_label")
-
-    if not bool(response_var_label) or response_var_label is None:
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_infer_response_dtype,
-                                     model=None,
-                                     raised_exception=False)
 
     try:
         response: Series = data[response_var_label]

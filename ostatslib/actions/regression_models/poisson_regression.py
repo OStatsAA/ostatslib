@@ -2,6 +2,7 @@
 Poisson regression module
 """
 
+import operator
 from pandas import DataFrame
 from statsmodels.api import GLM, families
 from statsmodels.genmod.generalized_linear_model import GLMResults
@@ -13,11 +14,15 @@ from ..utils import (calculate_score_reward,
                      reward_cap,
                      interpretable_model,
                      split_response_from_explanatory_variables,
-                     update_state_score)
+                     update_state_score,
+                     validate_state)
 
 _ACTION_NAME = "Poisson Regression"
+_VALIDATIONS = [('is_response_positive_values_only', operator.gt, 0),
+                ('is_response_discrete', operator.gt, 0)]
 
 
+@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @interpretable_model
 def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResults]:
@@ -31,12 +36,6 @@ def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResult
     Returns:
         ActionResult[GLMResults]: action result
     """
-    if not __is_valid_state(state):
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_poisson_regression,
-                                     model=None,
-                                     raised_exception=False)
-
     response_var, explanatory_vars = split_response_from_explanatory_variables(state,
                                                                                data)
     try:
@@ -45,17 +44,11 @@ def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResult
                                      explanatory_vars,
                                      poisson_family).fit()
     except ValueError:
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_poisson_regression,
-                                     model=None,
-                                     raised_exception=True)
+        return __raised_exception_action_result(state)
     except PerfectSeparationError:
         state.set('does_poisson_regression_raises_perfect_separation_error', 1)
         state.set('score', -1)
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_poisson_regression,
-                                     model=None,
-                                     raised_exception=True)
+        return __raised_exception_action_result(state)
 
     state.set('does_poisson_regression_raises_perfect_separation_error', -1)
     reward = __calculate_reward(regression)
@@ -66,20 +59,17 @@ def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResult
                                      raised_exception=False)
 
 
-def __is_valid_state(state: State) -> bool:
-    if state.get("is_response_positive_values_only") <= 0:
-        return False
-
-    if state.get("is_response_discrete") <= 0:
-        return False
-
-    return True
-
-
 def __calculate_reward(regression: GLMResults) -> float:
     reward: float = 0
     reward += calculate_score_reward(regression.pseudo_rsquared())
     return reward
+
+
+def __raised_exception_action_result(state):
+    return state, -1, ActionInfo(action_name=_ACTION_NAME,
+                                 action_fn=_poisson_regression,
+                                 model=None,
+                                 raised_exception=True)
 
 
 poisson_regression: Action[GLMResults] = _poisson_regression

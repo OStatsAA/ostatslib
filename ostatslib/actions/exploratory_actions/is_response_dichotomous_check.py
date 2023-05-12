@@ -2,6 +2,7 @@
 is_response_dichotomous_check module
 """
 
+import operator
 from pandas import DataFrame, Series
 from pandas.api.types import infer_dtype
 import numpy as np
@@ -9,10 +10,12 @@ import numpy as np
 from ostatslib.states import State
 from ._get_exploratory_reward import get_exploratory_reward
 from ..action import Action, ActionInfo, ActionResult
+from ..utils import validate_state
 
 _ACTION_NAME = "Is Response Dichotomous Check"
+_VALIDATIONS = [('response_variable_label', operator.truth, None)]
 
-
+@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 def _is_response_dichotomous_check(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Check if response variable is dichotomous

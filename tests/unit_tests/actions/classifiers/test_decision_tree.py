@@ -1,6 +1,6 @@
 # pylint: disable=redefined-outer-name
 """
-Decison tree action testing module
+Decision tree action testing module
 """
 
 from pandas import DataFrame
@@ -24,7 +24,7 @@ def dummy_binary_response_data() -> DataFrame:
 
 
 @pytest.fixture
-def dummy_continous_response_data() -> DataFrame:
+def dummy_continuous_response_data() -> DataFrame:
     """
     Generates dummy dataset with non binary response variable
     """
@@ -34,23 +34,24 @@ def dummy_continous_response_data() -> DataFrame:
     return recipe.cook()
 
 
-def test_binary_response_data_yields_positve_reward(dummy_binary_response_data) -> None:
+def test_binary_response_data_yields_positive_reward(dummy_binary_response_data) -> None:
     """
-    Action should return a positve reward when applied to a linear datatset
+    Action should return a positive reward when applied to a linear dataset
     """
     state = State()
+    state.set("is_response_quantitative", -1)
     state.set("is_response_dichotomous", 1)
     reward = decision_tree(state, dummy_binary_response_data)[1]
     assert reward >= 0.5
 
 
-def test_continous_response_data_yields_negative_reward(
-        dummy_continous_response_data: DataFrame) -> None:
+def test_continuous_response_data_yields_negative_reward(
+        dummy_continuous_response_data: DataFrame) -> None:
     """
-    Action should return a positve reward when applied to a linear datatset
+    Action should return a positive reward when applied to a linear dataset
     """
     state = State()
     state.set("is_response_quantitative", 1)
     state.set("is_response_dichotomous", -1)
-    reward = decision_tree(state, dummy_continous_response_data)[1]
+    reward = decision_tree(state, dummy_continuous_response_data)[1]
     assert reward <= -0.5

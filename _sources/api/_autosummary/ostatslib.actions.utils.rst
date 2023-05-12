@@ -32,4 +32,5 @@ ostatslib.actions.utils
    ostatslib.actions.utils.reward_cap
    ostatslib.actions.utils.split_response_from_explanatory_variables
    ostatslib.actions.utils.update_state_score
+   ostatslib.actions.utils.validate_state
 

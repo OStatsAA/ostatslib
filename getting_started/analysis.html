@@ -205,6 +205,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.reward_cap.html">ostatslib.actions.utils.reward_cap</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.split_response_from_explanatory_variables.html">ostatslib.actions.utils.split_response_from_explanatory_variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.update_state_score.html">ostatslib.actions.utils.update_state_score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/_autosummary/ostatslib.actions.utils.validate_state.html">ostatslib.actions.utils.validate_state</a></li>
 </ul>
 </li>
 </ul>
@@ -461,19 +462,35 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-05-11 23:40:35.986466
-Final status is Complete
-Initial State known features:
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># loading trained agent</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="s1">&#39;../trained_ppo_model.zip&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># generating data</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">()</span>
 
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  -----------------------------------
-      1  Is Response Positive Values Only Check       0.5  is_response_positive_values_only  1
-      2  Time Convertible Variable Search             0.5  time_convertible_variable
-      3  Is Response Discrete Check                   0.5  is_response_discrete  1
-      4  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
-      5  Get Log Rows Count                           0.5  log_rows_count  0.166667
-      6  Logistic Regression                          1    score  0.96
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:29,</span> in <span class="ni">PPOAgent.__init__</span><span class="nt">(self, path, training_envs_count)</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">29</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:53,</span> in <span class="ni">PPOAgent.__init__model</span><span class="nt">(self, path, training_envs_count)</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="n">environments</span> <span class="o">=</span> <span class="n">make_vec_env</span><span class="p">(</span><span class="n">GymEnvironment</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span>     <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span> <span class="n">environments</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">53</span> <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:706,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>         <span class="sa">f</span><span class="s2">&quot;The specified policy kwargs do not equal the stored policy kwargs.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="sa">f</span><span class="s2">&quot;Stored kwargs: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;policy_kwargs&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, specified kwargs: </span><span class="si">{</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;policy_kwargs&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="k">if</span> <span class="s2">&quot;observation_space&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> <span class="s2">&quot;action_space&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">706</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;The observation_space and action_space were not given, can&#39;t verify new environments&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span> <span class="c1"># Gym -&gt; Gymnasium space conversion</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;observation_space&quot;</span><span class="p">,</span> <span class="s2">&quot;action_space&quot;</span><span class="p">}:</span>
+
+<span class="ne">KeyError</span>: &quot;The observation_space and action_space were not given, can&#39;t verify new environments&quot;
 </pre></div>
 </div>
 </div>
@@ -496,7 +513,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-05-11 23:40:36.108344
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-27 00:19:24.760943
 Final status is Complete
 Initial State known features:
 
@@ -508,8 +525,8 @@ Steps:
       3  Is Response Dichotomous Check                0.5  is_response_dichotomous  -1
       4  Is Response Quantitative Check               0.5  is_response_quantitative  1
       5  Get Log Rows Count                           0.5  log_rows_count  0.166667
-      6  Linear Regression                            1    score                                                        1
-                                                           are_linear_model_regression_residuals_correlated            -1
+      6  Linear Regression                            0.6  score                                                        1
+                                                           are_linear_model_regression_residuals_correlated             1
                                                            are_linear_model_regression_residuals_heteroscedastic       -1
                                                            are_linear_model_regression_residuals_normally_distributed   1
                                                            is_linear_model_regression_recursive_residuals_mean_zero     1
@@ -712,7 +729,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-05-11 23:40:36.747819
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-03-27 00:19:26.614524
 Final status is Complete
 Initial State known features:
 response_variable_label  target

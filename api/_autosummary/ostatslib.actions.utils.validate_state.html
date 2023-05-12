@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>ostatslib.actions.regression_models.time_series_auto_arima &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.actions.utils.validate_state &#8212; Open Statistics Analysis Agent</title>
   
   
   
@@ -63,11 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ostatslib.actions.regression_models.time_series_auto_arima';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ostatslib.actions.utils.validate_state';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ostatslib.actions.utils" href="ostatslib.actions.utils.html" />
-    <link rel="prev" title="ostatslib.actions.regression_models.support_vector_regression" href="ostatslib.actions.regression_models.support_vector_regression.html" />
+    <link rel="next" title="ostatslib.agents" href="ostatslib.agents.html" />
+    <link rel="prev" title="ostatslib.actions.utils.update_state_score" href="ostatslib.actions.utils.update_state_score.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -191,21 +191,21 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertible_variable_search.html">ostatslib.actions.exploratory_actions.time_convertible_variable_search</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current active has-children"><a class="reference internal" href="ostatslib.actions.regression_models.html">ostatslib.actions.regression_models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.regression_models.html">ostatslib.actions.regression_models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.decision_tree_regression.html">ostatslib.actions.regression_models.decision_tree_regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.linear_regression.html">ostatslib.actions.regression_models.linear_regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.poisson_regression.html">ostatslib.actions.regression_models.poisson_regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.support_vector_regression.html">ostatslib.actions.regression_models.support_vector_regression</a></li>
-<li class="toctree-l4 current active"><a class="current reference internal" href="#">ostatslib.actions.regression_models.time_series_auto_arima</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.time_series_auto_arima.html">ostatslib.actions.regression_models.time_series_auto_arima</a></li>
 </ul>
 </li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.utils.html">ostatslib.actions.utils</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 current active has-children"><a class="reference internal" href="ostatslib.actions.utils.html">ostatslib.actions.utils</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.calculate_score_reward.html">ostatslib.actions.utils.calculate_score_reward</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.explainability_rewards.html">ostatslib.actions.utils.explainability_rewards</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.reward_cap.html">ostatslib.actions.utils.reward_cap</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.split_response_from_explanatory_variables.html">ostatslib.actions.utils.split_response_from_explanatory_variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.update_state_score.html">ostatslib.actions.utils.update_state_score</a></li>
-<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.validate_state.html">ostatslib.actions.utils.validate_state</a></li>
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">ostatslib.actions.utils.validate_state</a></li>
 </ul>
 </li>
 </ul>
@@ -310,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.actions.regression_models.time_series_auto_arima.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2Fapi/_autosummary/ostatslib.actions.utils.validate_state.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -340,7 +340,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/api/_autosummary/ostatslib.actions.regression_models.time_series_auto_arima.rst" target="_blank"
+      <li><a href="../../_sources/api/_autosummary/ostatslib.actions.utils.validate_state.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -420,7 +420,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ostatslib.actions.regression_models.time_series_auto_arima</h1>
+    <h1>ostatslib.actions.utils.validate_state</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -434,12 +434,21 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="ostatslib-actions-regression-models-time-series-auto-arima">
-<h1>ostatslib.actions.regression_models.time_series_auto_arima<a class="headerlink" href="#ostatslib-actions-regression-models-time-series-auto-arima" title="Permalink to this heading">#</a></h1>
+  <section id="ostatslib-actions-utils-validate-state">
+<h1>ostatslib.actions.utils.validate_state<a class="headerlink" href="#ostatslib-actions-utils-validate-state" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="ostatslib.actions.regression_models.time_series_auto_arima">
-<span class="sig-name descname"><span class="pre">time_series_auto_arima</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ostatslib.actions.regression_models.time_series_auto_arima" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="ostatslib.actions.utils.validate_state">
+<span class="sig-name descname"><span class="pre">validate_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validator_fns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/actions/utils/validate_state.html#validate_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.utils.validate_state" title="Permalink to this definition">#</a></dt>
+<dd><p>Validate state before executing action</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action_name</strong> (<em>str</em>) – action name</p></li>
+<li><p><strong>validator_fns</strong> (<em>list</em><em>[</em><em>tuple</em><em>[</em><em>str</em><em>, </em><em>Callable</em><em>[</em><em>...</em><em>, </em><em>bool</em><em>]</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – list of validation tuples</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 
@@ -475,20 +484,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ostatslib.actions.regression_models.support_vector_regression.html"
+       href="ostatslib.actions.utils.update_state_score.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ostatslib.actions.regression_models.support_vector_regression</p>
+        <p class="prev-next-title">ostatslib.actions.utils.update_state_score</p>
       </div>
     </a>
     <a class="right-next"
-       href="ostatslib.actions.utils.html"
+       href="ostatslib.agents.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ostatslib.actions.utils</p>
+        <p class="prev-next-title">ostatslib.agents</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

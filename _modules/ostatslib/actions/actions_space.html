@@ -394,6 +394,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">ostatslib</span> <span class="kn">import</span> <span class="n">config</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 
@@ -439,7 +440,6 @@ document.write(`
     <span class="n">binary_str</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">number</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">array_length</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">digit</span><span class="p">)</span> <span class="k">for</span> <span class="n">digit</span> <span class="ow">in</span> <span class="n">binary_str</span><span class="p">])</span>
-
 
 
 <span class="n">MaskNDArray</span> <span class="o">=</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">]</span>
@@ -498,11 +498,11 @@ document.write(`
 
 <span class="k">def</span> <span class="nf">_invalid_action_step</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
     <span class="k">if</span> <span class="n">state</span> <span class="ow">and</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">reward</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">MIN_REWARD</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">ActionInfo</span><span class="p">(</span><span class="n">action_name</span><span class="o">=</span><span class="s1">&#39;Invalid Action&#39;</span><span class="p">,</span>
-                        <span class="n">action_fn</span><span class="o">=</span><span class="n">_invalid_action_step</span><span class="p">,</span>
-                        <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                        <span class="n">raised_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                          <span class="n">action_fn</span><span class="o">=</span><span class="n">_invalid_action_step</span><span class="p">,</span>
+                          <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">raised_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span>
 
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;State and Data must be valid.&quot;</span><span class="p">)</span>

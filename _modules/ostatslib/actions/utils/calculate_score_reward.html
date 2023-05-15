@@ -389,9 +389,7 @@ document.write(`
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">math</span>
-
-
-<span class="n">MIN_SCORE_VALUE</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="kn">from</span> <span class="nn">ostatslib</span> <span class="kn">import</span> <span class="n">config</span>
 
 
 <div class="viewcode-block" id="calculate_score_reward"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.utils.calculate_score_reward.html#ostatslib.actions.utils.calculate_score_reward">[docs]</a><span class="k">def</span> <span class="nf">calculate_score_reward</span><span class="p">(</span><span class="n">score</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -407,7 +405,7 @@ document.write(`
     <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="n">MIN_SCORE_VALUE</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="n">config</span><span class="o">.</span><span class="n">MIN_ACCEPTED_SCORE</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">score</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">score</span></div>

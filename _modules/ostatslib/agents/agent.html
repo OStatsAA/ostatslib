@@ -391,6 +391,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">ostatslib</span> <span class="kn">import</span> <span class="n">config</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.agents.analysis_result</span> <span class="kn">import</span> <span class="n">AnalysisResult</span>
 <span class="kn">from</span> <span class="nn">ostatslib.environments</span> <span class="kn">import</span> <span class="n">GymEnvironment</span>
@@ -435,14 +436,14 @@ document.write(`
 <div class="viewcode-block" id="Agent.analyze"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.analyze">[docs]</a>    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                 <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
                 <span class="n">initial_state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">State</span><span class="p">(),</span>
-                <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalysisResult</span><span class="p">:</span>
+                <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">MAX_STEPS</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalysisResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Analyzes a dataset</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            data (DataFrame): dataset</span>
 <span class="sd">            initial_state (State, optional): initial state. Defaults to State().</span>
-<span class="sd">            max_steps (int, optional): maximum number of steps. Defaults to 20.</span>
+<span class="sd">            max_steps (int, optional): maximum number of steps.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            AnalysisResult: analysis result</span>

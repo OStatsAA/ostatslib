@@ -7,6 +7,7 @@ from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
+from ostatslib import config
 from ostatslib.states import State
 
 from ..action import Action, ActionInfo, ActionResult
@@ -42,10 +43,10 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
     try:
         scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
     except ValueError:
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_decision_tree,
-                                     model=None,
-                                     raised_exception=True)
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_decision_tree,
+                                                    model=None,
+                                                    raised_exception=True)
 
     score: float = scores.mean() - scores.std()
     reward: float = calculate_score_reward(score)

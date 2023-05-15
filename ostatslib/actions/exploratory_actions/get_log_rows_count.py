@@ -4,6 +4,7 @@ get_log_rows_count module
 
 import numpy as np
 from pandas import DataFrame
+from ostatslib import config
 from ostatslib.states import State
 
 from ..action import Action, ActionInfo, ActionResult
@@ -47,9 +48,9 @@ def __calculate_log_rows_count(data: DataFrame) -> float:
 
 def __calculate_reward(state: State, log_rows_count: float) -> float:
     if state.get("log_rows_count") == log_rows_count:
-        return -1
+        return config.MIN_REWARD
 
-    return 0.5
+    return config.MAX_EXPLORATORY_REWARD
 
 
 def __update_state(state: State, log_rows_count: float) -> State:

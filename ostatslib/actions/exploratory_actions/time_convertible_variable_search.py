@@ -5,6 +5,7 @@ time_convertible_variable_search module
 from pandas import DataFrame
 from pandas.api.types import infer_dtype
 
+from ostatslib import config
 from ostatslib.actions.utils import split_response_from_explanatory_variables
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
@@ -71,12 +72,12 @@ def __select_best_time_related_variable(time_related_variables) -> str:
 
 def __calculate_reward(state: State, date_convertible_variable: str | None) -> float:
     if state.get("time_convertible_variable") == date_convertible_variable:
-        return -1
+        return config.MIN_REWARD
 
     if date_convertible_variable == "":
-        return 0.25
+        return config.MAX_EXPLORATORY_REWARD * 0.5
 
-    return 0.5
+    return config.MAX_EXPLORATORY_REWARD
 
 
 def __update_state(state: State, date_convertible_variable: str | None) -> State:

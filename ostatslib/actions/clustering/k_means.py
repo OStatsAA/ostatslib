@@ -6,6 +6,7 @@ from pandas import DataFrame
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
+from ostatslib import config
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
 from ..utils import (calculate_score_reward,
@@ -28,10 +29,10 @@ def _k_means(state: State, data: DataFrame) -> ActionResult[KMeans]:
         ActionResult[KMeans]: action result
     """
     if not __is_valid_state(state):
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_k_means,
-                                     model=None,
-                                     raised_exception=False)
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_k_means,
+                                                    model=None,
+                                                    raised_exception=False)
 
     clusters_count: int = state.get("clusters_count")
     kmeans = KMeans(n_clusters=clusters_count)

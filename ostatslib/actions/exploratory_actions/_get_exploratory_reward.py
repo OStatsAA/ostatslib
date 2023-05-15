@@ -2,11 +2,13 @@
 Get exploratory reward module
 """
 
+from ostatslib import config
 from ostatslib.states import State
 
 
 def get_exploratory_reward(state: State, state_copy: State) -> float:
-    """Get exploratory action reward default method.
+    """
+    Get exploratory action reward default method.
     If state is unchanged, action should penalized.
 
     Args:
@@ -16,4 +18,7 @@ def get_exploratory_reward(state: State, state_copy: State) -> float:
     Returns:
         float: reward
     """
-    return -1 if state == state_copy else 0.5
+    if state == state_copy:
+        return config.MIN_REWARD
+
+    return config.MAX_EXPLORATORY_REWARD

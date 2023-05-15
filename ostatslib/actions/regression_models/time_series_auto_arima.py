@@ -8,6 +8,7 @@ from pandas import DataFrame, Series, to_datetime
 from pmdarima import auto_arima, ARIMA as AUTOARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAXResults
 import numpy as np
+from ostatslib import config
 
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
@@ -36,10 +37,10 @@ def _time_series_auto_arima(state: State,
         ActionResult[SARIMAXResults]: action result
     """
     if not __is_valid_state(state):
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_time_series_auto_arima,
-                                     model=None,
-                                     raised_exception=False)
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_time_series_auto_arima,
+                                                    model=None,
+                                                    raised_exception=False)
 
     y_data, x_data = __build_time_index_dataframes_for_y_and_x(state, data)
     data_length = len(y_data)

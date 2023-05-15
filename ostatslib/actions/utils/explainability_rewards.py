@@ -3,14 +3,11 @@ explainability rewards decorators module
 """
 
 from functools import wraps
-from typing import TypeVar
 
 from pandas import DataFrame
 
 from ostatslib.states import State
 from ..action import Action, TModel
-
-T = TypeVar("T")
 
 OPAQUE_PENALTY = -.1
 INTERPRETABLE_REWARD = .1

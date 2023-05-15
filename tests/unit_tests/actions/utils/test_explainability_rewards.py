@@ -8,17 +8,16 @@ from random import uniform
 from pandas import DataFrame
 from ostatslib.actions import ActionInfo
 
+from ostatslib import config
 from ostatslib.actions.utils import (comprehensible_model,
                                      interpretable_model,
-                                     opaque_model,
-                                     REWARD_LOWER_LIMIT,
-                                     REWARD_UPPER_LIMIT)
+                                     opaque_model)
 from ostatslib.actions.utils.explainability_rewards import (COMPREHENSIBLE_REWARD,
                                                             INTERPRETABLE_REWARD,
                                                             OPAQUE_PENALTY)
 from ostatslib.states import State
 
-random_reward = uniform(REWARD_LOWER_LIMIT, REWARD_UPPER_LIMIT)
+random_reward = uniform(config.MIN_REWARD, config.MAX_REWARD)
 
 
 def __action_fn(*args):

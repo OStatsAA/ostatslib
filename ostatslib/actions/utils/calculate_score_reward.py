@@ -3,9 +3,7 @@ calculate score reward helper function module
 """
 
 import math
-
-
-MIN_SCORE_VALUE: float = 0.6
+from ostatslib import config
 
 
 def calculate_score_reward(score: float) -> float:
@@ -21,7 +19,7 @@ def calculate_score_reward(score: float) -> float:
     if math.isnan(score):
         return -1
 
-    if score <= MIN_SCORE_VALUE:
+    if score <= config.MIN_ACCEPTED_SCORE:
         return - (1 - score)
 
     return score

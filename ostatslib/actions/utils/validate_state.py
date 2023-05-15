@@ -6,6 +6,7 @@ from functools import wraps
 from inspect import signature
 from typing import Any, Callable
 from pandas import DataFrame
+from ostatslib import config
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult, TModel
 
@@ -48,7 +49,7 @@ def _is_valid(state: State,
 def _default_invalid_state_return(state: State,
                                   action_name: str,
                                   action_function: Action[TModel]) -> ActionResult[TModel]:
-    return state, -1, ActionInfo(action_name=action_name,
-                                 action_fn=action_function,
-                                 model=None,
-                                 raised_exception=False)
+    return state, config.MIN_REWARD, ActionInfo(action_name=action_name,
+                                                action_fn=action_function,
+                                                model=None,
+                                                raised_exception=False)

@@ -4,10 +4,9 @@ reward_cap decorator function tests module
 """
 
 from pandas import DataFrame
+from ostatslib import config
 from ostatslib.actions import ActionInfo
-from ostatslib.actions.utils import (reward_cap,
-                                     REWARD_LOWER_LIMIT,
-                                     REWARD_UPPER_LIMIT)
+from ostatslib.actions.utils import reward_cap
 from ostatslib.states import State
 
 
@@ -17,13 +16,13 @@ def test_enforces_reward_lower_limit() -> None:
     """
     @reward_cap
     def too_low_reward_action(*args):
-        return State(), REWARD_LOWER_LIMIT - 1, ActionInfo(action_name="Test",
-                                                           action_fn=too_low_reward_action,
-                                                           model=None,
-                                                           raised_exception=False)
+        return State(), config.MIN_REWARD - 1, ActionInfo(action_name="Test",
+                                                          action_fn=too_low_reward_action,
+                                                          model=None,
+                                                          raised_exception=False)
 
     reward = too_low_reward_action(State(), DataFrame())[1]
-    assert reward == REWARD_LOWER_LIMIT
+    assert reward == config.MIN_REWARD
 
 
 def test_enforces_reward_upper_limit() -> None:
@@ -32,13 +31,13 @@ def test_enforces_reward_upper_limit() -> None:
     """
     @reward_cap
     def too_high_reward_action(*args):
-        return State(), REWARD_UPPER_LIMIT + 1, ActionInfo(action_name="Test",
-                                                           action_fn=too_high_reward_action,
-                                                           model=None,
-                                                           raised_exception=False)
+        return State(), config.MAX_REWARD + 1, ActionInfo(action_name="Test",
+                                                          action_fn=too_high_reward_action,
+                                                          model=None,
+                                                          raised_exception=False)
 
     reward = too_high_reward_action(State(), DataFrame())[1]
-    assert reward == REWARD_UPPER_LIMIT
+    assert reward == config.MAX_REWARD
 
 
 def test_do_not_change_reward_if_it_is_within_limits() -> None:
@@ -46,14 +45,13 @@ def test_do_not_change_reward_if_it_is_within_limits() -> None:
     Tests wether the reward_cap decorator does not change the action rewards if \
         it's within limits
     """
-    reward = (REWARD_LOWER_LIMIT + REWARD_UPPER_LIMIT)/2
-
     @reward_cap
     def within_limits_reward_action(*args):
-        return State(), reward, ActionInfo(action_name="Test",
-                                           action_fn=within_limits_reward_action,
-                                           model=None,
-                                           raised_exception=False)
+        _reward = (config.MIN_REWARD + config.MAX_REWARD)/2
+        return State(), _reward, ActionInfo(action_name="Test",
+                                            action_fn=within_limits_reward_action,
+                                            model=None,
+                                            raised_exception=False)
 
     reward = within_limits_reward_action(State(), DataFrame())[1]
-    assert reward == reward
+    assert config.MIN_REWARD <= reward <= config.MAX_REWARD

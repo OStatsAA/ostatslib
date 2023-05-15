@@ -7,6 +7,7 @@ from numpy import ndarray
 from pandas import DataFrame
 from gymnasium import Env
 from gymnasium.spaces import Dict
+from ostatslib import config
 from ostatslib.actions import ActionsSpace
 from ostatslib.actions.action import ActionInfo
 from ostatslib.actions.actions_space import _invalid_action_step
@@ -14,7 +15,6 @@ from ostatslib.states import State
 from .utils import generate_training_dataset
 
 ObsType = Dict
-REWARD_RANGE = (-1, 1)
 
 
 class GymEnvironment(Env):
@@ -29,7 +29,7 @@ class GymEnvironment(Env):
         self.__init_state_and_data()
         self.observation_space = State().as_gymnasium_space
         self.action_space: ActionsSpace = ActionsSpace()
-        self.reward_range = REWARD_RANGE
+        self.reward_range = config.REWARD_RANGE
         self.__steps_taken = 0
 
     def render(self) -> None:
@@ -78,7 +78,8 @@ class GymEnvironment(Env):
         self.__state = state
 
     def __is_done(self, state: State, reward: float) -> bool:
-        return (state.get("score") > 0.6 and reward > 0.5) or self.__steps_taken >= 10
+        return (state.get("score") > config.MIN_ACCEPTED_SCORE and reward > config.MAX_REWARD/2)\
+            or self.__steps_taken >= config.MAX_STEPS
 
     def __init_state_and_data(self):
         self.__data, self.__state = generate_training_dataset()

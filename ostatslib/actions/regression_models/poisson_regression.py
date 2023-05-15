@@ -7,6 +7,7 @@ from pandas import DataFrame
 from statsmodels.api import GLM, families
 from statsmodels.genmod.generalized_linear_model import GLMResults
 from statsmodels.tools.sm_exceptions import PerfectSeparationError
+from ostatslib import config
 
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
@@ -66,10 +67,10 @@ def __calculate_reward(regression: GLMResults) -> float:
 
 
 def __raised_exception_action_result(state):
-    return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                 action_fn=_poisson_regression,
-                                 model=None,
-                                 raised_exception=True)
+    return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                action_fn=_poisson_regression,
+                                                model=None,
+                                                raised_exception=True)
 
 
 poisson_regression: Action[GLMResults] = _poisson_regression

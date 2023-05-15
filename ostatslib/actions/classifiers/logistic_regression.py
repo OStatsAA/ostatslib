@@ -5,6 +5,7 @@ Logistic regression module
 import operator
 from pandas import DataFrame
 from sklearn.linear_model import LogisticRegressionCV
+from ostatslib import config
 from ostatslib.states import State
 
 from ..action import Action, ActionInfo, ActionResult
@@ -40,10 +41,10 @@ def _logistic_regression(state: State, data: DataFrame) -> ActionResult[Logistic
     try:
         regression = regression.fit(x_values, y_values)
     except ValueError:
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_logistic_regression,
-                                     model=None,
-                                     raised_exception=True)
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_logistic_regression,
+                                                    model=None,
+                                                    raised_exception=True)
 
     score: float = regression.score(x_values, y_values)
     reward: float = calculate_score_reward(score)

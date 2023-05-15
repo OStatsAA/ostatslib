@@ -8,6 +8,7 @@ from gymnasium.spaces import MultiBinary
 import numpy as np
 import numpy.typing as npt
 from pandas import DataFrame
+from ostatslib import config
 
 from ostatslib.states import State
 
@@ -53,7 +54,6 @@ def _as_binary_array(number: int, array_length: int) -> np.ndarray:
     binary_str = bin(number)[2:].zfill(array_length)
 
     return np.array([int(digit) for digit in binary_str])
-
 
 
 MaskNDArray = npt.NDArray[np.int8]
@@ -112,11 +112,11 @@ CLUSTERING = {
 
 def _invalid_action_step(state: State, data: DataFrame) -> ActionResult[None]:
     if state and data is not None:
-        reward = float(-1)
+        reward = config.MIN_REWARD
         info = ActionInfo(action_name='Invalid Action',
-                        action_fn=_invalid_action_step,
-                        model=None,
-                        raised_exception=False)
+                          action_fn=_invalid_action_step,
+                          model=None,
+                          raised_exception=False)
         return state, reward, info
 
     raise ValueError("State and Data must be valid.")

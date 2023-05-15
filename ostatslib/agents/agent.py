@@ -5,6 +5,7 @@ Open Stats Agent abstract module
 from abc import ABC, abstractmethod
 from numpy import ndarray
 from pandas import DataFrame
+from ostatslib import config
 
 from ostatslib.agents.analysis_result import AnalysisResult
 from ostatslib.environments import GymEnvironment
@@ -49,14 +50,14 @@ class Agent(ABC):
     def analyze(self,
                 data: DataFrame,
                 initial_state: State = State(),
-                max_steps: int = 20) -> AnalysisResult:
+                max_steps: int = config.MAX_STEPS) -> AnalysisResult:
         """
         Analyzes a dataset
 
         Args:
             data (DataFrame): dataset
             initial_state (State, optional): initial state. Defaults to State().
-            max_steps (int, optional): maximum number of steps. Defaults to 20.
+            max_steps (int, optional): maximum number of steps.
 
         Returns:
             AnalysisResult: analysis result

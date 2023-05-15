@@ -13,6 +13,7 @@ from statsmodels.api import OLS
 from statsmodels.stats.stattools import durbin_watson, jarque_bera
 from statsmodels.stats.diagnostic import het_breuschpagan, linear_harvey_collier
 from statsmodels.regression.linear_model import RegressionResults
+from ostatslib import config
 
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
@@ -47,7 +48,7 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
         regression: RegressionResults = OLS(
             response_var, explanatory_vars).fit()
     except ValueError:
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_linear_regression,
                                      model=None,
                                      raised_exception=True)

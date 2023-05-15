@@ -6,6 +6,7 @@ from pandas import DataFrame
 from sklearn.cluster import DBSCAN
 from sklearn.metrics import silhouette_score
 
+from ostatslib import config
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
 from ..utils import (calculate_score_reward,
@@ -28,10 +29,10 @@ def _dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
         ActionResult[DBSCAN]: action result
     """
     if not __is_valid_state(state):
-        return state, -1, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_dbscan,
-                                     model=None,
-                                     raised_exception=False)
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_dbscan,
+                                                    model=None,
+                                                    raised_exception=False)
 
     db_scan = DBSCAN()
     db_scan.fit(data)

@@ -79,11 +79,11 @@ def __reward_for_normally_distributed_errors(state: State,
                                              regression: RegressionResults) -> float:
     jarque_bera_pvalue = jarque_bera(regression.wresid.values)[1]
 
-    if jarque_bera_pvalue < .01:
+    if jarque_bera_pvalue < config.FULL_PENALIZED_PVALUE:
         state.set("are_linear_model_regression_residuals_normally_distributed", -1)
         return -.5
 
-    if jarque_bera_pvalue < .05:
+    if jarque_bera_pvalue < config.PARTIAL_PENALIZED_PVALUE:
         state.set(
             "are_linear_model_regression_residuals_normally_distributed", -0.5)
         return -.1
@@ -112,11 +112,11 @@ def __reward_for_homoscedasticity(state: State,
                                   explanatory_vars: np.ndarray) -> float:
     f_stat_pvalue = het_breuschpagan(residuals, explanatory_vars)[3]
 
-    if f_stat_pvalue < .01:
+    if f_stat_pvalue < config.FULL_PENALIZED_PVALUE:
         state.set("are_linear_model_regression_residuals_heteroscedastic", 1)
         return -.5
 
-    if f_stat_pvalue < .05:
+    if f_stat_pvalue < config.PARTIAL_PENALIZED_PVALUE:
         state.set("are_linear_model_regression_residuals_heteroscedastic", 0.5)
         return -.1
 
@@ -136,11 +136,11 @@ def __reward_for_recursive_residuals_mean(state: State,
         state.set("is_linear_model_regression_recursive_residuals_mean_zero", -1)
         return -.5
 
-    if pvalue < .01 or pvalue is nan:
+    if pvalue < config.FULL_PENALIZED_PVALUE or pvalue is nan:
         state.set("is_linear_model_regression_recursive_residuals_mean_zero", -1)
         return -.5
 
-    if pvalue < .05:
+    if pvalue < config.PARTIAL_PENALIZED_PVALUE:
         state.set("is_linear_model_regression_recursive_residuals_mean_zero", -0.5)
         return -.1
 

@@ -13,7 +13,8 @@ _ACTION_NAME = "Get Log Rows Count"
 
 
 ROW_COUNT_UPPER_LIMIT = 150000
-LOG_COMPRESSION_CONSTANT = 12
+LOG_COMPRESSION_CONSTANT = 5.176
+"""compression rate to keep log10(150K lines) close to 1"""
 
 
 def _get_log_rows_count(state: State,

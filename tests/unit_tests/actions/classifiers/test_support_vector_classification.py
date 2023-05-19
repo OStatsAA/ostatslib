@@ -39,6 +39,7 @@ def test_binary_response_data_yields_positive_reward(dummy_binary_response_data)
     Action should return a positive reward when applied to a linear dataset
     """
     state = State()
+    state.set('log_rows_count', 0.5)
     state.set("is_response_quantitative", -1)
     state.set("is_response_dichotomous", 1)
     reward = support_vector_classification(state, dummy_binary_response_data)[1]
@@ -51,6 +52,7 @@ def test_continuous_response_data_yields_negative_reward(
     Action should return a positive reward when applied to a linear dataset
     """
     state = State()
+    state.set('log_rows_count', 0.5)
     state.set("is_response_quantitative", 1)
     state.set("is_response_dichotomous", -1)
     reward = support_vector_classification(state, dummy_continuous_response_data)[1]

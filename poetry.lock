@@ -3621,21 +3621,21 @@ sqlcipher = ["sqlcipher3-binary"]
 
 [[package]]
 name = "stable-baselines3"
-version = "2.0.0a5"
+version = "2.0.0a10"
 description = "Pytorch version of Stable Baselines, implementations of reinforcement learning algorithms."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "stable_baselines3-2.0.0a5-py3-none-any.whl", hash = "sha256:836ccc54fdba87f36f9472b1da1df96e68b9e534dc51c12d91688e6d703f0a8b"},
-    {file = "stable_baselines3-2.0.0a5.tar.gz", hash = "sha256:feb86940ec2c11b238200db3eb16757ae26c882696f84c91fb1bdf8536efb661"},
+    {file = "stable_baselines3-2.0.0a10-py3-none-any.whl", hash = "sha256:12e87f2fb356dc3d53d93e0275eb025e11c68d4838be49b1e1eed6ee4246280c"},
+    {file = "stable_baselines3-2.0.0a10.tar.gz", hash = "sha256:ab838e3c90d978094f208a76deb72a8c7ae2dc7922f5298d1320a27f6bbcd64b"},
 ]
 
 [package.dependencies]
 cloudpickle = "*"
 gymnasium = "0.28.1"
 matplotlib = "*"
-numpy = "*"
+numpy = ">=1.20"
 pandas = "*"
 torch = ">=1.11"
 
@@ -4151,4 +4151,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "35c5dbaef10e8a254a865df9b5dba8d17a7b888dc45c95d6e1907b56ed74dfff"
+content-hash = "3b2b163cc0496fd106547f66ee627f048ff4ee64bb2a36303a7e95d97e6072b3"

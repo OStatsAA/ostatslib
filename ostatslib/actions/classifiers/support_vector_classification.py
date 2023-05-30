@@ -20,7 +20,9 @@ from ..utils import (calculate_score_reward,
 
 _ACTION_NAME = "Support Vector Classification"
 _VALIDATIONS = [('is_response_quantitative', operator.lt, 0),
-                ('response_variable_label', operator.truth, None)]
+                ('response_variable_label', operator.truth, None),
+                ('log_rows_count', operator.gt, 0),
+                ('log_rows_count', operator.lt, 0.81)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)

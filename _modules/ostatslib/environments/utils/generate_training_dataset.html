@@ -60,7 +60,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ostatslib/environments/utils/generate_training_dataset';</script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -394,6 +394,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 <span class="kn">from</span> <span class="nn">._generate_from_datacooker</span> <span class="kn">import</span> <span class="n">generate_from_datacooker</span>
 <span class="kn">from</span> <span class="nn">._generate_from_sklearn</span> <span class="kn">import</span> <span class="n">generate_from_sklearn</span>
+<span class="kn">from</span> <span class="nn">._generate_from_pmlb</span> <span class="kn">import</span> <span class="n">generate_from_pmlb</span>
 
 
 <div class="viewcode-block" id="generate_training_dataset"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.environments.utils.generate_training_dataset.html#ostatslib.environments.utils.generate_training_dataset">[docs]</a><span class="k">def</span> <span class="nf">generate_training_dataset</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">State</span><span class="p">]:</span>
@@ -403,7 +404,11 @@ document.write(`
 <span class="sd">    Returns:</span>
 <span class="sd">       DataFrame: dataset</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">generator_fn</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span><span class="n">generate_from_datacooker</span><span class="p">,</span> <span class="n">generate_from_sklearn</span><span class="p">])</span>
+    <span class="n">generator_fn</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span>
+        <span class="n">generate_from_datacooker</span><span class="p">,</span>
+        <span class="n">generate_from_sklearn</span><span class="p">,</span>
+        <span class="n">generate_from_pmlb</span>
+    <span class="p">])</span>
     <span class="k">return</span> <span class="n">generator_fn</span><span class="p">()</span></div>
 </pre></div>
 

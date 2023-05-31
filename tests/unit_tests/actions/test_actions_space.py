@@ -54,3 +54,26 @@ def test_actions_space_should_have_method_to_get_action_fn_by_code() -> None:
     action = actions_space.get_action_by_encoding(known_action_code)
 
     assert callable(action)
+
+
+def test_actions_space_should_have_method_to_get_action_name_by_code() -> None:
+    """
+    ActionsSpace should have a method to get action name by code
+    """
+    actions_space = ActionsSpace()
+    known_action_name = 'logistic_regression'
+    known_action_code = CLASSIFIERS[known_action_name][1]
+    action_name = actions_space.get_action_name_by_code(known_action_code)
+
+    assert action_name == known_action_name
+
+
+def test_actions_space_method_to_get_action_name_by_code_returns_none_if_invalid() -> None:
+    """
+    ActionsSpace method to get action name by code 
+    should return None if invalid action code is passed as argument
+    """
+    actions_space = ActionsSpace()
+    action_name = actions_space.get_action_name_by_code([1, 2, 3])
+
+    assert action_name is None

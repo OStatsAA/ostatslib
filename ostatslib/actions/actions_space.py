@@ -189,6 +189,21 @@ class ActionsSpace(MultiBinary):
         """
         return self.__actions[action_name][0]
 
+    def get_action_name_by_code(self, action_code: np.ndarray | list) -> str | None:
+        """Gets action name by code
+
+        Args:
+            action_code (np.ndarray): action code
+
+        Returns:
+            str: action name
+        """
+        for action_name, (_, code) in self.__actions.items():
+            if np.array_equal(code, action_code):
+                return action_name
+
+        return None
+
     def is_valid_action_by_encoding(self, action_code: np.ndarray) -> bool:
         """Check if action code is valid
 

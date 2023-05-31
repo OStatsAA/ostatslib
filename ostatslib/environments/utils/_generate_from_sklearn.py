@@ -71,9 +71,14 @@ def __from_generated() -> tuple[DataFrame, State]:
     ])
     x_values, y_values = sample_gen_fn()
     data = DataFrame(x_values)
-    data['result'] = y_values
     state = State()
-    state.set('response_variable_label', 'result')
+
+    if sample_gen_fn.__name__ == __make_blobs.__name__:
+        state.set('response_variable_label', '')
+        return data, state
+
+    data['target'] = y_values
+    state.set('response_variable_label', 'target')
     return data, state
 
 

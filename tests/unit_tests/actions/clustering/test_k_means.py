@@ -43,7 +43,7 @@ def test_small_deviation_data_yields_positive_reward(
     Action should return a positve reward when applied to a dataset with small deviation
     """
     state = State()
-    state.set("response_variable_label", None)
+    state.set("response_variable_label", '')
     state.set("clusters_count", N_CLUSTERS)
     reward = k_means(state, dummy_small_deviation_blobs_data)[1]
     assert reward >= 0.6
@@ -55,7 +55,7 @@ def test_big_deviation_data_yields_negative_reward(
     Action should return a negative reward when applied to a dataset with big deviation
     """
     state = State()
-    state.set("response_variable_label", None)
+    state.set("response_variable_label", '')
     state.set("clusters_count", N_CLUSTERS)
     reward = k_means(state, dummy_big_deviation_blobs_data)[1]
     assert reward < 0

@@ -20,10 +20,10 @@ def dummy_small_deviation_blobs_data() -> DataFrame:
     """
     Generates blobs data
     """
-    data, *_ = make_blobs(n_samples=3000,
+    data, *_ = make_blobs(n_samples=300,
                           centers=CENTERS,
                           cluster_std=0.1)
-    return data
+    return DataFrame(data)
 
 
 @pytest.fixture
@@ -31,10 +31,10 @@ def dummy_big_deviation_blobs_data() -> DataFrame:
     """
     Generates blobs data
     """
-    data, *_ = make_blobs(n_samples=3000,
+    data, *_ = make_blobs(n_samples=300,
                           centers=CENTERS,
-                          cluster_std=0.8)
-    return data
+                          cluster_std=0.9)
+    return DataFrame(data)
 
 
 def test_small_deviation_data_yields_positive_reward(
@@ -43,7 +43,7 @@ def test_small_deviation_data_yields_positive_reward(
     Action should return a positve reward when applied to a dataset with small deviation
     """
     state = State()
-    state.set("response_variable_label", None)
+    state.set("response_variable_label", '')
     reward = dbscan(state, dummy_small_deviation_blobs_data)[1]
     assert reward >= 0.6
 
@@ -54,7 +54,7 @@ def test_big_deviation_data_yields_negative_reward(
     Action should return a negative reward when applied to a dataset with big deviation
     """
     state = State()
-    state.set("response_variable_label", None)
+    state.set("response_variable_label", '')
     reward = dbscan(state, dummy_big_deviation_blobs_data)[1]
     assert reward < 0
 
@@ -64,7 +64,7 @@ def test_cluster_count_is_known_yields_negative_reward(
     Action should return a negative reward if clusters count is known
     """
     state = State()
-    state.set("response_variable_label", None)
+    state.set("response_variable_label", '')
     state.set("clusters_count", N_CLUSTERS)
     reward = dbscan(state, dummy_small_deviation_blobs_data)[1]
     assert reward < 0

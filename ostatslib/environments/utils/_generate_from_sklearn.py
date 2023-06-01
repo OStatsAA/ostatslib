@@ -25,7 +25,7 @@ as the agent states and actions evolves:
 # "make_swiss_roll",
 """
 
-from random import choice
+from random import choice, getrandbits
 from pandas import DataFrame
 import sklearn.datasets as sklearn_dts
 import numpy as np
@@ -41,7 +41,7 @@ def generate_from_sklearn() -> tuple[DataFrame, State]:
     Returns:
         tuple[DataFrame, State]: dataset and initial state
     """
-    sklearn_gen_fn = choice([_from_toy, __from_generated])
+    sklearn_gen_fn = choice([_from_toy, __from_generated, __from_cluster])
     return sklearn_gen_fn()
 
 
@@ -65,20 +65,29 @@ def _from_toy(toy_fns=_TOY_FUNCTIONS) -> tuple[DataFrame, State]:
 
 def __from_generated() -> tuple[DataFrame, State]:
     sample_gen_fn = choice([
-        __make_blobs,
         __make_classification,
         __make_regression
     ])
     x_values, y_values = sample_gen_fn()
+
     data = DataFrame(x_values)
-    state = State()
-
-    if sample_gen_fn.__name__ == __make_blobs.__name__:
-        state.set('response_variable_label', '')
-        return data, state
-
     data['target'] = y_values
+
+    state = State()
     state.set('response_variable_label', 'target')
+
+    return data, state
+
+
+def __from_cluster() -> tuple[DataFrame, State]:
+    n_centers, xy_tuple = __make_blobs()
+    data = DataFrame(xy_tuple[0])
+    state = State()
+    state.set('response_variable_label', '')
+
+    if bool(getrandbits(1)):
+        state.set('clusters_count', n_centers)
+
     return data, state
 
 
@@ -118,9 +127,10 @@ def __make_classification():
 
 def __make_blobs():
     n_samples, n_features = __get_n_samples_and_features()
-    centers = np.random.randint(2, 20)
-    return sklearn_dts.make_blobs(
+    n_centers = np.random.randint(2, 20)
+    return n_centers, sklearn_dts.make_blobs(
         n_samples=n_samples,
         n_features=n_features,
-        centers=centers
+        centers=n_centers,
+        cluster_std=0.5
     )

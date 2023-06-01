@@ -32,8 +32,12 @@ def _time_convertible_variable_search(state: State, data: DataFrame) -> ActionRe
     Returns:
         ActionResult[None]: action result
     """
-    variables_dataframe: DataFrame = split_response_from_explanatory_variables(state,
-                                                                               data)[1]
+    if bool(state.get("response_variable_label")):
+        variables_dataframe: DataFrame = split_response_from_explanatory_variables(state,
+                                                                                   data)[1]
+    else:
+        variables_dataframe = data
+
     date_convertible_variable = __date_variable_search(variables_dataframe)
 
     reward: float = __calculate_reward(state, date_convertible_variable)

@@ -53,7 +53,14 @@ def _dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
 
 
 def __get_max_curvature_point(data: DataFrame) -> float:
-    min_points = 2 * len(data.columns)
+    n_rows, n_columns = data.shape
+    if n_rows < 2 * n_columns:
+        min_points = 5
+    elif n_rows < 10 * n_columns:
+        min_points = n_columns
+    else:
+        min_points = 2* n_columns
+
     neighbors_fit = NearestNeighbors(
         n_neighbors=min_points, metric='euclidean').fit(data)
     distances, _ = neighbors_fit.kneighbors(data)

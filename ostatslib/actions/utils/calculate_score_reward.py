@@ -16,7 +16,8 @@ def calculate_score_reward(score: float) -> float:
     Returns:
         float: reward
     """
-    if math.isnan(score):
+    if math.isnan(score) or (not -1 <= score <= 1):
+        print(score)
         return -1
 
     if score <= config.MIN_ACCEPTED_SCORE:

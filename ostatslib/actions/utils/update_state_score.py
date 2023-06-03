@@ -18,12 +18,8 @@ def update_state_score(state: State, score: float) -> State:
     Returns:
         State: state
     """
-    if math.isnan(score):
+    if math.isnan(score) or (not 0 <= score <= 1):
         state.set('score', 0)
-        return state
-
-    if not -1 <= score <= 1:
-        state.set('score', -1)
         return state
 
     state.set('score', score)

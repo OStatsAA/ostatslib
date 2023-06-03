@@ -45,6 +45,7 @@ def _decision_tree_regression(state: State,
 
     reward: float = calculate_score_reward(score)
     update_state_score(state, score)
+    state.set('decision_tree_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_decision_tree_regression,
                                      model=classifier,

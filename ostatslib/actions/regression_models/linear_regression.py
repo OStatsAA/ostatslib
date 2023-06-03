@@ -65,13 +65,14 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
 def __calculate_reward(state: State, regression: RegressionResults) -> float:
     explanatory_vars: np.ndarray = regression.model.exog
     residuals: np.ndarray = regression.resid.values
-    reward: float = 0
+
+    reward = calculate_score_reward(regression.rsquared)
+    state.set('linear_regression_score_reward', reward)
 
     reward += __reward_for_normally_distributed_errors(state, regression)
     reward += __penalty_for_correlation_of_error_terms(state, residuals)
     reward += __reward_for_homoscedasticity(state, residuals, explanatory_vars)
     reward += __reward_for_recursive_residuals_mean(state, regression)
-    reward += calculate_score_reward(regression.rsquared)
 
     return reward
 

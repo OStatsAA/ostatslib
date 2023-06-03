@@ -61,7 +61,7 @@ def _time_series_auto_arima(state: State,
     score: float = 1 - \
         __calculate_mean_abs_percentage_error(forecast, y_testing)
 
-    reward: float = __calculate_reward(model, score)
+    reward: float = __calculate_reward(state, model, score)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_time_series_auto_arima,
                                      model=model,
@@ -83,12 +83,14 @@ def __calculate_mean_abs_percentage_error(forecast: Series, y_testing: DataFrame
     return np.mean(np.abs(forecast_values - y_testing_values)/np.abs(y_testing_values))
 
 
-def __calculate_reward(model: SARIMAXResults, correlation_coef: float) -> float:
-    reward: float = 0
+def __calculate_reward(state: State, model: SARIMAXResults, correlation_coef: float) -> float:
+    reward = calculate_score_reward(correlation_coef)
+    state.set('time_series_auto_arima_score_reward', reward)
+
     reward += __penalty_for_correlated_residuals(model)
     reward += __penalty_for_heteroskedasticity_residuals(model)
     reward += __penalty_for_non_normal_residuals(model)
-    reward += calculate_score_reward(correlation_coef)
+
     return reward
 
 

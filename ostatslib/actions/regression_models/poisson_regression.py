@@ -46,25 +46,22 @@ def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResult
                                      explanatory_vars,
                                      poisson_family).fit()
     except ValueError:
+        state.set('poisson_regression_score_reward', config.MIN_REWARD)
         return __raised_exception_action_result(state)
     except PerfectSeparationError:
         state.set('does_poisson_regression_raises_perfect_separation_error', 1)
-        state.set('score', -1)
+        state.set('poisson_regression_score_reward', config.MIN_REWARD)
         return __raised_exception_action_result(state)
 
     state.set('does_poisson_regression_raises_perfect_separation_error', -1)
-    reward = __calculate_reward(regression)
-    state = update_state_score(state, regression.pseudo_rsquared())
+    score = regression.pseudo_rsquared()
+    reward = calculate_score_reward(score)
+    state = update_state_score(state, score)
+    state.set('poisson_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_poisson_regression,
                                      model=regression,
                                      raised_exception=False)
-
-
-def __calculate_reward(regression: GLMResults) -> float:
-    reward: float = 0
-    reward += calculate_score_reward(regression.pseudo_rsquared())
-    return reward
 
 
 def __raised_exception_action_result(state):

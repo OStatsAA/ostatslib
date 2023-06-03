@@ -47,4 +47,38 @@ class ModelsFeaturesSet(FeaturesSet):
             'gym_space': Box(-1, 1),
             'get_value_fn': None
         })
-    
+
+    decision_tree_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    linear_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    poisson_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    support_vector_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    time_series_auto_arima_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })

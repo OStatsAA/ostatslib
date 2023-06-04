@@ -19,8 +19,7 @@ from ..utils import (calculate_score_reward,
                      validate_state)
 
 _ACTION_NAME = "Decision Tree"
-_VALIDATIONS = [('is_response_quantitative', operator.lt, 0),
-                ('response_variable_label', operator.truth, None)]
+_VALIDATIONS = [('response_variable_label', operator.truth, None)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)

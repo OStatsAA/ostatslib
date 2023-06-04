@@ -43,14 +43,16 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
     try:
         scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
     except ValueError:
+        state.set('decision_tree_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
                                                     action_fn=_decision_tree,
                                                     model=None,
                                                     raised_exception=True)
 
     score: float = scores.mean() - scores.std()
-    reward: float = calculate_score_reward(score)
     update_state_score(state, score)
+    reward: float = calculate_score_reward(score)
+    state.set('decision_tree_score_reward', reward)
     model = classifier.fit(X=x_values, y=y_values)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_decision_tree,

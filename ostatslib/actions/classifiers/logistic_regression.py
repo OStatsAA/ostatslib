@@ -41,14 +41,16 @@ def _logistic_regression(state: State, data: DataFrame) -> ActionResult[Logistic
     try:
         regression = regression.fit(x_values, y_values)
     except ValueError:
+        state.set('logistic_regression_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
                                                     action_fn=_logistic_regression,
                                                     model=None,
                                                     raised_exception=True)
 
     score: float = regression.score(x_values, y_values)
-    reward: float = calculate_score_reward(score)
     update_state_score(state, score)
+    reward: float = calculate_score_reward(score)
+    state.set('logistic_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_logistic_regression,
                                      model=regression,

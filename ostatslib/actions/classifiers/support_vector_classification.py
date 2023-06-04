@@ -45,14 +45,16 @@ def _support_vector_classification(state: State, data: DataFrame) -> ActionResul
     try:
         scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
     except ValueError:
+        state.set('support_vector_classification_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
                                                     action_fn=_support_vector_classification,
                                                     model=None,
                                                     raised_exception=True)
 
     score: float = scores.mean() - scores.std()
-    reward: float = calculate_score_reward(score)
     update_state_score(state, score)
+    reward: float = calculate_score_reward(score)
+    state.set('support_vector_classification_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_support_vector_classification,
                                      model=classifier,

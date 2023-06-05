@@ -3,9 +3,7 @@ Support Vector Classification module
 """
 
 import operator
-from numpy import ndarray
 from pandas import DataFrame
-from sklearn.model_selection import cross_val_score
 from sklearn.svm import SVC
 from ostatslib import config
 from ostatslib.states import State
@@ -16,7 +14,8 @@ from ..utils import (calculate_score_reward,
                      opaque_model,
                      split_response_from_explanatory_variables,
                      update_state_score,
-                     validate_state)
+                     validate_state,
+                     model_selection)
 
 _ACTION_NAME = "Support Vector Classification"
 _VALIDATIONS = [('response_variable_label', operator.truth, None),
@@ -39,20 +38,26 @@ def _support_vector_classification(state: State, data: DataFrame) -> ActionResul
         ActionResult[SVC]: action result
     """
     y_values, x_values = split_response_from_explanatory_variables(state, data)
-    classifier = SVC()
+    classifier: SVC = SVC()
+    param_grid = {'C': [0.1, 1, 10, 100],
+                  'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
+                  'gamma': ['scale', 'auto']}
 
     try:
-        scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
+        classifier, score = model_selection(classifier,
+                                            param_grid,
+                                            x_values,
+                                            y_values)
     except ValueError:
-        state.set('support_vector_classification_score_reward', config.MIN_REWARD)
+        state.set('support_vector_classification_score_reward',
+                  config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
                                                     action_fn=_support_vector_classification,
                                                     model=None,
                                                     raised_exception=True)
 
-    score: float = scores.mean() - scores.std()
     update_state_score(state, score)
-    reward: float = calculate_score_reward(score)
+    reward = calculate_score_reward(score)
     state.set('support_vector_classification_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_support_vector_classification,

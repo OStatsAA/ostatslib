@@ -3,9 +3,7 @@ Support Vector Regression module
 """
 
 import operator
-from numpy import ndarray
 from pandas import DataFrame
-from sklearn.model_selection import cross_val_score
 from sklearn.svm import SVR
 from ostatslib import config
 
@@ -16,7 +14,8 @@ from ..utils import (calculate_score_reward,
                      opaque_model,
                      split_response_from_explanatory_variables,
                      update_state_score,
-                     validate_state)
+                     validate_state,
+                     model_selection)
 
 _ACTION_NAME = "Support Vector Regression"
 _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
@@ -40,23 +39,29 @@ def _support_vector_regression(state: State, data: DataFrame) -> ActionResult[SV
         ActionResult[SVR]: action result
     """
     y_values, x_values = split_response_from_explanatory_variables(state, data)
-    classifier = SVR()
+    regressor: SVR = SVR()
+    param_grid = {'C': [0.1, 1, 10, 100],
+                  'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
+                  'gamma': ['scale', 'auto']}
 
     try:
-        scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
+        regressor, score = model_selection(regressor,
+                                            param_grid,
+                                            x_values,
+                                            y_values)
     except ValueError:
+        state.set('support_vector_regression_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
                                                     action_fn=_support_vector_regression,
                                                     model=None,
                                                     raised_exception=True)
 
-    score: float = scores.mean() - scores.std()
     update_state_score(state, score)
     reward = calculate_score_reward(score)
     state.set('support_vector_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_support_vector_regression,
-                                     model=classifier,
+                                     model=regressor,
                                      raised_exception=False)
 
 

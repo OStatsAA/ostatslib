@@ -8,3 +8,4 @@ from .split_response_from_explanatory_variables import split_response_from_expla
 from .calculate_score_reward import calculate_score_reward
 from .update_state_score import update_state_score
 from .validate_state import validate_state
+from .model_selection import model_selection

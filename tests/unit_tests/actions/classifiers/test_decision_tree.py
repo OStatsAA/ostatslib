@@ -51,7 +51,5 @@ def test_continuous_response_data_yields_negative_reward(
     Action should return a positive reward when applied to a linear dataset
     """
     state = State()
-    state.set("is_response_quantitative", 1)
-    state.set("is_response_dichotomous", -1)
     reward = decision_tree(state, dummy_continuous_response_data)[1]
     assert reward <= -0.5

@@ -3,11 +3,10 @@ Decision Tree Regression module
 """
 
 import operator
-from numpy import ndarray
 from pandas import DataFrame
-from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeRegressor
 
+from ostatslib import config
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
 from ..utils import (calculate_score_reward,
@@ -15,7 +14,8 @@ from ..utils import (calculate_score_reward,
                      comprehensible_model,
                      split_response_from_explanatory_variables,
                      update_state_score,
-                     validate_state)
+                     validate_state,
+                     model_selection)
 
 _ACTION_NAME = "Decision Tree Regression"
 _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
@@ -39,16 +39,29 @@ def _decision_tree_regression(state: State,
         ActionResult[DecisionTreeRegressor]: action result
     """
     y_values, x_values = split_response_from_explanatory_variables(state, data)
-    classifier = DecisionTreeRegressor()
-    scores: ndarray = cross_val_score(classifier, x_values, y_values, cv=5)
-    score: float = scores.mean() - scores.std()
+    regressor: DecisionTreeRegressor = DecisionTreeRegressor()
+    param_grid = {'criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                  'splitter': ['best', 'random'],
+                  'max_features': ['auto', 'sqrt', 'log2', None]}
 
-    reward: float = calculate_score_reward(score)
+    try:
+        regressor, score = model_selection(regressor,
+                                           param_grid,
+                                           x_values,
+                                           y_values)
+    except ValueError:
+        state.set('decision_tree_regression_score_reward', config.MIN_REWARD)
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_decision_tree_regression,
+                                                    model=None,
+                                                    raised_exception=True)
+
     update_state_score(state, score)
+    reward = calculate_score_reward(score)
     state.set('decision_tree_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
                                      action_fn=_decision_tree_regression,
-                                     model=classifier,
+                                     model=regressor,
                                      raised_exception=False)
 
 

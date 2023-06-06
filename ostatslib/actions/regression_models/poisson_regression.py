@@ -19,9 +19,11 @@ from ..utils import (calculate_score_reward,
                      validate_state)
 
 _ACTION_NAME = "Poisson Regression"
-_VALIDATIONS = [('is_response_positive_values_only', operator.gt, 0),
+_VALIDATIONS = [('response_variable_label', operator.truth, None),
+                ('is_response_positive_values_only', operator.gt, 0),
                 ('is_response_discrete', operator.gt, 0),
-                ('log_rows_count', operator.lt, 0.81)]
+                ('log_rows_count', operator.lt, 0.81),
+                ('poisson_regression_score_reward', operator.eq, 0)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)

@@ -40,8 +40,7 @@ def test_binary_response_data_yields_positive_reward(dummy_binary_response_data)
     """
     state = State()
     state.set('log_rows_count', 0.5)
-    state.set("is_response_quantitative", -1)
-    state.set("is_response_dichotomous", 1)
+    state.set("is_response_discrete", 1)
     reward = support_vector_classification(state, dummy_binary_response_data)[1]
     assert reward >= 0.5
 

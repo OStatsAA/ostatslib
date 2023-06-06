@@ -21,7 +21,8 @@ _ACTION_NAME = "Support Vector Regression"
 _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
                 ('response_variable_label', operator.truth, None),
                 ('log_rows_count', operator.gt, 0),
-                ('log_rows_count', operator.lt, 0.81)]
+                ('log_rows_count', operator.lt, 0.81),
+                ('support_vector_regression_score_reward', operator.eq, 0)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
@@ -40,9 +41,8 @@ def _support_vector_regression(state: State, data: DataFrame) -> ActionResult[SV
     """
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     regressor: SVR = SVR()
-    param_grid = {'C': [0.1, 1, 10, 100],
-                  'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
-                  'gamma': ['scale', 'auto']}
+    param_grid = {'C': [1, 10, 100],
+                  'kernel': ['linear', 'poly', 'rbf', 'sigmoid']}
 
     try:
         regressor, score = model_selection(regressor,

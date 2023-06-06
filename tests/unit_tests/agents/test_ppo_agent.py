@@ -18,5 +18,5 @@ def dummy_dataset() -> DataFrame:
 
 def test_training(dummy_dataset: DataFrame) -> None:
     agent = PPOAgent(training_envs_count=2)
-    agent.train(steps=int(1e2))
+    agent.train(steps=int(1e2), save_freq=1e2)
     agent.analyze(dummy_dataset)

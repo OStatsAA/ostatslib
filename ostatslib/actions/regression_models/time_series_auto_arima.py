@@ -4,6 +4,7 @@ Time series using Auto Arima module
 ref: https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/
 """
 
+import operator
 from pandas import DataFrame, Series, to_datetime
 from pmdarima import auto_arima, ARIMA as AUTOARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAXResults
@@ -15,13 +16,18 @@ from ..action import Action, ActionInfo, ActionResult
 from ..utils import (calculate_score_reward,
                      reward_cap,
                      interpretable_model,
-                     split_response_from_explanatory_variables)
+                     split_response_from_explanatory_variables,
+                     validate_state)
 
 TRAINING_FRACTION: float = 0.9
 
 _ACTION_NAME = "Time Series - SARIMAX"
+_VALIDATIONS = [('response_variable_label', operator.truth, None),
+                ('is_response_quantitative', operator.gt, 0),
+                ('time_series_auto_arima_score_reward', operator.eq, 0)]
 
 
+@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @interpretable_model
 def _time_series_auto_arima(state: State,

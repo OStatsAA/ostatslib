@@ -39,8 +39,7 @@ def test_binary_response_data_yields_positive_reward(dummy_binary_response_data)
     Action should return a positive reward when applied to a linear dataset
     """
     state = State()
-    state.set("is_response_quantitative", -1)
-    state.set("is_response_dichotomous", 1)
+    state.set("is_response_discrete", 1)
     reward = decision_tree(state, dummy_binary_response_data)[1]
     assert reward >= 0.5
 

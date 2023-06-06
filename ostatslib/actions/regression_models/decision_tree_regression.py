@@ -20,7 +20,8 @@ from ..utils import (calculate_score_reward,
 _ACTION_NAME = "Decision Tree Regression"
 _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
                 ('is_response_dichotomous', operator.lt, 0),
-                ('response_variable_label', operator.truth, None)]
+                ('response_variable_label', operator.truth, None),
+                ('decision_tree_regression_score_reward', operator.eq, 0)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
@@ -40,9 +41,8 @@ def _decision_tree_regression(state: State,
     """
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     regressor: DecisionTreeRegressor = DecisionTreeRegressor()
-    param_grid = {'criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
-                  'splitter': ['best', 'random'],
-                  'max_features': ['auto', 'sqrt', 'log2', None]}
+    param_grid = {'criterion': ['squared_error', 'friedman_mse', 'absolute_error'],
+                  'max_features': ['sqrt', 'log2', None]}
 
     try:
         regressor, score = model_selection(regressor,

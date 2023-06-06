@@ -28,10 +28,13 @@ def model_selection(
     Returns:
         tuple[TModel, float]: best model and its score
     """
+    print(classifier, X.shape, len(y.unique()))
     search = HalvingGridSearchCV(classifier,
                                  param_grid,
                                  cv=5,
-                                 factor=2).fit(X, y)
+                                 factor=2,
+                                 n_jobs=-1).fit(X, y)
     fitted_model: TModel = search.best_estimator_
     score = search.best_score_
+    print(fitted_model, score)
     return fitted_model, score

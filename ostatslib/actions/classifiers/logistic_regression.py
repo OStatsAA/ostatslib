@@ -17,8 +17,10 @@ from ..utils import (calculate_score_reward,
                      validate_state)
 
 _ACTION_NAME = "Logistic Regression"
-_VALIDATIONS = [('is_response_dichotomous', operator.gt, 0),
-                ('response_variable_label', operator.truth, None)]
+_VALIDATIONS = [('response_variable_label', operator.truth, None),
+                ('is_response_dichotomous', operator.gt, 0),
+                ('response_variable_label', operator.truth, None),
+                ('logistic_regression_score_reward', operator.eq, 0)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)

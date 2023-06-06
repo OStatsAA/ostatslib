@@ -26,7 +26,9 @@ from ..utils import (calculate_score_reward,
                      validate_state)
 
 _ACTION_NAME = "Linear Regression"
-_VALIDATIONS = [('is_response_quantitative', operator.gt, 0)]
+_VALIDATIONS = [('response_variable_label', operator.truth, None),
+                ('is_response_quantitative', operator.gt, 0),
+                ('linear_regression_score_reward', operator.eq, 0)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
@@ -50,9 +52,9 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
             response_var, add_constant(explanatory_vars)).fit()
     except ValueError:
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_linear_regression,
-                                     model=None,
-                                     raised_exception=True)
+                                                    action_fn=_linear_regression,
+                                                    model=None,
+                                                    raised_exception=True)
 
     reward = __calculate_reward(state, regression)
     update_state_score(state, regression.rsquared)

@@ -19,8 +19,10 @@ from ..utils import (calculate_score_reward,
 
 _ACTION_NAME = "Support Vector Classification"
 _VALIDATIONS = [('response_variable_label', operator.truth, None),
+                ('is_response_discrete', operator.gt, 0),
                 ('log_rows_count', operator.gt, 0),
-                ('log_rows_count', operator.lt, 0.81)]
+                ('log_rows_count', operator.lt, 0.81),
+                ('support_vector_classification_score_reward', operator.eq, 0)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
@@ -39,9 +41,8 @@ def _support_vector_classification(state: State, data: DataFrame) -> ActionResul
     """
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier: SVC = SVC()
-    param_grid = {'C': [0.1, 1, 10, 100],
-                  'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
-                  'gamma': ['scale', 'auto']}
+    param_grid = {'C': [1, 10, 100],
+                  'kernel': ['linear', 'poly', 'rbf', 'sigmoid']}
 
     try:
         classifier, score = model_selection(classifier,

@@ -18,7 +18,9 @@ from ..utils import (calculate_score_reward,
                      model_selection)
 
 _ACTION_NAME = "Decision Tree"
-_VALIDATIONS = [('response_variable_label', operator.truth, None)]
+_VALIDATIONS = [('response_variable_label', operator.truth, None),
+                ('is_response_discrete', operator.gt, 0),
+                ('decision_tree_score_reward', operator.eq, 0)]
 
 
 @validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
@@ -38,8 +40,7 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier: DecisionTreeClassifier = DecisionTreeClassifier()
     param_grid = {'criterion': ['gini', 'entropy', 'log_loss'],
-                  'splitter': ['best', 'random'],
-                  'max_features': ['auto', 'sqrt', 'log2', None]}
+                  'max_features': ['sqrt', 'log2', None]}
 
     try:
         classifier, score = model_selection(classifier,

@@ -56,6 +56,13 @@ class DataFeaturesSet(FeaturesSet):
             'get_value_fn': None
         })
 
+    response_unique_values_ratio: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(0, 1),
+            'get_value_fn': None
+        })
+
     response_inferred_dtype: str = field(
         default="unknown-array",
         metadata={

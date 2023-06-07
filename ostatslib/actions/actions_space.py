@@ -19,19 +19,24 @@ from .exploratory_actions import (
     is_response_discrete_check,
     is_response_positive_values_only_check,
     is_response_quantitative_check,
-    time_convertible_variable_search
+    time_convertible_variable_search,
+    get_response_unique_values_ratio
 )
 from .regression_models import (
     linear_regression,
     poisson_regression,
     support_vector_regression,
     decision_tree_regression,
-    time_series_auto_arima
+    time_series_auto_arima,
+    linear_support_vector_regression,
+    random_forest_regression
 )
 from .classifiers import (
     logistic_regression,
     support_vector_classification,
-    decision_tree
+    decision_tree,
+    linear_support_vector_classification,
+    random_forest
 )
 from .clustering import (
     k_means,
@@ -74,7 +79,9 @@ EXPLORATORY_ACTIONS = {
     'time_convertible_variable_search': (time_convertible_variable_search,
                                          _as_binary_array(5, ENCODING_LENGTH)),
     'infer_response_dtype': (infer_response_dtype,
-                             _as_binary_array(6, ENCODING_LENGTH))
+                             _as_binary_array(6, ENCODING_LENGTH)),
+    'get_response_unique_values_ratio': (get_response_unique_values_ratio,
+                                         _as_binary_array(7, ENCODING_LENGTH))
 }
 
 # Encoding: 8 to 15
@@ -83,8 +90,12 @@ CLASSIFIERS = {
                             _as_binary_array(8, ENCODING_LENGTH)),
     'support_vector_classification': (support_vector_classification,
                                       _as_binary_array(9, ENCODING_LENGTH)),
+    'linear_support_vector_classification': (linear_support_vector_classification,
+                                             _as_binary_array(10, ENCODING_LENGTH)),
     'decision_tree': (decision_tree,
-                      _as_binary_array(10, ENCODING_LENGTH))
+                      _as_binary_array(11, ENCODING_LENGTH)),
+    'random_forest': (random_forest,
+                      _as_binary_array(12, ENCODING_LENGTH)),
 }
 
 # Encoding: 16 to 23
@@ -95,10 +106,14 @@ REGRESSION_MODELS = {
                            _as_binary_array(17, ENCODING_LENGTH)),
     'support_vector_regression': (support_vector_regression,
                                   _as_binary_array(18, ENCODING_LENGTH)),
+    'linear_support_vector_regression': (linear_support_vector_regression,
+                                         _as_binary_array(19, ENCODING_LENGTH)),
     'decision_tree_regression': (decision_tree_regression,
-                                 _as_binary_array(19, ENCODING_LENGTH)),
+                                 _as_binary_array(20, ENCODING_LENGTH)),
+    'random_forest_regression': (random_forest_regression,
+                                 _as_binary_array(21, ENCODING_LENGTH)),
     'time_series_auto_arima': (time_series_auto_arima,
-                               _as_binary_array(20, ENCODING_LENGTH))
+                               _as_binary_array(22, ENCODING_LENGTH))
 }
 
 # Encoding: 24 to 31

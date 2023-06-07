@@ -55,6 +55,13 @@ class ModelsFeaturesSet(FeaturesSet):
             'get_value_fn': None
         })
 
+    random_forest_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
     linear_regression_score_reward: float = field(
         default=0,
         metadata={
@@ -70,6 +77,13 @@ class ModelsFeaturesSet(FeaturesSet):
         })
 
     support_vector_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    linear_support_vector_regression_score_reward: float = field(
         default=0,
         metadata={
             'gym_space': Box(-1, 1),
@@ -98,6 +112,20 @@ class ModelsFeaturesSet(FeaturesSet):
         })
 
     support_vector_classification_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    linear_support_vector_classification_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    random_forest_score_reward: float = field(
         default=0,
         metadata={
             'gym_space': Box(-1, 1),

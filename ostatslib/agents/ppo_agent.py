@@ -48,6 +48,6 @@ class PPOAgent(Agent):
     def __init__model(self, path: str | None, training_envs_count: int) -> PPO:
         if path is None:
             environments = make_vec_env(GymEnvironment, training_envs_count)
-            return PPO(POLICY, environments, verbose=1, policy_kwargs=POLICY_KWARGS)
+            return PPO(POLICY, environments, verbose=1, n_steps=6144, policy_kwargs=POLICY_KWARGS)
 
         return PPO.load(path)

@@ -9,6 +9,8 @@ import pmlb
 from ostatslib.states import State
 
 PMLB_CACHE_FOLDER = './.pmlb_cache'
+SKIP_DATASETS = ['poker', '1595_poker',
+                 '1191_BNG_pbc', '1196_BNG_pharynx', 'kddcup']
 
 
 def generate_from_pmlb() -> tuple[DataFrame, State]:
@@ -26,12 +28,16 @@ def generate_from_pmlb() -> tuple[DataFrame, State]:
 
 
 def __from_classification_datasets() -> tuple[DataFrame, State]:
-    dataset_name: str = choice(pmlb.classification_dataset_names)
+    dataset_name: str = SKIP_DATASETS[0]
+    while dataset_name in SKIP_DATASETS:
+        dataset_name = choice(pmlb.classification_dataset_names)
     return __fetch(dataset_name)
 
 
 def __from_regression_datasets() -> tuple[DataFrame, State]:
-    dataset_name: str = choice(pmlb.regression_dataset_names)
+    dataset_name: str = SKIP_DATASETS[0]
+    while dataset_name in SKIP_DATASETS:
+        dataset_name = choice(pmlb.regression_dataset_names)
     return __fetch(dataset_name)
 
 

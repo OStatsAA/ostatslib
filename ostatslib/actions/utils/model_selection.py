@@ -33,7 +33,7 @@ def model_selection(
                                  param_grid,
                                  cv=5,
                                  factor=2,
-                                 n_jobs=-1).fit(X, y)
+                                 n_jobs=None).fit(X, y)
     fitted_model: TModel = search.best_estimator_
     score = search.best_score_
     print(fitted_model, score)

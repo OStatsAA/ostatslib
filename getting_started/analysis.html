@@ -466,7 +466,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 21:54:14.093845
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:34.598872
 Final status is Complete
 Initial State known features:
 
@@ -479,8 +479,8 @@ Steps:
       4  Is Response Discrete Check                   0.5  is_response_discrete  1
       5  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
       6  Get Log Rows Count                           0.5  log_rows_count  0.386399
-      7  Logistic Regression                          1    score                             0.97
-                                                           logistic_regression_score_reward  0.97
+      7  Logistic Regression                          1    score                             0.96
+                                                           logistic_regression_score_reward  0.96
 </pre></div>
 </div>
 </div>
@@ -503,7 +503,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 21:54:15.333222
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:34.708879
 Final status is Complete
 Initial State known features:
 
@@ -722,7 +722,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 21:54:17.849853
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:37.899910
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -735,8 +735,8 @@ Steps:
       4  Is Response Discrete Check                   0.5  is_response_discrete  1
       5  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
       6  Get Log Rows Count                           0.5  log_rows_count  0.532286
-      7  Logistic Regression                          1    score                             0.954306
-                                                           logistic_regression_score_reward  0.954306
+      7  Logistic Regression                          1    score                             0.968366
+                                                           logistic_regression_score_reward  0.968366
 </pre></div>
 </div>
 </div>
@@ -756,43 +756,41 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(criterion=&#39;entropy&#39;) 0.6585
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 1000 entries, 0 to 999
-Data columns (total 11 columns):
+RangeIndex: 2000 entries, 0 to 1999
+Data columns (total 7 columns):
  #   Column  Non-Null Count  Dtype  
 ---  ------  --------------  -----  
- 0   In1     1000 non-null   float64
- 1   In2     1000 non-null   float64
- 2   In3     1000 non-null   float64
- 3   In4     1000 non-null   float64
- 4   In5     1000 non-null   float64
- 5   In6     1000 non-null   float64
- 6   In7     1000 non-null   float64
- 7   In8     1000 non-null   float64
- 8   In9     1000 non-null   float64
- 9   In10    1000 non-null   float64
- 10  target  1000 non-null   float64
-dtypes: float64(11)
-memory usage: 86.1 KB
+ 0   att1    2000 non-null   float64
+ 1   att2    2000 non-null   float64
+ 2   att3    2000 non-null   float64
+ 3   att4    2000 non-null   float64
+ 4   att5    2000 non-null   float64
+ 5   att6    2000 non-null   float64
+ 6   target  2000 non-null   int64  
+dtypes: float64(6), int64(1)
+memory usage: 109.5 KB
 None
 
-Analysis executed at 2023-06-08 21:54:21.195081
+Analysis executed at 2023-06-08 22:43:43.207037
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
-  Order  Step                                Reward  State Change
--------  --------------------------------  --------  -----------------------------------
-      1  Infer Response DType                   0.5  response_inferred_dtype  floating
-      2  Get Response Unique Values Ratio       0.5  response_unique_values_ratio  0.004
-      3  Get Response Unique Values Ratio      -1
-      4  Get Response Unique Values Ratio      -1
-      5  Get Response Unique Values Ratio      -1
-      6  Get Response Unique Values Ratio      -1
-      7  Get Response Unique Values Ratio      -1
-      8  Get Response Unique Values Ratio      -1
-      9  Get Response Unique Values Ratio      -1
-     10  Get Response Unique Values Ratio      -1
+  Order  Step                                      Reward  State Change
+-------  --------------------------------------  --------  -----------------------------------
+      1  Infer Response DType                      0.5     response_inferred_dtype  integer
+      2  Is Response Positive Values Only Check    0.5     is_response_positive_values_only  1
+      3  Is Response Quantitative Check            0.5     is_response_quantitative  1
+      4  Is Response Discrete Check                0.5     is_response_discrete  1
+      5  Is Response Dichotomous Check             0.5     is_response_dichotomous  -1
+      6  Time Convertible Variable Search          0.5     time_convertible_variable
+      7  Get Log Rows Count                        0.5     log_rows_count  0.637757
+      8  Decision Tree                             0.7335  score                       0.6585
+                                                           decision_tree_score_reward  0.6585
 </pre></div>
 </div>
 </div>

@@ -28,7 +28,6 @@ def model_selection(
     Returns:
         tuple[TModel, float]: best model and its score
     """
-    print(classifier, X.shape, len(y.unique()))
     search = HalvingGridSearchCV(classifier,
                                  param_grid,
                                  cv=5,

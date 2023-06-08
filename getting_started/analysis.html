@@ -466,7 +466,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:34.598872
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:51.602125
 Final status is Complete
 Initial State known features:
 
@@ -479,8 +479,8 @@ Steps:
       4  Is Response Discrete Check                   0.5  is_response_discrete  1
       5  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
       6  Get Log Rows Count                           0.5  log_rows_count  0.386399
-      7  Logistic Regression                          1    score                             0.96
-                                                           logistic_regression_score_reward  0.96
+      7  Logistic Regression                          1    score                             0.98
+                                                           logistic_regression_score_reward  0.98
 </pre></div>
 </div>
 </div>
@@ -503,7 +503,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:34.708879
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:52.417346
 Final status is Complete
 Initial State known features:
 
@@ -722,7 +722,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:37.899910
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-08 22:43:53.093351
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -756,41 +756,39 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(criterion=&#39;entropy&#39;) 0.6585
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 2000 entries, 0 to 1999
-Data columns (total 7 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   att1    2000 non-null   float64
- 1   att2    2000 non-null   float64
- 2   att3    2000 non-null   float64
- 3   att4    2000 non-null   float64
- 4   att5    2000 non-null   float64
- 5   att6    2000 non-null   float64
- 6   target  2000 non-null   int64  
-dtypes: float64(6), int64(1)
-memory usage: 109.5 KB
+RangeIndex: 768 entries, 0 to 767
+Data columns (total 9 columns):
+ #   Column                       Non-Null Count  Dtype  
+---  ------                       --------------  -----  
+ 0   Pregnant                     768 non-null    float64
+ 1   plasma glucose               768 non-null    float64
+ 2   Diastolic blood pressure     768 non-null    float64
+ 3   Triceps skin fold thickness  768 non-null    float64
+ 4   2-Hour serum insulin         768 non-null    float64
+ 5   Body mass index              768 non-null    float64
+ 6   Diabetes pedigree function   768 non-null    float64
+ 7   Age                          768 non-null    float64
+ 8   target                       768 non-null    int64  
+dtypes: float64(8), int64(1)
+memory usage: 54.1 KB
 None
 
-Analysis executed at 2023-06-08 22:43:43.207037
+Analysis executed at 2023-06-08 22:43:54.645111
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
   Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  -----------------------------------
-      1  Infer Response DType                      0.5     response_inferred_dtype  integer
-      2  Is Response Positive Values Only Check    0.5     is_response_positive_values_only  1
-      3  Is Response Quantitative Check            0.5     is_response_quantitative  1
-      4  Is Response Discrete Check                0.5     is_response_discrete  1
-      5  Is Response Dichotomous Check             0.5     is_response_dichotomous  -1
-      6  Time Convertible Variable Search          0.5     time_convertible_variable
-      7  Get Log Rows Count                        0.5     log_rows_count  0.637757
-      8  Decision Tree                             0.7335  score                       0.6585
-                                                           decision_tree_score_reward  0.6585
+-------  --------------------------------------  --------  ------------------------------------------
+      1  Infer Response DType                    0.5       response_inferred_dtype  integer
+      2  Is Response Positive Values Only Check  0.5       is_response_positive_values_only  1
+      3  Is Response Quantitative Check          0.5       is_response_quantitative  1
+      4  Is Response Discrete Check              0.5       is_response_discrete  1
+      5  Is Response Dichotomous Check           0.5       is_response_dichotomous  1
+      6  Get Log Rows Count                      0.5       log_rows_count  0.55745
+      7  Logistic Regression                     0.883854  score                             0.783854
+                                                           logistic_regression_score_reward  0.783854
 </pre></div>
 </div>
 </div>

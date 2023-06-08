@@ -1,6 +1,7 @@
 # OStatsLib
 .logs/
 .pmlb_cache/
+pmlb_cache
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

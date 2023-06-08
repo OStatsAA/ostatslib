@@ -28,6 +28,7 @@ ostatslib.actions.exploratory\_actions
    :recursive:
 
    ostatslib.actions.exploratory_actions.get_log_rows_count
+   ostatslib.actions.exploratory_actions.get_response_unique_values_ratio
    ostatslib.actions.exploratory_actions.infer_response_dtype
    ostatslib.actions.exploratory_actions.is_response_dichotomous_check
    ostatslib.actions.exploratory_actions.is_response_discrete_check

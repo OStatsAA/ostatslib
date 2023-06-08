@@ -64,8 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ostatslib.actions.classifiers.logistic_regression';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ostatslib.actions.classifiers.support_vector_classification" href="ostatslib.actions.classifiers.support_vector_classification.html" />
-    <link rel="prev" title="ostatslib.actions.classifiers.decision_tree" href="ostatslib.actions.classifiers.decision_tree.html" />
+    <link rel="next" title="ostatslib.actions.classifiers.random_forest" href="ostatslib.actions.classifiers.random_forest.html" />
+    <link rel="prev" title="ostatslib.actions.classifiers.linear_support_vector_classification" href="ostatslib.actions.classifiers.linear_support_vector_classification.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,7 +170,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.actions_space.html">ostatslib.actions.actions_space</a></li>
 <li class="toctree-l3 current active has-children"><a class="reference internal" href="ostatslib.actions.classifiers.html">ostatslib.actions.classifiers</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.classifiers.decision_tree.html">ostatslib.actions.classifiers.decision_tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.classifiers.linear_support_vector_classification.html">ostatslib.actions.classifiers.linear_support_vector_classification</a></li>
 <li class="toctree-l4 current active"><a class="current reference internal" href="#">ostatslib.actions.classifiers.logistic_regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.classifiers.random_forest.html">ostatslib.actions.classifiers.random_forest</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.classifiers.support_vector_classification.html">ostatslib.actions.classifiers.support_vector_classification</a></li>
 </ul>
 </li>
@@ -181,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.exploratory_actions.html">ostatslib.actions.exploratory_actions</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_log_rows_count.html">ostatslib.actions.exploratory_actions.get_log_rows_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_response_unique_values_ratio.html">ostatslib.actions.exploratory_actions.get_response_unique_values_ratio</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.infer_response_dtype.html">ostatslib.actions.exploratory_actions.infer_response_dtype</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">ostatslib.actions.exploratory_actions.is_response_dichotomous_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_discrete_check.html">ostatslib.actions.exploratory_actions.is_response_discrete_check</a></li>
@@ -192,7 +195,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.regression_models.html">ostatslib.actions.regression_models</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.decision_tree_regression.html">ostatslib.actions.regression_models.decision_tree_regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.linear_regression.html">ostatslib.actions.regression_models.linear_regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.linear_support_vector_regression.html">ostatslib.actions.regression_models.linear_support_vector_regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.poisson_regression.html">ostatslib.actions.regression_models.poisson_regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.random_forest_regression.html">ostatslib.actions.regression_models.random_forest_regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.support_vector_regression.html">ostatslib.actions.regression_models.support_vector_regression</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.regression_models.time_series_auto_arima.html">ostatslib.actions.regression_models.time_series_auto_arima</a></li>
 </ul>
@@ -200,6 +205,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3 has-children"><a class="reference internal" href="ostatslib.actions.utils.html">ostatslib.actions.utils</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.calculate_score_reward.html">ostatslib.actions.utils.calculate_score_reward</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.explainability_rewards.html">ostatslib.actions.utils.explainability_rewards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.model_selection.html">ostatslib.actions.utils.model_selection</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.reward_cap.html">ostatslib.actions.utils.reward_cap</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.split_response_from_explanatory_variables.html">ostatslib.actions.utils.split_response_from_explanatory_variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.utils.update_state_score.html">ostatslib.actions.utils.update_state_score</a></li>
@@ -473,20 +479,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ostatslib.actions.classifiers.decision_tree.html"
+       href="ostatslib.actions.classifiers.linear_support_vector_classification.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ostatslib.actions.classifiers.decision_tree</p>
+        <p class="prev-next-title">ostatslib.actions.classifiers.linear_support_vector_classification</p>
       </div>
     </a>
     <a class="right-next"
-       href="ostatslib.actions.classifiers.support_vector_classification.html"
+       href="ostatslib.actions.classifiers.random_forest.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ostatslib.actions.classifiers.support_vector_classification</p>
+        <p class="prev-next-title">ostatslib.actions.classifiers.random_forest</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

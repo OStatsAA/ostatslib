@@ -22,11 +22,15 @@ class AnalysisResult:
     done: bool
     timestamp: datetime = field(init=False)
     steps_count: int = field(init=False)
+    total_reward: float = field(init=False)
     actions_names_list: list[str] = field(init=False)
 
     def __post_init__(self):
         object.__setattr__(self, 'timestamp', datetime.now())
         object.__setattr__(self, 'steps_count', len(self.steps))
+        object.__setattr__(self,
+                           'total_reward',
+                           sum(reward for reward, _ in self.steps))
         object.__setattr__(self,
                            'actions_names_list',
                            [info['action_name'] for _, info in self.steps])

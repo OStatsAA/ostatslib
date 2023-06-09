@@ -2,7 +2,8 @@
 GymEnvironment module
 """
 
-from typing import Any
+from typing import Any, Callable
+from random import choice
 from numpy import ndarray
 from pandas import DataFrame
 from gymnasium import Env
@@ -11,10 +12,18 @@ from ostatslib import config
 from ostatslib.actions import ActionsSpace
 from ostatslib.actions.action import ActionInfo
 from ostatslib.actions.actions_space import _invalid_action_step
+from ostatslib.environments.data_generators import (datacooker_generator,
+                                                    pmlb_generator,
+                                                    sklearn_generator)
 from ostatslib.states import State
-from .utils import generate_training_dataset
 
 ObsType = Dict
+DataGeneratorFn = Callable[[], tuple[DataFrame, State]]
+
+DEFAULT_DATA_GENERATORS = [
+    datacooker_generator,
+    pmlb_generator,
+    sklearn_generator]
 
 
 class GymEnvironment(Env):
@@ -24,13 +33,18 @@ class GymEnvironment(Env):
 
     __state: State
     __data: DataFrame
+    __data_generators: list[DataGeneratorFn]
 
-    def __init__(self) -> None:
-        self.__init_state_and_data()
+    def __init__(self, data_generators: list[DataGeneratorFn] | None = None) -> None:
         self.observation_space = State().as_gymnasium_space
         self.action_space: ActionsSpace = ActionsSpace()
         self.reward_range = config.REWARD_RANGE
+        if data_generators is None:
+            self.__data_generators = DEFAULT_DATA_GENERATORS
+        else:
+            self.__data_generators = data_generators
         self.__steps_taken = 0
+        self.__init_state_and_data()
 
     def render(self) -> None:
         print("Render has no effect yet")
@@ -82,4 +96,5 @@ class GymEnvironment(Env):
             or self.__steps_taken >= config.MAX_STEPS
 
     def __init_state_and_data(self):
-        self.__data, self.__state = generate_training_dataset()
+        generator = choice(self.__data_generators)
+        self.__data, self.__state = generator()

@@ -33,7 +33,7 @@ import numpy as np
 from ostatslib.states import State
 
 
-def generate_from_sklearn() -> tuple[DataFrame, State]:
+def sklearn_generator() -> tuple[DataFrame, State]:
     """
     Generates a dataset from sklearn's toy datasets or generated
     https://scikit-learn.org/stable/datasets.html

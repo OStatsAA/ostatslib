@@ -396,37 +396,26 @@ document.write(`
 <span class="sd">Actions validators module</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span> <span class="nn">ostatslib</span> <span class="kn">import</span> <span class="n">config</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
-<span class="kn">from</span> <span class="nn">..action</span> <span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">,</span> <span class="n">ActionResult</span><span class="p">,</span> <span class="n">TModel</span>
 
 
-<div class="viewcode-block" id="validate_state"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.utils.validate_state.html#ostatslib.actions.utils.validate_state">[docs]</a><span class="k">def</span> <span class="nf">validate_state</span><span class="p">(</span><span class="n">action_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">validator_fns</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">Any</span><span class="p">]]):</span>
+<div class="viewcode-block" id="validate_state"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.utils.validate_state.html#ostatslib.actions.utils.validate_state">[docs]</a><span class="k">def</span> <span class="nf">validate_state</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">validator_fns</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Validate state before executing action</span>
+<span class="sd">    Validate state using list of validation functions</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        action_name (str): action name</span>
-<span class="sd">        validator_fns (list[tuple[str, Callable[..., bool], Any]]): list of validation tuples</span>
+<span class="sd">        state (State): state</span>
+<span class="sd">        validator_fns (list[tuple[str, Callable[..., bool], Any]]): validations</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if state is valid</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">actual_validator</span><span class="p">(</span><span class="n">action_function</span><span class="p">:</span> <span class="n">Action</span><span class="p">[</span><span class="n">TModel</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Action</span><span class="p">[</span><span class="n">TModel</span><span class="p">]:</span>
-
-        <span class="n">wraps</span><span class="p">(</span><span class="n">action_function</span><span class="p">)</span>
-
-        <span class="k">def</span> <span class="nf">function_wrapper</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="n">TModel</span><span class="p">]:</span>
-            <span class="k">for</span> <span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="n">operator_fn</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">validator_fns</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_valid</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">operator_fn</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-                    <span class="k">return</span> <span class="n">_default_invalid_state_return</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action_name</span><span class="p">,</span> <span class="n">action_function</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">action_function</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">function_wrapper</span>
-
-    <span class="k">return</span> <span class="n">actual_validator</span></div>
+    <span class="k">for</span> <span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="n">operator_fn</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">validator_fns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_valid</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">operator_fn</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
 
 
 <span class="k">def</span> <span class="nf">_is_valid</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
@@ -438,15 +427,6 @@ document.write(`
             <span class="k">return</span> <span class="n">operator_fn</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature_key</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">operator_fn</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature_key</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_default_invalid_state_return</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
-                                  <span class="n">action_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                                  <span class="n">action_function</span><span class="p">:</span> <span class="n">Action</span><span class="p">[</span><span class="n">TModel</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="n">TModel</span><span class="p">]:</span>
-    <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">MIN_REWARD</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">(</span><span class="n">action_name</span><span class="o">=</span><span class="n">action_name</span><span class="p">,</span>
-                                                <span class="n">action_fn</span><span class="o">=</span><span class="n">action_function</span><span class="p">,</span>
-                                                <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                                <span class="n">raised_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
                 </article>

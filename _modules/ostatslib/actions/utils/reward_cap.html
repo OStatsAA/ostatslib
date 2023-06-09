@@ -413,8 +413,7 @@ document.write(`
 <span class="sd">    Returns:</span>
 <span class="sd">        Action[TModel]: action</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">wraps</span><span class="p">(</span><span class="n">action_function</span><span class="p">)</span>
-
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">action_function</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">function_wrapper</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">):</span>
         <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">action_function</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="n">reward</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">MIN_REWARD</span><span class="p">,</span> <span class="n">reward</span><span class="p">),</span> <span class="n">config</span><span class="o">.</span><span class="n">MAX_REWARD</span><span class="p">)</span>

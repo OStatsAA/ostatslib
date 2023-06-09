@@ -400,6 +400,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3</span> <span class="kn">import</span> <span class="n">PPO</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3.common.env_util</span> <span class="kn">import</span> <span class="n">make_vec_env</span>
+<span class="kn">from</span> <span class="nn">stable_baselines3.common.vec_env</span> <span class="kn">import</span> <span class="n">SubprocVecEnv</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3.common.callbacks</span> <span class="kn">import</span> <span class="n">CheckpointCallback</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3.common.logger</span> <span class="kn">import</span> <span class="n">configure</span>
 
@@ -449,11 +450,13 @@ document.write(`
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">environments</span> <span class="o">=</span> <span class="n">make_vec_env</span><span class="p">(</span><span class="n">GymEnvironment</span><span class="p">,</span>
                                         <span class="n">training_envs_count</span><span class="p">,</span>
-                                        <span class="n">env_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span><span class="p">)</span>
+                                        <span class="n">env_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span><span class="p">,</span>
+                                        <span class="n">vec_env_cls</span><span class="o">=</span><span class="n">SubprocVecEnv</span><span class="p">)</span>
+                                        <span class="c1">#vec_env_kwargs={&#39;start_method&#39;: &#39;spawn&#39;})</span>
             <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span>
                        <span class="n">environments</span><span class="p">,</span>
                        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                       <span class="n">n_steps</span><span class="o">=</span><span class="mi">6144</span><span class="p">,</span>
+                       <span class="n">n_steps</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
                        <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>

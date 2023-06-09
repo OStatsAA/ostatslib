@@ -6,6 +6,7 @@ import torch as th
 from numpy import ndarray
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
+from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.callbacks import CheckpointCallback
 from stable_baselines3.common.logger import configure
 
@@ -55,11 +56,13 @@ class PPOAgent(Agent):
         if path is None:
             environments = make_vec_env(GymEnvironment,
                                         training_envs_count,
-                                        env_kwargs=self.__environment_kwargs)
+                                        env_kwargs=self.__environment_kwargs,
+                                        vec_env_cls=SubprocVecEnv)
+                                        #vec_env_kwargs={'start_method': 'spawn'})
             return PPO(POLICY,
                        environments,
                        verbose=1,
-                       n_steps=6144,
+                       n_steps=2048,
                        policy_kwargs=POLICY_KWARGS)
 
         return PPO.load(path)

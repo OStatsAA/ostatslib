@@ -31,10 +31,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('linear_regression_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @interpretable_model
-def _linear_regression(state: State, data: DataFrame) -> ActionResult[RegressionResults]:
+def _action(state: State, data: DataFrame) -> ActionResult[RegressionResults]:
     """
     Fits data to a linear regression model.
 
@@ -45,6 +44,12 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
     Returns:
         ActionResult[RegressionResults]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     response_var, explanatory_vars = split_response_from_explanatory_variables(
         state, data)
     try:
@@ -52,14 +57,14 @@ def _linear_regression(state: State, data: DataFrame) -> ActionResult[Regression
             response_var, add_constant(explanatory_vars)).fit()
     except ValueError:
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_linear_regression,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
     reward = __calculate_reward(state, regression)
     update_state_score(state, regression.rsquared)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_linear_regression,
+                                     action_fn=_action,
                                      model=regression,
                                      raised_exception=False)
 
@@ -156,4 +161,4 @@ def __reward_for_recursive_residuals_mean(state: State,
     return 0
 
 
-linear_regression: Action[RegressionResults] = _linear_regression
+linear_regression: Action[RegressionResults] = _action

@@ -26,10 +26,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('poisson_regression_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @interpretable_model
-def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResults]:
+def _action(state: State, data: DataFrame) -> ActionResult[GLMResults]:
     """
     Fits data to a poisson regression model.
 
@@ -40,6 +39,12 @@ def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResult
     Returns:
         ActionResult[GLMResults]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     response_var, explanatory_vars = split_response_from_explanatory_variables(state,
                                                                                data)
     try:
@@ -61,16 +66,16 @@ def _poisson_regression(state: State, data: DataFrame) -> ActionResult[GLMResult
     state = update_state_score(state, score)
     state.set('poisson_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_poisson_regression,
+                                     action_fn=_action,
                                      model=regression,
                                      raised_exception=False)
 
 
 def __raised_exception_action_result(state):
     return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                action_fn=_poisson_regression,
+                                                action_fn=_action,
                                                 model=None,
                                                 raised_exception=True)
 
 
-poisson_regression: Action[GLMResults] = _poisson_regression
+poisson_regression: Action[GLMResults] = _action

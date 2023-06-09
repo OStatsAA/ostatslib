@@ -19,8 +19,7 @@ def reward_cap(action_function: Action[TModel]) -> Action[TModel]:
     Returns:
         Action[TModel]: action
     """
-    wraps(action_function)
-
+    @wraps(action_function)
     def function_wrapper(state: State, data: DataFrame):
         state, reward, info = action_function(state, data)
         reward = min(max(config.MIN_REWARD, reward), config.MAX_REWARD)

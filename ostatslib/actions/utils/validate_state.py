@@ -2,37 +2,26 @@
 Actions validators module
 """
 
-from functools import wraps
 from inspect import signature
 from typing import Any, Callable
-from pandas import DataFrame
-from ostatslib import config
 from ostatslib.states import State
-from ..action import Action, ActionInfo, ActionResult, TModel
 
 
-def validate_state(action_name: str, validator_fns: list[tuple[str, Callable[..., bool], Any]]):
+def validate_state(state: State, validator_fns: list[tuple[str, Callable[..., bool], Any]]) -> bool:
     """
-    Validate state before executing action
+    Validate state using list of validation functions
 
     Args:
-        action_name (str): action name
-        validator_fns (list[tuple[str, Callable[..., bool], Any]]): list of validation tuples
+        state (State): state
+        validator_fns (list[tuple[str, Callable[..., bool], Any]]): validations
+
+    Returns:
+        bool: True if state is valid
     """
-
-    def actual_validator(action_function: Action[TModel]) -> Action[TModel]:
-
-        wraps(action_function)
-
-        def function_wrapper(state: State, data: DataFrame) -> ActionResult[TModel]:
-            for (feature_key, operator_fn, value) in validator_fns:
-                if not _is_valid(state, feature_key, operator_fn, value):
-                    return _default_invalid_state_return(state, action_name, action_function)
-            return action_function(state, data)
-
-        return function_wrapper
-
-    return actual_validator
+    for (feature_key, operator_fn, value) in validator_fns:
+        if not _is_valid(state, feature_key, operator_fn, value):
+            return False
+    return True
 
 
 def _is_valid(state: State,
@@ -44,12 +33,3 @@ def _is_valid(state: State,
             return operator_fn(state.get(feature_key))
 
     return operator_fn(state.get(feature_key), value)
-
-
-def _default_invalid_state_return(state: State,
-                                  action_name: str,
-                                  action_function: Action[TModel]) -> ActionResult[TModel]:
-    return state, config.MIN_REWARD, ActionInfo(action_name=action_name,
-                                                action_fn=action_function,
-                                                model=None,
-                                                raised_exception=False)

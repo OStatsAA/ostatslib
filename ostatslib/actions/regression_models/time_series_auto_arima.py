@@ -27,11 +27,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('time_series_auto_arima_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @interpretable_model
-def _time_series_auto_arima(state: State,
-                            data: DataFrame) -> ActionResult[SARIMAXResults]:
+def _action(state: State, data: DataFrame) -> ActionResult[SARIMAXResults]:
     """
     Fits data to an ARIMA model
 
@@ -44,7 +42,7 @@ def _time_series_auto_arima(state: State,
     """
     if not __is_valid_state(state):
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_time_series_auto_arima,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=False)
 
@@ -69,7 +67,7 @@ def _time_series_auto_arima(state: State,
 
     reward: float = __calculate_reward(state, model, score)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_time_series_auto_arima,
+                                     action_fn=_action,
                                      model=model,
                                      raised_exception=False)
 
@@ -145,4 +143,4 @@ def __build_time_index_dataframes_for_y_and_x(
     return y_data, x_data
 
 
-time_series_auto_arima: Action[SARIMAXResults] = _time_series_auto_arima
+time_series_auto_arima: Action[SARIMAXResults] = _action

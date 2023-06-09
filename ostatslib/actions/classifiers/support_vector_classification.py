@@ -25,10 +25,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('support_vector_classification_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @opaque_model
-def _support_vector_classification(state: State, data: DataFrame) -> ActionResult[SVC]:
+def _action(state: State, data: DataFrame) -> ActionResult[SVC]:
     """
     Fits data to a SVC model
 
@@ -39,6 +38,12 @@ def _support_vector_classification(state: State, data: DataFrame) -> ActionResul
     Returns:
         ActionResult[SVC]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier: SVC = SVC()
     param_grid = {'C': [1, 10, 100],
@@ -53,7 +58,7 @@ def _support_vector_classification(state: State, data: DataFrame) -> ActionResul
         state.set('support_vector_classification_score_reward',
                   config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_support_vector_classification,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -61,9 +66,9 @@ def _support_vector_classification(state: State, data: DataFrame) -> ActionResul
     reward = calculate_score_reward(score)
     state.set('support_vector_classification_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_support_vector_classification,
+                                     action_fn=_action,
                                      model=classifier,
                                      raised_exception=False)
 
 
-support_vector_classification: Action[SVC] = _support_vector_classification
+support_vector_classification: Action[SVC] = _action

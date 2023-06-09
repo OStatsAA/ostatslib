@@ -17,8 +17,8 @@ LOG_COMPRESSION_CONSTANT = 5.176
 """compression rate to keep log10(150K lines) close to 1"""
 
 
-def _get_log_rows_count(state: State,
-                        data: DataFrame) -> ActionResult[None]:
+def _action(state: State,
+            data: DataFrame) -> ActionResult[None]:
     """
     Gets log rows count: log(#rows)/c, where c is a compression constant
 
@@ -33,7 +33,7 @@ def _get_log_rows_count(state: State,
     reward = __calculate_reward(state, log_rows_count)
     state = __update_state(state, log_rows_count)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_get_log_rows_count,
+                                     action_fn=_action,
                                      model=None,
                                      raised_exception=False)
 
@@ -59,4 +59,4 @@ def __update_state(state: State, log_rows_count: float) -> State:
     return state
 
 
-get_log_rows_count: Action[None] = _get_log_rows_count
+get_log_rows_count: Action[None] = _action

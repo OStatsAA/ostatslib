@@ -25,10 +25,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('random_forest_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @opaque_model
-def _random_forest(state: State, data: DataFrame) -> ActionResult[RandomForestClassifier]:
+def _action(state: State, data: DataFrame) -> ActionResult[RandomForestClassifier]:
     """
     Fits data to a random forest classifier
 
@@ -39,6 +38,12 @@ def _random_forest(state: State, data: DataFrame) -> ActionResult[RandomForestCl
     Returns:
         ActionResult[RandomForestClassifier]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier: RandomForestClassifier = RandomForestClassifier()
     param_grid = {'criterion': ['gini', 'entropy', 'log_loss'],
@@ -53,7 +58,7 @@ def _random_forest(state: State, data: DataFrame) -> ActionResult[RandomForestCl
     except ValueError:
         state.set('random_forest_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_random_forest,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -61,9 +66,9 @@ def _random_forest(state: State, data: DataFrame) -> ActionResult[RandomForestCl
     reward = calculate_score_reward(score)
     state.set('random_forest_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_random_forest,
+                                     action_fn=_action,
                                      model=classifier,
                                      raised_exception=False)
 
 
-random_forest: Action[RandomForestClassifier] = _random_forest
+random_forest: Action[RandomForestClassifier] = _action

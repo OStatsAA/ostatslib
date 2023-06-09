@@ -25,10 +25,9 @@ _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
                 ('linear_support_vector_regression_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @opaque_model
-def _linear_support_vector_regression(state: State, data: DataFrame) -> ActionResult[LinearSVR]:
+def _action(state: State, data: DataFrame) -> ActionResult[LinearSVR]:
     """
     Fits data to a LinearSVR model
 
@@ -39,6 +38,12 @@ def _linear_support_vector_regression(state: State, data: DataFrame) -> ActionRe
     Returns:
         ActionResult[LinearSVR]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     regressor: LinearSVR = LinearSVR()
     param_grid = {'C': [1, 10, 100],
@@ -53,7 +58,7 @@ def _linear_support_vector_regression(state: State, data: DataFrame) -> ActionRe
         state.set('linear_support_vector_regression_score_reward',
                   config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_linear_support_vector_regression,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -61,9 +66,9 @@ def _linear_support_vector_regression(state: State, data: DataFrame) -> ActionRe
     reward = calculate_score_reward(score)
     state.set('linear_support_vector_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_linear_support_vector_regression,
+                                     action_fn=_action,
                                      model=regressor,
                                      raised_exception=False)
 
 
-linear_support_vector_regression: Action[LinearSVR] = _linear_support_vector_regression
+linear_support_vector_regression: Action[LinearSVR] = _action

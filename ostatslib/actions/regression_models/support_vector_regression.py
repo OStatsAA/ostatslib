@@ -25,10 +25,9 @@ _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
                 ('support_vector_regression_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @opaque_model
-def _support_vector_regression(state: State, data: DataFrame) -> ActionResult[SVR]:
+def _action(state: State, data: DataFrame) -> ActionResult[SVR]:
     """
     Fits data to a SVR model
 
@@ -39,6 +38,12 @@ def _support_vector_regression(state: State, data: DataFrame) -> ActionResult[SV
     Returns:
         ActionResult[SVR]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     regressor: SVR = SVR()
     param_grid = {'C': [1, 10, 100],
@@ -52,7 +57,7 @@ def _support_vector_regression(state: State, data: DataFrame) -> ActionResult[SV
     except ValueError:
         state.set('support_vector_regression_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_support_vector_regression,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -60,9 +65,9 @@ def _support_vector_regression(state: State, data: DataFrame) -> ActionResult[SV
     reward = calculate_score_reward(score)
     state.set('support_vector_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_support_vector_regression,
+                                     action_fn=_action,
                                      model=regressor,
                                      raised_exception=False)
 
 
-support_vector_regression: Action[SVR] = _support_vector_regression
+support_vector_regression: Action[SVR] = _action

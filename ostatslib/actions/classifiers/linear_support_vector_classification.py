@@ -25,10 +25,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('linear_support_vector_classification_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @opaque_model
-def _linear_support_vector_classification(state: State, data: DataFrame) -> ActionResult[LinearSVC]:
+def _action(state: State, data: DataFrame) -> ActionResult[LinearSVC]:
     """
     Fits data to a LinearSVC model
 
@@ -39,6 +38,12 @@ def _linear_support_vector_classification(state: State, data: DataFrame) -> Acti
     Returns:
         ActionResult[LinearSVC]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier: LinearSVC = LinearSVC()
     param_grid = {'penalty': ['l1', 'l2'],
@@ -53,7 +58,7 @@ def _linear_support_vector_classification(state: State, data: DataFrame) -> Acti
         state.set('linear_support_vector_classification_score_reward',
                   config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_linear_support_vector_classification,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -61,9 +66,9 @@ def _linear_support_vector_classification(state: State, data: DataFrame) -> Acti
     reward = calculate_score_reward(score)
     state.set('linear_support_vector_classification_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_linear_support_vector_classification,
+                                     action_fn=_action,
                                      model=classifier,
                                      raised_exception=False)
 
 
-linear_support_vector_classification: Action[LinearSVC] = _linear_support_vector_classification
+linear_support_vector_classification: Action[LinearSVC] = _action

@@ -25,8 +25,7 @@ def opaque_model(
     Returns:
         Action[TModel]: action
     """
-    wraps(action_function)
-
+    @wraps(action_function)
     def function_wrapper(state: State, data: DataFrame):
         state, reward, info = action_function(state, data)
         reward += OPAQUE_PENALTY
@@ -46,8 +45,7 @@ def interpretable_model(
     Returns:
         Action[TModel]: action
     """
-    wraps(action_function)
-
+    @wraps(action_function)
     def function_wrapper(state: State, data: DataFrame):
         state, reward, info = action_function(state, data)
         reward += INTERPRETABLE_REWARD
@@ -67,8 +65,7 @@ def comprehensible_model(
     Returns:
         Action[TModel]: action
     """
-    wraps(action_function)
-
+    @wraps(action_function)
     def function_wrapper(state: State, data: DataFrame):
         state, reward, info = action_function(state, data)
         reward += COMPREHENSIBLE_REWARD

@@ -2,6 +2,7 @@
 Decision Tree module
 """
 
+
 import operator
 from pandas import DataFrame
 from sklearn.tree import DecisionTreeClassifier
@@ -23,10 +24,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('decision_tree_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @comprehensible_model
-def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeClassifier]:
+def _action(state: State, data: DataFrame) -> ActionResult[DecisionTreeClassifier]:
     """
     Fits data to a decision tree classifier
 
@@ -37,6 +37,12 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
     Returns:
         ActionResult[DecisionTreeClassifier]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     classifier: DecisionTreeClassifier = DecisionTreeClassifier()
     param_grid = {'criterion': ['gini', 'entropy', 'log_loss'],
@@ -50,7 +56,7 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
     except ValueError:
         state.set('decision_tree_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_decision_tree,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -58,9 +64,9 @@ def _decision_tree(state: State, data: DataFrame) -> ActionResult[DecisionTreeCl
     reward = calculate_score_reward(score)
     state.set('decision_tree_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_decision_tree,
+                                     action_fn=_action,
                                      model=classifier,
                                      raised_exception=False)
 
 
-decision_tree: Action[DecisionTreeClassifier] = _decision_tree
+decision_tree: Action[DecisionTreeClassifier] = _action

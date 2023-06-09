@@ -16,8 +16,8 @@ _ACTION_NAME = "Infer Response DType"
 _VALIDATIONS = [('response_variable_label', operator.truth, None)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
-def _infer_response_dtype(state: State, data: DataFrame) -> ActionResult[None]:
+
+def _action(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Infer response dtype
 
@@ -35,7 +35,7 @@ def _infer_response_dtype(state: State, data: DataFrame) -> ActionResult[None]:
         response: Series = data[response_var_label]
     except KeyError:
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_infer_response_dtype,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -44,9 +44,11 @@ def _infer_response_dtype(state: State, data: DataFrame) -> ActionResult[None]:
     reward = get_exploratory_reward(state, state_copy)
 
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_infer_response_dtype,
+                                     action_fn=_action,
                                      model=None,
                                      raised_exception=False)
 
 
-infer_response_dtype: Action[None] = _infer_response_dtype
+
+
+infer_response_dtype: Action[None] = _action

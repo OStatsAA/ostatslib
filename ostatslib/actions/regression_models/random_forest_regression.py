@@ -25,11 +25,10 @@ _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
                 ('response_unique_values_ratio', operator.gt, 0.5)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @opaque_model
-def _random_forest_regression(state: State,
-                              data: DataFrame) -> ActionResult[RandomForestRegressor]:
+def _action(state: State,
+            data: DataFrame) -> ActionResult[RandomForestRegressor]:
     """
     Fits data to a random forest regressor
 
@@ -40,6 +39,12 @@ def _random_forest_regression(state: State,
     Returns:
         ActionResult[RandomForestRegressor]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     regressor: RandomForestRegressor = RandomForestRegressor()
     param_grid = {'criterion': ['squared_error', 'friedman_mse'],
@@ -54,7 +59,7 @@ def _random_forest_regression(state: State,
     except ValueError:
         state.set('random_forest_regression_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_random_forest_regression,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -62,9 +67,9 @@ def _random_forest_regression(state: State,
     reward = calculate_score_reward(score)
     state.set('random_forest_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_random_forest_regression,
+                                     action_fn=_action,
                                      model=regressor,
                                      raised_exception=False)
 
 
-random_forest_regression: Action[RandomForestRegressor] = _random_forest_regression
+random_forest_regression: Action[RandomForestRegressor] = _action

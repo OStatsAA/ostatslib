@@ -35,5 +35,4 @@ def model_selection(
                                  n_jobs=None).fit(X, y)
     fitted_model: TModel = search.best_estimator_
     score = search.best_score_
-    print(fitted_model, score)
     return fitted_model, score

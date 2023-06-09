@@ -23,10 +23,9 @@ _VALIDATIONS = [('response_variable_label', operator.truth, None),
                 ('logistic_regression_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @interpretable_model
-def _logistic_regression(state: State, data: DataFrame) -> ActionResult[LogisticRegressionCV]:
+def _action(state: State, data: DataFrame) -> ActionResult[LogisticRegressionCV]:
     """
     Fits data to a logistic regression model.
 
@@ -37,6 +36,12 @@ def _logistic_regression(state: State, data: DataFrame) -> ActionResult[Logistic
     Returns:
         ActionResult[LogisticRegressionCV]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     regression = LogisticRegressionCV(cv=5)
 
@@ -45,7 +50,7 @@ def _logistic_regression(state: State, data: DataFrame) -> ActionResult[Logistic
     except ValueError:
         state.set('logistic_regression_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_logistic_regression,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -54,9 +59,9 @@ def _logistic_regression(state: State, data: DataFrame) -> ActionResult[Logistic
     reward: float = calculate_score_reward(score)
     state.set('logistic_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_logistic_regression,
+                                     action_fn=_action,
                                      model=regression,
                                      raised_exception=False)
 
 
-logistic_regression: Action[LogisticRegressionCV] = _logistic_regression
+logistic_regression: Action[LogisticRegressionCV] = _action

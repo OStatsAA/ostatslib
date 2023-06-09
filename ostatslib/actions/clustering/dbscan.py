@@ -9,6 +9,7 @@ from pandas import DataFrame
 from sklearn.cluster import DBSCAN
 from sklearn.metrics import silhouette_score
 from sklearn.neighbors import NearestNeighbors
+from ostatslib import config
 
 from ostatslib.states import State
 from ..action import Action, ActionInfo, ActionResult
@@ -22,9 +23,8 @@ _VALIDATIONS = [('response_variable_label', operator.eq, ''),
                 ('clusters_count', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
-def _dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
+def _action(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
     """
     Fits data to a DBSCAN cluster
 
@@ -35,6 +35,12 @@ def _dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
     Returns:
         ActionResult[DBSCAN]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     max_curvature_point = __get_max_curvature_point(data)
     db_scan = DBSCAN(eps=max_curvature_point)
     db_scan.fit(data)
@@ -47,7 +53,7 @@ def _dbscan(state: State, data: DataFrame) -> ActionResult[DBSCAN]:
     reward: float = calculate_score_reward(score)
     update_state_score(state, score)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_dbscan,
+                                     action_fn=_action,
                                      model=db_scan,
                                      raised_exception=False)
 
@@ -59,7 +65,7 @@ def __get_max_curvature_point(data: DataFrame) -> float:
     elif n_rows < 10 * n_columns:
         min_points = n_columns
     else:
-        min_points = 2* n_columns
+        min_points = 2 * n_columns
 
     neighbors_fit = NearestNeighbors(
         n_neighbors=min_points, metric='euclidean').fit(data)
@@ -78,4 +84,4 @@ def __get_max_curvature_point(data: DataFrame) -> float:
     return elbow_locator.elbow_y
 
 
-dbscan: Action[DBSCAN] = _dbscan
+dbscan: Action[DBSCAN] = _action

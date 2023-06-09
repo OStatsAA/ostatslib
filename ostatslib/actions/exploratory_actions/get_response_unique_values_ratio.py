@@ -14,9 +14,8 @@ _ACTION_NAME = "Get Response Unique Values Ratio"
 _VALIDATIONS = [('response_variable_label', operator.truth, None)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
-def _get_response_unique_values_ratio(state: State,
-                                      data: DataFrame) -> ActionResult[None]:
+def _action(state: State,
+            data: DataFrame) -> ActionResult[None]:
     """
     Gets response unique values ratio to total rows
 
@@ -27,12 +26,18 @@ def _get_response_unique_values_ratio(state: State,
     Returns:
         ActionResult[None]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     response_unique_values_ratio = __calculate_response_unique_values_ratio(state,
                                                                             data)
     reward = __calculate_reward(state, response_unique_values_ratio)
     state = __update_state(state, response_unique_values_ratio)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_get_response_unique_values_ratio,
+                                     action_fn=_action,
                                      model=None,
                                      raised_exception=False)
 
@@ -56,4 +61,4 @@ def __update_state(state: State, response_unique_values_ratio: float) -> State:
     return state
 
 
-get_response_unique_values_ratio: Action[None] = _get_response_unique_values_ratio
+get_response_unique_values_ratio: Action[None] = _action

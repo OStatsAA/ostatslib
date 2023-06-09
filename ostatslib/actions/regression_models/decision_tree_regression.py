@@ -24,11 +24,10 @@ _VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
                 ('decision_tree_regression_score_reward', operator.eq, 0)]
 
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
 @reward_cap
 @comprehensible_model
-def _decision_tree_regression(state: State,
-                              data: DataFrame) -> ActionResult[DecisionTreeRegressor]:
+def _action(state: State,
+            data: DataFrame) -> ActionResult[DecisionTreeRegressor]:
     """
     Fits data to a decision tree regressor
 
@@ -39,6 +38,12 @@ def _decision_tree_regression(state: State,
     Returns:
         ActionResult[DecisionTreeRegressor]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
+
     y_values, x_values = split_response_from_explanatory_variables(state, data)
     regressor: DecisionTreeRegressor = DecisionTreeRegressor()
     param_grid = {'criterion': ['squared_error', 'friedman_mse', 'absolute_error'],
@@ -52,7 +57,7 @@ def _decision_tree_regression(state: State,
     except ValueError:
         state.set('decision_tree_regression_score_reward', config.MIN_REWARD)
         return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
-                                                    action_fn=_decision_tree_regression,
+                                                    action_fn=_action,
                                                     model=None,
                                                     raised_exception=True)
 
@@ -60,9 +65,9 @@ def _decision_tree_regression(state: State,
     reward = calculate_score_reward(score)
     state.set('decision_tree_regression_score_reward', reward)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_decision_tree_regression,
+                                     action_fn=_action,
                                      model=regressor,
                                      raised_exception=False)
 
 
-decision_tree_regression: Action[DecisionTreeRegressor] = _decision_tree_regression
+decision_tree_regression: Action[DecisionTreeRegressor] = _action

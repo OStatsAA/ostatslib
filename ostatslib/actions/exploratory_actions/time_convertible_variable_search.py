@@ -21,7 +21,7 @@ ORDERED_LIST_OF_POSSIBLE_TIME_DTYPES = [
 ]
 
 
-def _time_convertible_variable_search(state: State, data: DataFrame) -> ActionResult[None]:
+def _action(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Gets log rows count: log(#rows)/c, where c is a compression constant
 
@@ -43,7 +43,7 @@ def _time_convertible_variable_search(state: State, data: DataFrame) -> ActionRe
     reward: float = __calculate_reward(state, date_convertible_variable)
     __update_state(state, date_convertible_variable)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_time_convertible_variable_search,
+                                     action_fn=_action,
                                      model=None,
                                      raised_exception=False)
 
@@ -89,4 +89,4 @@ def __update_state(state: State, date_convertible_variable: str | None) -> State
     return state
 
 
-time_convertible_variable_search: Action[None] = _time_convertible_variable_search
+time_convertible_variable_search: Action[None] = _action

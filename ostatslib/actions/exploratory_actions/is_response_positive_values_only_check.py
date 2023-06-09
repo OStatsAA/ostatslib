@@ -6,6 +6,7 @@ is_response_positive_values_only_check module
 import operator
 from pandas import DataFrame, Series
 import numpy as np
+from ostatslib import config
 
 from ostatslib.states import State
 from ._get_exploratory_reward import get_exploratory_reward
@@ -15,8 +16,8 @@ from ..utils import validate_state
 _ACTION_NAME = "Is Response Positive Values Only Check"
 _VALIDATIONS = [('response_variable_label', operator.truth, None)]
 
-@validate_state(action_name=_ACTION_NAME, validator_fns=_VALIDATIONS)
-def _is_response_positive_values_only_check(state: State, data: DataFrame) -> ActionResult[None]:
+
+def _action(state: State, data: DataFrame) -> ActionResult[None]:
     """
     Check if response variable values are positive only
 
@@ -27,6 +28,11 @@ def _is_response_positive_values_only_check(state: State, data: DataFrame) -> Ac
     Returns:
         ActionResult[None]: action result
     """
+    if not validate_state(state, _VALIDATIONS):
+        return state, config.MIN_REWARD, ActionInfo(action_name=_ACTION_NAME,
+                                                    action_fn=_action,
+                                                    model=None,
+                                                    raised_exception=False)
     state_copy: State = state.copy()
     response_var_label: str = state.get("response_variable_label")
     response: Series = data[response_var_label]
@@ -39,7 +45,7 @@ def _is_response_positive_values_only_check(state: State, data: DataFrame) -> Ac
 
     reward = get_exploratory_reward(state, state_copy)
     return state, reward, ActionInfo(action_name=_ACTION_NAME,
-                                     action_fn=_is_response_positive_values_only_check,
+                                     action_fn=_action,
                                      model=None,
                                      raised_exception=False)
 
@@ -57,4 +63,4 @@ def __positive_only_check(values: Series) -> bool:
     return unique_values.min() >= 0
 
 
-is_response_positive_values_only_check: Action[None] = _is_response_positive_values_only_check
+is_response_positive_values_only_check: Action[None] = _action

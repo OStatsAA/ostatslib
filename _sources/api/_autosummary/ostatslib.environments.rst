@@ -27,6 +27,6 @@
    :toctree:
    :recursive:
 
+   ostatslib.environments.data_generators
    ostatslib.environments.gym_environment
-   ostatslib.environments.utils
 

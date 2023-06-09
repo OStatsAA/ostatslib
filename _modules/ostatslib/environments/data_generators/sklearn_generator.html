@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ostatslib.environments.utils.generate_training_dataset &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.environments.data_generators.sklearn_generator &#8212; Open Statistics Analysis Agent</title>
   
   
   
@@ -62,7 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
     <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ostatslib/environments/utils/generate_training_dataset';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/ostatslib/environments/data_generators/sklearn_generator';</script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -220,11 +220,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.html">ostatslib.environments</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.gym_environment.html">ostatslib.environments.gym_environment</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.utils.html">ostatslib.environments.utils</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.utils.generate_training_dataset.html">ostatslib.environments.utils.generate_training_dataset</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.data_generators.html">ostatslib.environments.data_generators</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.data_generators.datacooker_generator.html">ostatslib.environments.data_generators.datacooker_generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.data_generators.pmlb_generator.html">ostatslib.environments.data_generators.pmlb_generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.data_generators.sklearn_generator.html">ostatslib.environments.data_generators.sklearn_generator</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.environments.gym_environment.html">ostatslib.environments.gym_environment</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/_autosummary/ostatslib.states.html">ostatslib.states</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -313,7 +315,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/environments/utils/generate_training_dataset.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/OStatsAA/ostatslib/issues/new?title=Issue%20on%20page%20%2F_modules/ostatslib/environments/data_generators/sklearn_generator.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,33 +391,143 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <h1>Source code for ostatslib.environments.utils.generate_training_dataset</h1><div class="highlight"><pre>
+  <h1>Source code for ostatslib.environments.data_generators.sklearn_generator</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">generate dataset function module</span>
+<span class="sd">Generate datasets from SciKit Learn for agent training module</span>
+
+<span class="sd">https://scikit-learn.org/stable/datasets.html</span>
+
+<span class="sd">The following sklearn generated datasets functions may be applied later</span>
+<span class="sd">as the agent states and actions evolves:</span>
+
+<span class="sd"># &quot;make_biclusters&quot;,</span>
+<span class="sd"># &quot;make_circles&quot;,</span>
+<span class="sd"># &quot;make_checkerboard&quot;,</span>
+<span class="sd"># &quot;make_friedman1&quot;,</span>
+<span class="sd"># &quot;make_friedman2&quot;,</span>
+<span class="sd"># &quot;make_friedman3&quot;,</span>
+<span class="sd"># &quot;make_gaussian_quantiles&quot;,</span>
+<span class="sd"># &quot;make_hastie_10_2&quot;,</span>
+<span class="sd"># &quot;make_low_rank_matrix&quot;,</span>
+<span class="sd"># &quot;make_moons&quot;,</span>
+<span class="sd"># &quot;make_multilabel_classification&quot;,</span>
+<span class="sd"># &quot;make_s_curve&quot;,</span>
+<span class="sd"># &quot;make_sparse_coded_signal&quot;,</span>
+<span class="sd"># &quot;make_sparse_spd_matrix&quot;,</span>
+<span class="sd"># &quot;make_sparse_uncorrelated&quot;,</span>
+<span class="sd"># &quot;make_spd_matrix&quot;,</span>
+<span class="sd"># &quot;make_swiss_roll&quot;,</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span><span class="p">,</span> <span class="n">getrandbits</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">sklearn_dts</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
-<span class="kn">from</span> <span class="nn">._generate_from_datacooker</span> <span class="kn">import</span> <span class="n">generate_from_datacooker</span>
-<span class="kn">from</span> <span class="nn">._generate_from_sklearn</span> <span class="kn">import</span> <span class="n">generate_from_sklearn</span>
-<span class="kn">from</span> <span class="nn">._generate_from_pmlb</span> <span class="kn">import</span> <span class="n">generate_from_pmlb</span>
 
 
-<div class="viewcode-block" id="generate_training_dataset"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.environments.utils.generate_training_dataset.html#ostatslib.environments.utils.generate_training_dataset">[docs]</a><span class="k">def</span> <span class="nf">generate_training_dataset</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">State</span><span class="p">]:</span>
+<div class="viewcode-block" id="sklearn_generator"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.environments.data_generators.sklearn_generator.html#ostatslib.environments.data_generators.sklearn_generator">[docs]</a><span class="k">def</span> <span class="nf">sklearn_generator</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">State</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generates a dataset</span>
+<span class="sd">    Generates a dataset from sklearn&#39;s toy datasets or generated</span>
+<span class="sd">    https://scikit-learn.org/stable/datasets.html</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">       DataFrame: dataset</span>
+<span class="sd">        tuple[DataFrame, State]: dataset and initial state</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">generator_fn</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span>
-        <span class="n">generate_from_datacooker</span><span class="p">,</span>
-        <span class="n">generate_from_sklearn</span><span class="p">,</span>
-        <span class="n">generate_from_pmlb</span>
+    <span class="n">sklearn_gen_fn</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span><span class="n">_from_toy</span><span class="p">,</span> <span class="n">__from_generated</span><span class="p">,</span> <span class="n">__from_cluster</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">sklearn_gen_fn</span><span class="p">()</span></div>
+
+
+<span class="n">_TOY_FUNCTIONS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">load_iris</span><span class="p">,</span>
+    <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">load_diabetes</span><span class="p">,</span>
+    <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">load_digits</span><span class="p">,</span>
+    <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">load_wine</span><span class="p">,</span>
+    <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">load_breast_cancer</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_from_toy</span><span class="p">(</span><span class="n">toy_fns</span><span class="o">=</span><span class="n">_TOY_FUNCTIONS</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">State</span><span class="p">]:</span>
+    <span class="n">sample_toy_fn</span> <span class="o">=</span> <span class="n">choice</span><span class="p">(</span><span class="n">toy_fns</span><span class="p">)</span>
+    <span class="n">x_dataframe</span><span class="p">,</span> <span class="n">y_series</span> <span class="o">=</span> <span class="n">sample_toy_fn</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">x_dataframe</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">y_series</span><span class="p">)</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">,</span> <span class="n">y_series</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">state</span>
+
+
+<span class="k">def</span> <span class="nf">__from_generated</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">State</span><span class="p">]:</span>
+    <span class="n">sample_gen_fn</span> <span class="o">=</span> <span class="n">choice</span><span class="p">([</span>
+        <span class="n">__make_classification</span><span class="p">,</span>
+        <span class="n">__make_regression</span>
     <span class="p">])</span>
-    <span class="k">return</span> <span class="n">generator_fn</span><span class="p">()</span></div>
+    <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span> <span class="o">=</span> <span class="n">sample_gen_fn</span><span class="p">()</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">x_values</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_values</span>
+
+    <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">state</span>
+
+
+<span class="k">def</span> <span class="nf">__from_cluster</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">State</span><span class="p">]:</span>
+    <span class="n">n_centers</span><span class="p">,</span> <span class="n">xy_tuple</span> <span class="o">=</span> <span class="n">__make_blobs</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">xy_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">getrandbits</span><span class="p">(</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;clusters_count&#39;</span><span class="p">,</span> <span class="n">n_centers</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">state</span>
+
+
+<span class="k">def</span> <span class="nf">__get_n_samples_and_features</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">n_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span>
+
+
+<span class="k">def</span> <span class="nf">__make_regression</span><span class="p">():</span>
+    <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">__get_n_samples_and_features</span><span class="p">()</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.001</span>
+    <span class="k">return</span> <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">make_regression</span><span class="p">(</span>
+        <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
+        <span class="n">n_features</span><span class="o">=</span><span class="n">n_features</span><span class="p">,</span>
+        <span class="n">noise</span><span class="o">=</span><span class="n">noise</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">__make_classification</span><span class="p">():</span>
+    <span class="n">n_informative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">n_redundant</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">n_repeated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">sum_features</span> <span class="o">=</span> <span class="n">n_informative</span> <span class="o">+</span> <span class="n">n_redundant</span> <span class="o">+</span> <span class="n">n_repeated</span>
+    <span class="n">n_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">sum_features</span><span class="p">,</span> <span class="n">sum_features</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">n_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">n_informative</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">n_informative</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">make_classification</span><span class="p">(</span>
+        <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
+        <span class="n">n_features</span><span class="o">=</span><span class="n">n_features</span><span class="p">,</span>
+        <span class="n">n_informative</span><span class="o">=</span><span class="n">n_informative</span><span class="p">,</span>
+        <span class="n">n_redundant</span><span class="o">=</span><span class="n">n_redundant</span><span class="p">,</span>
+        <span class="n">n_repeated</span><span class="o">=</span><span class="n">n_repeated</span><span class="p">,</span>
+        <span class="n">n_classes</span><span class="o">=</span><span class="n">n_classes</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">__make_blobs</span><span class="p">():</span>
+    <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">__get_n_samples_and_features</span><span class="p">()</span>
+    <span class="n">n_centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n_centers</span><span class="p">,</span> <span class="n">sklearn_dts</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span>
+        <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span>
+        <span class="n">n_features</span><span class="o">=</span><span class="n">n_features</span><span class="p">,</span>
+        <span class="n">centers</span><span class="o">=</span><span class="n">n_centers</span><span class="p">,</span>
+        <span class="n">cluster_std</span><span class="o">=</span><span class="mf">0.5</span>
+    <span class="p">)</span>
 </pre></div>
 
                 </article>

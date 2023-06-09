@@ -1,4 +1,3 @@
-# pylint: disable=redefined-outer-name
 """
 GymEnvironment testing module
 """
@@ -10,17 +9,6 @@ import pytest
 
 from ostatslib.actions.actions_space import ActionsSpace
 from ostatslib.environments import GymEnvironment
-
-
-@pytest.fixture
-def dummy_dataset() -> DataFrame:
-    """
-    Training datasets
-    """
-    size = 50
-    recipe = LogitRecipe(lambda variables, _: 0 + 10 * variables["a"])
-    recipe.add_variable(ContinousVariable("a"))
-    return recipe.cook(size)
 
 
 def test_environment_exposes_action_space() -> None:

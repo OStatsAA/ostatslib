@@ -13,7 +13,7 @@ SKIP_DATASETS = ['poker', '1595_poker',
                  '1191_BNG_pbc', '1196_BNG_pharynx', 'kddcup']
 
 
-def generate_from_pmlb() -> tuple[DataFrame, State]:
+def pmlb_generator() -> tuple[DataFrame, State]:
     """
     Randomly selects a dataset from Penn Machine Learning Benchmarks
 

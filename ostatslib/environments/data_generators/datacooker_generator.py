@@ -13,7 +13,7 @@ from datacooker.variables import ContinousVariable
 from ostatslib.states import State
 
 
-def generate_from_datacooker() -> tuple[DataFrame, State]:
+def datacooker_generator() -> tuple[DataFrame, State]:
     """
     Generate Datacooker dataset
 

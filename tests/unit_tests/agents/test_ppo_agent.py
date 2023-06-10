@@ -1,5 +1,3 @@
-from pandas import DataFrame
-
 from ostatslib.agents.ppo_agent import PPOAgent
 from ostatslib.environments.data_generators import datacooker_generator
 

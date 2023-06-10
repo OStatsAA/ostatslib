@@ -142,3 +142,11 @@ def test_state_should_expose_known_features() -> None:
         state.set(feature, value)
 
     assert state.list_known_features() == known_features
+
+
+def test_state_should_implement__len__() -> None:
+    """
+    Tests if state implements __len__
+    """
+    state = State()
+    assert len(state)

@@ -62,9 +62,9 @@ def _as_binary_array(number: int, array_length: int) -> np.ndarray:
 
 
 MaskNDArray = npt.NDArray[np.int8]
-ENCODING_LENGTH = 5
+ENCODING_LENGTH = 6
 
-# Encoding: 0 to 7
+# Encoding: 0 to 31
 EXPLORATORY_ACTIONS = {
     'get_log_rows_count': (get_log_rows_count,
                            _as_binary_array(0, ENCODING_LENGTH)),
@@ -84,44 +84,44 @@ EXPLORATORY_ACTIONS = {
                                          _as_binary_array(7, ENCODING_LENGTH))
 }
 
-# Encoding: 8 to 15
+# Encoding: 32 to 39
 CLASSIFIERS = {
     'logistic_regression': (logistic_regression,
-                            _as_binary_array(8, ENCODING_LENGTH)),
+                            _as_binary_array(32, ENCODING_LENGTH)),
     'support_vector_classification': (support_vector_classification,
-                                      _as_binary_array(9, ENCODING_LENGTH)),
+                                      _as_binary_array(33, ENCODING_LENGTH)),
     'linear_support_vector_classification': (linear_support_vector_classification,
-                                             _as_binary_array(10, ENCODING_LENGTH)),
+                                             _as_binary_array(34, ENCODING_LENGTH)),
     'decision_tree': (decision_tree,
-                      _as_binary_array(11, ENCODING_LENGTH)),
+                      _as_binary_array(35, ENCODING_LENGTH)),
     'random_forest': (random_forest,
-                      _as_binary_array(12, ENCODING_LENGTH)),
+                      _as_binary_array(36, ENCODING_LENGTH)),
 }
 
-# Encoding: 16 to 23
+# Encoding: 40 to 47
 REGRESSION_MODELS = {
     'linear_regression': (linear_regression,
-                          _as_binary_array(16, ENCODING_LENGTH)),
+                          _as_binary_array(40, ENCODING_LENGTH)),
     'poisson_regression': (poisson_regression,
-                           _as_binary_array(17, ENCODING_LENGTH)),
+                           _as_binary_array(41, ENCODING_LENGTH)),
     'support_vector_regression': (support_vector_regression,
-                                  _as_binary_array(18, ENCODING_LENGTH)),
+                                  _as_binary_array(42, ENCODING_LENGTH)),
     'linear_support_vector_regression': (linear_support_vector_regression,
-                                         _as_binary_array(19, ENCODING_LENGTH)),
+                                         _as_binary_array(43, ENCODING_LENGTH)),
     'decision_tree_regression': (decision_tree_regression,
-                                 _as_binary_array(20, ENCODING_LENGTH)),
+                                 _as_binary_array(44, ENCODING_LENGTH)),
     'random_forest_regression': (random_forest_regression,
-                                 _as_binary_array(21, ENCODING_LENGTH)),
+                                 _as_binary_array(45, ENCODING_LENGTH)),
     'time_series_auto_arima': (time_series_auto_arima,
-                               _as_binary_array(22, ENCODING_LENGTH))
+                               _as_binary_array(46, ENCODING_LENGTH))
 }
 
-# Encoding: 24 to 31
+# Encoding: 48 to 55
 CLUSTERING = {
     'k_means': (k_means,
-                _as_binary_array(24, ENCODING_LENGTH)),
+                _as_binary_array(48, ENCODING_LENGTH)),
     'dbscan': (dbscan,
-               _as_binary_array(25, ENCODING_LENGTH))
+               _as_binary_array(49, ENCODING_LENGTH))
 }
 
 

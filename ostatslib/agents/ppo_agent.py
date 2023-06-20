@@ -29,7 +29,7 @@ class PPOAgent(Agent):
 
     def __init__(self,
                  path: str | None = None,
-                 training_envs_count: int = 1,
+                 training_envs_count: int = 3,
                  environment_kwargs: dict | None = None) -> None:
         self.__environment_kwargs = environment_kwargs
         self.__model = self.__init__model(path, training_envs_count)
@@ -53,16 +53,20 @@ class PPOAgent(Agent):
         return action[0]
 
     def __init__model(self, path: str | None, training_envs_count: int) -> PPO:
+        environments = make_vec_env(GymEnvironment,
+                                    training_envs_count,
+                                    env_kwargs=self.__environment_kwargs,
+                                    vec_env_cls=SubprocVecEnv)
         if path is None:
-            environments = make_vec_env(GymEnvironment,
-                                        training_envs_count,
-                                        env_kwargs=self.__environment_kwargs,
-                                        vec_env_cls=SubprocVecEnv)
-                                        #vec_env_kwargs={'start_method': 'spawn'})
             return PPO(POLICY,
                        environments,
                        verbose=1,
                        n_steps=2048,
                        policy_kwargs=POLICY_KWARGS)
 
-        return PPO.load(path)
+        return PPO.load(path,
+                        environments,
+                        custom_objects={
+                            'observation_space': environments.observation_space,
+                            'action_space': environments.action_space
+                        })

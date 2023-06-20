@@ -423,7 +423,7 @@ document.write(`
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
                  <span class="n">environment_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span> <span class="o">=</span> <span class="n">environment_kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
@@ -447,19 +447,23 @@ document.write(`
         <span class="k">return</span> <span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__init__model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PPO</span><span class="p">:</span>
+        <span class="n">environments</span> <span class="o">=</span> <span class="n">make_vec_env</span><span class="p">(</span><span class="n">GymEnvironment</span><span class="p">,</span>
+                                    <span class="n">training_envs_count</span><span class="p">,</span>
+                                    <span class="n">env_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span><span class="p">,</span>
+                                    <span class="n">vec_env_cls</span><span class="o">=</span><span class="n">SubprocVecEnv</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">environments</span> <span class="o">=</span> <span class="n">make_vec_env</span><span class="p">(</span><span class="n">GymEnvironment</span><span class="p">,</span>
-                                        <span class="n">training_envs_count</span><span class="p">,</span>
-                                        <span class="n">env_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span><span class="p">,</span>
-                                        <span class="n">vec_env_cls</span><span class="o">=</span><span class="n">SubprocVecEnv</span><span class="p">)</span>
-                                        <span class="c1">#vec_env_kwargs={&#39;start_method&#39;: &#39;spawn&#39;})</span>
             <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span>
                        <span class="n">environments</span><span class="p">,</span>
                        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                        <span class="n">n_steps</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
                        <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
+                        <span class="n">environments</span><span class="p">,</span>
+                        <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span>
+                            <span class="s1">&#39;observation_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">observation_space</span><span class="p">,</span>
+                            <span class="s1">&#39;action_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">action_space</span>
+                        <span class="p">})</span></div>
 </pre></div>
 
                 </article>

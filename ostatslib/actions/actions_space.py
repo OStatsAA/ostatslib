@@ -20,7 +20,8 @@ from .exploratory_actions import (
     is_response_positive_values_only_check,
     is_response_quantitative_check,
     time_convertible_variable_search,
-    get_response_unique_values_ratio
+    get_response_unique_values_ratio,
+    get_correlated_variables_ratio
 )
 from .regression_models import (
     linear_regression,
@@ -81,7 +82,9 @@ EXPLORATORY_ACTIONS = {
     'infer_response_dtype': (infer_response_dtype,
                              _as_binary_array(6, ENCODING_LENGTH)),
     'get_response_unique_values_ratio': (get_response_unique_values_ratio,
-                                         _as_binary_array(7, ENCODING_LENGTH))
+                                         _as_binary_array(7, ENCODING_LENGTH)),
+    'get_correlated_variables_ratio': (get_correlated_variables_ratio,
+                                       _as_binary_array(8, ENCODING_LENGTH))
 }
 
 # Encoding: 32 to 39

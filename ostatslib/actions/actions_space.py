@@ -48,7 +48,11 @@ from .clustering import (
 from .action import Action, ActionInfo, ActionResult
 
 
-def _as_binary_array(number: int, array_length: int) -> np.ndarray:
+MaskNDArray = npt.NDArray[np.int8]
+ENCODING_LENGTH = 6
+
+
+def _as_binary_array(number: int) -> np.ndarray:
     """
     Converts an integer to a np.array of binary digits
 
@@ -58,76 +62,51 @@ def _as_binary_array(number: int, array_length: int) -> np.ndarray:
     Returns:
         array: numpy array of converted digits
     """
-    binary_str = bin(number)[2:].zfill(array_length)
+    binary_str = bin(number)[2:].zfill(ENCODING_LENGTH)
 
     return np.array([int(digit) for digit in binary_str])
 
 
-MaskNDArray = npt.NDArray[np.int8]
-ENCODING_LENGTH = 6
-
 # Encoding: 0 to 31
 EXPLORATORY_ACTIONS = {
-    'get_log_rows_count': (get_log_rows_count,
-                           _as_binary_array(0, ENCODING_LENGTH)),
-    'is_response_dichotomous_check': (is_response_dichotomous_check,
-                                      _as_binary_array(1, ENCODING_LENGTH)),
-    'is_response_discrete_check': (is_response_discrete_check,
-                                   _as_binary_array(2, ENCODING_LENGTH)),
+    'get_log_rows_count': (get_log_rows_count, _as_binary_array(0)),
+    'is_response_dichotomous_check': (is_response_dichotomous_check, _as_binary_array(1)),
+    'is_response_discrete_check': (is_response_discrete_check, _as_binary_array(2)),
     'is_response_positive_values_only_check': (is_response_positive_values_only_check,
-                                               _as_binary_array(3, ENCODING_LENGTH)),
-    'is_response_quantitative_check': (is_response_quantitative_check,
-                                       _as_binary_array(4, ENCODING_LENGTH)),
-    'time_convertible_variable_search': (time_convertible_variable_search,
-                                         _as_binary_array(5, ENCODING_LENGTH)),
-    'infer_response_dtype': (infer_response_dtype,
-                             _as_binary_array(6, ENCODING_LENGTH)),
-    'get_response_unique_values_ratio': (get_response_unique_values_ratio,
-                                         _as_binary_array(7, ENCODING_LENGTH)),
-    'get_correlated_variables_ratio': (get_correlated_variables_ratio,
-                                       _as_binary_array(8, ENCODING_LENGTH)),
-    'get_log_columns_count': (get_log_columns_count,
-                              _as_binary_array(9, ENCODING_LENGTH))
+                                               _as_binary_array(3)),
+    'is_response_quantitative_check': (is_response_quantitative_check, _as_binary_array(4)),
+    'time_convertible_variable_search': (time_convertible_variable_search, _as_binary_array(5)),
+    'infer_response_dtype': (infer_response_dtype, _as_binary_array(6)),
+    'get_response_unique_values_ratio': (get_response_unique_values_ratio, _as_binary_array(7)),
+    'get_correlated_variables_ratio': (get_correlated_variables_ratio, _as_binary_array(8)),
+    'get_log_columns_count': (get_log_columns_count, _as_binary_array(9))
 }
 
 # Encoding: 32 to 39
 CLASSIFIERS = {
-    'logistic_regression': (logistic_regression,
-                            _as_binary_array(32, ENCODING_LENGTH)),
-    'support_vector_classification': (support_vector_classification,
-                                      _as_binary_array(33, ENCODING_LENGTH)),
+    'logistic_regression': (logistic_regression, _as_binary_array(32)),
+    'support_vector_classification': (support_vector_classification, _as_binary_array(33)),
     'linear_support_vector_classification': (linear_support_vector_classification,
-                                             _as_binary_array(34, ENCODING_LENGTH)),
-    'decision_tree': (decision_tree,
-                      _as_binary_array(35, ENCODING_LENGTH)),
-    'random_forest': (random_forest,
-                      _as_binary_array(36, ENCODING_LENGTH)),
+                                             _as_binary_array(34)),
+    'decision_tree': (decision_tree, _as_binary_array(35)),
+    'random_forest': (random_forest, _as_binary_array(36))
 }
 
 # Encoding: 40 to 47
 REGRESSION_MODELS = {
-    'linear_regression': (linear_regression,
-                          _as_binary_array(40, ENCODING_LENGTH)),
-    'poisson_regression': (poisson_regression,
-                           _as_binary_array(41, ENCODING_LENGTH)),
-    'support_vector_regression': (support_vector_regression,
-                                  _as_binary_array(42, ENCODING_LENGTH)),
-    'linear_support_vector_regression': (linear_support_vector_regression,
-                                         _as_binary_array(43, ENCODING_LENGTH)),
-    'decision_tree_regression': (decision_tree_regression,
-                                 _as_binary_array(44, ENCODING_LENGTH)),
-    'random_forest_regression': (random_forest_regression,
-                                 _as_binary_array(45, ENCODING_LENGTH)),
-    'time_series_auto_arima': (time_series_auto_arima,
-                               _as_binary_array(46, ENCODING_LENGTH))
+    'linear_regression': (linear_regression, _as_binary_array(40)),
+    'poisson_regression': (poisson_regression, _as_binary_array(41)),
+    'support_vector_regression': (support_vector_regression, _as_binary_array(42)),
+    'linear_support_vector_regression': (linear_support_vector_regression, _as_binary_array(43)),
+    'decision_tree_regression': (decision_tree_regression, _as_binary_array(44)),
+    'random_forest_regression': (random_forest_regression, _as_binary_array(45)),
+    'time_series_auto_arima': (time_series_auto_arima, _as_binary_array(46))
 }
 
 # Encoding: 48 to 55
 CLUSTERING = {
-    'k_means': (k_means,
-                _as_binary_array(48, ENCODING_LENGTH)),
-    'dbscan': (dbscan,
-               _as_binary_array(49, ENCODING_LENGTH))
+    'k_means': (k_means, _as_binary_array(48)),
+    'dbscan': (dbscan, _as_binary_array(49))
 }
 
 

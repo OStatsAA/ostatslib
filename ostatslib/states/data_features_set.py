@@ -104,3 +104,10 @@ class DataFeaturesSet(FeaturesSet):
             'gym_space': Box(-1, 1),
             'get_value_fn': None
         })
+
+    log_columns_count: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(0, 1),
+            'get_value_fn': None
+        })

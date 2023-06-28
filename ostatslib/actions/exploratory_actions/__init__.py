@@ -11,3 +11,4 @@ from .is_response_quantitative_check import is_response_quantitative_check
 from .time_convertible_variable_search import time_convertible_variable_search
 from .get_response_unique_values_ratio import get_response_unique_values_ratio
 from .get_correlated_variables_ratio import get_correlated_variables_ratio
+from .get_log_columns_count import get_log_columns_count

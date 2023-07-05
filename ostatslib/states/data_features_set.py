@@ -112,7 +112,7 @@ class DataFeaturesSet(FeaturesSet):
             'get_value_fn': None
         })
 
-    is_response_balanced_check: float = field(
+    is_response_balanced: float = field(
         default=0,
         metadata={
             'gym_space': Box(-1, 1),

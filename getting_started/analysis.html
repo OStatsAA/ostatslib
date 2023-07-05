@@ -468,127 +468,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Process ForkServerProcess-1:
-Process ForkServerProcess-2:
-Traceback (most recent call last):
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/process.py&quot;, line 314, in _bootstrap
-    self.run()
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/process.py&quot;, line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File &quot;/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/vec_env/subproc_vec_env.py&quot;, line 33, in _worker
-    cmd, data = remote.recv()
-                ^^^^^^^^^^^^^
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py&quot;, line 249, in recv
-    buf = self._recv_bytes()
-          ^^^^^^^^^^^^^^^^^^
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py&quot;, line 413, in _recv_bytes
-    buf = self._recv(4)
-          ^^^^^^^^^^^^^
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py&quot;, line 378, in _recv
-    chunk = read(handle, remaining)
-            ^^^^^^^^^^^^^^^^^^^^^^^
-KeyboardInterrupt
-Traceback (most recent call last):
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/process.py&quot;, line 314, in _bootstrap
-    self.run()
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/process.py&quot;, line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File &quot;/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/vec_env/subproc_vec_env.py&quot;, line 33, in _worker
-    cmd, data = remote.recv()
-                ^^^^^^^^^^^^^
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py&quot;, line 249, in recv
-    buf = self._recv_bytes()
-          ^^^^^^^^^^^^^^^^^^
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py&quot;, line 413, in _recv_bytes
-    buf = self._recv(4)
-          ^^^^^^^^^^^^^
-  File &quot;/opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py&quot;, line 378, in _recv
-    chunk = read(handle, remaining)
-            ^^^^^^^^^^^^^^^^^^^^^^^
-KeyboardInterrupt
-Process ForkServerProcess-3:
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># loading trained agent</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="s1">&#39;../trained_ppo_model.zip&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># generating data</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">()</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-05 12:59:41.441297
+Final status is Complete
+Initial State known features:
 
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:35,</span> in <span class="ni">PPOAgent.__init__</span><span class="nt">(self, path, training_envs_count, environment_kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>              <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>              <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>              <span class="n">environment_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span> <span class="o">=</span> <span class="n">environment_kwargs</span>
-<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:56,</span> in <span class="ni">PPOAgent.__init__model</span><span class="nt">(self, path, training_envs_count)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">__init__model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PPO</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">56</span>     <span class="n">environments</span> <span class="o">=</span> <span class="n">make_vec_env</span><span class="p">(</span><span class="n">GymEnvironment</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>                                 <span class="n">training_envs_count</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>                                 <span class="n">env_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span>                                 <span class="n">vec_env_cls</span><span class="o">=</span><span class="n">SubprocVecEnv</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>         <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>                    <span class="n">environments</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>                    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>                    <span class="n">n_steps</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>                    <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/env_util.py:125,</span> in <span class="ni">make_vec_env</span><span class="nt">(env_id, n_envs, seed, start_index, monitor_dir, wrapper_class, env_kwargs, vec_env_cls, vec_env_kwargs, monitor_kwargs, wrapper_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span> <span class="k">if</span> <span class="n">vec_env_cls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>     <span class="c1"># Default: use a DummyVecEnv</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="n">vec_env_cls</span> <span class="o">=</span> <span class="n">DummyVecEnv</span>
-<span class="nn">--&gt; 125 vec_env = vec_env_cls([make_env(i + start_index) for i</span> in <span class="ni">range</span><span class="nt">(n_envs)], **vec_env_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span> <span class="c1"># Prepare the seeds for the first reset</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span> <span class="n">vec_env</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/vec_env/subproc_vec_env.py:122,</span> in <span class="ni">SubprocVecEnv.__init__</span><span class="nt">(self, env_fns, start_method)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span> <span class="bp">self</span><span class="o">.</span><span class="n">remotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="s2">&quot;get_spaces&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="n">observation_space</span><span class="p">,</span> <span class="n">action_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remotes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">122</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">env_fns</span><span class="p">),</span> <span class="n">observation_space</span><span class="p">,</span> <span class="n">action_space</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/vec_env/base_vec_env.py:72,</span> in <span class="ni">VecEnv.__init__</span><span class="nt">(self, num_envs, observation_space, action_space)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seeds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_envs</span><span class="p">)]</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">72</span>     <span class="n">render_modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_attr</span><span class="p">(</span><span class="s2">&quot;render_mode&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The `render_mode` attribute is not defined in your environment. It will be set to None.&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/vec_env/subproc_vec_env.py:173,</span> in <span class="ni">SubprocVecEnv.get_attr</span><span class="nt">(self, attr_name, indices)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="k">for</span> <span class="n">remote</span> <span class="ow">in</span> <span class="n">target_remotes</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span>     <span class="n">remote</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="s2">&quot;get_attr&quot;</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">173</span> <span class="k">return</span> <span class="p">[</span><span class="n">remote</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span> <span class="k">for</span> <span class="n">remote</span> <span class="ow">in</span> <span class="n">target_remotes</span><span class="p">]</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/vec_env/subproc_vec_env.py:173,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="k">for</span> <span class="n">remote</span> <span class="ow">in</span> <span class="n">target_remotes</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span>     <span class="n">remote</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="s2">&quot;get_attr&quot;</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">173</span> <span class="k">return</span> <span class="p">[</span><span class="n">remote</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span> <span class="k">for</span> <span class="n">remote</span> <span class="ow">in</span> <span class="n">target_remotes</span><span class="p">]</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py:249,</span> in <span class="ni">_ConnectionBase.recv</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">247</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_closed</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_readable</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">249</span> <span class="n">buf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recv_bytes</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">250</span> <span class="k">return</span> <span class="n">_ForkingPickler</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">getbuffer</span><span class="p">())</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py:413,</span> in <span class="ni">Connection._recv_bytes</span><span class="nt">(self, maxsize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">412</span> <span class="k">def</span> <span class="nf">_recv_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">413</span>     <span class="n">buf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recv</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span>     <span class="n">size</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;!i&quot;</span><span class="p">,</span> <span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">415</span>     <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.11.4/x64/lib/python3.11/multiprocessing/connection.py:378,</span> in <span class="ni">Connection._recv</span><span class="nt">(self, size, read)</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span> <span class="n">remaining</span> <span class="o">=</span> <span class="n">size</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span> <span class="k">while</span> <span class="n">remaining</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">378</span>     <span class="n">chunk</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">remaining</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span>     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+Steps:
+  Order  Step                                      Reward  State Change
+-------  --------------------------------------  --------  --------------------------------------
+      1  Infer Response DType                        0.5   response_inferred_dtype  integer
+      2  Is Response Positive Values Only Check      0.5   is_response_positive_values_only  1
+      3  Is Response Quantitative Check              0.5   is_response_quantitative  1
+      4  Is Response Discrete Check                  0.5   is_response_discrete  1
+      5  Is Response Dichotomous Check               0.5   is_response_dichotomous  1
+      6  Get Log Rows Count                          0.5   log_rows_count  0.386399
+      7  Logistic Regression                         0.97  score                             0.87
+                                                           logistic_regression_score_reward  0.87
 </pre></div>
 </div>
 </div>
@@ -611,7 +505,7 @@ Process ForkServerProcess-3:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-07 23:08:20.241569
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-05 12:59:42.702733
 Final status is Complete
 Initial State known features:
 
@@ -625,12 +519,14 @@ Steps:
       5  Is Response Quantitative Check         0.5  is_response_quantitative  1
       6  Get Log Rows Count                     0.5  log_rows_count  0.386399
       7  Is Response Discrete Check             0.5  is_response_discrete  -1
-      8  Linear Regression                      0.6  score                                                        1
-                                                     are_linear_model_regression_residuals_correlated            -1
+      8  Linear Regression                      0.1  score                                                        1
+                                                     are_linear_model_regression_residuals_correlated             1
                                                      are_linear_model_regression_residuals_heteroscedastic       -1
                                                      are_linear_model_regression_residuals_normally_distributed   1
                                                      is_linear_model_regression_recursive_residuals_mean_zero    -1
                                                      linear_regression_score_reward                               1
+      9  Linear Regression                     -0.9
+     10  Linear Regression                     -0.9
 </pre></div>
 </div>
 </div>
@@ -830,7 +726,7 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-07 23:08:27.920330
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-05 12:59:43.907578
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -843,8 +739,8 @@ Steps:
       4  Is Response Discrete Check                   0.5  is_response_discrete  1
       5  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
       6  Get Log Rows Count                           0.5  log_rows_count  0.532286
-      7  Logistic Regression                          1    score                             0.961336
-                                                           logistic_regression_score_reward  0.961336
+      7  Logistic Regression                          1    score                             0.954306
+                                                           logistic_regression_score_reward  0.954306
 </pre></div>
 </div>
 </div>
@@ -864,45 +760,14 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVR() (100, 5) 100
-SVR(C=10) 0.7424538568812749
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 100 entries, 0 to 99
-Data columns (total 6 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   oz1     100 non-null    float64
- 1   oz2     100 non-null    float64
- 2   oz3     100 non-null    float64
- 3   oz4     100 non-null    float64
- 4   oz5     100 non-null    float64
- 5   target  100 non-null    float64
-dtypes: float64(6)
-memory usage: 4.8 KB
-None
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">ostatslib.environments.utils._generate_from_pmlb</span> <span class="kn">import</span> <span class="n">generate_from_pmlb</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">data</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">generate_from_pmlb</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
 
-Analysis executed at 2023-06-07 23:19:38.322738
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                 Reward  State Change
--------  --------------------------------  ---------  -------------------------------------------------------------------
-      1  Infer Response DType               0.5       response_inferred_dtype  floating
-      2  Get Response Unique Values Ratio   0.5       response_unique_values_ratio  1
-      3  Time Convertible Variable Search   0.5       time_convertible_variable
-      4  Is Response Dichotomous Check      0.5       is_response_dichotomous  -1
-      5  Is Response Quantitative Check     0.5       is_response_quantitative  1
-      6  Get Log Rows Count                 0.5       log_rows_count  0.386399
-      7  Is Response Discrete Check         0.5       is_response_discrete  -1
-      8  Linear Regression                 -1         score                                                        0.3387
-                                                      are_linear_model_regression_residuals_correlated             1
-                                                      are_linear_model_regression_residuals_heteroscedastic       -0.5
-                                                      are_linear_model_regression_residuals_normally_distributed   0.5
-                                                      is_linear_model_regression_recursive_residuals_mean_zero     1
-                                                      linear_regression_score_reward                              -0.6613
-      9  Support Vector Regression          0.642454  score                                   0.742454
-                                                      support_vector_regression_score_reward  0.742454
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;ostatslib.environments.utils&#39;
 </pre></div>
 </div>
 </div>

@@ -22,7 +22,8 @@ from .exploratory_actions import (
     time_convertible_variable_search,
     get_response_unique_values_ratio,
     get_correlated_variables_ratio,
-    get_log_columns_count
+    get_log_columns_count,
+    is_response_balanced_check
 )
 from .regression_models import (
     linear_regression,
@@ -79,7 +80,8 @@ EXPLORATORY_ACTIONS = {
     'infer_response_dtype': (infer_response_dtype, _as_binary_array(6)),
     'get_response_unique_values_ratio': (get_response_unique_values_ratio, _as_binary_array(7)),
     'get_correlated_variables_ratio': (get_correlated_variables_ratio, _as_binary_array(8)),
-    'get_log_columns_count': (get_log_columns_count, _as_binary_array(9))
+    'get_log_columns_count': (get_log_columns_count, _as_binary_array(9)),
+    'is_response_balanced_check': (is_response_balanced_check, _as_binary_array(10))
 }
 
 # Encoding: 32 to 39

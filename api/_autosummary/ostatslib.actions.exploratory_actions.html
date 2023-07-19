@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ostatslib.actions.exploratory_actions';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ostatslib.actions.exploratory_actions.get_log_rows_count" href="ostatslib.actions.exploratory_actions.get_log_rows_count.html" />
+    <link rel="next" title="ostatslib.actions.exploratory_actions.get_correlated_variables_ratio" href="ostatslib.actions.exploratory_actions.get_correlated_variables_ratio.html" />
     <link rel="prev" title="ostatslib.actions.clustering.k_means" href="ostatslib.actions.clustering.k_means.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,9 +182,14 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l3 current active has-children"><a class="current reference internal" href="#">ostatslib.actions.exploratory_actions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_correlated_variables_ratio.html">ostatslib.actions.exploratory_actions.get_correlated_variables_ratio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_log_columns_count.html">ostatslib.actions.exploratory_actions.get_log_columns_count</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_log_rows_count.html">ostatslib.actions.exploratory_actions.get_log_rows_count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_missing_data_ratio.html">ostatslib.actions.exploratory_actions.get_missing_data_ratio</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_response_unique_values_ratio.html">ostatslib.actions.exploratory_actions.get_response_unique_values_ratio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_standarized_variables_ratio.html">ostatslib.actions.exploratory_actions.get_standarized_variables_ratio</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.infer_response_dtype.html">ostatslib.actions.exploratory_actions.infer_response_dtype</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_balanced_check.html">ostatslib.actions.exploratory_actions.is_response_balanced_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html">ostatslib.actions.exploratory_actions.is_response_dichotomous_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_discrete_check.html">ostatslib.actions.exploratory_actions.is_response_discrete_check</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html">ostatslib.actions.exploratory_actions.is_response_positive_values_only_check</a></li>
@@ -446,28 +451,43 @@ document.write(`
 <p class="rubric">Modules</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_correlated_variables_ratio.html#ostatslib.actions.exploratory_actions.get_correlated_variables_ratio" title="ostatslib.actions.exploratory_actions.get_correlated_variables_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.get_correlated_variables_ratio</span></code></a>(...)</p></td>
+<td><p>Gets correlated variables ratio using correlation matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_log_columns_count.html#ostatslib.actions.exploratory_actions.get_log_columns_count" title="ostatslib.actions.exploratory_actions.get_log_columns_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.get_log_columns_count</span></code></a>(...)</p></td>
+<td><p>Gets log columns count: log_1000(#columns),</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_log_rows_count.html#ostatslib.actions.exploratory_actions.get_log_rows_count" title="ostatslib.actions.exploratory_actions.get_log_rows_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.get_log_rows_count</span></code></a>(...)</p></td>
 <td><p>Gets log rows count: log(#rows)/c, where c is a compression constant</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_response_unique_values_ratio.html#ostatslib.actions.exploratory_actions.get_response_unique_values_ratio" title="ostatslib.actions.exploratory_actions.get_response_unique_values_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.get_response_unique_values_ratio</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_missing_data_ratio.html#ostatslib.actions.exploratory_actions.get_missing_data_ratio" title="ostatslib.actions.exploratory_actions.get_missing_data_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.get_missing_data_ratio</span></code></a>(...)</p></td>
+<td><p>Gets missing data ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_response_unique_values_ratio.html#ostatslib.actions.exploratory_actions.get_response_unique_values_ratio" title="ostatslib.actions.exploratory_actions.get_response_unique_values_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.get_response_unique_values_ratio</span></code></a>(...)</p></td>
 <td><p>Gets response unique values ratio to total rows</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.get_standarized_variables_ratio.html#ostatslib.actions.exploratory_actions.get_standarized_variables_ratio" title="ostatslib.actions.exploratory_actions.get_standarized_variables_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.get_standarized_variables_ratio</span></code></a>(...)</p></td>
+<td><p>Gets standarized variables ratio</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.infer_response_dtype.html#ostatslib.actions.exploratory_actions.infer_response_dtype" title="ostatslib.actions.exploratory_actions.infer_response_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.infer_response_dtype</span></code></a>(...)</p></td>
 <td><p>Infer response dtype</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html#ostatslib.actions.exploratory_actions.is_response_dichotomous_check" title="ostatslib.actions.exploratory_actions.is_response_dichotomous_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_dichotomous_check</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_balanced_check.html#ostatslib.actions.exploratory_actions.is_response_balanced_check" title="ostatslib.actions.exploratory_actions.is_response_balanced_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_balanced_check</span></code></a>(...)</p></td>
+<td><p>Check if response variable is balanced</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html#ostatslib.actions.exploratory_actions.is_response_dichotomous_check" title="ostatslib.actions.exploratory_actions.is_response_dichotomous_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_dichotomous_check</span></code></a>(...)</p></td>
 <td><p>Check if response variable is dichotomous</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_discrete_check.html#ostatslib.actions.exploratory_actions.is_response_discrete_check" title="ostatslib.actions.exploratory_actions.is_response_discrete_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_discrete_check</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_discrete_check.html#ostatslib.actions.exploratory_actions.is_response_discrete_check" title="ostatslib.actions.exploratory_actions.is_response_discrete_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_discrete_check</span></code></a>(...)</p></td>
 <td><p>Check if response variable is discrete</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html#ostatslib.actions.exploratory_actions.is_response_positive_values_only_check" title="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_positive_values_only_check</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html#ostatslib.actions.exploratory_actions.is_response_positive_values_only_check" title="ostatslib.actions.exploratory_actions.is_response_positive_values_only_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_positive_values_only_check</span></code></a>(...)</p></td>
 <td><p>Check if response variable values are positive only</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_quantitative_check.html#ostatslib.actions.exploratory_actions.is_response_quantitative_check" title="ostatslib.actions.exploratory_actions.is_response_quantitative_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_quantitative_check</span></code></a>(...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.is_response_quantitative_check.html#ostatslib.actions.exploratory_actions.is_response_quantitative_check" title="ostatslib.actions.exploratory_actions.is_response_quantitative_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.is_response_quantitative_check</span></code></a>(...)</p></td>
 <td><p>Check if response variable is quantitative</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertible_variable_search.html#ostatslib.actions.exploratory_actions.time_convertible_variable_search" title="ostatslib.actions.exploratory_actions.time_convertible_variable_search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.time_convertible_variable_search</span></code></a>(...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="ostatslib.actions.exploratory_actions.time_convertible_variable_search.html#ostatslib.actions.exploratory_actions.time_convertible_variable_search" title="ostatslib.actions.exploratory_actions.time_convertible_variable_search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ostatslib.actions.exploratory_actions.time_convertible_variable_search</span></code></a>(...)</p></td>
 <td><p>Gets log rows count: log(#rows)/c, where c is a compression constant</p></td>
 </tr>
 </tbody>
@@ -515,11 +535,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="ostatslib.actions.exploratory_actions.get_log_rows_count.html"
+       href="ostatslib.actions.exploratory_actions.get_correlated_variables_ratio.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ostatslib.actions.exploratory_actions.get_log_rows_count</p>
+        <p class="prev-next-title">ostatslib.actions.exploratory_actions.get_correlated_variables_ratio</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

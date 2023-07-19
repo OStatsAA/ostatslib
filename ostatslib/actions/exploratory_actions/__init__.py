@@ -14,3 +14,4 @@ from .get_correlated_variables_ratio import get_correlated_variables_ratio
 from .get_log_columns_count import get_log_columns_count
 from .is_response_balanced_check import is_response_balanced_check
 from .get_standarized_variables_ratio import get_standarized_variables_ratio
+from .get_missing_data_ratio import get_missing_data_ratio

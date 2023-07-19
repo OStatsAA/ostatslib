@@ -24,7 +24,8 @@ from .exploratory_actions import (
     get_correlated_variables_ratio,
     get_log_columns_count,
     is_response_balanced_check,
-    get_standarized_variables_ratio
+    get_standarized_variables_ratio,
+    get_missing_data_ratio
 )
 from .regression_models import (
     linear_regression,
@@ -84,6 +85,7 @@ EXPLORATORY_ACTIONS = {
     'get_log_columns_count': (get_log_columns_count, _as_binary_array(9)),
     'is_response_balanced_check': (is_response_balanced_check, _as_binary_array(10)),
     'get_standarized_variables_ratio': (get_standarized_variables_ratio, _as_binary_array(11)),
+    'get_missing_data_ratio': (get_missing_data_ratio, _as_binary_array(12)),
 }
 
 # Encoding: 32 to 39

@@ -3,13 +3,10 @@
 
 format: jb-book
 root: home
-parts:
-
-- caption: Getting Started
-  chapters:
-  - file: getting_started/installation
-  - file: getting_started/training
-  - file: getting_started/analysis
-- caption: API
-  chapters:
+chapters:
+  - file: getting_started
+  - file: examples/examples
+    sections:
+    - file: examples/pmlb_regressions
+    - file: examples/pmlb_classifications
   - file: api/api

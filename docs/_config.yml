@@ -9,6 +9,8 @@ logo: logo.png
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  timeout: 600
+  stderr_output: remove
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -33,13 +35,16 @@ html:
 
 sphinx:
   extra_extensions:
-    - sphinxcontrib.mermaid
     - sphinx.ext.autodoc
     - sphinx.ext.napoleon
     - sphinx.ext.viewcode
     - sphinx.ext.autosummary
   config:
+    html_theme: pydata_sphinx_theme
+    html_theme_options:
+      github_url: https://github.com/OStatsAA/ostatslib
     autosummary_generate: True
     add_module_names: False
     autodoc_default_options:
       members: True
+      toc_object_entries_show_parents: hide

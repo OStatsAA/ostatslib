@@ -45,7 +45,7 @@ def _action(state: State, data: DataFrame) -> ActionResult[LinearSVC]:
                                                     raised_exception=False)
 
     y_values, x_values = split_response_from_explanatory_variables(state, data)
-    classifier: LinearSVC = LinearSVC()
+    classifier: LinearSVC = LinearSVC(dual=True)
     param_grid = {'penalty': ['l1', 'l2'],
                   'loss': ['squared_hinge', 'hinge']}
 

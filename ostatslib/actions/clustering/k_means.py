@@ -39,7 +39,7 @@ def _action(state: State, data: DataFrame) -> ActionResult[KMeans]:
                                                     raised_exception=False)
 
     clusters_count: int = state.get("clusters_count")
-    kmeans = KMeans(n_clusters=clusters_count)
+    kmeans = KMeans(n_clusters=clusters_count, n_init='auto')
     kmeans.fit(data)
 
     score: float = silhouette_score(data, kmeans.labels_)

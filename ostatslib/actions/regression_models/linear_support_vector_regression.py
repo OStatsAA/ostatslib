@@ -45,7 +45,7 @@ def _action(state: State, data: DataFrame) -> ActionResult[LinearSVR]:
                                                     raised_exception=False)
 
     y_values, x_values = split_response_from_explanatory_variables(state, data)
-    regressor: LinearSVR = LinearSVR()
+    regressor: LinearSVR = LinearSVR(dual=True)
     param_grid = {'C': [1, 10, 100],
                   'loss': ['epsilon_insensitive', 'squared_epsilon_insensitive']}
 

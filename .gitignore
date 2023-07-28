@@ -1,5 +1,6 @@
 # OStatsLib
 .logs/
+.logs_old/
 .pmlb_cache/
 pmlb_cache
 

@@ -15,6 +15,7 @@ from ostatslib.environments import GymEnvironment
 
 POLICY = "MultiInputPolicy"
 POLICY_KWARGS = {
+    'net_arch': dict(vf=[64, 64], pi=[128, 128]),
     'activation_fn': th.nn.ReLU,
     'share_features_extractor': False
 }

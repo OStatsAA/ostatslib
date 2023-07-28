@@ -1,4 +1,4 @@
-OStatsLib
+API
 =================
 
 .. currentmodule:: ostatslib

@@ -1,0 +1,835 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>PMLB Classification Datasets &#8212; Open Statistics Analysis Agent</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/pmlb_classifications';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API" href="../api/api.html" />
+    <link rel="prev" title="PMLB Regression Datasets" href="pmlb_regressions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../home.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/api.html">
+                        API
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/OStatsAA/ostatslib" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="examples.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/api.html">
+                        API
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/OStatsAA/ostatslib" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pmlb_regressions.html">PMLB Regression Datasets</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PMLB Classification Datasets</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../home.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="examples.html" class="nav-link">Examples</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">PMLB Classification Datasets</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pmlb-classification-datasets">
+<h1>PMLB Classification Datasets<a class="headerlink" href="#pmlb-classification-datasets" title="Permalink to this heading">#</a></h1>
+<section id="loading-classification-datasets">
+<h2>Loading classification datasets<a class="headerlink" href="#loading-classification-datasets" title="Permalink to this heading">#</a></h2>
+<p>First, load a trained agent and get PMLB classification datasets names list. Although there are hundreds of datasets available, let’s sample 10% from the list to demonstrate the agents capabilities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">pmlb</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span>
+<span class="kn">from</span> <span class="nn">ostatslib.agents</span> <span class="kn">import</span> <span class="n">PPOAgent</span>
+
+<span class="n">SAMPLE_FRACTION</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pmlb</span><span class="o">.</span><span class="n">classification_dataset_names</span><span class="p">)</span> <span class="o">*</span> <span class="n">SAMPLE_FRACTION</span><span class="p">)</span>
+<span class="n">sampled_dataset_names</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">pmlb</span><span class="o">.</span><span class="n">classification_dataset_names</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+
+<span class="n">AGENT_FILE</span> <span class="o">=</span> <span class="s1">&#39;../trained_ppo_model.zip&#39;</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="n">AGENT_FILE</span><span class="p">)</span>
+
+<span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sampled </span><span class="si">{</span><span class="n">sample_size</span><span class="si">}</span><span class="s1"> classification datasets: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sampled_dataset_names</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Sampled 16 classification datasets: poker, dna, prnn_crabs, credit_g, phoneme, postoperative_patient_data, optdigits, shuttle, auto, mfeat_morphological, mfeat_zernike, bupa, churn, breast_cancer, new_thyroid, car.</p>
+</div>
+</div>
+</section>
+<section id="analyses">
+<h2>Analyses<a class="headerlink" href="#analyses" title="Permalink to this heading">#</a></h2>
+<p>Next step is to fetch data and analyze each selected dataset. PMLB provides a function to fetch data from their repo. It’s also required to add to the initial state which variable is the target.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sampled_dataset_names</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pmlb</span><span class="o">.</span><span class="n">fetch_data</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">local_cache_dir</span><span class="o">=</span><span class="s1">&#39;.pmlb_cache/&#39;</span><span class="p">)</span>
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+    <span class="n">initial_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">)</span>
+    <span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;analysis&quot;</span><span class="p">:</span> <span class="n">analysis</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;analysis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p class="rubric">poker</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:45:47.402880
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  1
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.717369  score                       0.642369
+                                                   decision_tree_score_reward  0.642369
+</pre></div>
+</div>
+<p class="rubric">dna</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:45:52.046052
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.676825
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.988228  score                       0.913228
+                                                   decision_tree_score_reward  0.913228
+</pre></div>
+</div>
+<p class="rubric">prnn_crabs</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:45:57.363331
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  --------------------------------
+      1  Is Response Quantitative Check     0.1    is_response_quantitative  1
+      2  Get Log Rows Count                 0.1    log_rows_count  0.444558
+      3  Is Response Discrete Check         0.1    is_response_discrete  1
+      4  Decision Tree                      0.815  score                       0.74
+                                                   decision_tree_score_reward  0.74
+</pre></div>
+</div>
+<p class="rubric">credit_g</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:00.405643
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ---------------------------------
+      1  Is Response Quantitative Check     0.1    is_response_quantitative  1
+      2  Get Log Rows Count                 0.1    log_rows_count  0.579598
+      3  Is Response Discrete Check         0.1    is_response_discrete  1
+      4  Decision Tree                      0.772  score                       0.697
+                                                   decision_tree_score_reward  0.697
+</pre></div>
+</div>
+<p class="rubric">phoneme</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:02.873439
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.721158
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.947383  score                       0.872383
+                                                   decision_tree_score_reward  0.872383
+</pre></div>
+</div>
+<p class="rubric">postoperative_patient_data</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:04.378766
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.375673
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.689167  score                       0.614167
+                                                   decision_tree_score_reward  0.614167
+</pre></div>
+</div>
+<p class="rubric">optdigits</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:14.571813
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.724447
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.972596  score                       0.897596
+                                                   decision_tree_score_reward  0.897596
+</pre></div>
+</div>
+<p class="rubric">shuttle</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:22.829284
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  -----------------------------------
+      1  Is Response Quantitative Check       0.1  is_response_quantitative  1
+      2  Get Log Rows Count                   0.1  log_rows_count  0.920291
+      3  Is Response Discrete Check           0.1  is_response_discrete  1
+      4  Decision Tree                        1    score                       0.99981
+                                                   decision_tree_score_reward  0.99981
+</pre></div>
+</div>
+<p class="rubric">auto</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:32.787546
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.445392
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.851154  score                       0.776154
+                                                   decision_tree_score_reward  0.776154
+</pre></div>
+</div>
+<p class="rubric">mfeat_morphological</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:34.652047
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ---------------------------------
+      1  Is Response Quantitative Check     0.1    is_response_quantitative  1
+      2  Get Log Rows Count                 0.1    log_rows_count  0.637757
+      3  Is Response Discrete Check         0.1    is_response_discrete  1
+      4  Decision Tree                      0.747  score                       0.672
+                                                   decision_tree_score_reward  0.672
+</pre></div>
+</div>
+<p class="rubric">mfeat_zernike</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:42.073745
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ---------------------------------
+      1  Is Response Quantitative Check     0.1    is_response_quantitative  1
+      2  Get Log Rows Count                 0.1    log_rows_count  0.637757
+      3  Is Response Discrete Check         0.1    is_response_discrete  1
+      4  Decision Tree                      0.752  score                       0.677
+                                                   decision_tree_score_reward  0.677
+</pre></div>
+</div>
+<p class="rubric">bupa</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:46:46.522736
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  ------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.490305
+      3  Is Response Discrete Check               0.1       is_response_discrete  1
+      4  Decision Tree                           -0.369118  score                        0.555882
+                                                            decision_tree_score_reward  -0.444118
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
+      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  1
+      7  Logistic Regression                      0.731884  score                             0.631884
+                                                            logistic_regression_score_reward  0.631884
+</pre></div>
+</div>
+<p class="rubric">churn</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:47:01.862844
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ----------------------------------
+      1  Is Response Quantitative Check    0.1     is_response_quantitative  1
+      2  Get Log Rows Count                0.1     log_rows_count  0.714639
+      3  Is Response Discrete Check        0.1     is_response_discrete  1
+      4  Decision Tree                     0.9972  score                       0.9222
+                                                   decision_tree_score_reward  0.9222
+</pre></div>
+</div>
+<p class="rubric">breast_cancer</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:47:06.265172
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.474568
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.741623  score                       0.666623
+                                                   decision_tree_score_reward  0.666623
+</pre></div>
+</div>
+<p class="rubric">new_thyroid</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:47:10.002953
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.450626
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.983333  score                       0.908333
+                                                   decision_tree_score_reward  0.908333
+</pre></div>
+</div>
+<p class="rubric">car</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:47:14.154864
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check       0.1  is_response_quantitative  1
+      2  Get Log Rows Count                   0.1  log_rows_count  0.625491
+      3  Is Response Discrete Check           0.1  is_response_discrete  1
+      4  Decision Tree                        1    score                       0.955463
+                                                   decision_tree_score_reward  0.955463
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pmlb_regressions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PMLB Regression Datasets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../api/api.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-classification-datasets">Loading classification datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyses">Analyses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/examples/pmlb_classifications.ipynb">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

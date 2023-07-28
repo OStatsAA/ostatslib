@@ -414,6 +414,7 @@ document.write(`
 
 <span class="n">POLICY</span> <span class="o">=</span> <span class="s2">&quot;MultiInputPolicy&quot;</span>
 <span class="n">POLICY_KWARGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;net_arch&#39;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="n">pi</span><span class="o">=</span><span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">]),</span>
     <span class="s1">&#39;activation_fn&#39;</span><span class="p">:</span> <span class="n">th</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">,</span>
     <span class="s1">&#39;share_features_extractor&#39;</span><span class="p">:</span> <span class="kc">False</span>
 <span class="p">}</span>

@@ -473,82 +473,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># loading trained agent</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="s1">&#39;../trained_ppo_model.zip&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># generating data</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">()</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:23:59.126370
+Final status is Complete
+Initial State known features:
 
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:35,</span> in <span class="ni">PPOAgent.__init__</span><span class="nt">(self, path, training_envs_count, environment_kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>              <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>              <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>              <span class="n">environment_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span> <span class="o">=</span> <span class="n">environment_kwargs</span>
-<span class="ne">---&gt; </span><span class="mi">35</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:67,</span> in <span class="ni">PPOAgent.__init__model</span><span class="nt">(self, path, training_envs_count)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>                <span class="n">environments</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>                <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>                <span class="n">n_steps</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>                <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">67</span> <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span>                 <span class="n">environments</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>                 <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                     <span class="s1">&#39;observation_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">observation_space</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>                     <span class="s1">&#39;action_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">action_space</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>                 <span class="p">})</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:761,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span>         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span>             <span class="s2">&quot;You are probably loading a model saved with SB3 &lt; 1.7.0, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">754</span>             <span class="s2">&quot;we deactivated exact_match so you can save the model &quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">758</span>             <span class="s2">&quot;Note: the model should still work fine, this only a warning.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">759</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">761</span>         <span class="k">raise</span> <span class="n">e</span>
-<span class="g g-Whitespace">    </span><span class="mi">762</span> <span class="c1"># put other pytorch variables back in place</span>
-<span class="g g-Whitespace">    </span><span class="mi">763</span> <span class="k">if</span> <span class="n">pytorch_variables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:745,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">741</span> <span class="n">model</span><span class="o">.</span><span class="n">_setup_model</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">743</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">744</span>     <span class="c1"># put state_dicts back in place</span>
-<span class="ne">--&gt; </span><span class="mi">745</span>     <span class="n">model</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">exact_match</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">746</span> <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">747</span>     <span class="c1"># Patch to load Policy saved using SB3 &lt; 1.7.0</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span>     <span class="c1"># the error is probably due to old policy being loaded</span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span>     <span class="c1"># See https://github.com/DLR-RM/stable-baselines3/issues/1233</span>
-<span class="g g-Whitespace">    </span><span class="mi">750</span>     <span class="k">if</span> <span class="s2">&quot;pi_features_extractor&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Missing key(s) in state_dict&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:631,</span> in <span class="ni">BaseAlgorithm.set_parameters</span><span class="nt">(self, load_path_or_dict, exact_match, device)</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span>         <span class="n">attr</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">630</span>         <span class="c1"># Assume attr is th.nn.Module</span>
-<span class="ne">--&gt; </span><span class="mi">631</span>         <span class="n">attr</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="n">exact_match</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">updated_objects</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="k">if</span> <span class="n">exact_match</span> <span class="ow">and</span> <span class="n">updated_objects</span> <span class="o">!=</span> <span class="n">objects_needing_update</span><span class="p">:</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py:2041,</span> in <span class="ni">Module.load_state_dict</span><span class="nt">(self, state_dict, strict)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2036</span>         <span class="n">error_msgs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2037</span>             <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Missing key(s) in state_dict: </span><span class="si">{}</span><span class="s1">. &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2038</span>                 <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2040</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">error_msgs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2041</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Error(s) in loading state_dict for </span><span class="si">{}</span><span class="s1">:</span><span class="se">\n\t</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2042</span>                        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_msgs</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2043</span> <span class="k">return</span> <span class="n">_IncompatibleKeys</span><span class="p">(</span><span class="n">missing_keys</span><span class="p">,</span> <span class="n">unexpected_keys</span><span class="p">)</span>
-
-<span class="ne">RuntimeError</span>: Error(s) in loading state_dict for MultiInputActorCriticPolicy:
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">mlp_extractor</span><span class="o">.</span><span class="n">policy_net</span><span class="mf">.0</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">38</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">43</span><span class="p">])</span><span class="o">.</span>
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">mlp_extractor</span><span class="o">.</span><span class="n">value_net</span><span class="mf">.0</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">38</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">43</span><span class="p">])</span><span class="o">.</span>
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">action_net</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">64</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">64</span><span class="p">])</span><span class="o">.</span>
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">action_net</span><span class="o">.</span><span class="n">bias</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">5</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">6</span><span class="p">])</span><span class="o">.</span>
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ---------------------------------
+      1  Is Response Quantitative Check       0.1  is_response_quantitative  1
+      2  Get Log Rows Count                   0.1  log_rows_count  0.386399
+      3  Is Response Discrete Check           0.1  is_response_discrete  1
+      4  Decision Tree                        0.9  score                       0.825
+                                                   decision_tree_score_reward  0.825
 </pre></div>
 </div>
 </div>
@@ -571,26 +507,25 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-07 23:08:20.241569
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:24:00.399056
 Final status is Complete
 Initial State known features:
 
 Steps:
-  Order  Step                                Reward  State Change
--------  --------------------------------  --------  --------------------------------------------------------------
-      1  Infer Response DType                   0.5  response_inferred_dtype  floating
-      2  Get Response Unique Values Ratio       0.5  response_unique_values_ratio  1
-      3  Time Convertible Variable Search       0.5  time_convertible_variable
-      4  Is Response Dichotomous Check          0.5  is_response_dichotomous  -1
-      5  Is Response Quantitative Check         0.5  is_response_quantitative  1
-      6  Get Log Rows Count                     0.5  log_rows_count  0.386399
-      7  Is Response Discrete Check             0.5  is_response_discrete  -1
-      8  Linear Regression                      0.6  score                                                        1
-                                                     are_linear_model_regression_residuals_correlated            -1
-                                                     are_linear_model_regression_residuals_heteroscedastic       -1
-                                                     are_linear_model_regression_residuals_normally_distributed   1
-                                                     is_linear_model_regression_recursive_residuals_mean_zero    -1
-                                                     linear_regression_score_reward                               1
+  Order  Step                               Reward  State Change
+-------  -------------------------------  --------  ------------------------------------------------
+      1  Is Response Quantitative Check        0.1  is_response_quantitative  1
+      2  Get Log Rows Count                    0.1  log_rows_count  0.386399
+      3  Is Response Discrete Check            0.1  is_response_discrete  -1
+      4  Get Standarized Variables Ratio       0.1  standarized_variables_ratio  -1
+      5  Support Vector Regression            -1    support_vector_regression_score_reward  -1.06918
+      6  Get Correlated Variables Ratio        0.1  correlated_variables_ratio  0.00990099
+      7  Get Correlated Variables Ratio       -1
+      8  Get Correlated Variables Ratio       -1
+      9  Get Correlated Variables Ratio       -1
+     10  Get Correlated Variables Ratio       -1
+     11  Get Correlated Variables Ratio       -1
+     12  Get Correlated Variables Ratio       -1
 </pre></div>
 </div>
 </div>
@@ -790,21 +725,18 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-06-07 23:08:27.920330
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:24:02.384759
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------
-      1  Infer Response DType                         0.5  response_inferred_dtype  integer
-      2  Is Response Positive Values Only Check       0.5  is_response_positive_values_only  1
-      3  Is Response Quantitative Check               0.5  is_response_quantitative  1
-      4  Is Response Discrete Check                   0.5  is_response_discrete  1
-      5  Is Response Dichotomous Check                0.5  is_response_dichotomous  1
-      6  Get Log Rows Count                           0.5  log_rows_count  0.532286
-      7  Logistic Regression                          1    score                             0.961336
-                                                           logistic_regression_score_reward  0.961336
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  -----------------------------------
+      1  Is Response Quantitative Check       0.1  is_response_quantitative  1
+      2  Get Log Rows Count                   0.1  log_rows_count  0.532286
+      3  Is Response Discrete Check           0.1  is_response_discrete  1
+      4  Decision Tree                        1    score                       0.93268
+                                                   decision_tree_score_reward  0.93268
 </pre></div>
 </div>
 </div>
@@ -824,45 +756,14 @@ Steps:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVR() (100, 5) 100
-SVR(C=10) 0.7424538568812749
-&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 100 entries, 0 to 99
-Data columns (total 6 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   oz1     100 non-null    float64
- 1   oz2     100 non-null    float64
- 2   oz3     100 non-null    float64
- 3   oz4     100 non-null    float64
- 4   oz5     100 non-null    float64
- 5   target  100 non-null    float64
-dtypes: float64(6)
-memory usage: 4.8 KB
-None
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">ostatslib.environments.utils._generate_from_pmlb</span> <span class="kn">import</span> <span class="n">generate_from_pmlb</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">data</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">generate_from_pmlb</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
 
-Analysis executed at 2023-06-07 23:19:38.322738
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                 Reward  State Change
--------  --------------------------------  ---------  -------------------------------------------------------------------
-      1  Infer Response DType               0.5       response_inferred_dtype  floating
-      2  Get Response Unique Values Ratio   0.5       response_unique_values_ratio  1
-      3  Time Convertible Variable Search   0.5       time_convertible_variable
-      4  Is Response Dichotomous Check      0.5       is_response_dichotomous  -1
-      5  Is Response Quantitative Check     0.5       is_response_quantitative  1
-      6  Get Log Rows Count                 0.5       log_rows_count  0.386399
-      7  Is Response Discrete Check         0.5       is_response_discrete  -1
-      8  Linear Regression                 -1         score                                                        0.3387
-                                                      are_linear_model_regression_residuals_correlated             1
-                                                      are_linear_model_regression_residuals_heteroscedastic       -0.5
-                                                      are_linear_model_regression_residuals_normally_distributed   0.5
-                                                      is_linear_model_regression_recursive_residuals_mean_zero     1
-                                                      linear_regression_score_reward                              -0.6613
-      9  Support Vector Regression          0.642454  score                                   0.742454
-                                                      support_vector_regression_score_reward  0.742454
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;ostatslib.environments.utils&#39;
 </pre></div>
 </div>
 </div>

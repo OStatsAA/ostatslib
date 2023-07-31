@@ -413,7 +413,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Sampled 12 regression datasets: 626_fri_c2_500_50, 4544_GeographicalOriginalofMusic, 1595_poker, 588_fri_c4_1000_100, 665_sleuth_case2002, 644_fri_c4_250_25, 523_analcatdata_neavote, 557_analcatdata_apnea1, 650_fri_c0_500_50, 294_satellite_image, 611_fri_c3_100_5, 609_fri_c0_1000_5.</p>
+<p>Sampled 12 regression datasets: banana, 647_fri_c1_250_10, 586_fri_c3_1000_25, 649_fri_c0_500_5, 643_fri_c2_500_25, 195_auto_price, 230_machine_cpu, 603_fri_c0_250_50, 621_fri_c0_100_10, 556_analcatdata_apnea2, 589_fri_c2_1000_25, 609_fri_c0_1000_5.</p>
 </div>
 </div>
 </section>
@@ -451,8 +451,94 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p class="rubric">626_fri_c2_500_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:47:32.169390
+<p class="rubric">banana</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:05.655387
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.719528
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.944122  score                       0.869122
+                                                   decision_tree_score_reward  0.869122
+</pre></div>
+</div>
+<p class="rubric">647_fri_c1_250_10</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:07.311440
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  ---------------------------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.463281
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      7  Is Response Balanced Check               0.1       is_response_balanced  1
+      8  Linear Regression                       -1         score                                                        0.321987
+                                                            are_linear_model_regression_residuals_correlated            -1
+                                                            are_linear_model_regression_residuals_heteroscedastic        1
+                                                            are_linear_model_regression_residuals_normally_distributed  -1
+                                                            is_linear_model_regression_recursive_residuals_mean_zero     1
+                                                            linear_regression_score_reward                              -0.678013
+      9  Support Vector Regression               -0.688222  score                                    0.411778
+                                                            support_vector_regression_score_reward  -0.588222
+     10  Linear Regression                       -0.9
+     11  Linear Regression                       -0.9
+     12  Linear Regression                       -0.9
+</pre></div>
+</div>
+<p class="rubric">586_fri_c3_1000_25</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:14.164898
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  -------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.579598
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Is Response Balanced Check               0.1       is_response_balanced  1
+      5  Support Vector Regression               -0.731273  score                                    0.368727
+                                                            support_vector_regression_score_reward  -0.631273
+      6  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      7  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      8  Get Log Columns Count                    0.1       log_columns_count  0.471658
+      9  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+     10  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.269231
+     11  Get Correlated Variables Ratio          -1
+     12  Get Correlated Variables Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">649_fri_c0_500_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:17.507425
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                      Reward  State Change
+-------  --------------------------------------  --------  ------------------------------------------------
+      1  Is Response Quantitative Check          0.1       is_response_quantitative  1
+      2  Get Log Rows Count                      0.1       log_rows_count  0.521439
+      3  Is Response Discrete Check              0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio         0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  -1
+      6  Get Log Columns Count                   0.1       log_columns_count  0.259384
+      7  Is Response Dichotomous Check           0.1       is_response_dichotomous  -1
+      8  Is Response Balanced Check              0.1       is_response_balanced  1
+      9  Support Vector Regression               0.830034  score                                   0.930034
+                                                           support_vector_regression_score_reward  0.930034
+</pre></div>
+</div>
+<p class="rubric">643_fri_c2_500_25</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:22.333504
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -464,79 +550,18 @@ Steps:
       3  Is Response Discrete Check               0.1       is_response_discrete  -1
       4  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
       5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
-      6  Get Log Columns Count                    0.1       log_columns_count  0.56919
+      6  Get Log Columns Count                    0.1       log_columns_count  0.471658
       7  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
       8  Is Response Balanced Check               0.1       is_response_balanced  1
-      9  Support Vector Regression               -0.895552  score                                    0.204448
-                                                            support_vector_regression_score_reward  -0.795552
+      9  Support Vector Regression               -0.945878  score                                    0.154122
+                                                            support_vector_regression_score_reward  -0.845878
      10  Get Missing Data Ratio                  -1         missing_data_ratio  -1
      11  Get Missing Data Ratio                   0.1
      12  Get Missing Data Ratio                   0.1
 </pre></div>
 </div>
-<p class="rubric">4544_GeographicalOriginalofMusic</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:47:38.894883
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                Reward  State Change
--------  -------------------------------  ---------  ---------------------------------------------------------------------
-      1  Is Response Quantitative Check    0.1       is_response_quantitative  1
-      2  Get Log Rows Count                0.1       log_rows_count  0.584408
-      3  Is Response Discrete Check        0.1       is_response_discrete  -1
-      4  Is Response Balanced Check        0.1       is_response_balanced  -0.5
-      5  Get Standarized Variables Ratio   0.1       standarized_variables_ratio  -1
-      6  Linear Regression                -0.571186  score                                                        0.828814
-                                                     are_linear_model_regression_residuals_correlated            -1
-                                                     are_linear_model_regression_residuals_heteroscedastic        1
-                                                     are_linear_model_regression_residuals_normally_distributed  -1
-                                                     is_linear_model_regression_recursive_residuals_mean_zero    -1
-                                                     linear_regression_score_reward                               0.828814
-      7  Support Vector Regression         0.63944   score                                   0.73944
-                                                     support_vector_regression_score_reward  0.73944
-</pre></div>
-</div>
-<p class="rubric">1595_poker</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:51:42.342343
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
-      2  Get Log Rows Count              0.1       log_rows_count  1
-      3  Is Response Discrete Check      0.1       is_response_discrete  1
-      4  Decision Tree                   0.718877  score                       0.643877
-                                                   decision_tree_score_reward  0.643877
-</pre></div>
-</div>
-<p class="rubric">588_fri_c4_1000_100</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:51:48.603590
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------------------
-      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      2  Get Log Rows Count                       0.1       log_rows_count  0.579598
-      3  Is Response Discrete Check               0.1       is_response_discrete  -1
-      4  Is Response Balanced Check               0.1       is_response_balanced  1
-      5  Support Vector Regression               -0.884109  score                                    0.215891
-                                                            support_vector_regression_score_reward  -0.784109
-      6  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
-      7  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
-      8  Get Log Columns Count                    0.1       log_columns_count  0.668107
-      9  Time Convertible Variable Search         0.1       time_convertible_variable
-     10  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-     11  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.0891089
-     12  Get Correlated Variables Ratio          -1
-</pre></div>
-</div>
-<p class="rubric">665_sleuth_case2002</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:51:49.913007
+<p class="rubric">195_auto_price</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:24.653283
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -544,7 +569,29 @@ Steps:
   Order  Step                                      Reward  State Change
 -------  --------------------------------------  --------  -----------------------------------
       1  Is Response Quantitative Check             0.1    is_response_quantitative  1
-      2  Get Log Rows Count                         0.1    log_rows_count  0.418724
+      2  Get Log Rows Count                         0.1    log_rows_count  0.425309
+      3  Is Response Discrete Check                 0.1    is_response_discrete  1
+      4  Decision Tree                             -0.925  decision_tree_score_reward  -1
+      5  Is Response Positive Values Only Check     0.1    is_response_positive_values_only  1
+      6  Is Response Dichotomous Check              0.1    is_response_dichotomous  -1
+      7  Get Log Columns Count                      0.1    log_columns_count  0.401373
+      8  Get Standarized Variables Ratio            0.1    standarized_variables_ratio  -1
+      9  Is Response Balanced Check                 0.1    is_response_balanced  -0.5
+     10  Get Missing Data Ratio                    -1      missing_data_ratio  -1
+     11  Get Missing Data Ratio                     0.1
+     12  Get Missing Data Ratio                     0.1
+</pre></div>
+</div>
+<p class="rubric">230_machine_cpu</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:25.847214
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                      Reward  State Change
+-------  --------------------------------------  --------  -----------------------------------
+      1  Is Response Quantitative Check             0.1    is_response_quantitative  1
+      2  Get Log Rows Count                         0.1    log_rows_count  0.448251
       3  Is Response Discrete Check                 0.1    is_response_discrete  1
       4  Decision Tree                             -0.925  decision_tree_score_reward  -1
       5  Is Response Positive Values Only Check     0.1    is_response_positive_values_only  1
@@ -557,56 +604,58 @@ Steps:
      12  Get Missing Data Ratio                     0.1
 </pre></div>
 </div>
-<p class="rubric">644_fri_c4_250_25</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:51:52.798958
+<p class="rubric">603_fri_c0_250_50</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:28.494614
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
   Order  Step                                      Reward  State Change
 -------  --------------------------------------  --------  ---------------------------------------------------------------------
-      1  Is Response Quantitative Check            0.1     is_response_quantitative  1
-      2  Get Log Rows Count                        0.1     log_rows_count  0.463281
-      3  Is Response Discrete Check                0.1     is_response_discrete  -1
-      4  Get Standarized Variables Ratio           0.1     standarized_variables_ratio  1
-      5  Is Response Positive Values Only Check    0.1     is_response_positive_values_only  -1
-      6  Is Response Dichotomous Check             0.1     is_response_dichotomous  -1
-      7  Is Response Balanced Check                0.1     is_response_balanced  1
-      8  Linear Regression                        -1       score                                                        0.306268
+      1  Is Response Quantitative Check          0.1       is_response_quantitative  1
+      2  Get Log Rows Count                      0.1       log_rows_count  0.463281
+      3  Is Response Discrete Check              0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio         0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  -1
+      6  Is Response Dichotomous Check           0.1       is_response_dichotomous  -1
+      7  Is Response Balanced Check              0.1       is_response_balanced  1
+      8  Linear Regression                       0.886713  score                                                        0.786713
                                                            are_linear_model_regression_residuals_correlated            -1
-                                                           are_linear_model_regression_residuals_heteroscedastic        1
-                                                           are_linear_model_regression_residuals_normally_distributed   0.5
+                                                           are_linear_model_regression_residuals_heteroscedastic       -1
+                                                           are_linear_model_regression_residuals_normally_distributed   1
                                                            is_linear_model_regression_recursive_residuals_mean_zero     1
-                                                           linear_regression_score_reward                              -0.693732
-      9  Support Vector Regression                -0.9773  score                                    0.1227
-                                                           support_vector_regression_score_reward  -0.8773
-     10  Get Correlated Variables Ratio            0.1     correlated_variables_ratio  0.307692
-     11  Get Log Columns Count                     0.1     log_columns_count  0.471658
-     12  Is Response Balanced Check               -1
+                                                           linear_regression_score_reward                               0.786713
 </pre></div>
 </div>
-<p class="rubric">523_analcatdata_neavote</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:51:54.070916
+<p class="rubric">621_fri_c0_100_10</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:30.616214
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------------------------------
-      1  Is Response Quantitative Check              0.1   is_response_quantitative  1
-      2  Get Log Rows Count                          0.1   log_rows_count  0.386399
-      3  Is Response Discrete Check                  0.1   is_response_discrete  1
-      4  Decision Tree                              -0.35  score                        0.575
-                                                           decision_tree_score_reward  -0.425
-      5  Is Response Positive Values Only Check      0.1   is_response_positive_values_only  1
-      6  Is Response Dichotomous Check               0.1   is_response_dichotomous  -1
-      7  Poisson Regression                          1     score                                                     0.935161
-                                                           does_poisson_regression_raises_perfect_separation_error  -1
-                                                           poisson_regression_score_reward                           0.935161
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  ---------------------------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.386399
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      7  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.0909091
+      8  Is Response Balanced Check               0.1       is_response_balanced  1
+      9  Linear Regression                       -0.176461  score                                                        0.723539
+                                                            are_linear_model_regression_residuals_correlated             1
+                                                            are_linear_model_regression_residuals_heteroscedastic       -1
+                                                            are_linear_model_regression_residuals_normally_distributed  -1
+                                                            is_linear_model_regression_recursive_residuals_mean_zero     1
+                                                            linear_regression_score_reward                               0.723539
+     10  Poisson Regression                      -0.9
+     11  Poisson Regression                      -0.9
+     12  Poisson Regression                      -0.9
 </pre></div>
 </div>
-<p class="rubric">557_analcatdata_apnea1</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:51:55.136965
+<p class="rubric">556_analcatdata_apnea2</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:31.764941
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -627,65 +676,31 @@ Steps:
      12  Get Missing Data Ratio                     0.1
 </pre></div>
 </div>
-<p class="rubric">650_fri_c0_500_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:51:58.331746
+<p class="rubric">589_fri_c2_1000_25</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:36.587632
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------------
-      1  Is Response Quantitative Check          0.1       is_response_quantitative  1
-      2  Get Log Rows Count                      0.1       log_rows_count  0.521439
-      3  Is Response Discrete Check              0.1       is_response_discrete  -1
-      4  Get Standarized Variables Ratio         0.1       standarized_variables_ratio  1
-      5  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  -1
-      6  Get Log Columns Count                   0.1       log_columns_count  0.56919
-      7  Is Response Dichotomous Check           0.1       is_response_dichotomous  -1
-      8  Is Response Balanced Check              0.1       is_response_balanced  1
-      9  Support Vector Regression               0.568608  score                                   0.668608
-                                                           support_vector_regression_score_reward  0.668608
-</pre></div>
-</div>
-<p class="rubric">294_satellite_image</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:52:02.703267
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
-      2  Get Log Rows Count              0.1       log_rows_count  0.735809
-      3  Is Response Discrete Check      0.1       is_response_discrete  1
-      4  Decision Tree                   0.913569  score                       0.838569
-                                                   decision_tree_score_reward  0.838569
-</pre></div>
-</div>
-<p class="rubric">611_fri_c3_100_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:52:03.825567
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check               0.1  is_response_quantitative  1
-      2  Get Log Rows Count                           0.1  log_rows_count  0.386399
-      3  Is Response Discrete Check                   0.1  is_response_discrete  -1
-      4  Get Standarized Variables Ratio              0.1  standarized_variables_ratio  1
-      5  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  -1
-      6  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
-      7  Get Correlated Variables Ratio               0.1  correlated_variables_ratio  1.5
-      8  Get Standarized Variables Ratio             -1
-      9  Get Standarized Variables Ratio             -1
-     10  Get Standarized Variables Ratio             -1
-     11  Get Standarized Variables Ratio             -1
-     12  Get Standarized Variables Ratio             -1
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  -------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.579598
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Is Response Balanced Check               0.1       is_response_balanced  1
+      5  Support Vector Regression               -0.796319  score                                    0.303681
+                                                            support_vector_regression_score_reward  -0.696319
+      6  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      7  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      8  Get Log Columns Count                    0.1       log_columns_count  0.471658
+      9  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+     10  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.153846
+     11  Get Correlated Variables Ratio          -1
+     12  Get Correlated Variables Ratio          -1
 </pre></div>
 </div>
 <p class="rubric">609_fri_c0_1000_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-28 17:52:12.628997
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-31 12:30:42.396623
 Final status is Complete
 Initial State known features:
 response_variable_label  target

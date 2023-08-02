@@ -413,7 +413,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Sampled 16 classification datasets: krkopt, ring, xd6, saheart, parity5, wine_quality_white, analcatdata_happiness, mfeat_zernike, car, spect, analcatdata_germangss, hungarian, mfeat_fourier, ann_thyroid, pima, ionosphere.</p>
+<p>Sampled 16 classification datasets: allhyper, auto, texture, satimage, credit_g, magic, wine_recognition, dna, wdbc, horse_colic, clean1, analcatdata_aids, parity5, analcatdata_asbestos, balance_scale, threeOf9.</p>
 </div>
 </div>
 </section>
@@ -451,46 +451,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p class="rubric">krkopt</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:14:45.826687
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------
-      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      2  Get Log Rows Count                       0.1       log_rows_count  0.859356
-      3  Is Response Discrete Check               0.1       is_response_discrete  1
-      4  Decision Tree                           -0.777685  score                        0.147315
-                                                            decision_tree_score_reward  -0.852685
-      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
-      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      7  Get Log Columns Count                    0.1       log_columns_count  0.281699
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  -1
-      9  Is Response Balanced Check               0.1       is_response_balanced  -1
-     10  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  -1
-     11  Get Missing Data Ratio                  -1         missing_data_ratio  -1
-     12  Get Missing Data Ratio                   0.1
-</pre></div>
-</div>
-<p class="rubric">ring</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:14:52.750275
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
-      2  Get Log Rows Count              0.1       log_rows_count  0.747533
-      3  Is Response Discrete Check      0.1       is_response_discrete  1
-      4  Decision Tree                   0.961892  score                       0.886892
-                                                   decision_tree_score_reward  0.886892
-</pre></div>
-</div>
-<p class="rubric">xd6</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:14:53.820476
+<p class="rubric">allhyper</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:05.746110
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -498,14 +460,14 @@ Steps:
   Order  Step                              Reward  State Change
 -------  ------------------------------  --------  ------------------------------------
       1  Is Response Quantitative Check       0.1  is_response_quantitative  1
-      2  Get Log Rows Count                   0.1  log_rows_count  0.577302
+      2  Get Log Rows Count                   0.1  log_rows_count  0.690969
       3  Is Response Discrete Check           0.1  is_response_discrete  1
-      4  Decision Tree                        1    score                       0.996891
-                                                   decision_tree_score_reward  0.996891
+      4  Decision Tree                        1    score                       0.983803
+                                                   decision_tree_score_reward  0.983803
 </pre></div>
 </div>
-<p class="rubric">saheart</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:14:56.114117
+<p class="rubric">auto</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:08.877747
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -513,14 +475,166 @@ Steps:
   Order  Step                              Reward  State Change
 -------  ------------------------------  --------  ------------------------------------
       1  Is Response Quantitative Check  0.1       is_response_quantitative  1
-      2  Get Log Rows Count              0.1       log_rows_count  0.514807
+      2  Get Log Rows Count              0.1       log_rows_count  0.445392
       3  Is Response Discrete Check      0.1       is_response_discrete  1
-      4  Decision Tree                   0.747674  score                       0.672674
-                                                   decision_tree_score_reward  0.672674
+      4  Decision Tree                   0.856154  score                       0.781154
+                                                   decision_tree_score_reward  0.781154
+</pre></div>
+</div>
+<p class="rubric">texture</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:17.221234
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check       0.1  is_response_quantitative  1
+      2  Get Log Rows Count                   0.1  log_rows_count  0.722636
+      3  Is Response Discrete Check           0.1  is_response_discrete  1
+      4  Decision Tree                        1    score                       0.933758
+                                                   decision_tree_score_reward  0.933758
+</pre></div>
+</div>
+<p class="rubric">satimage</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:25.037525
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.735809
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.914969  score                       0.839969
+                                                   decision_tree_score_reward  0.839969
+</pre></div>
+</div>
+<p class="rubric">credit_g</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:28.544212
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ---------------------------------
+      1  Is Response Quantitative Check     0.1    is_response_quantitative  1
+      2  Get Log Rows Count                 0.1    log_rows_count  0.579598
+      3  Is Response Discrete Check         0.1    is_response_discrete  1
+      4  Decision Tree                      0.778  score                       0.703
+                                                   decision_tree_score_reward  0.703
+</pre></div>
+</div>
+<p class="rubric">magic</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:40.709914
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  -----------------------------------
+      1  Is Response Quantitative Check   0.1      is_response_quantitative  1
+      2  Get Log Rows Count               0.1      log_rows_count  0.826741
+      3  Is Response Discrete Check       0.1      is_response_discrete  1
+      4  Decision Tree                    0.89267  score                       0.81767
+                                                   decision_tree_score_reward  0.81767
+</pre></div>
+</div>
+<p class="rubric">wine_recognition</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:42.591137
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.43478
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.973913  score                       0.898913
+                                                   decision_tree_score_reward  0.898913
+</pre></div>
+</div>
+<p class="rubric">dna</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:47.015327
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.676825
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.990431  score                       0.915431
+                                                   decision_tree_score_reward  0.915431
+</pre></div>
+</div>
+<p class="rubric">wdbc</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:50.921208
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check       0.1  is_response_quantitative  1
+      2  Get Log Rows Count                   0.1  log_rows_count  0.532286
+      3  Is Response Discrete Check           0.1  is_response_discrete  1
+      4  Decision Tree                        1    score                       0.943284
+                                                   decision_tree_score_reward  0.943284
+</pre></div>
+</div>
+<p class="rubric">horse_colic</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:54.050908
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.49572
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.863116  score                       0.788116
+                                                   decision_tree_score_reward  0.788116
+</pre></div>
+</div>
+<p class="rubric">clean1</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:57.080660
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.517312
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.975538  score                       0.900538
+                                                   decision_tree_score_reward  0.900538
+</pre></div>
+</div>
+<p class="rubric">analcatdata_aids</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:18:59.658920
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                      Reward  State Change
+-------  --------------------------------------  --------  -------------------------------------
+      1  Is Response Quantitative Check               0.1  is_response_quantitative  1
+      2  Get Log Rows Count                           0.1  log_rows_count  0.32824
+      3  Is Response Discrete Check                   0.1  is_response_discrete  1
+      4  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  1
+      5  Is Response Dichotomous Check                0.1  is_response_dichotomous  1
+      6  Logistic Regression                          0.8  score                             0.7
+                                                           logistic_regression_score_reward  0.7
 </pre></div>
 </div>
 <p class="rubric">parity5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:14:59.469661
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:19:00.990070
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -542,73 +656,38 @@ Steps:
      12  Logistic Regression                         -0.9
 </pre></div>
 </div>
-<p class="rubric">wine_quality_white</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:02.245969
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------------------------------------
-      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      2  Get Log Rows Count                       0.1       log_rows_count  0.712909
-      3  Is Response Discrete Check               0.1       is_response_discrete  1
-      4  Decision Tree                           -0.511543  score                        0.413457
-                                                            decision_tree_score_reward  -0.586543
-      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
-      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      7  Poisson Regression                      -0.86429   score                                                     0.0357096
-                                                            does_poisson_regression_raises_perfect_separation_error  -1
-                                                            poisson_regression_score_reward                          -0.96429
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  -1
-      9  Is Response Balanced Check               0.1       is_response_balanced  -1
-     10  Get Log Columns Count                    0.1       log_columns_count  0.359727
-     11  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.333333
-     12  Get Correlated Variables Ratio          -1
-</pre></div>
-</div>
-<p class="rubric">analcatdata_happiness</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:03.227642
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------------------------------------
-      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      2  Get Log Rows Count                       0.1       log_rows_count  0.343538
-      3  Is Response Discrete Check               0.1       is_response_discrete  1
-      4  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
-      5  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      6  Decision Tree                           -0.375     score                        0.55
-                                                            decision_tree_score_reward  -0.45
-      7  Poisson Regression                      -0.852484  score                                                     0.0475162
-                                                            does_poisson_regression_raises_perfect_separation_error  -1
-                                                            poisson_regression_score_reward                          -0.952484
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  -1
-      9  Is Response Balanced Check               0.1       is_response_balanced  1
-     10  Infer Response DType                     0.1       response_inferred_dtype  integer
-     11  Get Log Columns Count                    0.1       log_columns_count  0.200687
-     12  Get Log Columns Count                   -1
-</pre></div>
-</div>
-<p class="rubric">mfeat_zernike</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:08.895598
+<p class="rubric">analcatdata_asbestos</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:19:11.565527
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
   Order  Step                              Reward  State Change
--------  ------------------------------  --------  ----------------------------------
-      1  Is Response Quantitative Check    0.1     is_response_quantitative  1
-      2  Get Log Rows Count                0.1     log_rows_count  0.637757
-      3  Is Response Discrete Check        0.1     is_response_discrete  1
-      4  Decision Tree                     0.7445  score                       0.6695
-                                                   decision_tree_score_reward  0.6695
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.370765
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.829167  score                       0.754167
+                                                   decision_tree_score_reward  0.754167
 </pre></div>
 </div>
-<p class="rubric">car</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:09.990535
+<p class="rubric">balance_scale</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:19:14.883705
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.540162
+      3  Is Response Discrete Check      0.1       is_response_discrete  1
+      4  Decision Tree                   0.679839  score                       0.604839
+                                                   decision_tree_score_reward  0.604839
+</pre></div>
+</div>
+<p class="rubric">threeOf9</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:19:19.678447
 Final status is Complete
 Initial State known features:
 response_variable_label  target
@@ -616,125 +695,10 @@ Steps:
   Order  Step                              Reward  State Change
 -------  ------------------------------  --------  ------------------------------------
       1  Is Response Quantitative Check       0.1  is_response_quantitative  1
-      2  Get Log Rows Count                   0.1  log_rows_count  0.625491
+      2  Get Log Rows Count                   0.1  log_rows_count  0.523429
       3  Is Response Discrete Check           0.1  is_response_discrete  1
-      4  Decision Tree                        1    score                       0.959512
-                                                   decision_tree_score_reward  0.959512
-</pre></div>
-</div>
-<p class="rubric">spect</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:11.728274
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
-      2  Get Log Rows Count              0.1       log_rows_count  0.4688
-      3  Is Response Discrete Check      0.1       is_response_discrete  1
-      4  Decision Tree                   0.857366  score                       0.782366
-                                                   decision_tree_score_reward  0.782366
-</pre></div>
-</div>
-<p class="rubric">analcatdata_germangss</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:14.261700
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------------------------------------
-      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      2  Get Log Rows Count                       0.1       log_rows_count  0.502716
-      3  Is Response Discrete Check               0.1       is_response_discrete  1
-      4  Decision Tree                           -0.47      score                        0.455
-                                                            decision_tree_score_reward  -0.545
-      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
-      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      7  Poisson Regression                      -0.838946  score                                                     0.0610542
-                                                            does_poisson_regression_raises_perfect_separation_error  -1
-                                                            poisson_regression_score_reward                          -0.938946
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  -1
-      9  Is Response Balanced Check               0.1       is_response_balanced  1
-     10  Get Response Unique Values Ratio         0.1       response_unique_values_ratio  0.01
-     11  Get Response Unique Values Ratio        -1
-     12  Get Response Unique Values Ratio        -1
-</pre></div>
-</div>
-<p class="rubric">hungarian</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:16.422571
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
-      2  Get Log Rows Count              0.1       log_rows_count  0.476883
-      3  Is Response Discrete Check      0.1       is_response_discrete  1
-      4  Decision Tree                   0.856516  score                       0.781516
-                                                   decision_tree_score_reward  0.781516
-</pre></div>
-</div>
-<p class="rubric">mfeat_fourier</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:23.608196
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ----------------------------------
-      1  Is Response Quantitative Check    0.1     is_response_quantitative  1
-      2  Get Log Rows Count                0.1     log_rows_count  0.637757
-      3  Is Response Discrete Check        0.1     is_response_discrete  1
-      4  Decision Tree                     0.8275  score                       0.7525
-                                                   decision_tree_score_reward  0.7525
-</pre></div>
-</div>
-<p class="rubric">ann_thyroid</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:25.811470
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check       0.1  is_response_quantitative  1
-      2  Get Log Rows Count                   0.1  log_rows_count  0.745234
-      3  Is Response Discrete Check           0.1  is_response_discrete  1
-      4  Decision Tree                        1    score                       0.995972
-                                                   decision_tree_score_reward  0.995972
-</pre></div>
-</div>
-<p class="rubric">pima</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:26.934270
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  ------------------------------------
-      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
-      2  Get Log Rows Count              0.1       log_rows_count  0.55745
-      3  Is Response Discrete Check      0.1       is_response_discrete  1
-      4  Decision Tree                   0.801534  score                       0.726534
-                                                   decision_tree_score_reward  0.726534
-</pre></div>
-</div>
-<p class="rubric">ionosphere</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-02 19:15:30.362844
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                              Reward  State Change
--------  ------------------------------  --------  -----------------------------------
-      1  Is Response Quantitative Check   0.1      is_response_quantitative  1
-      2  Get Log Rows Count               0.1      log_rows_count  0.491752
-      3  Is Response Discrete Check       0.1      is_response_discrete  1
-      4  Decision Tree                    0.93165  score                       0.85665
-                                                   decision_tree_score_reward  0.85665
+      4  Decision Tree                        1    score                       0.980506
+                                                   decision_tree_score_reward  0.980506
 </pre></div>
 </div>
 </div>

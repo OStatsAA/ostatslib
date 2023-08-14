@@ -77,8 +77,8 @@ class AnalysisResult:
 
             if previous_state:
                 return info.next_state - previous_state
-            else:
-                raise ValueError(
-                    f'Cannot write State delta, step {i-1} State is None')
+
+            raise ValueError(
+                f'Cannot write State delta, step {i-1} State is None')
 
         raise ValueError(f'Cannot write State delta, step {i} State is None')

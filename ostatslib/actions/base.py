@@ -33,7 +33,7 @@ class ActionInfo(dict, Generic[T]):
         self.raised_exception = raised_exception
         self.is_invalid_state = is_invalid_state
         self.next_state = next_state
-        super(ActionInfo, self).__init__()
+        super().__init__()
 
 
 class Action(ABC):
@@ -47,7 +47,7 @@ class Action(ABC):
     @classmethod
     def __subclasshook__(cls, class_: type):
         if cls is Action:
-            return any([action_type == cls for action_type in class_.__mro__])
+            return any(action_type for action_type in class_.__mro__ if action_type == cls)
 
         return False
 
@@ -97,7 +97,10 @@ class Action(ABC):
         return True
 
     @abstractmethod
-    def execute(self, data: DataFrame, state: State, config: Config) -> tuple[State, float, ActionInfo]:
+    def execute(self,
+                data: DataFrame,
+                state: State,
+                config: Config) -> tuple[State, float, ActionInfo]:
         """Executes and actions
 
         Args:

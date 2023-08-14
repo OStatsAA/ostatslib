@@ -422,8 +422,7 @@ document.write(`
 
 <div class="viewcode-block" id="Agent.analyze"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.analyze">[docs]</a>    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                 <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
-                <span class="n">initial_state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">State</span><span class="p">(),</span>
-                <span class="n">max_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">MAX_STEPS</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalysisResult</span><span class="p">:</span>
+                <span class="n">initial_state</span><span class="p">:</span> <span class="n">State</span> <span class="o">=</span> <span class="n">State</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">AnalysisResult</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Analyzes a dataset</span>
 
@@ -443,9 +442,10 @@ document.write(`
         <span class="n">observation</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">features_dict</span>
         <span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_steps</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">environment</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;MAX_STEPS&#39;</span><span class="p">]):</span>
             <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
-            <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+                <span class="n">action</span><span class="p">)</span>
             <span class="n">analysis_steps</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">reward</span><span class="p">,</span> <span class="n">info</span><span class="p">))</span>
 
             <span class="k">if</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span><span class="p">:</span>

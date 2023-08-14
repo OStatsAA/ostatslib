@@ -421,170 +421,7 @@ document.write(`
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
         <span class="p">})</span>
 
-    <span class="c1"># classifiers scores</span>
-
-    <span class="c1"># decision trees</span>
-
-    <span class="n">decision_tree_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="c1"># ensembles</span>
-
-    <span class="n">adaboost_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">bagging_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">extra_trees_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">gradient_boosting_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">random_forest_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">n_100_estimators_random_forest_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="c1"># linear models</span>
-
-    <span class="n">logistic_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">l1_logistic_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">elasticnet_logistic_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="c1"># support vector machines</span>
-
-    <span class="n">linear_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">nu_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">nu_poly_kernel_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">poly_kernel_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">linear_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="c1"># regressors scores</span>
-
-    <span class="c1"># decision trees</span>
-
     <span class="n">decision_tree_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="c1"># ensembles</span>
-
-    <span class="n">adaboost_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">bagging_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">extra_trees_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">gradient_boosting_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">n_100_estimators_gradient_boosting_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
             <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
@@ -598,29 +435,6 @@ document.write(`
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
         <span class="p">})</span>
 
-    <span class="n">n_100_estimators_random_forest_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="c1"># linear models</span>
-
-    <span class="n">poisson_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">gamma_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
     <span class="n">linear_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
@@ -628,23 +442,7 @@ document.write(`
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
         <span class="p">})</span>
 
-    <span class="c1"># support vector machines</span>
-
-    <span class="n">linear_support_vector_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">nu_support_vector_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">})</span>
-
-    <span class="n">nu_poly_kernel_support_vector_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+    <span class="n">poisson_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
             <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
@@ -658,16 +456,49 @@ document.write(`
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
         <span class="p">})</span>
 
-    <span class="n">poly_kernel_support_vector_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+    <span class="n">linear_support_vector_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
             <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
         <span class="p">})</span>
 
-    <span class="c1"># time series</span>
-
     <span class="n">time_series_auto_arima_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">decision_tree_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">logistic_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">linear_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">random_forest_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
             <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>

@@ -27,10 +27,11 @@
    :toctree:
    :recursive:
 
+   ostatslib.actions.action
    ostatslib.actions.actions_space
-   ostatslib.actions.base
    ostatslib.actions.classifiers
+   ostatslib.actions.clustering
    ostatslib.actions.exploratory_actions
-   ostatslib.actions.regressors
+   ostatslib.actions.regression_models
    ostatslib.actions.utils
 

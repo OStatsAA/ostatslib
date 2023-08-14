@@ -413,81 +413,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">sampled_dataset_names</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">pmlb</span><span class="o">.</span><span class="n">regression_dataset_names</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">AGENT_FILE</span> <span class="o">=</span> <span class="s1">&#39;../trained_ppo_model.zip&#39;</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="n">AGENT_FILE</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sampled </span><span class="si">{</span><span class="n">sample_size</span><span class="si">}</span><span class="s1"> regression datasets: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sampled_dataset_names</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:36,</span> in <span class="ni">PPOAgent.__init__</span><span class="nt">(self, path, training_envs_count, environment_kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>              <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>              <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>              <span class="n">environment_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span> <span class="o">=</span> <span class="n">environment_kwargs</span>
-<span class="ne">---&gt; </span><span class="mi">36</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:68,</span> in <span class="ni">PPOAgent.__init__model</span><span class="nt">(self, path, training_envs_count)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>                <span class="n">environments</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>                <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>                <span class="n">n_steps</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>                <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">68</span> <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>                 <span class="n">environments</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                 <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>                     <span class="s1">&#39;observation_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">observation_space</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>                     <span class="s1">&#39;action_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">action_space</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>                 <span class="p">})</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:761,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span>         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span>             <span class="s2">&quot;You are probably loading a model saved with SB3 &lt; 1.7.0, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">754</span>             <span class="s2">&quot;we deactivated exact_match so you can save the model &quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">758</span>             <span class="s2">&quot;Note: the model should still work fine, this only a warning.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">759</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">761</span>         <span class="k">raise</span> <span class="n">e</span>
-<span class="g g-Whitespace">    </span><span class="mi">762</span> <span class="c1"># put other pytorch variables back in place</span>
-<span class="g g-Whitespace">    </span><span class="mi">763</span> <span class="k">if</span> <span class="n">pytorch_variables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:745,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">741</span> <span class="n">model</span><span class="o">.</span><span class="n">_setup_model</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">743</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">744</span>     <span class="c1"># put state_dicts back in place</span>
-<span class="ne">--&gt; </span><span class="mi">745</span>     <span class="n">model</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">exact_match</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">746</span> <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">747</span>     <span class="c1"># Patch to load Policy saved using SB3 &lt; 1.7.0</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span>     <span class="c1"># the error is probably due to old policy being loaded</span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span>     <span class="c1"># See https://github.com/DLR-RM/stable-baselines3/issues/1233</span>
-<span class="g g-Whitespace">    </span><span class="mi">750</span>     <span class="k">if</span> <span class="s2">&quot;pi_features_extractor&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Missing key(s) in state_dict&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:631,</span> in <span class="ni">BaseAlgorithm.set_parameters</span><span class="nt">(self, load_path_or_dict, exact_match, device)</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span>         <span class="n">attr</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">630</span>         <span class="c1"># Assume attr is th.nn.Module</span>
-<span class="ne">--&gt; </span><span class="mi">631</span>         <span class="n">attr</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="n">exact_match</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">updated_objects</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="k">if</span> <span class="n">exact_match</span> <span class="ow">and</span> <span class="n">updated_objects</span> <span class="o">!=</span> <span class="n">objects_needing_update</span><span class="p">:</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py:2041,</span> in <span class="ni">Module.load_state_dict</span><span class="nt">(self, state_dict, strict)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2036</span>         <span class="n">error_msgs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2037</span>             <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Missing key(s) in state_dict: </span><span class="si">{}</span><span class="s1">. &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2038</span>                 <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2040</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">error_msgs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2041</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Error(s) in loading state_dict for </span><span class="si">{}</span><span class="s1">:</span><span class="se">\n\t</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2042</span>                        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_msgs</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2043</span> <span class="k">return</span> <span class="n">_IncompatibleKeys</span><span class="p">(</span><span class="n">missing_keys</span><span class="p">,</span> <span class="n">unexpected_keys</span><span class="p">)</span>
-
-<span class="ne">RuntimeError</span>: Error(s) in loading state_dict for MultiInputActorCriticPolicy:
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">mlp_extractor</span><span class="o">.</span><span class="n">policy_net</span><span class="mf">.0</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">128</span><span class="p">,</span> <span class="mi">43</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">128</span><span class="p">,</span> <span class="mi">63</span><span class="p">])</span><span class="o">.</span>
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">mlp_extractor</span><span class="o">.</span><span class="n">value_net</span><span class="mf">.0</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">43</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">63</span><span class="p">])</span><span class="o">.</span>
-</pre></div>
-</div>
+<p>Sampled 12 regression datasets: 227_cpu_small, 622_fri_c2_1000_50, 613_fri_c3_250_5, 591_fri_c1_100_10, 599_fri_c2_1000_5, 596_fri_c2_250_5, 645_fri_c3_500_50, 207_autoPrice, 1193_BNG_lowbwt, 581_fri_c3_500_25, 1028_SWD, 1203_BNG_pwLinear.</p>
 </div>
 </div>
 </section>
@@ -525,245 +451,282 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<p class="rubric">227_cpu_small</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:39:44.843352
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  -------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.756065
+      3  Is Response Discrete Check               0.1       is_response_discrete  1
+      4  Decision Tree                           -0.747267  score                        0.177733
+                                                            decision_tree_score_reward  -0.822267
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
+      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      7  Get Log Columns Count                    0.1       log_columns_count  0.371314
+      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  -1
+      9  Is Response Balanced Check               0.1       is_response_balanced  -1
+     10  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.769231
+     11  Get Log Columns Count                   -1
+     12  Get Log Columns Count                   -1
+</pre></div>
+</div>
 <p class="rubric">622_fri_c2_1000_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:46.844361
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:39:50.975297
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
   Order  Step                                       Reward  State Change
 -------  --------------------------------------  ---------  -------------------------------------------------
-      1  Infer Response DType                     0.1       response_inferred_dtype  floating
-      2  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      3  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      4  Get Log Rows Count                       0.1       log_rows_count  0.579598
-      5  Is Response Balanced Check               0.1       is_response_balanced  1
-      6  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
-      7  Support Vector Regression               -0.869918  score                                    0.230082
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.579598
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Is Response Balanced Check               0.1       is_response_balanced  1
+      5  Support Vector Regression               -0.869918  score                                    0.230082
                                                             support_vector_regression_score_reward  -0.769918
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
-      9  Get Log Columns Count                    0.1       log_columns_count  0.56919
+      6  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      7  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      8  Get Log Columns Count                    0.1       log_columns_count  0.56919
+      9  Time Convertible Variable Search         0.1       time_convertible_variable
+     10  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+     11  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.0784314
+     12  Get Correlated Variables Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">613_fri_c3_250_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:39:54.701542
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                      Reward  State Change
+-------  --------------------------------------  --------  ---------------------------------------------------------------------
+      1  Is Response Quantitative Check               0.1  is_response_quantitative  1
+      2  Get Log Rows Count                           0.1  log_rows_count  0.463281
+      3  Is Response Discrete Check                   0.1  is_response_discrete  -1
+      4  Get Standarized Variables Ratio              0.1  standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  -1
+      6  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
+      7  Is Response Balanced Check                   0.1  is_response_balanced  1
+      8  Linear Regression                           -1    score                                                        0.329286
+                                                           are_linear_model_regression_residuals_correlated             1
+                                                           are_linear_model_regression_residuals_heteroscedastic        1
+                                                           are_linear_model_regression_residuals_normally_distributed  -0.5
+                                                           is_linear_model_regression_recursive_residuals_mean_zero     1
+                                                           linear_regression_score_reward                              -0.670714
+      9  Get Correlated Variables Ratio               0.1  correlated_variables_ratio  1.16667
+     10  Get Log Columns Count                        0.1  log_columns_count  0.259384
+     11  Get Missing Data Ratio                      -1    missing_data_ratio  -1
+     12  Get Missing Data Ratio                       0.1
+</pre></div>
+</div>
+<p class="rubric">591_fri_c1_100_10</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:39:57.006342
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  ---------------------------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.386399
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      7  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.181818
+      8  Is Response Balanced Check               0.1       is_response_balanced  1
+      9  Linear Regression                       -0.615964  score                                                        0.384036
+                                                            are_linear_model_regression_residuals_correlated            -1
+                                                            are_linear_model_regression_residuals_heteroscedastic        0.5
+                                                            are_linear_model_regression_residuals_normally_distributed   1
+                                                            is_linear_model_regression_recursive_residuals_mean_zero     1
+                                                            linear_regression_score_reward                              -0.615964
      10  Is Response Balanced Check              -1
+     11  Is Response Balanced Check              -1
+     12  Is Response Balanced Check              -1
 </pre></div>
 </div>
-<p class="rubric">617_fri_c3_500_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:48.749026
+<p class="rubric">599_fri_c2_1000_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:06.028414
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  floating
-      2  Is Response Quantitative Check          0.1       is_response_quantitative  1
-      3  Is Response Dichotomous Check           0.1       is_response_dichotomous  -1
-      4  Get Log Rows Count                      0.1       log_rows_count  0.521439
-      5  Is Response Balanced Check              0.1       is_response_balanced  1
-      6  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  -1
-      7  Support Vector Regression               0.828845  score                                   0.928845
-                                                           support_vector_regression_score_reward  0.928845
+  Order  Step                              Reward  State Change
+-------  ------------------------------  --------  ------------------------------------------------
+      1  Is Response Quantitative Check  0.1       is_response_quantitative  1
+      2  Get Log Rows Count              0.1       log_rows_count  0.579598
+      3  Is Response Discrete Check      0.1       is_response_discrete  -1
+      4  Is Response Balanced Check      0.1       is_response_balanced  1
+      5  Support Vector Regression       0.860248  score                                   0.960248
+                                                   support_vector_regression_score_reward  0.960248
 </pre></div>
 </div>
-<p class="rubric">207_autoPrice</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:48.797859
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  -----------------------------------------------------------
-      1  Infer Response DType                         0.1  response_inferred_dtype  floating
-      2  Is Response Quantitative Check               0.1  is_response_quantitative  1
-      3  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
-      4  Get Log Rows Count                           0.1  log_rows_count  0.425309
-      5  Is Response Discrete Check                   0.1  is_response_discrete  1
-      6  Get Standarized Variables Ratio              0.1  standarized_variables_ratio  -1
-      7  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  1
-      8  Poisson Regression                           1    score                                                     1
-                                                           does_poisson_regression_raises_perfect_separation_error  -1
-                                                           poisson_regression_score_reward                           1
-</pre></div>
-</div>
-<p class="rubric">626_fri_c2_500_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:49.639149
+<p class="rubric">596_fri_c2_250_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:18.357455
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
   Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------------------
-      1  Infer Response DType                     0.1       response_inferred_dtype  floating
-      2  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      3  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      4  Get Log Rows Count                       0.1       log_rows_count  0.521439
-      5  Is Response Balanced Check               0.1       is_response_balanced  1
-      6  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
-      7  Support Vector Regression               -0.895552  score                                    0.204448
-                                                            support_vector_regression_score_reward  -0.795552
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
-      9  Get Log Columns Count                    0.1       log_columns_count  0.56919
-     10  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.0784314
-</pre></div>
-</div>
-<p class="rubric">648_fri_c1_250_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:50.227731
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------------------
-      1  Infer Response DType                     0.1       response_inferred_dtype  floating
-      2  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      3  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      4  Get Log Rows Count                       0.1       log_rows_count  0.463281
-      5  Is Response Balanced Check               0.1       is_response_balanced  1
-      6  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
-      7  Support Vector Regression               -0.852892  score                                    0.247108
-                                                            support_vector_regression_score_reward  -0.752892
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
-      9  Get Log Columns Count                    0.1       log_columns_count  0.56919
-     10  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.0196078
-</pre></div>
-</div>
-<p class="rubric">523_analcatdata_neavote</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:50.257894
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------------------------------
-      1  Infer Response DType                         0.1  response_inferred_dtype  floating
-      2  Is Response Quantitative Check               0.1  is_response_quantitative  1
-      3  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
-      4  Get Log Rows Count                           0.1  log_rows_count  0.386399
-      5  Is Response Discrete Check                   0.1  is_response_discrete  1
-      6  Get Standarized Variables Ratio              0.1  standarized_variables_ratio  -1
-      7  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  1
-      8  Poisson Regression                           1    score                                                     0.935161
-                                                           does_poisson_regression_raises_perfect_separation_error  -1
-                                                           poisson_regression_score_reward                           0.935161
-</pre></div>
-</div>
-<p class="rubric">1089_USCrime</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:53.055650
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  -----------------------------------
-      1  Infer Response DType                         0.1  response_inferred_dtype  floating
-      2  Is Response Quantitative Check               0.1  is_response_quantitative  1
-      3  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
-      4  Get Log Rows Count                           0.1  log_rows_count  0.323048
-      5  Is Response Discrete Check                   0.1  is_response_discrete  1
-      6  Get Standarized Variables Ratio              0.1  standarized_variables_ratio  -1
-      7  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  1
-      8  Get Log Columns Count                        0.1  log_columns_count  0.382043
-      9  Get Correlated Variables Ratio               0.1  correlated_variables_ratio  2.14286
-     10  Get Log Rows Count                          -1
-</pre></div>
-</div>
-<p class="rubric">618_fri_c3_1000_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:54.938633
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -------------------------------------------------
-      1  Infer Response DType                     0.1       response_inferred_dtype  floating
-      2  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      3  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      4  Get Log Rows Count                       0.1       log_rows_count  0.579598
-      5  Is Response Balanced Check               0.1       is_response_balanced  1
-      6  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
-      7  Support Vector Regression               -0.803216  score                                    0.296784
-                                                            support_vector_regression_score_reward  -0.703216
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
-      9  Get Log Columns Count                    0.1       log_columns_count  0.56919
-     10  Is Response Balanced Check              -1
-</pre></div>
-</div>
-<p class="rubric">604_fri_c4_500_10</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:56.041802
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  floating
-      2  Is Response Quantitative Check          0.1       is_response_quantitative  1
-      3  Is Response Dichotomous Check           0.1       is_response_dichotomous  -1
-      4  Get Log Rows Count                      0.1       log_rows_count  0.521439
-      5  Is Response Balanced Check              0.1       is_response_balanced  1
-      6  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  -1
-      7  Support Vector Regression               0.636773  score                                   0.736773
-                                                           support_vector_regression_score_reward  0.736773
-</pre></div>
-</div>
-<p class="rubric">344_mv</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:56.762477
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------
-      1  Infer Response DType                         0.1  response_inferred_dtype  floating
-      2  Is Response Quantitative Check               0.1  is_response_quantitative  1
-      3  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
-      4  Get Log Rows Count                           0.1  log_rows_count  0.890711
-      5  Is Response Balanced Check                   0.1  is_response_balanced  -1
-      6  Is Response Discrete Check                   0.1  is_response_discrete  -1
-      7  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  -1
-      8  Support Vector Regression                   -1
-      9  Support Vector Regression                   -1
-     10  Support Vector Regression                   -1
-</pre></div>
-</div>
-<p class="rubric">537_houses</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:56.877034
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  -----------------------------------
-      1  Infer Response DType                         0.1  response_inferred_dtype  floating
-      2  Is Response Quantitative Check               0.1  is_response_quantitative  1
-      3  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
-      4  Get Log Rows Count                           0.1  log_rows_count  0.833599
-      5  Is Response Balanced Check                   0.1  is_response_balanced  -1
-      6  Is Response Discrete Check                   0.1  is_response_discrete  1
-      7  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  1
-      8  Linear Support Vector Regression            -1
-      9  Linear Support Vector Regression            -1
-     10  Linear Support Vector Regression            -1
+-------  --------------------------------------  ---------  ---------------------------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.463281
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      7  Is Response Balanced Check               0.1       is_response_balanced  1
+      8  Linear Regression                       -1         score                                                        0.325925
+                                                            are_linear_model_regression_residuals_correlated            -1
+                                                            are_linear_model_regression_residuals_heteroscedastic        1
+                                                            are_linear_model_regression_residuals_normally_distributed  -0.5
+                                                            is_linear_model_regression_recursive_residuals_mean_zero     1
+                                                            linear_regression_score_reward                              -0.674075
+      9  Support Vector Regression                0.680359  score                                   0.780359
+                                                            support_vector_regression_score_reward  0.780359
 </pre></div>
 </div>
 <p class="rubric">645_fri_c3_500_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:57.963662
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:21.223465
 Final status is Complete
 Initial State known features:
 response_variable_label  target
 Steps:
   Order  Step                                       Reward  State Change
 -------  --------------------------------------  ---------  -------------------------------------------------
-      1  Infer Response DType                     0.1       response_inferred_dtype  floating
-      2  Is Response Quantitative Check           0.1       is_response_quantitative  1
-      3  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
-      4  Get Log Rows Count                       0.1       log_rows_count  0.521439
-      5  Is Response Balanced Check               0.1       is_response_balanced  1
-      6  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
-      7  Support Vector Regression               -0.875858  score                                    0.224142
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.521439
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      6  Get Log Columns Count                    0.1       log_columns_count  0.56919
+      7  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      8  Is Response Balanced Check               0.1       is_response_balanced  1
+      9  Support Vector Regression               -0.875858  score                                    0.224142
                                                             support_vector_regression_score_reward  -0.775858
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
-      9  Get Log Columns Count                    0.1       log_columns_count  0.56919
-     10  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.156863
+     10  Get Missing Data Ratio                  -1         missing_data_ratio  -1
+     11  Get Missing Data Ratio                   0.1
+     12  Get Missing Data Ratio                   0.1
+</pre></div>
+</div>
+<p class="rubric">207_autoPrice</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:26.008635
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                      Reward  State Change
+-------  --------------------------------------  --------  -----------------------------------
+      1  Is Response Quantitative Check             0.1    is_response_quantitative  1
+      2  Get Log Rows Count                         0.1    log_rows_count  0.425309
+      3  Is Response Discrete Check                 0.1    is_response_discrete  1
+      4  Decision Tree                             -0.925  decision_tree_score_reward  -1
+      5  Is Response Positive Values Only Check     0.1    is_response_positive_values_only  1
+      6  Is Response Dichotomous Check              0.1    is_response_dichotomous  -1
+      7  Get Log Columns Count                      0.1    log_columns_count  0.401373
+      8  Get Standarized Variables Ratio            0.1    standarized_variables_ratio  -1
+      9  Is Response Balanced Check                 0.1    is_response_balanced  -0.5
+     10  Get Missing Data Ratio                    -1      missing_data_ratio  -1
+     11  Get Missing Data Ratio                     0.1
+     12  Get Missing Data Ratio                     0.1
+</pre></div>
+</div>
+<p class="rubric">1193_BNG_lowbwt</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:29.244174
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                               Reward  State Change
+-------  -------------------------------  --------  -------------------------------
+      1  Is Response Quantitative Check        0.1  is_response_quantitative  1
+      2  Get Log Rows Count                    0.1  log_rows_count  0.868009
+      3  Is Response Discrete Check            0.1  is_response_discrete  -1
+      4  Is Response Balanced Check            0.1  is_response_balanced  -0.5
+      5  Get Standarized Variables Ratio       0.1  standarized_variables_ratio  -1
+      6  Is Response Balanced Check           -1
+      7  Is Response Balanced Check           -1
+      8  Is Response Balanced Check           -1
+      9  Is Response Balanced Check           -1
+     10  Is Response Balanced Check           -1
+     11  Is Response Balanced Check           -1
+     12  Is Response Balanced Check           -1
+</pre></div>
+</div>
+<p class="rubric">581_fri_c3_500_25</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:33.285985
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  -------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.521439
+      3  Is Response Discrete Check               0.1       is_response_discrete  -1
+      4  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  1
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  -1
+      6  Get Log Columns Count                    0.1       log_columns_count  0.471658
+      7  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      8  Is Response Balanced Check               0.1       is_response_balanced  1
+      9  Support Vector Regression               -0.798229  score                                    0.301771
+                                                            support_vector_regression_score_reward  -0.698229
+     10  Get Missing Data Ratio                  -1         missing_data_ratio  -1
+     11  Get Missing Data Ratio                   0.1
+     12  Get Missing Data Ratio                   0.1
+</pre></div>
+</div>
+<p class="rubric">1028_SWD</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:35.085039
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                                       Reward  State Change
+-------  --------------------------------------  ---------  -------------------------------------------------------------------
+      1  Is Response Quantitative Check           0.1       is_response_quantitative  1
+      2  Get Log Rows Count                       0.1       log_rows_count  0.579598
+      3  Is Response Discrete Check               0.1       is_response_discrete  1
+      4  Decision Tree                           -0.37      score                        0.555
+                                                            decision_tree_score_reward  -0.445
+      5  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
+      6  Is Response Dichotomous Check            0.1       is_response_dichotomous  -1
+      7  Poisson Regression                      -0.865146  score                                                     0.0348543
+                                                            does_poisson_regression_raises_perfect_separation_error  -1
+                                                            poisson_regression_score_reward                          -0.965146
+      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  -1
+      9  Is Response Balanced Check               0.1       is_response_balanced  -1
+     10  Get Log Columns Count                    0.1       log_columns_count  0.347131
+     11  Get Correlated Variables Ratio           0.1       correlated_variables_ratio  0.0909091
+     12  Get Correlated Variables Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">1203_BNG_pwLinear</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-08-14 20:40:46.712027
+Final status is Complete
+Initial State known features:
+response_variable_label  target
+Steps:
+  Order  Step                               Reward  State Change
+-------  -------------------------------  --------  -------------------------------
+      1  Is Response Quantitative Check        0.1  is_response_quantitative  1
+      2  Get Log Rows Count                    0.1  log_rows_count  1
+      3  Is Response Discrete Check            0.1  is_response_discrete  -1
+      4  Is Response Balanced Check            0.1  is_response_balanced  -0.5
+      5  Get Standarized Variables Ratio       0.1  standarized_variables_ratio  -1
+      6  Is Response Balanced Check           -1
+      7  Is Response Balanced Check           -1
+      8  Is Response Balanced Check           -1
+      9  Is Response Balanced Check           -1
+     10  Is Response Balanced Check           -1
+     11  Is Response Balanced Check           -1
+     12  Is Response Balanced Check           -1
 </pre></div>
 </div>
 </div>

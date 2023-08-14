@@ -45,9 +45,9 @@ class Action(ABC):
     validations: list[tuple[str, Callable[..., bool], Any]] | None = None
 
     @classmethod
-    def __subclasshook__(cls, C):
+    def __subclasshook__(cls, class_: type):
         if cls is Action:
-            return any([action_type == cls for action_type in C.__mro__])
+            return any([action_type == cls for action_type in class_.__mro__])
 
         return False
 

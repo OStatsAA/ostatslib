@@ -30,7 +30,7 @@ class PPOAgent(Agent):
 
     def __init__(self,
                  path: str | None = None,
-                 training_envs_count: int = 3,
+                 training_envs_count: int = 8,
                  environment_kwargs: dict | None = None) -> None:
         self.__environment_kwargs = environment_kwargs
         self.__model = self.__init__model(path, training_envs_count)
@@ -62,7 +62,7 @@ class PPOAgent(Agent):
             return PPO(POLICY,
                        environments,
                        verbose=1,
-                       n_steps=2048,
+                       n_steps=1024,
                        policy_kwargs=POLICY_KWARGS)
 
         return PPO.load(path,

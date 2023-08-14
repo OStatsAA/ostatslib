@@ -2,19 +2,37 @@
 OstatsLib Configuration module
 """
 
-# Diagnostics tests
-FULL_PENALIZED_PVALUE = 0.01
-PARTIAL_PENALIZED_PVALUE = 0.05
+from typing import TypedDict
 
-# Environment
-MAX_STEPS = 12
 
-# Rewards limits
-REWARD_RANGE = (-1, 1)
-MIN_REWARD = REWARD_RANGE[0]
-MAX_REWARD = REWARD_RANGE[1]
-EXPLORATORY_REWARD_FRACTION = 0.1
-MAX_EXPLORATORY_REWARD = MAX_REWARD * EXPLORATORY_REWARD_FRACTION
+class Config(TypedDict):
+    """
+    Configuration TypedDict
+    """
+    # Diagnostics tests
+    FULL_PENALIZED_PVALUE: float
+    PARTIAL_PENALIZED_PVALUE: float
 
-# Scores
-MIN_ACCEPTED_SCORE = 0.6
+    # Environment
+    MAX_STEPS: int
+
+    # Rewards limits
+    MIN_REWARD: float
+    MAX_REWARD: float
+    EXPLORATORY_REWARD_FRACTION: float
+    MAX_EXPLORATORY_REWARD: float
+
+    # Scores
+    MIN_ACCEPTED_SCORE: float
+
+
+DEFAULT_CONFIG = Config(
+    FULL_PENALIZED_PVALUE=0.01,
+    PARTIAL_PENALIZED_PVALUE=0.05,
+    MAX_STEPS=15,
+    MIN_REWARD=-1,
+    MAX_REWARD=1,
+    EXPLORATORY_REWARD_FRACTION=0.1,
+    MAX_EXPLORATORY_REWARD=0.1,
+    MIN_ACCEPTED_SCORE=0.7
+)

@@ -49,8 +49,7 @@ class Agent(ABC):
 
     def analyze(self,
                 data: DataFrame,
-                initial_state: State = State(),
-                max_steps: int = config.MAX_STEPS) -> AnalysisResult:
+                initial_state: State = State()) -> AnalysisResult:
         """
         Analyzes a dataset
 
@@ -70,9 +69,10 @@ class Agent(ABC):
         observation = initial_state.features_dict
         terminated = False
 
-        for _ in range(max_steps):
+        for _ in range(environment.config['MAX_STEPS']):
             action = self._predict(observation)
-            observation, reward, terminated, truncated, info = environment.step(action)
+            observation, reward, terminated, truncated, info = environment.step(
+                action)
             analysis_steps.append((reward, info))
 
             if terminated or truncated:

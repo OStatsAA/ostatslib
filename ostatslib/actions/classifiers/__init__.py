@@ -1,9 +1,18 @@
-"""
-Classifiers actions module
-"""
+from .decision_trees import (DecisionTreeClassification)
 
-from .logistic_regression import logistic_regression
-from .support_vector_classification import support_vector_classification
-from .decision_tree import decision_tree
-from .linear_support_vector_classification import linear_support_vector_classification
-from .random_forest import random_forest
+from .ensembles import (RandomForestClassification,
+                        N100RandomForestClassification,
+                        AdaBoostClassification,
+                        BaggingClassification,
+                        ExtraTreesClassification,
+                        GradientBoostingClassification)
+
+from .linear_models import (LogisticRegressionClassification,
+                            L1LogisticRegressionClassification,
+                            ElasticNetLogisticRegressionClassification,)
+
+from .svm import (LinearSupportVectorClassification,
+                  PolyKernelSupportVectorClassification,
+                  SupportVectorClassification,
+                  NuPolyKernelSupportVectorClassification,
+                  NuSupportVectorClassification)

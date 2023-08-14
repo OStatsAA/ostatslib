@@ -76,7 +76,7 @@ class State:
             if hasattr(features_set, feature_key):
                 return setattr(features_set, feature_key, value)
 
-        raise AttributeError()
+        raise AttributeError(f'invalid feature key. (key, value) = {feature_key, value}')
 
     @cached_property
     def keys(self) -> tuple[str]:
@@ -118,7 +118,7 @@ class State:
 
     def list_known_features(self) -> KnownFeaturesList:
         """
-        Lists fields that have values different from default (unkown state attribute)
+        Lists fields that have values different from default (unknown state attribute)
 
         Returns:
             KnownFeaturesList: list of non-default values

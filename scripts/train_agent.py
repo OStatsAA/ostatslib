@@ -14,8 +14,8 @@ if __name__ == '__main__':
     parser.add_argument("--steps", nargs='?', const=1,
                         type=int, default=int(500e3))
     parser.add_argument("--save-freq", nargs='?', const=1,
-                        type=int, default=int(50e3))
-    parser.add_argument("--env-count", nargs='?', const=1, type=int, default=4)
+                        type=int, default=int(25e3))
+    parser.add_argument("--env-count", nargs='?', const=1, type=int, default=10)
     parser.add_argument("--name", nargs='?', const=1,
                         type=str, default=f'ppo_agent{datetime.now()}')
 

@@ -33,7 +33,7 @@ class AnalysisResult:
                            sum(reward for reward, _ in self.steps))
         object.__setattr__(self,
                            'actions_names_list',
-                           [info['action_name'] for _, info in self.steps])
+                           [info.action_name for _, info in self.steps])
 
     def summary(self) -> str:
         """
@@ -60,10 +60,25 @@ class AnalysisResult:
         for i, (reward, info) in enumerate(self.steps):
             table_rows.append((
                 i+1,
-                str(info['action_name']),
+                str(info.action_name),
                 reward,
-                tabulate(info['state_delta'].list_known_features(),
+                tabulate(self.__get_state_delta(info, i).list_known_features(),
                          tablefmt="plain")
             ))
 
         return tabulate(table_rows, steps_headers)
+
+    def __get_state_delta(self, info: ActionInfo, i: int):
+        if info.next_state:
+            if i:
+                previous_state = self.steps[i - 1][1].next_state
+            else:
+                previous_state = self.initial_state
+
+            if previous_state:
+                return info.next_state - previous_state
+            else:
+                raise ValueError(
+                    f'Cannot write State delta, step {i-1} State is None')
+
+        raise ValueError(f'Cannot write State delta, step {i} State is None')

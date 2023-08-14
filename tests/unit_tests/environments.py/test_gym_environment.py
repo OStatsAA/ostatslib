@@ -4,7 +4,7 @@ GymEnvironment testing module
 
 import pytest
 
-from ostatslib.actions.actions_space import ActionsSpace
+from ostatslib.actions import ActionsSpace
 from ostatslib.environments import GymEnvironment
 from ostatslib.environments.data_generators import datacooker_generator
 
@@ -19,7 +19,7 @@ def test_environment_exposes_action_space() -> None:
 
 def test_environment_reset() -> None:
     """
-    Tests if environment is resetable
+    Tests if environment is resettable
     """
     env = GymEnvironment()
     action = env.action_space.sample()
@@ -43,4 +43,4 @@ def test_environment_runs_data_generators_args() -> None:
     """
     custom_data_generators_list = [datacooker_generator]
     env = GymEnvironment(data_generators=custom_data_generators_list)
-    assert env._GymEnvironment__data_generators == custom_data_generators_list
+    assert getattr(env, '_data_generators') == custom_data_generators_list

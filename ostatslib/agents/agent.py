@@ -55,28 +55,24 @@ class Agent(ABC):
 
         Args:
             data (DataFrame): dataset
-            initial_state (State, optional): initial state. Defaults to State().
-            max_steps (int, optional): maximum number of steps.
+            initial_state (State, optional): initial state. Defaults to State()
 
         Returns:
             AnalysisResult: analysis result
         """
         environment = GymEnvironment()
-        environment.reset()
         environment.set_data(data)
         environment.set_state(initial_state)
         analysis_steps = []
         observation = initial_state.features_dict
         terminated = False
+        truncated = False
 
-        for _ in range(environment.config['MAX_STEPS']):
+        while not (terminated or truncated):
             action = self._predict(observation)
             observation, reward, terminated, truncated, info = environment.step(
                 action)
             analysis_steps.append((reward, info))
-
-            if terminated or truncated:
-                break
 
         environment.reset()
         return AnalysisResult(initial_state, analysis_steps, terminated)

@@ -5,7 +5,6 @@ Open Stats Agent abstract module
 from abc import ABC, abstractmethod
 from numpy import ndarray
 from pandas import DataFrame
-from ostatslib import config
 
 from ostatslib.agents.analysis_result import AnalysisResult
 from ostatslib.environments import GymEnvironment

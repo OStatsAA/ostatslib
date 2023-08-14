@@ -1,4 +1,4 @@
-#pylint: disable=too-few-public-methods
+# pylint: disable=too-few-public-methods
 """
 State iterator module
 """
@@ -21,3 +21,6 @@ class StateIterator:
             return (next_feature_key, self.__state.get(next_feature_key))
 
         raise StopIteration()
+
+    def __iter__(self):
+        return self

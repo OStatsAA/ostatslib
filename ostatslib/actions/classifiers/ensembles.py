@@ -80,7 +80,7 @@ class RandomForestClassification(TreeEstimatorAction[RandomForestClassifier]):
 
 class N100RandomForestClassification(TreeEstimatorAction[RandomForestClassifier]):
 
-    action_name = 'Random Forest'
+    action_name = 'Random Forest 100 Estimators'
     action_key = 'n_100_estimators_random_forest'
     estimator = RandomForestClassifier(n_estimators=100)
     params_grid = {'criterion': ['gini', 'log_loss'],

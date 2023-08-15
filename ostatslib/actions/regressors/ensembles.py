@@ -58,7 +58,7 @@ class GradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegr
 
 class N100EstimatorsGradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegressor]):
 
-    action_name = 'Gradient Boosting'
+    action_name = 'Gradient Boosting 100 Estimators'
     action_key = 'n_100_estimators_gradient_boosting_regression'
     estimator = GradientBoostingRegressor(n_estimators=100)
     params_grid = {'criterion': ['friedman_mse', 'squared_error'],
@@ -83,7 +83,7 @@ class RandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
 
 class N100EstimatorsRandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
 
-    action_name = 'Random Forest'
+    action_name = 'Random Forest 100 Estimators'
     action_key = 'n_100_estimators_random_forest_regression'
     estimator = RandomForestRegressor(n_estimators=100)
     params_grid = {'max_features': ['sqrt', 'log2'],

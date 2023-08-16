@@ -11,17 +11,21 @@ class LogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegres
     estimator = LogisticRegression()
     params_grid = {'C': [0.1, 1, 10]}
     exceptions_handlers = None
-    validations = [('is_response_discrete', operator.gt, 0)]
+    validations = [('is_response_discrete', operator.gt, 0),
+                   ('response_unique_values_ratio', operator.ne, 0),
+                   ('response_unique_values_ratio', operator.lt, 0.1)]
 
 
 class L1LogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegression]):
 
     action_name = 'Logistic Regression with L1 Regularization'
     action_key = 'l1_logistic_regression'
-    estimator = LogisticRegression(penalty='l1', solver='saga')
+    estimator = LogisticRegression(penalty='l1', solver='liblinear')
     params_grid = {'C': [0.1, 1, 10]}
     exceptions_handlers = None
-    validations = [('is_response_discrete', operator.gt, 0)]
+    validations = [('is_response_discrete', operator.gt, 0),
+                   ('response_unique_values_ratio', operator.ne, 0),
+                   ('response_unique_values_ratio', operator.lt, 0.1)]
 
 
 class ElasticNetLogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegression]):
@@ -32,4 +36,6 @@ class ElasticNetLogisticRegressionClassification(TargetModelEstimatorAction[Logi
     params_grid = {'C': [0.1, 1, 10],
                    'l1_ratio': [0.33, 0.5, 0.66]}
     exceptions_handlers = None
-    validations = [('is_response_discrete', operator.gt, 0)]
+    validations = [('is_response_discrete', operator.gt, 0),
+                   ('response_unique_values_ratio', operator.ne, 0),
+                   ('response_unique_values_ratio', operator.lt, 0.1)]

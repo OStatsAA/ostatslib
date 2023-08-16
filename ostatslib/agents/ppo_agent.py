@@ -7,10 +7,12 @@ from numpy import ndarray
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.vec_env import SubprocVecEnv
-from stable_baselines3.common.callbacks import CheckpointCallback
+from stable_baselines3.common.callbacks import CheckpointCallback, CallbackList
 from stable_baselines3.common.logger import configure
 
+
 from ostatslib.agents.agent import Agent
+from ostatslib.agents.action_info_logger import ActionInfoLogger
 from ostatslib.environments import GymEnvironment
 
 POLICY = "MultiInputPolicy"
@@ -39,12 +41,12 @@ class PPOAgent(Agent):
         n_envs = self.__model.n_envs if self.__model.n_envs is not None else 1
         save_freq = max(save_freq // n_envs, 1)
         checkpoint_callback = CheckpointCallback(save_freq=save_freq,
-                                                 save_path=TRAINING_LOGS_PATH,
-                                                 save_replay_buffer=True)
+                                                 save_path=TRAINING_LOGS_PATH)
         logger = configure(TRAINING_LOGS_PATH,
                            ["stdout", "csv", "tensorboard"])
         self.__model.set_logger(logger)
-        self.__model.learn(total_timesteps=steps, callback=checkpoint_callback)
+        callbacks = CallbackList([checkpoint_callback, ActionInfoLogger()])
+        self.__model.learn(total_timesteps=steps, callback=callbacks)
 
     def save(self, path: str) -> None:
         self.__model.save(path)

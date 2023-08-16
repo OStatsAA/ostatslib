@@ -1,6 +1,6 @@
 import inspect
 from types import ModuleType
-from functools import cache, cached_property
+from functools import cached_property
 
 from gymnasium.spaces import MultiBinary
 import numpy as np
@@ -65,13 +65,12 @@ class ActionsSpace(MultiBinary):
 
         return self._actions[numeric_key]
 
-    @cache
-    def get_action_by_class(self, action_class: Action) -> Action:
-        for action in self.actions_list:
-            if action is action_class:
-                return action
+    def get_action_by_class(self, action: type) -> Action:
+        for action_ in self.actions_list:
+            if isinstance(action_, action):
+                return action_
 
-        raise ValueError(f'No class matched class {action_class}.')
+        raise ValueError(f'No class matched class {action}.')
 
     def sample(self, mask: MaskNDArray | None = None) -> np.ndarray:
         index = np.random.choice(len(self))

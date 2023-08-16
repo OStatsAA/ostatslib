@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
 from inspect import signature
 import math
+import time
 from typing import Any, Callable, Generic, TypeVar
+import warnings
 from numpy import ndarray
 from pandas import DataFrame
+from sklearn.exceptions import ConvergenceWarning
 from sklearn.model_selection import GridSearchCV, cross_validate
 from sklearn.base import BaseEstimator
 from sklearn.svm import SVC
@@ -21,18 +24,21 @@ class ActionInfo(dict, Generic[T]):
     raised_exception: bool
     is_invalid_state: bool
     next_state: None | State
+    fit_time: None | float
 
     def __init__(self,
                  action_name: str,
                  model: None | T = None,
                  raised_exception: bool = False,
                  is_invalid_state: bool = False,
-                 next_state: None | State = None) -> None:
+                 next_state: None | State = None,
+                 fit_time: None | float = None) -> None:
         self.action_name = action_name
         self.model = model
         self.raised_exception = raised_exception
         self.is_invalid_state = is_invalid_state
         self.next_state = next_state
+        self.fit_time = fit_time
         super().__init__()
 
 
@@ -221,14 +227,19 @@ class ModelEstimatorAction(Action, Generic[T]):
 
         model: T
         score: float
-        try:
-            model, score = self._fit(data, state)
-            info.model = model
-        except Exception as error:
-            self._exception_handler(error, state, config)
-            info.raised_exception = True
-            info.next_state = state.copy()
-            return state, config['MIN_REWARD'], info
+        with warnings.catch_warnings():
+            warnings.filterwarnings('error', category=ConvergenceWarning)
+            fit_start = time.perf_counter()
+            try:
+                model, score = self._fit(data, state)
+                info.fit_time = time.perf_counter() - fit_start
+                info.model = model
+            except Exception as error:
+                info.fit_time = time.perf_counter() - fit_start
+                self._exception_handler(error, state, config)
+                info.raised_exception = True
+                info.next_state = state.copy()
+                return state, config['MIN_REWARD'], info
 
         reward = self._calculate_reward(score, config)
         state = self._update_state(state, reward, score)
@@ -258,8 +269,7 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
             return best_estimator, best_score
 
         search = GridSearchCV(self.estimator,
-                              self.params_grid,
-                              n_jobs=-1).fit(x_data, y_data)
+                              self.params_grid).fit(x_data, y_data)
         return search.best_estimator_, search.best_score_
 
 

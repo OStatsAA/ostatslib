@@ -27,8 +27,8 @@ class NuSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
     action_key = 'nu_support_vector_regression'
     estimator = NuSVR()
     params_grid = {'nu': [0.33, 0.5, 0.66],
-                   'C': [0.1, 1, 10, 100],
-                   'kernel': ['linear', 'rbf', 'sigmoid'],
+                   'C': [0.1, 1, 10],
+                   'kernel': ['linear', 'rbf'],
                    'gamma': ['scale', 'auto'],
                    'tol': [1e-2, 1e-3, 1e-4]}
     exceptions_handlers = None
@@ -42,10 +42,10 @@ class NuPolyKernelSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
     action_key = 'nu_poly_kernel_support_vector_regression'
     estimator = NuSVR(kernel='poly')
     params_grid = {'nu': [0.33, 0.5, 0.66],
-                   'C': [0.1, 1, 10, 100],
+                   'C': [0.1, 1, 10],
                    'degree': [3, 4],
                    'gamma': ['scale', 'auto'],
-                   'tol': [1e-3, 1e-4, 1e-5]}
+                   'tol': [1e-2, 1e-3, 1e-4]}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]
@@ -56,8 +56,8 @@ class SupportVectorRegression(TargetModelEstimatorAction[SVR]):
     action_name = 'Support Vector Regression'
     action_key = 'support_vector_regression'
     estimator = SVR()
-    params_grid = {'C': [0.1, 1, 10, 100],
-                   'kernel': ['linear', 'rbf', 'sigmoid'],
+    params_grid = {'C': [0.1, 1, 10],
+                   'kernel': ['linear', 'rbf'],
                    'gamma': ['scale', 'auto'],
                    'tol': [1e-2, 1e-3, 1e-4]}
     exceptions_handlers = None
@@ -70,7 +70,7 @@ class PolyKernelSupportVectorRegression(TargetModelEstimatorAction[SVR]):
     action_name = 'Support Vector Regression with Polynomial Kernel'
     action_key = 'poly_kernel_support_vector_regression'
     estimator = SVR(kernel='poly')
-    params_grid = {'C': [0.1, 1, 10, 100],
+    params_grid = {'C': [0.1, 1, 10],
                    'degree': [3, 4],
                    'gamma': ['scale', 'auto'],
                    'tol': [1e-2, 1e-3, 1e-4]}

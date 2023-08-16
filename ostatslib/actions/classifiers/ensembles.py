@@ -55,8 +55,7 @@ class GradientBoostingClassification(TargetModelEstimatorAction[GradientBoosting
     params_grid = {'n_estimators': [10, 50, 100],
                    'loss': ['log_loss', 'deviance', 'exponential'],
                    'criterion': ['friedman_mse', 'squared_error'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+                   'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),

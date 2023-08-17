@@ -10,7 +10,7 @@ from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorActi
 
 class AdaBoostRegression(TargetModelEstimatorAction[AdaBoostRegressor]):
 
-    action_name = 'AdaBoost'
+    action_name = 'AdaBoost Regression'
     action_key = 'adaboost_regression'
     estimator = AdaBoostRegressor()
     params_grid = {'n_estimators': [10, 50, 100],
@@ -21,7 +21,7 @@ class AdaBoostRegression(TargetModelEstimatorAction[AdaBoostRegressor]):
 
 class BaggingRegression(TargetModelEstimatorAction[BaggingRegressor]):
 
-    action_name = 'Bagging'
+    action_name = 'Bagging Regression'
     action_key = 'bagging_regression'
     estimator = BaggingRegressor()
     params_grid = {'n_estimators': [5, 10, 25]}
@@ -31,7 +31,7 @@ class BaggingRegression(TargetModelEstimatorAction[BaggingRegressor]):
 
 class ExtraTreesRegression(TreeEstimatorAction[ExtraTreesRegressor]):
 
-    action_name = 'Extra-Trees'
+    action_name = 'Extra-Trees Regression'
     action_key = 'extra_trees_regression'
     estimator = ExtraTreesRegressor()
     params_grid = {'n_estimators': [10, 50, 100],
@@ -44,7 +44,7 @@ class ExtraTreesRegression(TreeEstimatorAction[ExtraTreesRegressor]):
 
 class GradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegressor]):
 
-    action_name = 'Gradient Boosting'
+    action_name = 'Gradient Boosting Regression'
     action_key = 'gradient_boosting_regression'
     estimator = GradientBoostingRegressor()
     params_grid = {'n_estimators': [10, 50],
@@ -58,7 +58,7 @@ class GradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegr
 
 class N100EstimatorsGradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegressor]):
 
-    action_name = 'Gradient Boosting 100 Estimators'
+    action_name = 'Gradient Boosting Regression 100 Estimators'
     action_key = 'n_100_estimators_gradient_boosting_regression'
     estimator = GradientBoostingRegressor(n_estimators=100)
     params_grid = {'criterion': ['friedman_mse', 'squared_error'],
@@ -70,7 +70,7 @@ class N100EstimatorsGradientBoostingRegression(TargetModelEstimatorAction[Gradie
 
 class RandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
 
-    action_name = 'Random Forest'
+    action_name = 'Random Forest Regression'
     action_key = 'random_forest_regression'
     estimator = RandomForestRegressor()
     params_grid = {'n_estimators': [10, 50],
@@ -83,7 +83,7 @@ class RandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
 
 class N100EstimatorsRandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
 
-    action_name = 'Random Forest 100 Estimators'
+    action_name = 'Random Forest Regression 100 Estimators'
     action_key = 'n_100_estimators_random_forest_regression'
     estimator = RandomForestRegressor(n_estimators=100)
     params_grid = {'max_features': ['sqrt', 'log2'],

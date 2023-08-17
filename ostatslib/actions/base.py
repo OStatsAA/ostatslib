@@ -184,10 +184,10 @@ class ModelEstimatorAction(Action, Generic[T]):
         Returns:
             float: reward
         """
-        if math.isnan(score) or (not -1 <= score <= 1):
-            return -1
+        if math.isnan(score) or (not 0 <= score <= 1):
+            return config['MIN_REWARD']
 
-        if score <= config['MIN_ACCEPTED_SCORE']:
+        if score < config['MIN_ACCEPTED_SCORE']:
             return - (1 - score)
 
         return score

@@ -44,6 +44,7 @@ class OLSLinearRegression(TargetModelEstimatorAction[LinearRegression]):
                                                                config,
                                                                reward,
                                                                info.model)
+        reward = min(max(config['MIN_REWARD'], reward), config['MAX_REWARD'])
         info.next_state = state.copy()
         return state, reward, info
 

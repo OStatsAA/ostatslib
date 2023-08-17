@@ -89,6 +89,13 @@ class ModelsFeaturesSet(FeaturesSet):
             'get_value_fn': None
         })
 
+    n_100_gradient_boosting_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
     random_forest_score_reward: float = field(
         default=0,
         metadata={

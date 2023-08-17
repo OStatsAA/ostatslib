@@ -5,7 +5,8 @@ from .ensembles import (RandomForestClassification,
                         AdaBoostClassification,
                         BaggingClassification,
                         ExtraTreesClassification,
-                        GradientBoostingClassification)
+                        GradientBoostingClassification,
+                        N100GradientBoostingClassification)
 
 from .linear_models import (LogisticRegressionClassification,
                             L1LogisticRegressionClassification,

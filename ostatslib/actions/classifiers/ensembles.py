@@ -52,8 +52,22 @@ class GradientBoostingClassification(TargetModelEstimatorAction[GradientBoosting
     action_name = 'Gradient Boosting'
     action_key = 'gradient_boosting'
     estimator = GradientBoostingClassifier()
-    params_grid = {'n_estimators': [10, 50, 100],
+    params_grid = {'n_estimators': [10, 50],
                    'loss': ['log_loss', 'deviance', 'exponential'],
+                   'criterion': ['friedman_mse', 'squared_error'],
+                   'max_features': ['sqrt', 'log2']}
+    exceptions_handlers = None
+    validations = [('is_response_discrete', operator.gt, 0),
+                   ('response_unique_values_ratio', operator.ne, 0),
+                   ('response_unique_values_ratio', operator.lt, 0.1)]
+
+
+class N100GradientBoostingClassification(TargetModelEstimatorAction[GradientBoostingClassifier]):
+
+    action_name = 'Gradient Boosting 100 Estimators'
+    action_key = 'n_100_gradient_boosting'
+    estimator = GradientBoostingClassifier(n_estimators=100)
+    params_grid = {'loss': ['log_loss', 'deviance', 'exponential'],
                    'criterion': ['friedman_mse', 'squared_error'],
                    'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None

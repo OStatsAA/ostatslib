@@ -14,8 +14,7 @@ class LinearSupportVectorRegression(TargetModelEstimatorAction[LinearSVR]):
     estimator = LinearSVR(dual=True)
     params_grid = {'penalty': ['l1', 'l2'],
                    'loss': ['epsilon_insensitive', 'squared_epsilon_insensitive'],
-                   'C': [0.1, 1, 10, 100],
-                   'tol': [1e-2, 1e-3, 1e-4]}
+                   'C': [0.1, 1, 10, 100]}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.81),
                    *_SVM_VALIDATIONS]
@@ -28,9 +27,7 @@ class NuSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
     estimator = NuSVR()
     params_grid = {'nu': [0.33, 0.5, 0.66],
                    'C': [0.1, 1, 10],
-                   'kernel': ['linear', 'rbf'],
-                   'gamma': ['scale', 'auto'],
-                   'tol': [1e-2, 1e-3, 1e-4]}
+                   'kernel': ['linear', 'rbf']}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]
@@ -43,9 +40,7 @@ class NuPolyKernelSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
     estimator = NuSVR(kernel='poly')
     params_grid = {'nu': [0.33, 0.5, 0.66],
                    'C': [0.1, 1, 10],
-                   'degree': [3, 4],
-                   'gamma': ['scale', 'auto'],
-                   'tol': [1e-2, 1e-3, 1e-4]}
+                   'degree': [3, 4]}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]
@@ -57,9 +52,7 @@ class SupportVectorRegression(TargetModelEstimatorAction[SVR]):
     action_key = 'support_vector_regression'
     estimator = SVR()
     params_grid = {'C': [0.1, 1, 10],
-                   'kernel': ['linear', 'rbf'],
-                   'gamma': ['scale', 'auto'],
-                   'tol': [1e-2, 1e-3, 1e-4]}
+                   'kernel': ['linear', 'rbf']}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]
@@ -71,9 +64,7 @@ class PolyKernelSupportVectorRegression(TargetModelEstimatorAction[SVR]):
     action_key = 'poly_kernel_support_vector_regression'
     estimator = SVR(kernel='poly')
     params_grid = {'C': [0.1, 1, 10],
-                   'degree': [3, 4],
-                   'gamma': ['scale', 'auto'],
-                   'tol': [1e-2, 1e-3, 1e-4]}
+                   'degree': [3, 4]}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]

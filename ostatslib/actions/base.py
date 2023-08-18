@@ -150,8 +150,8 @@ class ExploratoryAction(Action):
             info.next_state = state.copy()
             return state, config['MIN_REWARD'], info
 
-        reward = self._calculate_reward(state, state_copy, config)
         state = self._update_state(state, exploratory_value)
+        reward = self._calculate_reward(state, state_copy, config)
         info.next_state = state.copy()
         return state, reward, info
 

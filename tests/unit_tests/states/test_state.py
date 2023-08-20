@@ -10,7 +10,7 @@ import pytest
 
 from ostatslib.states import State
 
-NON_EXISTING_KEY = "NON_EXISTING_KEY_IN_STATE_FEATURES_BLABLABLA"
+NON_EXISTING_KEY = "NON_EXISTING_KEY_IN_STATE_FEATURES"
 KNOWN_FEATURE_KEY = "is_response_dichotomous"
 
 
@@ -39,7 +39,7 @@ def test_state_gets_method() -> None:
 
 def test_state_gets_method_raises_attribute_error_for_invalid_keys() -> None:
     """
-    Tests if state.get() method raises AtributeError for invalid features keys
+    Tests if state.get() method raises AttributeError for invalid features keys
     """
     state = State()
     with pytest.raises(AttributeError):
@@ -62,7 +62,7 @@ def test_state_sets_method() -> None:
 
 def test_state_sets_method_raises_attribute_error_for_invalid_keys() -> None:
     """
-    Tests if state.set() method raises AtributeError for invalid features keys
+    Tests if state.set() method raises AttributeError for invalid features keys
     """
     state = State()
     with pytest.raises(AttributeError):
@@ -150,3 +150,12 @@ def test_state_should_implement__len__() -> None:
     """
     state = State()
     assert len(state)
+
+
+def test_state_iterator_implements__iter__() -> None:
+    """
+    Tests if state iterator implements __iter__
+    """
+    iterator = iter(State())
+    assert iter(iterator) == iterator
+

@@ -14,7 +14,8 @@ def _is_action(type_: type):
                          [classifiers, regressors],
                          ids=['classifiers', 'regressors'])
 def test_estimators_score_rewards_in_state(module_) -> None:
-    actions: list[tuple[str, Action]] = inspect.getmembers(module_, _is_action)
+    actions: list[tuple[str, type[Action]]
+                  ] = inspect.getmembers(module_, _is_action)
     state = State()
     for _, action in actions:
         assert state.get(action.action_key + "_score_reward") == 0
@@ -22,7 +23,7 @@ def test_estimators_score_rewards_in_state(module_) -> None:
 
 def test_no_unmatched_score_rewards_in_state() -> None:
     modules = [classifiers, regressors]
-    actions: list[tuple[str, Action]] = []
+    actions: list[tuple[str, type[Action]]] = []
     for module_ in modules:
         actions.extend(inspect.getmembers(module_, _is_action))
 

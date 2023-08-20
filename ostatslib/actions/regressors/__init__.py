@@ -10,7 +10,8 @@ from .ensembles import (RandomForestRegression,
 
 from .linear_models import (OLSLinearRegression,
                             PoissonRegression,
-                            GammaRegression,)
+                            GammaRegression,
+                            AutoARIMARegression)
 
 from .svr import (LinearSupportVectorRegression,
                   PolyKernelSupportVectorRegression,

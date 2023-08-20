@@ -3,6 +3,8 @@
 .logs_old/
 .pmlb_cache/
 pmlb_cache
+.m3_cache/
+.m4_cache/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

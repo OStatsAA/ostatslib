@@ -1,6 +1,10 @@
+import operator
+from datasetsforecast.losses import rmse
 from numpy import ndarray
-from pandas import DataFrame
+from pandas import DataFrame, Series, infer_freq
 from sklearn.linear_model import GammaRegressor, LinearRegression, PoissonRegressor
+from statsforecast import StatsForecast
+from statsforecast.models import AutoARIMA
 from statsmodels.tools.tools import add_constant
 from statsmodels.stats.stattools import durbin_watson, jarque_bera
 from statsmodels.stats.diagnostic import het_breuschpagan
@@ -9,6 +13,57 @@ from ostatslib.actions.base import ActionInfo, TargetModelEstimatorAction
 from ostatslib.actions.utils import split_x_y_data
 from ostatslib.config import Config
 from ostatslib.states import State
+
+
+class AutoARIMARegression(TargetModelEstimatorAction[AutoARIMA]):
+    action_name = 'AutoARIMA Regression'
+    action_key = 'auto_arima_regression'
+    estimator = AutoARIMA()
+    validations = [('time_convertible_variable', operator.truth, None)]
+
+    def _fit(self, data: DataFrame, state: State) -> tuple[AutoARIMA, float]:
+        time_var_label = self.__get_time_var_label(state)
+        freq = self.__get_frequency(data, time_var_label)
+
+        x_data, y_data = split_x_y_data(data, state)
+        x_data.drop(time_var_label, axis=1, inplace=True)
+
+        stats_forecast_df = self.__build_stats_forecast_dataframe(data,
+                                                                  time_var_label,
+                                                                  y_data)
+
+        stats_forecast = StatsForecast(df=stats_forecast_df,
+                                       models=[self.estimator],
+                                       freq=freq).fit()
+        score = self.__get_score(stats_forecast, y_data)
+        return stats_forecast.fitted_[0, 0], score
+
+    def __build_stats_forecast_dataframe(self,
+                                         data: DataFrame,
+                                         time_var_label: str,
+                                         y_data: Series) -> DataFrame:
+        return DataFrame({'unique_id': ['id'] * len(y_data),
+                          'ds': data[time_var_label],
+                          'y': y_data})
+
+    def __get_time_var_label(self, state: State) -> str:
+        time_var_label: str | None = state.get('time_convertible_variable')
+        if time_var_label:
+            return time_var_label
+
+        raise ValueError('Not time variable assigned in state')
+
+    def __get_frequency(self, data: DataFrame, time_var_label: str) -> str:
+        freq: str | None = infer_freq(data[time_var_label])
+        if freq:
+            return freq
+
+        raise ValueError(f'Cannot infer frequency of {time_var_label}')
+
+    def __get_score(self, stats_forecast: StatsForecast, y_data: Series) -> float:
+        cv_data = stats_forecast.cross_validation(len(y_data) // 5)
+        rmse_: float = rmse(cv_data['y'], cv_data['AutoARIMA'])
+        return 1 - (rmse_/cv_data['y'].mean())
 
 
 class PoissonRegression(TargetModelEstimatorAction[PoissonRegressor]):
@@ -58,20 +113,20 @@ class OLSLinearRegression(TargetModelEstimatorAction[LinearRegression]):
         residuals: ndarray = y_data.values - model.predict(x_data)
 
         reward += _reward_for_normally_distributed_errors(state,
-                                                           residuals,
-                                                           config)
+                                                          residuals,
+                                                          config)
         reward += _penalty_for_correlation_of_error_terms(state, residuals)
         reward += _reward_for_homoscedasticity(state,
-                                                residuals,
-                                                x_data.values,
-                                                config)
+                                               residuals,
+                                               x_data.values,
+                                               config)
 
         return state, reward
 
 
 def _reward_for_normally_distributed_errors(state: State,
-                                             residuals: ndarray,
-                                             config: Config) -> float:
+                                            residuals: ndarray,
+                                            config: Config) -> float:
     feature_key = 'are_linear_model_regression_residuals_normally_distributed'
     jarque_bera_pvalue = jarque_bera(residuals)[1]
 
@@ -104,9 +159,9 @@ def _penalty_for_correlation_of_error_terms(state: State, residuals: ndarray) ->
 
 
 def _reward_for_homoscedasticity(state: State,
-                                  residuals: ndarray,
-                                  x_data: ndarray,
-                                  config: Config) -> float:
+                                 residuals: ndarray,
+                                 x_data: ndarray,
+                                 config: Config) -> float:
     feature_key = 'are_linear_model_regression_residuals_heteroscedastic'
     f_stat_pvalue = het_breuschpagan(residuals, add_constant(x_data))[3]
 

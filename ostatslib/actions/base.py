@@ -10,12 +10,13 @@ from sklearn.exceptions import ConvergenceWarning
 from sklearn.model_selection import GridSearchCV, cross_validate
 from sklearn.base import BaseEstimator
 from sklearn.svm import SVC
+from statsforecast.models import AutoARIMA
 
 from ostatslib.config import Config
 from ostatslib.states import State
 from .utils import split_x_y_data
 
-T = TypeVar("T", BaseEstimator, SVC)
+T = TypeVar("T", BaseEstimator, SVC, AutoARIMA)
 
 
 class ActionInfo(dict, Generic[T]):

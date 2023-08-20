@@ -1,6 +1,29 @@
 ostatslib.actions.exploratory\_actions.time\_convertible\_variable\_search
 ==========================================================================
 
-.. currentmodule:: ostatslib.actions.exploratory_actions
+.. automodule:: ostatslib.actions.exploratory_actions.time_convertible_variable_search
 
-.. autofunction:: time_convertible_variable_search
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      TimeConvertibleVariableSearch
+   
+   
+
+   
+   
+   
+
+
+

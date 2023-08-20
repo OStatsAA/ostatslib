@@ -22,6 +22,7 @@ pmlb = "^1.0.1.post3"
 kneed = "^0.8.3"
 statsforecast = "^1.5.0"
 datasetsforecast = "^0.0.8"
+torch = "2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^2.15.4"

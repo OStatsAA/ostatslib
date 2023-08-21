@@ -371,58 +371,182 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.actions_space</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">ModuleType</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cached_property</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">ActionsSpace module</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cached_property</span>
 <span class="kn">from</span> <span class="nn">gymnasium.spaces</span> <span class="kn">import</span> <span class="n">MultiBinary</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">ostatslib</span> <span class="kn">import</span> <span class="n">config</span>
 
-<span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">Action</span>
+<span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">exploratory_actions</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">,</span> <span class="n">regressors</span>
+<span class="kn">from</span> <span class="nn">.exploratory_actions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_log_rows_count</span><span class="p">,</span>
+    <span class="n">infer_response_dtype</span><span class="p">,</span>
+    <span class="n">is_response_dichotomous_check</span><span class="p">,</span>
+    <span class="n">is_response_discrete_check</span><span class="p">,</span>
+    <span class="n">is_response_positive_values_only_check</span><span class="p">,</span>
+    <span class="n">is_response_quantitative_check</span><span class="p">,</span>
+    <span class="n">time_convertible_variable_search</span><span class="p">,</span>
+    <span class="n">get_response_unique_values_ratio</span><span class="p">,</span>
+    <span class="n">get_correlated_variables_ratio</span><span class="p">,</span>
+    <span class="n">get_log_columns_count</span><span class="p">,</span>
+    <span class="n">is_response_balanced_check</span><span class="p">,</span>
+    <span class="n">get_standarized_variables_ratio</span><span class="p">,</span>
+    <span class="n">get_missing_data_ratio</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.regression_models</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">linear_regression</span><span class="p">,</span>
+    <span class="n">poisson_regression</span><span class="p">,</span>
+    <span class="n">support_vector_regression</span><span class="p">,</span>
+    <span class="n">decision_tree_regression</span><span class="p">,</span>
+    <span class="n">time_series_auto_arima</span><span class="p">,</span>
+    <span class="n">linear_support_vector_regression</span><span class="p">,</span>
+    <span class="n">random_forest_regression</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.classifiers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">logistic_regression</span><span class="p">,</span>
+    <span class="n">support_vector_classification</span><span class="p">,</span>
+    <span class="n">decision_tree</span><span class="p">,</span>
+    <span class="n">linear_support_vector_classification</span><span class="p">,</span>
+    <span class="n">random_forest</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.clustering</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">k_means</span><span class="p">,</span>
+    <span class="n">dbscan</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.action</span> <span class="kn">import</span> <span class="n">Action</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">,</span> <span class="n">ActionResult</span>
+
 
 <span class="n">MaskNDArray</span> <span class="o">=</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">]</span>
 <span class="n">ENCODING_LENGTH</span> <span class="o">=</span> <span class="mi">6</span>
 
-<span class="n">_CLASSIFIERS_OFFSET</span> <span class="o">=</span> <span class="mi">16</span>
-<span class="n">_REGRESSION_OFFSET</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">_LAST_KEY</span> <span class="o">=</span> <span class="mi">63</span>
-<span class="n">_NONES_DICT</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_LAST_KEY</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span>
+
+<span class="k">def</span> <span class="nf">_as_binary_array</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts an integer to a np.array of binary digits</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        number (int): integer number to be converted</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        array: numpy array of converted digits</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">binary_str</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">number</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">ENCODING_LENGTH</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">digit</span><span class="p">)</span> <span class="k">for</span> <span class="n">digit</span> <span class="ow">in</span> <span class="n">binary_str</span><span class="p">])</span>
 
 
-<span class="k">def</span> <span class="nf">_binary_to_integer</span><span class="p">(</span><span class="n">binary</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">val</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">idx</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">binary</span><span class="p">)))</span>
+<span class="c1"># Encoding: 0 to 31</span>
+<span class="n">EXPLORATORY_ACTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;get_log_rows_count&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">get_log_rows_count</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span>
+    <span class="s1">&#39;is_response_dichotomous_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_dichotomous_check</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="s1">&#39;is_response_discrete_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_discrete_check</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span>
+    <span class="s1">&#39;is_response_positive_values_only_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_positive_values_only_check</span><span class="p">,</span>
+                                               <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span>
+    <span class="s1">&#39;is_response_quantitative_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_quantitative_check</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span>
+    <span class="s1">&#39;time_convertible_variable_search&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">time_convertible_variable_search</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span>
+    <span class="s1">&#39;infer_response_dtype&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">infer_response_dtype</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">6</span><span class="p">)),</span>
+    <span class="s1">&#39;get_response_unique_values_ratio&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">get_response_unique_values_ratio</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">7</span><span class="p">)),</span>
+    <span class="s1">&#39;get_correlated_variables_ratio&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">get_correlated_variables_ratio</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">8</span><span class="p">)),</span>
+    <span class="s1">&#39;get_log_columns_count&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">get_log_columns_count</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">9</span><span class="p">)),</span>
+    <span class="s1">&#39;is_response_balanced_check&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">is_response_balanced_check</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">10</span><span class="p">)),</span>
+    <span class="s1">&#39;get_standarized_variables_ratio&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">get_standarized_variables_ratio</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">11</span><span class="p">)),</span>
+    <span class="s1">&#39;get_missing_data_ratio&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">get_missing_data_ratio</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">12</span><span class="p">)),</span>
+<span class="p">}</span>
+
+<span class="c1"># Encoding: 32 to 39</span>
+<span class="n">CLASSIFIERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;logistic_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">logistic_regression</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">32</span><span class="p">)),</span>
+    <span class="s1">&#39;support_vector_classification&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">support_vector_classification</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">33</span><span class="p">)),</span>
+    <span class="s1">&#39;linear_support_vector_classification&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">linear_support_vector_classification</span><span class="p">,</span>
+                                             <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">34</span><span class="p">)),</span>
+    <span class="s1">&#39;decision_tree&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">decision_tree</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">35</span><span class="p">)),</span>
+    <span class="s1">&#39;random_forest&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">random_forest</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">36</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Encoding: 40 to 47</span>
+<span class="n">REGRESSION_MODELS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;linear_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">linear_regression</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">40</span><span class="p">)),</span>
+    <span class="s1">&#39;poisson_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">poisson_regression</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">41</span><span class="p">)),</span>
+    <span class="s1">&#39;support_vector_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">support_vector_regression</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">42</span><span class="p">)),</span>
+    <span class="s1">&#39;linear_support_vector_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">linear_support_vector_regression</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">43</span><span class="p">)),</span>
+    <span class="s1">&#39;decision_tree_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">decision_tree_regression</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">44</span><span class="p">)),</span>
+    <span class="s1">&#39;random_forest_regression&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">random_forest_regression</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">45</span><span class="p">)),</span>
+    <span class="s1">&#39;time_series_auto_arima&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">time_series_auto_arima</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">46</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Encoding: 48 to 55</span>
+<span class="n">CLUSTERING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;k_means&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">k_means</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">48</span><span class="p">)),</span>
+    <span class="s1">&#39;dbscan&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">dbscan</span><span class="p">,</span> <span class="n">_as_binary_array</span><span class="p">(</span><span class="mi">49</span><span class="p">))</span>
+<span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">_is_action</span><span class="p">(</span><span class="n">type_</span><span class="p">:</span> <span class="nb">type</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">type_</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">type_</span><span class="p">,</span> <span class="n">Action</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_invalid_action_step</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ActionResult</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">and</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">MIN_REWARD</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">ActionInfo</span><span class="p">(</span><span class="n">action_name</span><span class="o">=</span><span class="s1">&#39;Invalid Action&#39;</span><span class="p">,</span>
+                          <span class="n">action_fn</span><span class="o">=</span><span class="n">_invalid_action_step</span><span class="p">,</span>
+                          <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">raised_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span>
 
-
-<span class="k">def</span> <span class="nf">_build_actions_dict</span><span class="p">(</span><span class="n">actions_module</span><span class="p">:</span> <span class="n">ModuleType</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Action</span><span class="p">]:</span>
-    <span class="n">actions</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">actions_module</span><span class="p">,</span> <span class="n">_is_action</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">index</span> <span class="o">+</span> <span class="n">offset</span><span class="p">:</span> <span class="n">action</span><span class="p">()</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">actions</span><span class="p">)}</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;State and Data must be valid.&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ActionsSpace"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace">[docs]</a><span class="k">class</span> <span class="nc">ActionsSpace</span><span class="p">(</span><span class="n">MultiBinary</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Actions space</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">_exploratory_actions</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">exploratory_actions</span><span class="p">)</span>
-        <span class="n">_classifiers</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">classifiers</span><span class="p">,</span> <span class="n">_CLASSIFIERS_OFFSET</span><span class="p">)</span>
-        <span class="n">_regressors</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">regressors</span><span class="p">,</span> <span class="n">_REGRESSION_OFFSET</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="n">_NONES_DICT</span> <span class="o">|</span> <span class="n">_exploratory_actions</span> <span class="o">|</span> <span class="n">_classifiers</span> <span class="o">|</span> <span class="n">_regressors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__actions</span> <span class="o">=</span> <span class="n">EXPLORATORY_ACTIONS</span> <span class="o">|</span> <span class="n">CLASSIFIERS</span> <span class="o">|</span> <span class="n">REGRESSION_MODELS</span> <span class="o">|</span> <span class="n">CLUSTERING</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ENCODING_LENGTH</span><span class="p">)</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">actions_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Action</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span>
+    <span class="nd">@cached_property</span>
+    <span class="k">def</span> <span class="nf">actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Action</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets actions dictionary</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: actions dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actions</span>
 
     <span class="nd">@cached_property</span>
-    <span class="k">def</span> <span class="nf">actions_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Action</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">action</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">action</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">actions_names_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets actions names list (keys in actions dictionary)</span>
 
-    <span class="nd">@property</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list[str]: actions names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="nd">@cached_property</span>
+    <span class="k">def</span> <span class="nf">actions_encodings_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets actions encodings list</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ndarray: actions codes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">actions_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">ENCODING_LENGTH</span><span class="p">))</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">action_value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">actions_array</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">action_value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">actions_array</span>
+
+    <span class="nd">@cached_property</span>
     <span class="k">def</span> <span class="nf">encoding_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns encoding length (# of digits in the)</span>
@@ -432,25 +556,70 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ENCODING_LENGTH</span>
 
-    <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numeric_key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">numeric_key</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-            <span class="n">numeric_key</span> <span class="o">=</span> <span class="n">_binary_to_integer</span><span class="p">(</span><span class="n">numeric_key</span><span class="p">)</span>
+<div class="viewcode-block" id="ActionsSpace.get_action_by_name"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_action_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets action function</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">[</span><span class="n">numeric_key</span><span class="p">]</span>
+<span class="sd">        Args:</span>
+<span class="sd">            action_name (str): action name</span>
 
-    <span class="k">def</span> <span class="nf">get_action_by_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">action_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action_</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">action_</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            ActionFunction[T]: action function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="p">[</span><span class="n">action_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></div>
 
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No class matched class </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="ActionsSpace.get_action_name_by_code"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_name_by_code">[docs]</a>    <span class="k">def</span> <span class="nf">get_action_name_by_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_code</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets action name by code</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            action_code (np.ndarray): action code</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: action name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">action_name</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">action_code</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">action_name</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="ActionsSpace.is_valid_action_by_encoding"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.is_valid_action_by_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">is_valid_action_by_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_code</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if action code is valid</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            action_code (np.array): action code</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if it is valid action code</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">action_code</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="ActionsSpace.get_action_by_encoding"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_by_encoding">[docs]</a>    <span class="k">def</span> <span class="nf">get_action_by_encoding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_code</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets action function</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            action_code (ndarray): action code</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ActionFunction[T]: action function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">action_code</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">_invalid_action_step</span></div>
 
 <div class="viewcode-block" id="ActionsSpace.sample"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">MaskNDArray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">unpackbits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;uint8&#39;</span><span class="p">),</span> <span class="n">count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding_length</span><span class="p">)</span></div>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">actions_encodings_list</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions_encodings_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
 
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__actions</span><span class="p">)</span></div>
 </pre></div>
 
                 </article>

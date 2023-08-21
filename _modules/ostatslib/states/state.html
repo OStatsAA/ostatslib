@@ -449,7 +449,7 @@ document.write(`
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">features_set</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">):</span>
                 <span class="k">return</span> <span class="nb">setattr</span><span class="p">(</span><span class="n">features_set</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;invalid feature key. (key, value) = </span><span class="si">{</span><span class="n">feature_key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">()</span></div>
 
     <span class="nd">@cached_property</span>
     <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -491,7 +491,7 @@ document.write(`
 
 <div class="viewcode-block" id="State.list_known_features"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.list_known_features">[docs]</a>    <span class="k">def</span> <span class="nf">list_known_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">KnownFeaturesList</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Lists fields that have values different from default (unknown state attribute)</span>
+<span class="sd">        Lists fields that have values different from default (unkown state attribute)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            KnownFeaturesList: list of non-default values</span>

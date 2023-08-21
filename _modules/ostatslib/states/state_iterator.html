@@ -371,7 +371,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.states.state_iterator</h1><div class="highlight"><pre>
-<span></span><span class="c1"># pylint: disable=too-few-public-methods</span>
+<span></span><span class="c1">#pylint: disable=too-few-public-methods</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">State iterator module</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -393,10 +393,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">__index</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">return</span> <span class="p">(</span><span class="n">next_feature_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">next_feature_key</span><span class="p">))</span>
 
-        <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span></div>
+        <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">()</span></div>
 </pre></div>
 
                 </article>

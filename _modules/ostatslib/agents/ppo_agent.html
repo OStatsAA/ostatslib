@@ -380,17 +380,15 @@ document.write(`
 <span class="kn">from</span> <span class="nn">stable_baselines3</span> <span class="kn">import</span> <span class="n">PPO</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3.common.env_util</span> <span class="kn">import</span> <span class="n">make_vec_env</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3.common.vec_env</span> <span class="kn">import</span> <span class="n">SubprocVecEnv</span>
-<span class="kn">from</span> <span class="nn">stable_baselines3.common.callbacks</span> <span class="kn">import</span> <span class="n">CheckpointCallback</span><span class="p">,</span> <span class="n">CallbackList</span>
+<span class="kn">from</span> <span class="nn">stable_baselines3.common.callbacks</span> <span class="kn">import</span> <span class="n">CheckpointCallback</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3.common.logger</span> <span class="kn">import</span> <span class="n">configure</span>
 
-
 <span class="kn">from</span> <span class="nn">ostatslib.agents.agent</span> <span class="kn">import</span> <span class="n">Agent</span>
-<span class="kn">from</span> <span class="nn">ostatslib.agents.action_info_logger</span> <span class="kn">import</span> <span class="n">ActionInfoLogger</span>
 <span class="kn">from</span> <span class="nn">ostatslib.environments</span> <span class="kn">import</span> <span class="n">GymEnvironment</span>
 
 <span class="n">POLICY</span> <span class="o">=</span> <span class="s2">&quot;MultiInputPolicy&quot;</span>
 <span class="n">POLICY_KWARGS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;net_arch&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;vf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="s1">&#39;pi&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">]},</span>
+    <span class="s1">&#39;net_arch&#39;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">vf</span><span class="o">=</span><span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="n">pi</span><span class="o">=</span><span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">]),</span>
     <span class="s1">&#39;activation_fn&#39;</span><span class="p">:</span> <span class="n">th</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">,</span>
     <span class="s1">&#39;share_features_extractor&#39;</span><span class="p">:</span> <span class="kc">False</span>
 <span class="p">}</span>
@@ -405,7 +403,7 @@ document.write(`
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+                 <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
                  <span class="n">environment_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span> <span class="o">=</span> <span class="n">environment_kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
@@ -414,12 +412,12 @@ document.write(`
         <span class="n">n_envs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">n_envs</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">n_envs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">1</span>
         <span class="n">save_freq</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">save_freq</span> <span class="o">//</span> <span class="n">n_envs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">checkpoint_callback</span> <span class="o">=</span> <span class="n">CheckpointCallback</span><span class="p">(</span><span class="n">save_freq</span><span class="o">=</span><span class="n">save_freq</span><span class="p">,</span>
-                                                 <span class="n">save_path</span><span class="o">=</span><span class="n">TRAINING_LOGS_PATH</span><span class="p">)</span>
+                                                 <span class="n">save_path</span><span class="o">=</span><span class="n">TRAINING_LOGS_PATH</span><span class="p">,</span>
+                                                 <span class="n">save_replay_buffer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">configure</span><span class="p">(</span><span class="n">TRAINING_LOGS_PATH</span><span class="p">,</span>
                            <span class="p">[</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span> <span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;tensorboard&quot;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">set_logger</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
-        <span class="n">callbacks</span> <span class="o">=</span> <span class="n">CallbackList</span><span class="p">([</span><span class="n">checkpoint_callback</span><span class="p">,</span> <span class="n">ActionInfoLogger</span><span class="p">()])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="n">steps</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callbacks</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="n">steps</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">checkpoint_callback</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PPOAgent.save"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.ppo_agent.html#ostatslib.agents.ppo_agent.PPOAgent.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
@@ -437,7 +435,7 @@ document.write(`
             <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span>
                        <span class="n">environments</span><span class="p">,</span>
                        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                       <span class="n">n_steps</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
+                       <span class="n">n_steps</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
                        <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>

@@ -346,6 +346,7 @@ document.write(`
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -355,27 +356,28 @@ document.write(`
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
- | <a href="#U"><strong>U</strong></a>
- | <a href="#V"><strong>V</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.action.html#ostatslib.actions.action.ActionInfo">ActionInfo (class in ostatslib.actions.action)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.Action">Action (class in ostatslib.actions.base)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.actions">actions (ActionsSpace property)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ActionInfo">ActionInfo (class in ostatslib.actions.base)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.actions_encodings_list">actions_encodings_list (ActionsSpace property)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.actions_names_list">actions_names_list (ActionsSpace property)</a>
+      <li><a href="api/_autosummary/ostatslib.agents.action_info_logger.html#ostatslib.agents.action_info_logger.ActionInfoLogger">ActionInfoLogger (class in ostatslib.agents.action_info_logger)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace">ActionsSpace (class in ostatslib.actions.actions_space)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.AdaBoostClassification">AdaBoostClassification (class in ostatslib.actions.classifiers.ensembles)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.AdaBoostRegression">AdaBoostRegression (class in ostatslib.actions.regressors.ensembles)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent">Agent (class in ostatslib.agents.agent)</a>
 </li>
@@ -393,19 +395,31 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ostatslib.states.features_set.html#ostatslib.states.features_set.FeaturesSet.as_gymnasium_space">as_gymnasium_space() (FeaturesSet method)</a>
 </li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.AutoARIMARegression">AutoARIMARegression (class in ostatslib.actions.regressors.linear_models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.BaggingClassification">BaggingClassification (class in ostatslib.actions.classifiers.ensembles)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.BaggingRegression">BaggingRegression (class in ostatslib.actions.regressors.ensembles)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.calculate_score_reward.html#ostatslib.actions.utils.calculate_score_reward">calculate_score_reward() (in module ostatslib.actions.utils)</a>
+      <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.copy">copy() (State method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.explainability_rewards.html#ostatslib.actions.utils.explainability_rewards.comprehensible_model">comprehensible_model() (in module ostatslib.actions.utils.explainability_rewards)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.copy">copy() (State method)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.CorrelatedVariablesRatioExploration">CorrelatedVariablesRatioExploration (class in ostatslib.actions.exploratory_actions.metrics_exploratory_actions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -419,11 +433,9 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.clustering.dbscan.html#ostatslib.actions.clustering.dbscan">dbscan() (in module ostatslib.actions.clustering)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.decision_trees.html#ostatslib.actions.classifiers.decision_trees.DecisionTreeClassification">DecisionTreeClassification (class in ostatslib.actions.classifiers.decision_trees)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.classifiers.decision_tree.html#ostatslib.actions.classifiers.decision_tree">decision_tree() (in module ostatslib.actions.classifiers)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.regression_models.decision_tree_regression.html#ostatslib.actions.regression_models.decision_tree_regression">decision_tree_regression() (in module ostatslib.actions.regression_models)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.decision_trees.html#ostatslib.actions.regressors.decision_trees.DecisionTreeRegression">DecisionTreeRegression (class in ostatslib.actions.regressors.decision_trees)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -431,7 +443,27 @@ document.write(`
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.linear_models.html#ostatslib.actions.classifiers.linear_models.ElasticNetLogisticRegressionClassification">ElasticNetLogisticRegressionClassification (class in ostatslib.actions.classifiers.linear_models)</a>
+</li>
       <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.encoding_length">encoding_length (ActionsSpace property)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.Action.execute">execute() (Action method)</a>
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ExploratoryAction.execute">(ExploratoryAction method)</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ModelEstimatorAction.execute">(ModelEstimatorAction method)</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.OLSLinearRegression.execute">(OLSLinearRegression method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ExploratoryAction">ExploratoryAction (class in ostatslib.actions.base)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.ExtraTreesClassification">ExtraTreesClassification (class in ostatslib.actions.classifiers.ensembles)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.ExtraTreesRegression">ExtraTreesRegression (class in ostatslib.actions.regressors.ensembles)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -453,27 +485,15 @@ document.write(`
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.GammaRegression">GammaRegression (class in ostatslib.actions.regressors.linear_models)</a>
+</li>
       <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.get">get() (State method)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_by_encoding">get_action_by_encoding() (ActionsSpace method)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_by_name">get_action_by_name() (ActionsSpace method)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_name_by_code">get_action_name_by_code() (ActionsSpace method)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.get_correlated_variables_ratio.html#ostatslib.actions.exploratory_actions.get_correlated_variables_ratio">get_correlated_variables_ratio() (in module ostatslib.actions.exploratory_actions)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.get_log_columns_count.html#ostatslib.actions.exploratory_actions.get_log_columns_count">get_log_columns_count() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.GradientBoostingClassification">GradientBoostingClassification (class in ostatslib.actions.classifiers.ensembles)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.get_log_rows_count.html#ostatslib.actions.exploratory_actions.get_log_rows_count">get_log_rows_count() (in module ostatslib.actions.exploratory_actions)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.get_missing_data_ratio.html#ostatslib.actions.exploratory_actions.get_missing_data_ratio">get_missing_data_ratio() (in module ostatslib.actions.exploratory_actions)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.get_response_unique_values_ratio.html#ostatslib.actions.exploratory_actions.get_response_unique_values_ratio">get_response_unique_values_ratio() (in module ostatslib.actions.exploratory_actions)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.get_standarized_variables_ratio.html#ostatslib.actions.exploratory_actions.get_standarized_variables_ratio">get_standarized_variables_ratio() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.GradientBoostingRegression">GradientBoostingRegression (class in ostatslib.actions.regressors.ensembles)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.environments.gym_environment.html#ostatslib.environments.gym_environment.GymEnvironment">GymEnvironment (class in ostatslib.environments.gym_environment)</a>
 </li>
@@ -483,35 +503,27 @@ document.write(`
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.infer_response_dtype.html#ostatslib.actions.exploratory_actions.infer_response_dtype">infer_response_dtype() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.InferResponseDTypeExploration">InferResponseDTypeExploration (class in ostatslib.actions.exploratory_actions.response_exploratory_actions)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.states.utils.init_features_set.html#ostatslib.states.utils.init_features_set">init_features_set() (in module ostatslib.states.utils)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.explainability_rewards.html#ostatslib.actions.utils.explainability_rewards.interpretable_model">interpretable_model() (in module ostatslib.actions.utils.explainability_rewards)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_balanced_check.html#ostatslib.actions.exploratory_actions.is_response_balanced_check">is_response_balanced_check() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseBalancedExploration">IsResponseBalancedExploration (class in ostatslib.actions.exploratory_actions.response_exploratory_actions)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_dichotomous_check.html#ostatslib.actions.exploratory_actions.is_response_dichotomous_check">is_response_dichotomous_check() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDichotomousExploration">IsResponseDichotomousExploration (class in ostatslib.actions.exploratory_actions.response_exploratory_actions)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_discrete_check.html#ostatslib.actions.exploratory_actions.is_response_discrete_check">is_response_discrete_check() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDiscreteExploration">IsResponseDiscreteExploration (class in ostatslib.actions.exploratory_actions.response_exploratory_actions)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_positive_values_only_check.html#ostatslib.actions.exploratory_actions.is_response_positive_values_only_check">is_response_positive_values_only_check() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponsePositiveValuesOnlyExploration">IsResponsePositiveValuesOnlyExploration (class in ostatslib.actions.exploratory_actions.response_exploratory_actions)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.is_response_quantitative_check.html#ostatslib.actions.exploratory_actions.is_response_quantitative_check">is_response_quantitative_check() (in module ostatslib.actions.exploratory_actions)</a>
-</li>
-      <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.is_valid_action_by_encoding">is_valid_action_by_encoding() (ActionsSpace method)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseQuantitativeExploration">IsResponseQuantitativeExploration (class in ostatslib.actions.exploratory_actions.response_exploratory_actions)</a>
 </li>
   </ul></td>
 </tr></table>
 
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.clustering.k_means.html#ostatslib.actions.clustering.k_means">k_means() (in module ostatslib.actions.clustering)</a>
-</li>
-  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.keys">keys (State property)</a>
 </li>
@@ -521,21 +533,25 @@ document.write(`
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.regression_models.linear_regression.html#ostatslib.actions.regression_models.linear_regression">linear_regression() (in module ostatslib.actions.regression_models)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.linear_models.html#ostatslib.actions.classifiers.linear_models.L1LogisticRegressionClassification">L1LogisticRegressionClassification (class in ostatslib.actions.classifiers.linear_models)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.classifiers.linear_support_vector_classification.html#ostatslib.actions.classifiers.linear_support_vector_classification">linear_support_vector_classification() (in module ostatslib.actions.classifiers)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.LinearSupportVectorClassification">LinearSupportVectorClassification (class in ostatslib.actions.classifiers.svm)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.regression_models.linear_support_vector_regression.html#ostatslib.actions.regression_models.linear_support_vector_regression">linear_support_vector_regression() (in module ostatslib.actions.regression_models)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.LinearSupportVectorRegression">LinearSupportVectorRegression (class in ostatslib.actions.regressors.svr)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ostatslib.states.features_set.html#ostatslib.states.features_set.FeaturesSet.list_known_features">list_known_features() (FeaturesSet method)</a>
 
       <ul>
         <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.list_known_features">(State method)</a>
 </li>
       </ul></li>
-      <li><a href="api/_autosummary/ostatslib.actions.classifiers.logistic_regression.html#ostatslib.actions.classifiers.logistic_regression">logistic_regression() (in module ostatslib.actions.classifiers)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.LogColumnsCountExploration">LogColumnsCountExploration (class in ostatslib.actions.exploratory_actions.metrics_exploratory_actions)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.linear_models.html#ostatslib.actions.classifiers.linear_models.LogisticRegressionClassification">LogisticRegressionClassification (class in ostatslib.actions.classifiers.linear_models)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.LogRowsCountExploration">LogRowsCountExploration (class in ostatslib.actions.exploratory_actions.metrics_exploratory_actions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -543,7 +559,9 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.model_selection.html#ostatslib.actions.utils.model_selection">model_selection() (in module ostatslib.actions.utils)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.MissingDataRatioExploration">MissingDataRatioExploration (class in ostatslib.actions.exploratory_actions.metrics_exploratory_actions)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ModelEstimatorAction">ModelEstimatorAction (class in ostatslib.actions.base)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.states.models_features_set.html#ostatslib.states.models_features_set.ModelsFeaturesSet">ModelsFeaturesSet (class in ostatslib.states.models_features_set)</a>
 </li>
@@ -553,23 +571,43 @@ document.write(`
       <ul>
         <li><a href="api/_autosummary/ostatslib.actions.html#module-ostatslib.actions">ostatslib.actions</a>
 </li>
-        <li><a href="api/_autosummary/ostatslib.actions.action.html#module-ostatslib.actions.action">ostatslib.actions.action</a>
-</li>
         <li><a href="api/_autosummary/ostatslib.actions.actions_space.html#module-ostatslib.actions.actions_space">ostatslib.actions.actions_space</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.base.html#module-ostatslib.actions.base">ostatslib.actions.base</a>
 </li>
         <li><a href="api/_autosummary/ostatslib.actions.classifiers.html#module-ostatslib.actions.classifiers">ostatslib.actions.classifiers</a>
 </li>
-        <li><a href="api/_autosummary/ostatslib.actions.clustering.html#module-ostatslib.actions.clustering">ostatslib.actions.clustering</a>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.decision_trees.html#module-ostatslib.actions.classifiers.decision_trees">ostatslib.actions.classifiers.decision_trees</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#module-ostatslib.actions.classifiers.ensembles">ostatslib.actions.classifiers.ensembles</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.linear_models.html#module-ostatslib.actions.classifiers.linear_models">ostatslib.actions.classifiers.linear_models</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#module-ostatslib.actions.classifiers.svm">ostatslib.actions.classifiers.svm</a>
 </li>
         <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.html#module-ostatslib.actions.exploratory_actions">ostatslib.actions.exploratory_actions</a>
 </li>
-        <li><a href="api/_autosummary/ostatslib.actions.regression_models.html#module-ostatslib.actions.regression_models">ostatslib.actions.regression_models</a>
+        <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#module-ostatslib.actions.exploratory_actions.metrics_exploratory_actions">ostatslib.actions.exploratory_actions.metrics_exploratory_actions</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#module-ostatslib.actions.exploratory_actions.response_exploratory_actions">ostatslib.actions.exploratory_actions.response_exploratory_actions</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.time_convertible_variable_search.html#module-ostatslib.actions.exploratory_actions.time_convertible_variable_search">ostatslib.actions.exploratory_actions.time_convertible_variable_search</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.html#module-ostatslib.actions.regressors">ostatslib.actions.regressors</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.decision_trees.html#module-ostatslib.actions.regressors.decision_trees">ostatslib.actions.regressors.decision_trees</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#module-ostatslib.actions.regressors.ensembles">ostatslib.actions.regressors.ensembles</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.linear_models.html#module-ostatslib.actions.regressors.linear_models">ostatslib.actions.regressors.linear_models</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#module-ostatslib.actions.regressors.svr">ostatslib.actions.regressors.svr</a>
 </li>
         <li><a href="api/_autosummary/ostatslib.actions.utils.html#module-ostatslib.actions.utils">ostatslib.actions.utils</a>
 </li>
-        <li><a href="api/_autosummary/ostatslib.actions.utils.explainability_rewards.html#module-ostatslib.actions.utils.explainability_rewards">ostatslib.actions.utils.explainability_rewards</a>
-</li>
         <li><a href="api/_autosummary/ostatslib.agents.html#module-ostatslib.agents">ostatslib.agents</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.agents.action_info_logger.html#module-ostatslib.agents.action_info_logger">ostatslib.agents.action_info_logger</a>
 </li>
         <li><a href="api/_autosummary/ostatslib.agents.agent.html#module-ostatslib.agents.agent">ostatslib.agents.agent</a>
 </li>
@@ -603,23 +641,40 @@ document.write(`
   </ul></td>
 </tr></table>
 
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.N100EstimatorsGradientBoostingRegression">N100EstimatorsGradientBoostingRegression (class in ostatslib.actions.regressors.ensembles)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.N100EstimatorsRandomForestRegression">N100EstimatorsRandomForestRegression (class in ostatslib.actions.regressors.ensembles)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.N100GradientBoostingClassification">N100GradientBoostingClassification (class in ostatslib.actions.classifiers.ensembles)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.N100RandomForestClassification">N100RandomForestClassification (class in ostatslib.actions.classifiers.ensembles)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.NuPolyKernelSupportVectorClassification">NuPolyKernelSupportVectorClassification (class in ostatslib.actions.classifiers.svm)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.NuPolyKernelSupportVectorRegression">NuPolyKernelSupportVectorRegression (class in ostatslib.actions.regressors.svr)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.NuSupportVectorClassification">NuSupportVectorClassification (class in ostatslib.actions.classifiers.svm)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.NuSupportVectorRegression">NuSupportVectorRegression (class in ostatslib.actions.regressors.svr)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.explainability_rewards.html#ostatslib.actions.utils.explainability_rewards.opaque_model">opaque_model() (in module ostatslib.actions.utils.explainability_rewards)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.OLSLinearRegression">OLSLinearRegression (class in ostatslib.actions.regressors.linear_models)</a>
 </li>
       <li>
     ostatslib.actions
 
       <ul>
         <li><a href="api/_autosummary/ostatslib.actions.html#module-ostatslib.actions">module</a>
-</li>
-      </ul></li>
-      <li>
-    ostatslib.actions.action
-
-      <ul>
-        <li><a href="api/_autosummary/ostatslib.actions.action.html#module-ostatslib.actions.action">module</a>
 </li>
       </ul></li>
       <li>
@@ -630,6 +685,13 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    ostatslib.actions.base
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.base.html#module-ostatslib.actions.base">module</a>
+</li>
+      </ul></li>
+      <li>
     ostatslib.actions.classifiers
 
       <ul>
@@ -637,10 +699,31 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    ostatslib.actions.clustering
+    ostatslib.actions.classifiers.decision_trees
 
       <ul>
-        <li><a href="api/_autosummary/ostatslib.actions.clustering.html#module-ostatslib.actions.clustering">module</a>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.decision_trees.html#module-ostatslib.actions.classifiers.decision_trees">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.classifiers.ensembles
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#module-ostatslib.actions.classifiers.ensembles">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.classifiers.linear_models
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.linear_models.html#module-ostatslib.actions.classifiers.linear_models">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.classifiers.svm
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#module-ostatslib.actions.classifiers.svm">module</a>
 </li>
       </ul></li>
       <li>
@@ -651,12 +734,63 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    ostatslib.actions.regression_models
+    ostatslib.actions.exploratory_actions.metrics_exploratory_actions
 
       <ul>
-        <li><a href="api/_autosummary/ostatslib.actions.regression_models.html#module-ostatslib.actions.regression_models">module</a>
+        <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#module-ostatslib.actions.exploratory_actions.metrics_exploratory_actions">module</a>
 </li>
       </ul></li>
+      <li>
+    ostatslib.actions.exploratory_actions.response_exploratory_actions
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#module-ostatslib.actions.exploratory_actions.response_exploratory_actions">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.exploratory_actions.time_convertible_variable_search
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.time_convertible_variable_search.html#module-ostatslib.actions.exploratory_actions.time_convertible_variable_search">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.regressors
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.html#module-ostatslib.actions.regressors">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.regressors.decision_trees
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.decision_trees.html#module-ostatslib.actions.regressors.decision_trees">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.regressors.ensembles
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#module-ostatslib.actions.regressors.ensembles">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.regressors.linear_models
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.linear_models.html#module-ostatslib.actions.regressors.linear_models">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.regressors.svr
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#module-ostatslib.actions.regressors.svr">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ostatslib.actions.utils
 
@@ -665,17 +799,17 @@ document.write(`
 </li>
       </ul></li>
       <li>
-    ostatslib.actions.utils.explainability_rewards
-
-      <ul>
-        <li><a href="api/_autosummary/ostatslib.actions.utils.explainability_rewards.html#module-ostatslib.actions.utils.explainability_rewards">module</a>
-</li>
-      </ul></li>
-      <li>
     ostatslib.agents
 
       <ul>
         <li><a href="api/_autosummary/ostatslib.agents.html#module-ostatslib.agents">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.agents.action_info_logger
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.agents.action_info_logger.html#module-ostatslib.agents.action_info_logger">module</a>
 </li>
       </ul></li>
       <li>
@@ -692,8 +826,6 @@ document.write(`
         <li><a href="api/_autosummary/ostatslib.agents.analysis_result.html#module-ostatslib.agents.analysis_result">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ostatslib.agents.ppo_agent
 
@@ -786,9 +918,13 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/_autosummary/ostatslib.environments.data_generators.pmlb_generator.html#ostatslib.environments.data_generators.pmlb_generator">pmlb_generator() (in module ostatslib.environments.data_generators)</a>
 </li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.PoissonRegression">PoissonRegression (class in ostatslib.actions.regressors.linear_models)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.regression_models.poisson_regression.html#ostatslib.actions.regression_models.poisson_regression">poisson_regression() (in module ostatslib.actions.regression_models)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.PolyKernelSupportVectorClassification">PolyKernelSupportVectorClassification (class in ostatslib.actions.classifiers.svm)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.PolyKernelSupportVectorRegression">PolyKernelSupportVectorRegression (class in ostatslib.actions.regressors.svr)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.agents.ppo_agent.html#ostatslib.agents.ppo_agent.PPOAgent">PPOAgent (class in ostatslib.agents.ppo_agent)</a>
 </li>
@@ -798,9 +934,9 @@ document.write(`
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.classifiers.random_forest.html#ostatslib.actions.classifiers.random_forest">random_forest() (in module ostatslib.actions.classifiers)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.RandomForestClassification">RandomForestClassification (class in ostatslib.actions.classifiers.ensembles)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.regression_models.random_forest_regression.html#ostatslib.actions.regression_models.random_forest_regression">random_forest_regression() (in module ostatslib.actions.regression_models)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.RandomForestRegression">RandomForestRegression (class in ostatslib.actions.regressors.ensembles)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -808,7 +944,7 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ostatslib.environments.gym_environment.html#ostatslib.environments.gym_environment.GymEnvironment.reset">reset() (GymEnvironment method)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.reward_cap.html#ostatslib.actions.utils.reward_cap">reward_cap() (in module ostatslib.actions.utils)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.ResponseUniqueValuesRatioExploration">ResponseUniqueValuesRatioExploration (class in ostatslib.actions.exploratory_actions.response_exploratory_actions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -834,7 +970,9 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.split_response_from_explanatory_variables.html#ostatslib.actions.utils.split_response_from_explanatory_variables">split_response_from_explanatory_variables() (in module ostatslib.actions.utils)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.utils.split_x_y_data.html#ostatslib.actions.utils.split_x_y_data">split_x_y_data() (in module ostatslib.actions.utils)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.StandardizedVariablesRatioExploration">StandardizedVariablesRatioExploration (class in ostatslib.actions.exploratory_actions.metrics_exploratory_actions)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State">State (class in ostatslib.states.state)</a>
 </li>
@@ -844,9 +982,9 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ostatslib.agents.analysis_result.html#ostatslib.agents.analysis_result.AnalysisResult.summary">summary() (AnalysisResult method)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.classifiers.support_vector_classification.html#ostatslib.actions.classifiers.support_vector_classification">support_vector_classification() (in module ostatslib.actions.classifiers)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.SupportVectorClassification">SupportVectorClassification (class in ostatslib.actions.classifiers.svm)</a>
 </li>
-      <li><a href="api/_autosummary/ostatslib.actions.regression_models.support_vector_regression.html#ostatslib.actions.regression_models.support_vector_regression">support_vector_regression() (in module ostatslib.actions.regression_models)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.SupportVectorRegression">SupportVectorRegression (class in ostatslib.actions.regressors.svr)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -854,13 +992,15 @@ document.write(`
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.time_convertible_variable_search.html#ostatslib.actions.exploratory_actions.time_convertible_variable_search">time_convertible_variable_search() (in module ostatslib.actions.exploratory_actions)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.TargetExploratoryAction">TargetExploratoryAction (class in ostatslib.actions.base)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.TargetModelEstimatorAction">TargetModelEstimatorAction (class in ostatslib.actions.base)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.states.analysis_features_set.html#ostatslib.states.analysis_features_set.time_convertible_variable_to_feature">time_convertible_variable_to_feature() (in module ostatslib.states.analysis_features_set)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.regression_models.time_series_auto_arima.html#ostatslib.actions.regression_models.time_series_auto_arima">time_series_auto_arima() (in module ostatslib.actions.regression_models)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.time_convertible_variable_search.html#ostatslib.actions.exploratory_actions.time_convertible_variable_search.TimeConvertibleVariableSearch">TimeConvertibleVariableSearch (class in ostatslib.actions.exploratory_actions.time_convertible_variable_search)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.agents.agent.html#ostatslib.agents.agent.Agent.train">train() (Agent method)</a>
 
@@ -868,21 +1008,7 @@ document.write(`
         <li><a href="api/_autosummary/ostatslib.agents.ppo_agent.html#ostatslib.agents.ppo_agent.PPOAgent.train">(PPOAgent method)</a>
 </li>
       </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="U">U</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.update_state_score.html#ostatslib.actions.utils.update_state_score">update_state_score() (in module ostatslib.actions.utils)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.actions.utils.validate_state.html#ostatslib.actions.utils.validate_state">validate_state() (in module ostatslib.actions.utils)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.TreeEstimatorAction">TreeEstimatorAction (class in ostatslib.actions.base)</a>
 </li>
   </ul></td>
 </tr></table>

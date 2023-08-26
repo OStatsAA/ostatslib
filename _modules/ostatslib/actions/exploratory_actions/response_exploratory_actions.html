@@ -410,16 +410,16 @@ document.write(`
 
     <span class="k">def</span> <span class="nf">_explore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">y_data</span> <span class="o">=</span> <span class="n">split_x_y_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+        <span class="n">min_max_count_ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_min_max_count_ratio</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">min_max_count_ratio</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">min_max_count_ratio</span>
+        <span class="k">return</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">min_max_count_ratio</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__get_min_max_count_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_data</span><span class="p">:</span> <span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="n">unique_values_count</span> <span class="o">=</span> <span class="n">y_data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">min_max_counts_ratio</span> <span class="o">=</span> <span class="n">unique_values_count</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">/</span><span class="n">unique_values_count</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">min_max_counts_ratio</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">min_max_counts_ratio</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mf">0.5</span>
-        <span class="k">if</span> <span class="n">min_max_counts_ratio</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span>
-
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div>
+        <span class="k">return</span> <span class="n">min_max_counts_ratio</span></div>
 
 
 <div class="viewcode-block" id="IsResponseDichotomousExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDichotomousExploration">[docs]</a><span class="k">class</span> <span class="nc">IsResponseDichotomousExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>

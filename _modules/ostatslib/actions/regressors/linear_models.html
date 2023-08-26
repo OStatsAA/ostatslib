@@ -501,22 +501,8 @@ document.write(`
                                             <span class="n">residuals</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
                                             <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;are_linear_model_regression_residuals_normally_distributed&#39;</span>
-    <span class="n">jarque_bera_pvalue</span> <span class="o">=</span> <span class="n">jarque_bera</span><span class="p">(</span><span class="n">residuals</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">if</span> <span class="n">jarque_bera_pvalue</span> <span class="o">&lt;</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;FULL_PENALIZED_PVALUE&#39;</span><span class="p">]:</span>
-        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mf">.5</span>
-
-    <span class="k">if</span> <span class="n">jarque_bera_pvalue</span> <span class="o">&lt;</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;PARTIAL_PENALIZED_PVALUE&#39;</span><span class="p">]:</span>
-        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mf">.1</span>
-
-    <span class="k">if</span> <span class="n">jarque_bera_pvalue</span> <span class="o">&lt;</span> <span class="mf">.1</span><span class="p">:</span>
-        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mf">.05</span>
-
-    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">pvalue</span> <span class="o">=</span> <span class="n">jarque_bera</span><span class="p">(</span><span class="n">residuals</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">_update_state_and_get_diagnostic_reward</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_penalty_for_correlation_of_error_terms</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">residuals</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -535,22 +521,24 @@ document.write(`
                                  <span class="n">residuals</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
                                  <span class="n">x_data</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
                                  <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;are_linear_model_regression_residuals_heteroscedastic&#39;</span>
-    <span class="n">f_stat_pvalue</span> <span class="o">=</span> <span class="n">het_breuschpagan</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">add_constant</span><span class="p">(</span><span class="n">x_data</span><span class="p">))[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;are_linear_model_regression_residuals_homoscedastic&#39;</span>
+    <span class="n">pvalue</span> <span class="o">=</span> <span class="n">het_breuschpagan</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">add_constant</span><span class="p">(</span><span class="n">x_data</span><span class="p">))[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">_update_state_and_get_diagnostic_reward</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">f_stat_pvalue</span> <span class="o">&lt;</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;FULL_PENALIZED_PVALUE&#39;</span><span class="p">]:</span>
-        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_update_state_and_get_diagnostic_reward</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+                                            <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span>
+                                            <span class="n">pvalue</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                                            <span class="n">feature_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pvalue</span> <span class="o">&lt;</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;FULL_PENALIZED_PVALUE&#39;</span><span class="p">]:</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="o">-</span><span class="mf">.5</span>
 
-    <span class="k">if</span> <span class="n">f_stat_pvalue</span> <span class="o">&lt;</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;PARTIAL_PENALIZED_PVALUE&#39;</span><span class="p">]:</span>
-        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pvalue</span> <span class="o">&lt;</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;PARTIAL_PENALIZED_PVALUE&#39;</span><span class="p">]:</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="k">return</span> <span class="o">-</span><span class="mf">.1</span>
 
-    <span class="k">if</span> <span class="n">f_stat_pvalue</span> <span class="o">&lt;</span> <span class="mf">.1</span><span class="p">:</span>
-        <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="k">return</span> <span class="mf">0.05</span>
-
-    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">feature_key</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
 

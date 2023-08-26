@@ -37,16 +37,16 @@ class IsResponseBalancedExploration(TargetExploratoryAction):
 
     def _explore(self, data: DataFrame, state: State) -> float:
         _, y_data = split_x_y_data(data, state)
+        min_max_count_ratio = self.__get_min_max_count_ratio(y_data)
+
+        if min_max_count_ratio > 0.5:
+            return min_max_count_ratio
+        return - (1 - min_max_count_ratio)
+
+    def __get_min_max_count_ratio(self, y_data: Series) -> float:
         unique_values_count = y_data.value_counts(normalize=True)
         min_max_counts_ratio = unique_values_count.min()/unique_values_count.max()
-        if min_max_counts_ratio > 0.8:
-            return 1
-        if min_max_counts_ratio > 0.5:
-            return 0.5
-        if min_max_counts_ratio > 0.3:
-            return -0.5
-
-        return -1
+        return min_max_counts_ratio
 
 
 class IsResponseDichotomousExploration(TargetExploratoryAction):

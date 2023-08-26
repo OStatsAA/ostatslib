@@ -128,22 +128,8 @@ def _reward_for_normally_distributed_errors(state: State,
                                             residuals: ndarray,
                                             config: Config) -> float:
     feature_key = 'are_linear_model_regression_residuals_normally_distributed'
-    jarque_bera_pvalue = jarque_bera(residuals)[1]
-
-    if jarque_bera_pvalue < config['FULL_PENALIZED_PVALUE']:
-        state.set(feature_key, -1)
-        return -.5
-
-    if jarque_bera_pvalue < config['PARTIAL_PENALIZED_PVALUE']:
-        state.set(feature_key, -0.5)
-        return -.1
-
-    if jarque_bera_pvalue < .1:
-        state.set(feature_key, 0.5)
-        return -.05
-
-    state.set(feature_key, 1)
-    return 0
+    pvalue = jarque_bera(residuals)[1]
+    return _update_state_and_get_diagnostic_reward(state, config, pvalue, feature_key)
 
 
 def _penalty_for_correlation_of_error_terms(state: State, residuals: ndarray) -> float:
@@ -162,20 +148,22 @@ def _reward_for_homoscedasticity(state: State,
                                  residuals: ndarray,
                                  x_data: ndarray,
                                  config: Config) -> float:
-    feature_key = 'are_linear_model_regression_residuals_heteroscedastic'
-    f_stat_pvalue = het_breuschpagan(residuals, add_constant(x_data))[3]
+    feature_key = 'are_linear_model_regression_residuals_homoscedastic'
+    pvalue = het_breuschpagan(residuals, add_constant(x_data))[3]
+    return _update_state_and_get_diagnostic_reward(state, config, pvalue, feature_key)
 
-    if f_stat_pvalue < config['FULL_PENALIZED_PVALUE']:
-        state.set(feature_key, 1)
+
+def _update_state_and_get_diagnostic_reward(state: State,
+                                            config: Config,
+                                            pvalue: float,
+                                            feature_key: str) -> float:
+    if pvalue < config['FULL_PENALIZED_PVALUE']:
+        state.set(feature_key, -1)
         return -.5
 
-    if f_stat_pvalue < config['PARTIAL_PENALIZED_PVALUE']:
-        state.set(feature_key, 0.5)
+    if pvalue < config['PARTIAL_PENALIZED_PVALUE']:
+        state.set(feature_key, -0.5)
         return -.1
 
-    if f_stat_pvalue < .1:
-        state.set(feature_key, -0.5)
-        return 0.05
-
-    state.set(feature_key, -1)
+    state.set(feature_key, 1)
     return 0

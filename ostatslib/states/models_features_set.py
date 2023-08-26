@@ -20,7 +20,7 @@ class ModelsFeaturesSet(FeaturesSet):
             'get_value_fn': None
         })
 
-    are_linear_model_regression_residuals_heteroscedastic: float = field(
+    are_linear_model_regression_residuals_homoscedastic: float = field(
         default=0,
         metadata={
             'gym_space': Box(-1, 1),

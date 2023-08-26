@@ -32,9 +32,7 @@ class ElasticNetLogisticRegressionClassification(TargetModelEstimatorAction[Logi
 
     action_name = 'Elastic-Net Logistic Regression'
     action_key = 'elasticnet_logistic_regression'
-    estimator = LogisticRegression(penalty='elasticnet', solver='saga')
-    params_grid = {'C': [0.1, 1, 10],
-                   'l1_ratio': [0.33, 0.5, 0.66]}
+    estimator = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=0.5)
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),

@@ -371,13 +371,20 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.regressors.decision_trees</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">operator</span>
+<span></span><span class="sd">&quot;&quot;&quot;Decision trees regression actions module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">TreeEstimatorAction</span>
 
 
 <div class="viewcode-block" id="DecisionTreeRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.decision_trees.html#ostatslib.actions.regressors.decision_trees.DecisionTreeRegression">[docs]</a><span class="k">class</span> <span class="nc">DecisionTreeRegression</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">DecisionTreeRegressor</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DecisionTree regression action.</span>
+<span class="sd">    Fits a Scikit-Learn DecisionTreeRegressor</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Decision Tree Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;decision_tree_regression&#39;</span>

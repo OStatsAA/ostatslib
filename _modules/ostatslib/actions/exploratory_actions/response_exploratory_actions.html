@@ -371,7 +371,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.exploratory_actions.response_exploratory_actions</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">operator</span>
+<span></span><span class="sd">&quot;&quot;&quot;Response exploratory actions module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span>
 <span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">infer_dtype</span>
@@ -381,6 +384,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="ResponseUniqueValuesRatioExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.ResponseUniqueValuesRatioExploration">[docs]</a><span class="k">class</span> <span class="nc">ResponseUniqueValuesRatioExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets response variable unique values ratio </span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Response Unique Values Ratio&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;response_unique_values_ratio&#39;</span>
@@ -392,6 +397,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="InferResponseDTypeExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.InferResponseDTypeExploration">[docs]</a><span class="k">class</span> <span class="nc">InferResponseDTypeExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Infer response data type using Pandas function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Infer Response DType&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;response_inferred_dtype&#39;</span>
@@ -403,6 +410,9 @@ document.write(`
 
 
 <div class="viewcode-block" id="IsResponseBalancedExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseBalancedExploration">[docs]</a><span class="k">class</span> <span class="nc">IsResponseBalancedExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if a there&#39;s a balance of response min and max </span>
+<span class="sd">    values count (mostly for classification data)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Is Response Balanced&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;is_response_balanced&#39;</span>
@@ -423,6 +433,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="IsResponseDichotomousExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDichotomousExploration">[docs]</a><span class="k">class</span> <span class="nc">IsResponseDichotomousExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if response is dichotomous</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Is Response Dichotomous&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;is_response_dichotomous&#39;</span>
@@ -458,6 +470,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="IsResponseDiscreteExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDiscreteExploration">[docs]</a><span class="k">class</span> <span class="nc">IsResponseDiscreteExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if response is discrete</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Is Response Discrete&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;is_response_discrete&#39;</span>
@@ -484,6 +498,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="IsResponsePositiveValuesOnlyExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponsePositiveValuesOnlyExploration">[docs]</a><span class="k">class</span> <span class="nc">IsResponsePositiveValuesOnlyExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if response contains only positive values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Is Response Positive Values Only&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;is_response_positive_values_only&#39;</span>
@@ -506,6 +522,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="IsResponseQuantitativeExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.response_exploratory_actions.html#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseQuantitativeExploration">[docs]</a><span class="k">class</span> <span class="nc">IsResponseQuantitativeExploration</span><span class="p">(</span><span class="n">TargetExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if response is quantitative</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Is Response Quantitative&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;is_response_quantitative&#39;</span>

@@ -371,7 +371,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.classifiers.ensembles</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">operator</span>
+<span></span><span class="sd">&quot;&quot;&quot;Ensembles classification actions module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AdaBoostClassifier</span><span class="p">,</span>
                               <span class="n">BaggingClassifier</span><span class="p">,</span>
                               <span class="n">ExtraTreesClassifier</span><span class="p">,</span>
@@ -382,6 +385,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="AdaBoostClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.AdaBoostClassification">[docs]</a><span class="k">class</span> <span class="nc">AdaBoostClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">AdaBoostClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AdaBoost classification action.</span>
+<span class="sd">    Fits a Scikit-Learn AdaBoostClassifier</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;AdaBoost&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;adaboost&#39;</span>
@@ -394,6 +401,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="BaggingClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.BaggingClassification">[docs]</a><span class="k">class</span> <span class="nc">BaggingClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">BaggingClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bagging classification action.</span>
+<span class="sd">    Fits a Scikit-Learn BaggingClassifier</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Bagging&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;bagging&#39;</span>
@@ -406,6 +417,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="ExtraTreesClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.ExtraTreesClassification">[docs]</a><span class="k">class</span> <span class="nc">ExtraTreesClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">ExtraTreesClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ExtraTrees classification action.</span>
+<span class="sd">    Fits a Scikit-Learn ExtraTreesClassifier</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Extra-Trees&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;extra_trees&#39;</span>
@@ -421,6 +436,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="GradientBoostingClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.GradientBoostingClassification">[docs]</a><span class="k">class</span> <span class="nc">GradientBoostingClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">GradientBoostingClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gradient Boosting classification action.</span>
+<span class="sd">    Fits a Scikit-Learn GradientBoostingClassifier</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Gradient Boosting&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;gradient_boosting&#39;</span>
@@ -436,6 +455,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="N100GradientBoostingClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.N100GradientBoostingClassification">[docs]</a><span class="k">class</span> <span class="nc">N100GradientBoostingClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">GradientBoostingClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gradient Boosting with 100 estimators classification action.</span>
+<span class="sd">    Fits a Scikit-Learn GradientBoostingClassifier with parameter n_estimators=100</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Gradient Boosting 100 Estimators&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;n_100_gradient_boosting&#39;</span>
@@ -450,6 +473,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="RandomForestClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.RandomForestClassification">[docs]</a><span class="k">class</span> <span class="nc">RandomForestClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">RandomForestClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Random Forest classification action.</span>
+<span class="sd">    Fits a Scikit-Learn RandomForestClassifier</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Random Forest&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;random_forest&#39;</span>
@@ -465,6 +492,10 @@ document.write(`
 
 
 <div class="viewcode-block" id="N100RandomForestClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.N100RandomForestClassification">[docs]</a><span class="k">class</span> <span class="nc">N100RandomForestClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">RandomForestClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Random Forest classification with 100 trees in the forest action.</span>
+<span class="sd">    Fits a Scikit-Learn RandomForestClassifier with parameter n_estimators=100</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Random Forest 100 Estimators&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;n_100_estimators_random_forest&#39;</span>

@@ -456,66 +456,88 @@ document.write(`
                   
   <section id="module-ostatslib.actions.regressors.ensembles">
 <span id="ostatslib-actions-regressors-ensembles"></span><h1>ostatslib.actions.regressors.ensembles<a class="headerlink" href="#module-ostatslib.actions.regressors.ensembles" title="Permalink to this heading">#</a></h1>
+<p>Ensembles regression actions module</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.AdaBoostRegression" title="ostatslib.actions.regressors.ensembles.AdaBoostRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaBoostRegression</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>AdaBoost regression action.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.BaggingRegression" title="ostatslib.actions.regressors.ensembles.BaggingRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaggingRegression</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Bagging regression action.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.ExtraTreesRegression" title="ostatslib.actions.regressors.ensembles.ExtraTreesRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExtraTreesRegression</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>ExtraTrees regression action.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.GradientBoostingRegression" title="ostatslib.actions.regressors.ensembles.GradientBoostingRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GradientBoostingRegression</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Gradient Boosting regression action.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.N100EstimatorsGradientBoostingRegression" title="ostatslib.actions.regressors.ensembles.N100EstimatorsGradientBoostingRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">N100EstimatorsGradientBoostingRegression</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Gradient Boosting with 100 estimators regression action.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.N100EstimatorsRandomForestRegression" title="ostatslib.actions.regressors.ensembles.N100EstimatorsRandomForestRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">N100EstimatorsRandomForestRegression</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Random Forest regression with 100 trees in the forest action.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.RandomForestRegression" title="ostatslib.actions.regressors.ensembles.RandomForestRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RandomForestRegression</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Random Forest regression action.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.AdaBoostRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AdaBoostRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#AdaBoostRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.AdaBoostRegression" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>AdaBoost regression action.
+Fits a Scikit-Learn AdaBoostRegressor
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html</a></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.BaggingRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaggingRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#BaggingRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.BaggingRegression" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Bagging regression action.
+Fits a Scikit-Learn BaggingRegressor
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html</a></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.ExtraTreesRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExtraTreesRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#ExtraTreesRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.ExtraTreesRegression" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>ExtraTrees regression action.
+Fits a Scikit-Learn ExtraTreesRegressor
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html</a></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.GradientBoostingRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GradientBoostingRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#GradientBoostingRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.GradientBoostingRegression" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Gradient Boosting regression action.
+Fits a Scikit-Learn GradientBoostingRegressor
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html</a></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.N100EstimatorsGradientBoostingRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">N100EstimatorsGradientBoostingRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#N100EstimatorsGradientBoostingRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.N100EstimatorsGradientBoostingRegression" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Gradient Boosting with 100 estimators regression action.
+Fits a Scikit-Learn GradientBoostingRegressor with parameter n_estimators=100
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html</a></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.N100EstimatorsRandomForestRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">N100EstimatorsRandomForestRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#N100EstimatorsRandomForestRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.N100EstimatorsRandomForestRegression" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Random Forest regression with 100 trees in the forest action.
+Fits a Scikit-Learn RandomForestRegressor with parameter n_estimators=100
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html</a></p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.RandomForestRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RandomForestRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#RandomForestRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.RandomForestRegression" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Random Forest regression action.
+Fits a Scikit-Learn RandomForestRegressor
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html</a></p>
+</dd></dl>
 
 </section>
 

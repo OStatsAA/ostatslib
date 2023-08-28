@@ -371,11 +371,23 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.utils.split_x_y_data</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span>
+<span></span><span class="sd">&quot;&quot;&quot;split_x_y_data module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
 
 
 <div class="viewcode-block" id="split_x_y_data"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.utils.split_x_y_data.html#ostatslib.actions.utils.split_x_y_data">[docs]</a><span class="k">def</span> <span class="nf">split_x_y_data</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Splits DataFrame in X variables Dataframe and Y response data Series</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (DataFrame): data</span>
+<span class="sd">        state (State): state</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple[DataFrame, Series]: X DataFrame, Y Series</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">target_label</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response_variable_label&quot;</span><span class="p">)</span>
     <span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">target_label</span><span class="p">]</span>
     <span class="n">x_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">target_label</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>

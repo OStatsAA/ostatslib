@@ -1,3 +1,6 @@
+"""Response exploratory actions module
+"""
+
 import operator
 import numpy as np
 from pandas import DataFrame, Series
@@ -8,6 +11,8 @@ from ostatslib.states import State
 
 
 class ResponseUniqueValuesRatioExploration(TargetExploratoryAction):
+    """Gets response variable unique values ratio 
+    """
 
     action_name = 'Response Unique Values Ratio'
     action_key = 'response_unique_values_ratio'
@@ -19,6 +24,8 @@ class ResponseUniqueValuesRatioExploration(TargetExploratoryAction):
 
 
 class InferResponseDTypeExploration(TargetExploratoryAction):
+    """Infer response data type using Pandas function
+    """
 
     action_name = 'Infer Response DType'
     action_key = 'response_inferred_dtype'
@@ -30,6 +37,9 @@ class InferResponseDTypeExploration(TargetExploratoryAction):
 
 
 class IsResponseBalancedExploration(TargetExploratoryAction):
+    """Check if a there's a balance of response min and max 
+    values count (mostly for classification data)
+    """
 
     action_name = 'Is Response Balanced'
     action_key = 'is_response_balanced'
@@ -50,6 +60,8 @@ class IsResponseBalancedExploration(TargetExploratoryAction):
 
 
 class IsResponseDichotomousExploration(TargetExploratoryAction):
+    """Checks if response is dichotomous
+    """
 
     action_name = 'Is Response Dichotomous'
     action_key = 'is_response_dichotomous'
@@ -85,6 +97,8 @@ class IsResponseDichotomousExploration(TargetExploratoryAction):
 
 
 class IsResponseDiscreteExploration(TargetExploratoryAction):
+    """Checks if response is discrete
+    """
 
     action_name = 'Is Response Discrete'
     action_key = 'is_response_discrete'
@@ -111,6 +125,8 @@ class IsResponseDiscreteExploration(TargetExploratoryAction):
 
 
 class IsResponsePositiveValuesOnlyExploration(TargetExploratoryAction):
+    """Check if response contains only positive values
+    """
 
     action_name = 'Is Response Positive Values Only'
     action_key = 'is_response_positive_values_only'
@@ -133,6 +149,8 @@ class IsResponsePositiveValuesOnlyExploration(TargetExploratoryAction):
 
 
 class IsResponseQuantitativeExploration(TargetExploratoryAction):
+    """Checks if response is quantitative
+    """
 
     action_name = 'Is Response Quantitative'
     action_key = 'is_response_quantitative'

@@ -1,3 +1,6 @@
+"""Time convertible variable search action module
+"""
+
 from pandas import DataFrame
 from pandas.api.types import infer_dtype
 from ostatslib.actions.base import ExploratoryAction
@@ -6,6 +9,8 @@ from ostatslib.states import State
 
 
 class TimeConvertibleVariableSearch(ExploratoryAction):
+    """Searches for best time convertible variable if any
+    """
 
     action_name = 'Time Convertible Variable Search'
     action_key = 'time_convertible_variable'

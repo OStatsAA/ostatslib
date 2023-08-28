@@ -1,3 +1,6 @@
+"""Support Vector Machines classification actions module
+"""
+
 import operator
 from sklearn.svm import LinearSVC, SVC, NuSVC
 from ostatslib.actions.base import TargetModelEstimatorAction
@@ -9,6 +12,10 @@ _SVM_VALIDATIONS = [('is_response_discrete', operator.gt, 0),
 
 
 class LinearSupportVectorClassification(TargetModelEstimatorAction[LinearSVC]):
+    """Linear support vector classification action.
+    Fits a Scikit-Learn LinearSVC
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html
+    """
 
     action_name = 'Linear Support Vector Classification'
     action_key = 'linear_support_vector_classification'
@@ -21,6 +28,10 @@ class LinearSupportVectorClassification(TargetModelEstimatorAction[LinearSVC]):
 
 
 class NuSupportVectorClassification(TargetModelEstimatorAction[NuSVC]):
+    """Nu support vector classification action.
+    Fits a Scikit-Learn NuSVC
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVC.html
+    """
 
     action_name = 'Nu-Support Vector Classification'
     action_key = 'nu_support_vector_classification'
@@ -33,6 +44,10 @@ class NuSupportVectorClassification(TargetModelEstimatorAction[NuSVC]):
 
 
 class NuPolyKernelSupportVectorClassification(TargetModelEstimatorAction[NuSVC]):
+    """Nu polynomial support vector classification action.
+    Fits a Scikit-Learn NuSVC with polynomial kernel of degree 3 or 4
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVC.html
+    """
 
     action_name = 'Nu-Support Vector Classification with Polynomial Kernel'
     action_key = 'nu_poly_kernel_support_vector_classification'
@@ -45,6 +60,10 @@ class NuPolyKernelSupportVectorClassification(TargetModelEstimatorAction[NuSVC])
 
 
 class SupportVectorClassification(TargetModelEstimatorAction[SVC]):
+    """Support vector classification action.
+    Fits a Scikit-Learn SVC
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+    """
 
     action_name = 'Support Vector Classification'
     action_key = 'support_vector_classification'
@@ -57,6 +76,10 @@ class SupportVectorClassification(TargetModelEstimatorAction[SVC]):
 
 
 class PolyKernelSupportVectorClassification(TargetModelEstimatorAction[SVC]):
+    """Polynomial support vector classification action.
+    Fits a Scikit-Learn SVC with polynomial kernel of degree 3 or 4
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+    """
 
     action_name = 'Support Vector Classification with Polynomial Kernel'
     action_key = 'poly_kernel_support_vector_classification'

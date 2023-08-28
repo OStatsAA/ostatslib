@@ -1,3 +1,6 @@
+"""Ensembles regression actions module
+"""
+
 import operator
 from sklearn.ensemble import (AdaBoostRegressor,
                               BaggingRegressor,
@@ -9,6 +12,10 @@ from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorActi
 
 
 class AdaBoostRegression(TargetModelEstimatorAction[AdaBoostRegressor]):
+    """AdaBoost regression action.
+    Fits a Scikit-Learn AdaBoostRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html
+    """
 
     action_name = 'AdaBoost Regression'
     action_key = 'adaboost_regression'
@@ -20,6 +27,10 @@ class AdaBoostRegression(TargetModelEstimatorAction[AdaBoostRegressor]):
 
 
 class BaggingRegression(TargetModelEstimatorAction[BaggingRegressor]):
+    """Bagging regression action.
+    Fits a Scikit-Learn BaggingRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html
+    """
 
     action_name = 'Bagging Regression'
     action_key = 'bagging_regression'
@@ -30,6 +41,10 @@ class BaggingRegression(TargetModelEstimatorAction[BaggingRegressor]):
 
 
 class ExtraTreesRegression(TreeEstimatorAction[ExtraTreesRegressor]):
+    """ExtraTrees regression action.
+    Fits a Scikit-Learn ExtraTreesRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesRegressor.html
+    """
 
     action_name = 'Extra-Trees Regression'
     action_key = 'extra_trees_regression'
@@ -43,6 +58,10 @@ class ExtraTreesRegression(TreeEstimatorAction[ExtraTreesRegressor]):
 
 
 class GradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegressor]):
+    """Gradient Boosting regression action.
+    Fits a Scikit-Learn GradientBoostingRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html
+    """
 
     action_name = 'Gradient Boosting Regression'
     action_key = 'gradient_boosting_regression'
@@ -56,7 +75,12 @@ class GradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegr
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 
 
-class N100EstimatorsGradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegressor]):
+class N100EstimatorsGradientBoostingRegression(
+        TargetModelEstimatorAction[GradientBoostingRegressor]):
+    """Gradient Boosting with 100 estimators regression action.
+    Fits a Scikit-Learn GradientBoostingRegressor with parameter n_estimators=100
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html
+    """
 
     action_name = 'Gradient Boosting Regression 100 Estimators'
     action_key = 'n_100_estimators_gradient_boosting_regression'
@@ -69,6 +93,10 @@ class N100EstimatorsGradientBoostingRegression(TargetModelEstimatorAction[Gradie
 
 
 class RandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
+    """Random Forest regression action.
+    Fits a Scikit-Learn RandomForestRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html
+    """
 
     action_name = 'Random Forest Regression'
     action_key = 'random_forest_regression'
@@ -82,6 +110,10 @@ class RandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
 
 
 class N100EstimatorsRandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
+    """Random Forest regression with 100 trees in the forest action.
+    Fits a Scikit-Learn RandomForestRegressor with parameter n_estimators=100
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html
+    """
 
     action_name = 'Random Forest Regression 100 Estimators'
     action_key = 'n_100_estimators_random_forest_regression'

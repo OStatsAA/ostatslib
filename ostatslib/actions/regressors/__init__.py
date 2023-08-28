@@ -1,3 +1,6 @@
+"""Regression actions module
+"""
+
 from .decision_trees import (DecisionTreeRegression,)
 
 from .ensembles import (RandomForestRegression,

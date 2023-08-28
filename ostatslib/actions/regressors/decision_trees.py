@@ -1,3 +1,6 @@
+"""Decision trees regression actions module
+"""
+
 import operator
 from sklearn.tree import DecisionTreeRegressor
 
@@ -5,6 +8,10 @@ from ostatslib.actions.base import TreeEstimatorAction
 
 
 class DecisionTreeRegression(TreeEstimatorAction[DecisionTreeRegressor]):
+    """DecisionTree regression action.
+    Fits a Scikit-Learn DecisionTreeRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html
+    """
 
     action_name = 'Decision Tree Regression'
     action_key = 'decision_tree_regression'

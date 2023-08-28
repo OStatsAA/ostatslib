@@ -1,3 +1,7 @@
+"""
+Actions base classes module
+"""
+
 from abc import ABC, abstractmethod
 from inspect import signature
 import math
@@ -20,6 +24,11 @@ T = TypeVar("T", BaseEstimator, SVC, AutoARIMA)
 
 
 class ActionInfo(dict, Generic[T]):
+    """
+    Information class populated by action or environment during a step.
+    Ostatslib implements Gymnasium step returns
+    `ref <https://gymnasium.farama.org/api/env/#gymnasium.Env.step>`
+    """
     action_name: str
     model: None | T
     raised_exception: bool
@@ -44,6 +53,9 @@ class ActionInfo(dict, Generic[T]):
 
 
 class Action(ABC):
+    """
+    Action base abstract class
+    """
 
     action_name: str
     action_key: str
@@ -62,11 +74,12 @@ class Action(ABC):
         """Handles exceptions on model fitting.
 
         Args:
-            error (Exception): exception
-            state (State): current state
+            error (Exception): thrown exception in fitting/exploring
+            state (State): state
+            config (Config): configuration dictionary
 
         Returns:
-            None: None
+            None: return None
         """
         if self.exceptions_handlers is None:
             return None
@@ -108,35 +121,67 @@ class Action(ABC):
                 data: DataFrame,
                 state: State,
                 config: Config) -> tuple[State, float, ActionInfo]:
-        """Executes and actions
+        """Executes action
 
         Args:
             data (DataFrame): data
-            state (State): current state
-            config (Config): configuration dict
+            state (State): state
+            config (Config): configuration dictionary
 
         Returns:
-            State, float: next state, reward
+            tuple[State, float, ActionInfo]: tuple of next state, reward and action info
         """
 
 
 class ExploratoryAction(Action):
+    """Extends action base class for exploratory actions
+    """
 
     def _calculate_reward(self, state: State, state_copy: State, config: Config) -> float:
+        """Calculates exploratory reward based on configuration dictionary settings
+
+        Args:
+            state (State): state
+            state_copy (State): copy holding initial state values
+            config (Config): configuration dictionary
+
+        Returns:
+            float: reward
+        """
         if state == state_copy:
             return config['MIN_REWARD']
 
         return config['MAX_EXPLORATORY_REWARD']
 
     def _update_state(self, state: State, value: str | int | bool | float) -> State:
+        """Updates state using action_key property and exploration value
+
+        Args:
+            state (State): state
+            value (str | int | bool | float): feature value
+
+        Returns:
+            State: updated state
+        """
         state.set(self.action_key, value)
         return state
 
     @abstractmethod
     def _explore(self, data: DataFrame, state: State) -> str | int | bool | float:
-        ...
+        """Private explore method called by public execute method
 
-    def execute(self, data: DataFrame, state: State, config: Config) -> tuple[State, float, ActionInfo]:
+        Args:
+            data (DataFrame): data
+            state (State): state
+
+        Returns:
+            str | int | bool | float: exploratory value
+        """
+
+    def execute(self,
+                data: DataFrame,
+                state: State,
+                config: Config) -> tuple[State, float, ActionInfo]:
         info = ActionInfo(self.action_name)
         if not self._validate_state(state):
             info.is_invalid_state = True
@@ -158,6 +203,9 @@ class ExploratoryAction(Action):
 
 
 class TargetExploratoryAction(ExploratoryAction):
+    """Extends ExploraotryAction base class for
+    exploratory actions that inspect response variable values
+    """
 
     def _validate_state(self, state: State) -> bool:
         if bool(state.get('response_variable_label')):
@@ -167,6 +215,8 @@ class TargetExploratoryAction(ExploratoryAction):
 
 
 class ModelEstimatorAction(Action, Generic[T]):
+    """Extends base action class for model estimators
+    """
 
     estimator: T
     params_grid: dict | None = None
@@ -176,11 +226,11 @@ class ModelEstimatorAction(Action, Generic[T]):
         return super()._exception_handler(error, state, config)
 
     def _calculate_reward(self, score: float, config: Config) -> float:
-        """Calculates action reward
+        """Calculates reward based on model score and configuration dictionary
 
         Args:
-            state (State): current state
-            score (float): score
+            score (float): score value
+            config (Config): configuration dictionary
 
         Returns:
             float: reward
@@ -194,13 +244,15 @@ class ModelEstimatorAction(Action, Generic[T]):
         return score
 
     def _update_state(self, state: State, reward: float, score: float) -> State:
-        """Updates state before completing action execution
+        """Updates state on action key based on reward and score
 
         Args:
             state (State): state
+            reward (float): reward
+            score (float): model score
 
         Returns:
-            State: next state
+            State: updated state
         """
         state.set(self.action_key + '_score_reward', reward)
 
@@ -213,14 +265,20 @@ class ModelEstimatorAction(Action, Generic[T]):
 
     @abstractmethod
     def _fit(self, data: DataFrame, state: State) -> tuple[T, float]:
-        """Private model fitting method
+        """Private fit method
 
         Args:
-            x_data (DataFrame): data
-            y_data (Series): response values
+            data (DataFrame): data
+            state (State): state
+
+        Returns:
+            tuple[T, float]: adjusted model and score
         """
 
-    def execute(self, data: DataFrame, state: State, config: Config) -> tuple[State, float, ActionInfo[T]]:
+    def execute(self,
+                data: DataFrame,
+                state: State,
+                config: Config) -> tuple[State, float, ActionInfo[T]]:
         info = ActionInfo[T](self.action_name)
         if not self._validate_state(state):
             info.is_invalid_state = True
@@ -249,6 +307,8 @@ class ModelEstimatorAction(Action, Generic[T]):
 
 
 class TargetModelEstimatorAction(ModelEstimatorAction[T]):
+    """Extends ModelEstimatorAction for modeling response (target) variable
+    """
 
     def _validate_state(self, state: State) -> bool:
         if bool(state.get('response_variable_label')):
@@ -274,15 +334,15 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
         return search.best_estimator_, search.best_score_
 
 
-MIN_TREE_DEPTH = 2
-MAX_TREE_DEPTH = 20
-
-
 class TreeEstimatorAction(TargetModelEstimatorAction[T]):
+    """Extends TargetModelEstimatorAction for Tree models
+    """
+    _MIN_TREE_DEPTH = 2
+    _MAX_TREE_DEPTH = 20
 
     def _fit(self, data: DataFrame, state: State) -> tuple[T, float]:
         if self.params_grid is not None:
             max_depth = len(data.columns) // 2
-            self.params_grid['max_depth'] = min(max(max_depth, MIN_TREE_DEPTH),
-                                                MAX_TREE_DEPTH)
+            self.params_grid['max_depth'] = min(max(max_depth, self._MIN_TREE_DEPTH),
+                                                self._MAX_TREE_DEPTH)
         return super()._fit(data, state)

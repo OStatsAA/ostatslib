@@ -1,3 +1,6 @@
+"""Classification actions module
+"""
+
 from .decision_trees import (DecisionTreeClassification)
 
 from .ensembles import (RandomForestClassification,

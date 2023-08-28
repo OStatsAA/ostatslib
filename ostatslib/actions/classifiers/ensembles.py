@@ -1,3 +1,6 @@
+"""Ensembles classification actions module
+"""
+
 import operator
 from sklearn.ensemble import (AdaBoostClassifier,
                               BaggingClassifier,
@@ -9,6 +12,10 @@ from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorActi
 
 
 class AdaBoostClassification(TargetModelEstimatorAction[AdaBoostClassifier]):
+    """AdaBoost classification action.
+    Fits a Scikit-Learn AdaBoostClassifier
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html
+    """
 
     action_name = 'AdaBoost'
     action_key = 'adaboost'
@@ -21,6 +28,10 @@ class AdaBoostClassification(TargetModelEstimatorAction[AdaBoostClassifier]):
 
 
 class BaggingClassification(TargetModelEstimatorAction[BaggingClassifier]):
+    """Bagging classification action.
+    Fits a Scikit-Learn BaggingClassifier
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html
+    """
 
     action_name = 'Bagging'
     action_key = 'bagging'
@@ -33,6 +44,10 @@ class BaggingClassification(TargetModelEstimatorAction[BaggingClassifier]):
 
 
 class ExtraTreesClassification(TreeEstimatorAction[ExtraTreesClassifier]):
+    """ExtraTrees classification action.
+    Fits a Scikit-Learn ExtraTreesClassifier
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html
+    """
 
     action_name = 'Extra-Trees'
     action_key = 'extra_trees'
@@ -48,6 +63,10 @@ class ExtraTreesClassification(TreeEstimatorAction[ExtraTreesClassifier]):
 
 
 class GradientBoostingClassification(TargetModelEstimatorAction[GradientBoostingClassifier]):
+    """Gradient Boosting classification action.
+    Fits a Scikit-Learn GradientBoostingClassifier
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html
+    """
 
     action_name = 'Gradient Boosting'
     action_key = 'gradient_boosting'
@@ -63,6 +82,10 @@ class GradientBoostingClassification(TargetModelEstimatorAction[GradientBoosting
 
 
 class N100GradientBoostingClassification(TargetModelEstimatorAction[GradientBoostingClassifier]):
+    """Gradient Boosting with 100 estimators classification action.
+    Fits a Scikit-Learn GradientBoostingClassifier with parameter n_estimators=100
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html
+    """
 
     action_name = 'Gradient Boosting 100 Estimators'
     action_key = 'n_100_gradient_boosting'
@@ -77,6 +100,10 @@ class N100GradientBoostingClassification(TargetModelEstimatorAction[GradientBoos
 
 
 class RandomForestClassification(TreeEstimatorAction[RandomForestClassifier]):
+    """Random Forest classification action.
+    Fits a Scikit-Learn RandomForestClassifier
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+    """
 
     action_name = 'Random Forest'
     action_key = 'random_forest'
@@ -92,6 +119,10 @@ class RandomForestClassification(TreeEstimatorAction[RandomForestClassifier]):
 
 
 class N100RandomForestClassification(TreeEstimatorAction[RandomForestClassifier]):
+    """Random Forest classification with 100 trees in the forest action.
+    Fits a Scikit-Learn RandomForestClassifier with parameter n_estimators=100
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+    """
 
     action_name = 'Random Forest 100 Estimators'
     action_key = 'n_100_estimators_random_forest'

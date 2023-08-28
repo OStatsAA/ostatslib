@@ -1,3 +1,6 @@
+"""Linear regression models actions module
+"""
+
 import operator
 from datasetsforecast.losses import rmse
 from numpy import ndarray
@@ -16,6 +19,15 @@ from ostatslib.states import State
 
 
 class AutoARIMARegression(TargetModelEstimatorAction[AutoARIMA]):
+    """Auto ARIMA regression action.
+    Fits an ARIMA model based on StatsForecast AutoARIMA model
+    https://nixtla.github.io/statsforecast/src/core/models.html#autoarima-1
+
+
+    Raises:
+        ValueError: no time variable assigned
+        ValueError: cannot infer frequency
+    """
     action_name = 'AutoARIMA Regression'
     action_key = 'auto_arima_regression'
     estimator = AutoARIMA()
@@ -67,6 +79,10 @@ class AutoARIMARegression(TargetModelEstimatorAction[AutoARIMA]):
 
 
 class PoissonRegression(TargetModelEstimatorAction[PoissonRegressor]):
+    """Poisson regression action.
+    Fits a Scikit-Learn PoissonRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PoissonRegressor.html
+    """
 
     action_name = 'Poisson Regression'
     action_key = 'poisson_regression'
@@ -74,6 +90,10 @@ class PoissonRegression(TargetModelEstimatorAction[PoissonRegressor]):
 
 
 class GammaRegression(TargetModelEstimatorAction[GammaRegressor]):
+    """Gamma regression action.
+    Fits a Scikit-Learn GammaRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.GammaRegressor.html
+    """
 
     action_name = 'Gamma Regression'
     action_key = 'gamma_regression'
@@ -81,6 +101,10 @@ class GammaRegression(TargetModelEstimatorAction[GammaRegressor]):
 
 
 class OLSLinearRegression(TargetModelEstimatorAction[LinearRegression]):
+    """Ordinary least squares linear regression action.
+    Fits a Scikit-Learn LinearRegression
+    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
+    """
 
     action_name = 'Linear Regression'
     action_key = 'linear_regression'
@@ -128,7 +152,7 @@ def _reward_for_normally_distributed_errors(state: State,
                                             residuals: ndarray,
                                             config: Config) -> float:
     feature_key = 'are_linear_model_regression_residuals_normally_distributed'
-    pvalue = jarque_bera(residuals)[1]
+    pvalue: float = jarque_bera(residuals)[1]
     return _update_state_and_get_diagnostic_reward(state, config, pvalue, feature_key)
 
 

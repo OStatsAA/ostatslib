@@ -1,3 +1,6 @@
+"""Linear models classification actions module
+"""
+
 import operator
 from sklearn.linear_model import LogisticRegression
 
@@ -5,6 +8,10 @@ from ostatslib.actions.base import TargetModelEstimatorAction
 
 
 class LogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegression]):
+    """Logistic Regression classification action.
+    Fits a Scikit-Learn LogisticRegression with L2 regularization
+    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+    """
 
     action_name = 'Logistic Regression'
     action_key = 'logistic_regression'
@@ -17,6 +24,10 @@ class LogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegres
 
 
 class L1LogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegression]):
+    """Logistic Regression classification action.
+    Fits a Scikit-Learn LogisticRegression with L1 regularization
+    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+    """
 
     action_name = 'Logistic Regression with L1 Regularization'
     action_key = 'l1_logistic_regression'
@@ -29,6 +40,10 @@ class L1LogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegr
 
 
 class ElasticNetLogisticRegressionClassification(TargetModelEstimatorAction[LogisticRegression]):
+    """Logistic Regression classification action.
+    Fits a Scikit-Learn LogisticRegression with Elastic-Net regularization
+    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+    """
 
     action_name = 'Elastic-Net Logistic Regression'
     action_key = 'elasticnet_logistic_regression'

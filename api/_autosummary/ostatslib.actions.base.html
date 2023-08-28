@@ -451,54 +451,52 @@ document.write(`
                   
   <section id="module-ostatslib.actions.base">
 <span id="ostatslib-actions-base"></span><h1>ostatslib.actions.base<a class="headerlink" href="#module-ostatslib.actions.base" title="Permalink to this heading">#</a></h1>
-<p>Actions base classes module</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.base.Action" title="ostatslib.actions.base.Action"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Action</span></code></a>()</p></td>
-<td><p>Action base abstract class</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActionInfo</span></code></a>(action_name[, model, ...])</p></td>
-<td><p>Information class populated by action or environment during a step.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.base.ExploratoryAction" title="ostatslib.actions.base.ExploratoryAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExploratoryAction</span></code></a>()</p></td>
-<td><p>Extends action base class for exploratory actions</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.base.ModelEstimatorAction" title="ostatslib.actions.base.ModelEstimatorAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelEstimatorAction</span></code></a>()</p></td>
-<td><p>Extends base action class for model estimators</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.base.TargetExploratoryAction" title="ostatslib.actions.base.TargetExploratoryAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TargetExploratoryAction</span></code></a>()</p></td>
-<td><p>Extends ExploraotryAction base class for exploratory actions that inspect response variable values</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.base.TargetModelEstimatorAction" title="ostatslib.actions.base.TargetModelEstimatorAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TargetModelEstimatorAction</span></code></a>()</p></td>
-<td><p>Extends ModelEstimatorAction for modeling response (target) variable</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.base.TreeEstimatorAction" title="ostatslib.actions.base.TreeEstimatorAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeEstimatorAction</span></code></a>()</p></td>
-<td><p>Extends TargetModelEstimatorAction for Tree models</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.base.Action">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Action</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#Action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.Action" title="Permalink to this definition">#</a></dt>
-<dd><p>Action base abstract class</p>
-<dl class="py method">
+<dd><dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.base.Action.execute">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Config</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo"><span class="pre">ostatslib.actions.base.ActionInfo</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#Action.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.Action.execute" title="Permalink to this definition">#</a></dt>
-<dd><p>Executes action</p>
+<dd><p>Executes and actions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>DataFrame</em>) – data</p></li>
-<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p></li>
-<li><p><strong>config</strong> (<em>Config</em>) – configuration dictionary</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – current state</p></li>
+<li><p><strong>config</strong> (<em>Config</em>) – configuration dict</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>tuple of next state, reward and action info</p>
+<dd class="field-even"><p>next state, reward</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple[<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float, <a class="reference internal" href="#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo">ActionInfo</a>]</p>
+<dd class="field-odd"><p><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -508,32 +506,28 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.base.ActionInfo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ActionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raised_exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_invalid_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#ActionInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.ActionInfo" title="Permalink to this definition">#</a></dt>
-<dd><p>Information class populated by action or environment during a step.
-Ostatslib implements Gymnasium step returns
-<cite>ref &lt;https://gymnasium.farama.org/api/env/#gymnasium.Env.step&gt;</cite></p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.base.ExploratoryAction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExploratoryAction</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#ExploratoryAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.ExploratoryAction" title="Permalink to this definition">#</a></dt>
-<dd><p>Extends action base class for exploratory actions</p>
-<dl class="py method">
+<dd><dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.base.ExploratoryAction.execute">
 <span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Config</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo"><span class="pre">ostatslib.actions.base.ActionInfo</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#ExploratoryAction.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.ExploratoryAction.execute" title="Permalink to this definition">#</a></dt>
-<dd><p>Executes action</p>
+<dd><p>Executes and actions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>DataFrame</em>) – data</p></li>
-<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p></li>
-<li><p><strong>config</strong> (<em>Config</em>) – configuration dictionary</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – current state</p></li>
+<li><p><strong>config</strong> (<em>Config</em>) – configuration dict</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>tuple of next state, reward and action info</p>
+<dd class="field-even"><p>next state, reward</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple[<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float, <a class="reference internal" href="#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo">ActionInfo</a>]</p>
+<dd class="field-odd"><p><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -543,24 +537,23 @@ Ostatslib implements Gymnasium step returns
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.base.ModelEstimatorAction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ModelEstimatorAction</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#ModelEstimatorAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.ModelEstimatorAction" title="Permalink to this definition">#</a></dt>
-<dd><p>Extends base action class for model estimators</p>
-<dl class="py method">
+<dd><dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.base.ModelEstimatorAction.execute">
 <span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Config</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo"><span class="pre">ostatslib.actions.base.ActionInfo</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#ModelEstimatorAction.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.ModelEstimatorAction.execute" title="Permalink to this definition">#</a></dt>
-<dd><p>Executes action</p>
+<dd><p>Executes and actions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>DataFrame</em>) – data</p></li>
-<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p></li>
-<li><p><strong>config</strong> (<em>Config</em>) – configuration dictionary</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – current state</p></li>
+<li><p><strong>config</strong> (<em>Config</em>) – configuration dict</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>tuple of next state, reward and action info</p>
+<dd class="field-even"><p>next state, reward</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple[<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float, <a class="reference internal" href="#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo">ActionInfo</a>]</p>
+<dd class="field-odd"><p><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -570,21 +563,17 @@ Ostatslib implements Gymnasium step returns
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.base.TargetExploratoryAction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TargetExploratoryAction</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#TargetExploratoryAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.TargetExploratoryAction" title="Permalink to this definition">#</a></dt>
-<dd><p>Extends ExploraotryAction base class for
-exploratory actions that inspect response variable values</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.base.TargetModelEstimatorAction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TargetModelEstimatorAction</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#TargetModelEstimatorAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.TargetModelEstimatorAction" title="Permalink to this definition">#</a></dt>
-<dd><p>Extends ModelEstimatorAction for modeling response (target) variable</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.base.TreeEstimatorAction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TreeEstimatorAction</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/base.html#TreeEstimatorAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.base.TreeEstimatorAction" title="Permalink to this definition">#</a></dt>
-<dd><p>Extends TargetModelEstimatorAction for Tree models</p>
-</dd></dl>
+<dd></dd></dl>
 
 </section>
 

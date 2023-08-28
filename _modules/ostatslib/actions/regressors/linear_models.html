@@ -371,10 +371,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.regressors.linear_models</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Linear regression models actions module</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">operator</span>
+<span></span><span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">datasetsforecast.losses</span> <span class="kn">import</span> <span class="n">rmse</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span><span class="p">,</span> <span class="n">infer_freq</span>
@@ -392,15 +389,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="AutoARIMARegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.AutoARIMARegression">[docs]</a><span class="k">class</span> <span class="nc">AutoARIMARegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">AutoARIMA</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Auto ARIMA regression action.</span>
-<span class="sd">    Fits an ARIMA model based on StatsForecast AutoARIMA model</span>
-<span class="sd">    https://nixtla.github.io/statsforecast/src/core/models.html#autoarima-1</span>
-
-
-<span class="sd">    Raises:</span>
-<span class="sd">        ValueError: no time variable assigned</span>
-<span class="sd">        ValueError: cannot infer frequency</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;AutoARIMA Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;auto_arima_regression&#39;</span>
     <span class="n">estimator</span> <span class="o">=</span> <span class="n">AutoARIMA</span><span class="p">()</span>
@@ -452,10 +440,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="PoissonRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.PoissonRegression">[docs]</a><span class="k">class</span> <span class="nc">PoissonRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">PoissonRegressor</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Poisson regression action.</span>
-<span class="sd">    Fits a Scikit-Learn PoissonRegressor</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PoissonRegressor.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Poisson Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;poisson_regression&#39;</span>
@@ -463,10 +447,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="GammaRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.GammaRegression">[docs]</a><span class="k">class</span> <span class="nc">GammaRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">GammaRegressor</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gamma regression action.</span>
-<span class="sd">    Fits a Scikit-Learn GammaRegressor</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.GammaRegressor.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Gamma Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;gamma_regression&#39;</span>
@@ -474,10 +454,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="OLSLinearRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.linear_models.html#ostatslib.actions.regressors.linear_models.OLSLinearRegression">[docs]</a><span class="k">class</span> <span class="nc">OLSLinearRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">LinearRegression</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ordinary least squares linear regression action.</span>
-<span class="sd">    Fits a Scikit-Learn LinearRegression</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Linear Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;linear_regression&#39;</span>
@@ -525,7 +501,7 @@ document.write(`
                                             <span class="n">residuals</span><span class="p">:</span> <span class="n">ndarray</span><span class="p">,</span>
                                             <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="n">feature_key</span> <span class="o">=</span> <span class="s1">&#39;are_linear_model_regression_residuals_normally_distributed&#39;</span>
-    <span class="n">pvalue</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">jarque_bera</span><span class="p">(</span><span class="n">residuals</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">pvalue</span> <span class="o">=</span> <span class="n">jarque_bera</span><span class="p">(</span><span class="n">residuals</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">_update_state_and_get_diagnostic_reward</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">,</span> <span class="n">feature_key</span><span class="p">)</span>
 
 

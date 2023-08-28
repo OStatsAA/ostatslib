@@ -371,10 +371,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.regressors.svr</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Support Vector Regression actions module</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">operator</span>
+<span></span><span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span><span class="p">,</span> <span class="n">LinearSVR</span><span class="p">,</span> <span class="n">NuSVR</span>
 <span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">TargetModelEstimatorAction</span>
 
@@ -384,10 +381,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="LinearSupportVectorRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.LinearSupportVectorRegression">[docs]</a><span class="k">class</span> <span class="nc">LinearSupportVectorRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">LinearSVR</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Linear support vector regression action.</span>
-<span class="sd">    Fits a Scikit-Learn LinearSVR</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Linear Support Vector Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;linear_support_vector_regression&#39;</span>
@@ -401,10 +394,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="NuSupportVectorRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.NuSupportVectorRegression">[docs]</a><span class="k">class</span> <span class="nc">NuSupportVectorRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">NuSVR</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nu support vector regression action.</span>
-<span class="sd">    Fits a Scikit-Learn NuSVR</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVR.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Nu-Support Vector Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;nu_support_vector_regression&#39;</span>
@@ -418,10 +407,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="NuPolyKernelSupportVectorRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.NuPolyKernelSupportVectorRegression">[docs]</a><span class="k">class</span> <span class="nc">NuPolyKernelSupportVectorRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">NuSVR</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nu polynomial support vector regression action.</span>
-<span class="sd">    Fits a Scikit-Learn NuSVR with polynomial kernel of degree 3 or 4</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVR.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Nu-Support Vector Regression with Polynomial Kernel&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;nu_poly_kernel_support_vector_regression&#39;</span>
@@ -435,10 +420,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="SupportVectorRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.SupportVectorRegression">[docs]</a><span class="k">class</span> <span class="nc">SupportVectorRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">SVR</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Support vector regression action.</span>
-<span class="sd">    Fits a Scikit-Learn SVR</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Support Vector Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;support_vector_regression&#39;</span>
@@ -451,10 +432,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="PolyKernelSupportVectorRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.PolyKernelSupportVectorRegression">[docs]</a><span class="k">class</span> <span class="nc">PolyKernelSupportVectorRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">SVR</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Polynomial support vector regression action.</span>
-<span class="sd">    Fits a Scikit-Learn SVR with polynomial kernel of degree 3 or 4</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Support Vector Regression with Polynomial Kernel&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;poly_kernel_support_vector_regression&#39;</span>

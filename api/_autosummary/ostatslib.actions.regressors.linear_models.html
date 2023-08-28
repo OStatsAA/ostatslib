@@ -456,71 +456,53 @@ document.write(`
                   
   <section id="module-ostatslib.actions.regressors.linear_models">
 <span id="ostatslib-actions-regressors-linear-models"></span><h1>ostatslib.actions.regressors.linear_models<a class="headerlink" href="#module-ostatslib.actions.regressors.linear_models" title="Permalink to this heading">#</a></h1>
-<p>Linear regression models actions module</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.linear_models.AutoARIMARegression" title="ostatslib.actions.regressors.linear_models.AutoARIMARegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AutoARIMARegression</span></code></a>()</p></td>
-<td><p>Auto ARIMA regression action.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.linear_models.GammaRegression" title="ostatslib.actions.regressors.linear_models.GammaRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GammaRegression</span></code></a>()</p></td>
-<td><p>Gamma regression action.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.linear_models.OLSLinearRegression" title="ostatslib.actions.regressors.linear_models.OLSLinearRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OLSLinearRegression</span></code></a>()</p></td>
-<td><p>Ordinary least squares linear regression action.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.linear_models.PoissonRegression" title="ostatslib.actions.regressors.linear_models.PoissonRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoissonRegression</span></code></a>()</p></td>
-<td><p>Poisson regression action.</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.linear_models.AutoARIMARegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AutoARIMARegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/linear_models.html#AutoARIMARegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.linear_models.AutoARIMARegression" title="Permalink to this definition">#</a></dt>
-<dd><p>Auto ARIMA regression action.
-Fits an ARIMA model based on StatsForecast AutoARIMA model
-<a class="reference external" href="https://nixtla.github.io/statsforecast/src/core/models.html#autoarima-1">https://nixtla.github.io/statsforecast/src/core/models.html#autoarima-1</a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ValueError</strong> – no time variable assigned</p></li>
-<li><p><strong>ValueError</strong> – cannot infer frequency</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.linear_models.GammaRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GammaRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/linear_models.html#GammaRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.linear_models.GammaRegression" title="Permalink to this definition">#</a></dt>
-<dd><p>Gamma regression action.
-Fits a Scikit-Learn GammaRegressor
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.GammaRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.GammaRegressor.html</a></p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.linear_models.OLSLinearRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OLSLinearRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/linear_models.html#OLSLinearRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.linear_models.OLSLinearRegression" title="Permalink to this definition">#</a></dt>
-<dd><p>Ordinary least squares linear regression action.
-Fits a Scikit-Learn LinearRegression
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html</a></p>
-<dl class="py method">
+<dd><dl class="py method">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.linear_models.OLSLinearRegression.execute">
 <span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Config</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">ostatslib.states.state.State</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.base.html#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo"><span class="pre">ostatslib.actions.base.ActionInfo</span></a><span class="p"><span class="pre">[</span></span><span class="pre">sklearn.linear_model._base.LinearRegression</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/linear_models.html#OLSLinearRegression.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.linear_models.OLSLinearRegression.execute" title="Permalink to this definition">#</a></dt>
-<dd><p>Executes action</p>
+<dd><p>Executes and actions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<em>DataFrame</em>) – data</p></li>
-<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – state</p></li>
-<li><p><strong>config</strong> (<em>Config</em>) – configuration dictionary</p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><em>State</em></a>) – current state</p></li>
+<li><p><strong>config</strong> (<em>Config</em>) – configuration dict</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>tuple of next state, reward and action info</p>
+<dd class="field-even"><p>next state, reward</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple[<a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float, <a class="reference internal" href="ostatslib.actions.base.html#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo">ActionInfo</a>]</p>
+<dd class="field-odd"><p><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State">State</a>, float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -530,10 +512,7 @@ Fits a Scikit-Learn LinearRegression
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.linear_models.PoissonRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PoissonRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/linear_models.html#PoissonRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.linear_models.PoissonRegression" title="Permalink to this definition">#</a></dt>
-<dd><p>Poisson regression action.
-Fits a Scikit-Learn PoissonRegressor
-<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PoissonRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PoissonRegressor.html</a></p>
-</dd></dl>
+<dd></dd></dl>
 
 </section>
 

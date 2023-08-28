@@ -371,10 +371,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.exploratory_actions.metrics_exploratory_actions</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Metrics exploratory actions module</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">numpy.lib.scimath</span> <span class="kn">import</span> <span class="n">logn</span><span class="p">,</span> <span class="n">log10</span>
+<span></span><span class="kn">from</span> <span class="nn">numpy.lib.scimath</span> <span class="kn">import</span> <span class="n">logn</span><span class="p">,</span> <span class="n">log10</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">tril</span><span class="p">,</span> <span class="n">prod</span><span class="p">,</span> <span class="n">isclose</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
 <span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">ExploratoryAction</span>
@@ -382,12 +379,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="LogColumnsCountExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.LogColumnsCountExploration">[docs]</a><span class="k">class</span> <span class="nc">LogColumnsCountExploration</span><span class="p">(</span><span class="n">ExploratoryAction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets log of columns count</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">        \\log_{\\text{columns}} 1000</span>
-<span class="sd">    </span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Log Columns Count&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;log_columns_count&#39;</span>
@@ -399,12 +390,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="LogRowsCountExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.LogRowsCountExploration">[docs]</a><span class="k">class</span> <span class="nc">LogRowsCountExploration</span><span class="p">(</span><span class="n">ExploratoryAction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets log of columns count</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">        \\log_{10} \\frac{rows}{5.176}</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Log Rows Count&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;log_rows_count&#39;</span>
@@ -417,13 +402,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="CorrelatedVariablesRatioExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.CorrelatedVariablesRatioExploration">[docs]</a><span class="k">class</span> <span class="nc">CorrelatedVariablesRatioExploration</span><span class="p">(</span><span class="n">ExploratoryAction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets correlation ratio using variables correlation matrix.</span>
-<span class="sd">    Correlation threshold fixed at 0.5.</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">        \\frac{correlated}{total}</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Correlated Variables Ratio&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;correlated_variables_ratio&#39;</span>
@@ -440,8 +418,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="MissingDataRatioExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.MissingDataRatioExploration">[docs]</a><span class="k">class</span> <span class="nc">MissingDataRatioExploration</span><span class="p">(</span><span class="n">ExploratoryAction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets missing data ratio</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Missing Data Ratio&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;missing_data_ratio&#39;</span>
@@ -457,8 +433,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="StandardizedVariablesRatioExploration"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.StandardizedVariablesRatioExploration">[docs]</a><span class="k">class</span> <span class="nc">StandardizedVariablesRatioExploration</span><span class="p">(</span><span class="n">ExploratoryAction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets ratio of variables that are standardized</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Standardized Variables Ratio&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;standardized_variables_ratio&#39;</span>

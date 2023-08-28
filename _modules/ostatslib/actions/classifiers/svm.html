@@ -371,10 +371,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.classifiers.svm</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Support Vector Machines classification actions module</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">operator</span>
+<span></span><span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span><span class="p">,</span> <span class="n">SVC</span><span class="p">,</span> <span class="n">NuSVC</span>
 <span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">TargetModelEstimatorAction</span>
 
@@ -385,10 +382,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="LinearSupportVectorClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.LinearSupportVectorClassification">[docs]</a><span class="k">class</span> <span class="nc">LinearSupportVectorClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">LinearSVC</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Linear support vector classification action.</span>
-<span class="sd">    Fits a Scikit-Learn LinearSVC</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Linear Support Vector Classification&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;linear_support_vector_classification&#39;</span>
@@ -401,10 +394,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="NuSupportVectorClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.NuSupportVectorClassification">[docs]</a><span class="k">class</span> <span class="nc">NuSupportVectorClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">NuSVC</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nu support vector classification action.</span>
-<span class="sd">    Fits a Scikit-Learn NuSVC</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVC.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Nu-Support Vector Classification&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;nu_support_vector_classification&#39;</span>
@@ -417,10 +406,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="NuPolyKernelSupportVectorClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.NuPolyKernelSupportVectorClassification">[docs]</a><span class="k">class</span> <span class="nc">NuPolyKernelSupportVectorClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">NuSVC</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nu polynomial support vector classification action.</span>
-<span class="sd">    Fits a Scikit-Learn NuSVC with polynomial kernel of degree 3 or 4</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVC.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Nu-Support Vector Classification with Polynomial Kernel&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;nu_poly_kernel_support_vector_classification&#39;</span>
@@ -433,10 +418,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="SupportVectorClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.SupportVectorClassification">[docs]</a><span class="k">class</span> <span class="nc">SupportVectorClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">SVC</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Support vector classification action.</span>
-<span class="sd">    Fits a Scikit-Learn SVC</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Support Vector Classification&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;support_vector_classification&#39;</span>
@@ -449,10 +430,6 @@ document.write(`
 
 
 <div class="viewcode-block" id="PolyKernelSupportVectorClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.svm.html#ostatslib.actions.classifiers.svm.PolyKernelSupportVectorClassification">[docs]</a><span class="k">class</span> <span class="nc">PolyKernelSupportVectorClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">SVC</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Polynomial support vector classification action.</span>
-<span class="sd">    Fits a Scikit-Learn SVC with polynomial kernel of degree 3 or 4</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Support Vector Classification with Polynomial Kernel&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;poly_kernel_support_vector_classification&#39;</span>

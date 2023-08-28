@@ -1,3 +1,6 @@
+"""Metrics exploratory actions module
+"""
+
 from numpy.lib.scimath import logn, log10
 from numpy import tril, prod, isclose
 from pandas import DataFrame
@@ -6,6 +9,12 @@ from ostatslib.states import State
 
 
 class LogColumnsCountExploration(ExploratoryAction):
+    """Gets log of columns count
+
+    .. math::
+        \\log_{\\text{columns}} 1000
+    
+    """
 
     action_name = 'Log Columns Count'
     action_key = 'log_columns_count'
@@ -17,6 +26,12 @@ class LogColumnsCountExploration(ExploratoryAction):
 
 
 class LogRowsCountExploration(ExploratoryAction):
+    """Gets log of columns count
+
+    .. math::
+        \\log_{10} \\frac{rows}{5.176}
+
+    """
 
     action_name = 'Log Rows Count'
     action_key = 'log_rows_count'
@@ -29,6 +44,13 @@ class LogRowsCountExploration(ExploratoryAction):
 
 
 class CorrelatedVariablesRatioExploration(ExploratoryAction):
+    """Gets correlation ratio using variables correlation matrix.
+    Correlation threshold fixed at 0.5.
+
+    .. math::
+        \\frac{correlated}{total}
+
+    """
 
     action_name = 'Correlated Variables Ratio'
     action_key = 'correlated_variables_ratio'
@@ -45,6 +67,8 @@ class CorrelatedVariablesRatioExploration(ExploratoryAction):
 
 
 class MissingDataRatioExploration(ExploratoryAction):
+    """Gets missing data ratio
+    """
 
     action_name = 'Missing Data Ratio'
     action_key = 'missing_data_ratio'
@@ -60,6 +84,8 @@ class MissingDataRatioExploration(ExploratoryAction):
 
 
 class StandardizedVariablesRatioExploration(ExploratoryAction):
+    """Gets ratio of variables that are standardized
+    """
 
     action_name = 'Standardized Variables Ratio'
     action_key = 'standardized_variables_ratio'

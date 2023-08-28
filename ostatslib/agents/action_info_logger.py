@@ -1,3 +1,6 @@
+"""ActionInfoLogger module
+"""
+
 import csv
 from stable_baselines3.common.callbacks import BaseCallback
 
@@ -7,6 +10,8 @@ CSV_NAME = 'action_info_log.csv'
 
 
 class ActionInfoLogger(BaseCallback):
+    """Logger class to track actions information during training
+    """
 
     _log_file_path: str = CSV_NAME
 

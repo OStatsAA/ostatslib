@@ -1,3 +1,6 @@
+"""ActionsSpace module
+"""
+
 import inspect
 from types import ModuleType
 from functools import cached_property
@@ -33,6 +36,9 @@ def _build_actions_dict(actions_module: ModuleType, offset: int = 0) -> dict[int
 
 
 class ActionsSpace(MultiBinary):
+    """Actions space initializes actions and make them available to 
+    the environment. Extends Gymnasium MultiBinary space.
+    """
 
     def __init__(self) -> None:
         _exploratory_actions = _build_actions_dict(exploratory_actions)
@@ -43,16 +49,26 @@ class ActionsSpace(MultiBinary):
 
     @property
     def actions_dict(self) -> dict[int, Action | None]:
+        """Actions in actions space
+
+        Returns:
+            dict[int, Action | None]: dictionary of actions in actions space
+        """
         return self._actions
 
     @cached_property
     def actions_list(self) -> list[Action]:
+        """List of valid actions available in actions space
+
+        Returns:
+            list[Action]: list of available actions
+        """
         return [action for action in self.actions_dict.values() if action is not None]
 
     @property
     def encoding_length(self) -> int:
         """
-        Returns encoding length (# of digits in the)
+        Returns encoding length (# of digits in the encoding)
 
         Returns:
             int: # of digits in the encoding
@@ -60,12 +76,32 @@ class ActionsSpace(MultiBinary):
         return ENCODING_LENGTH
 
     def get_action(self, numeric_key: int | np.ndarray) -> Action | None:
+        """Get action by numeric key.
+        Numeric key may be an integer or ndarray binary representation (from policy network)
+
+        Args:
+            numeric_key (int | np.ndarray): action numeric key
+
+        Returns:
+            Action | None: action or None if dict key is not an action
+        """
         if isinstance(numeric_key, np.ndarray):
             numeric_key = _binary_to_integer(numeric_key)
 
         return self._actions[numeric_key]
 
     def get_action_by_class(self, action: type) -> Action:
+        """Get action instance in actions space by class
+
+        Args:
+            action (type): action type
+
+        Raises:
+            ValueError: raised if no action of type is found
+
+        Returns:
+            Action: action instance in actions space
+        """
         for action_ in self.actions_list:
             if isinstance(action_, action):
                 return action_

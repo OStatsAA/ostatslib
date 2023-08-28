@@ -1,3 +1,6 @@
+"""Exploratory actions module
+"""
+
 from .metrics_exploratory_actions import (LogColumnsCountExploration,
                                           LogRowsCountExploration,
                                           CorrelatedVariablesRatioExploration,

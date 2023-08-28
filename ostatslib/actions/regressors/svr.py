@@ -1,3 +1,6 @@
+"""Support Vector Regression actions module
+"""
+
 import operator
 from sklearn.svm import SVR, LinearSVR, NuSVR
 from ostatslib.actions.base import TargetModelEstimatorAction
@@ -8,6 +11,10 @@ _SVM_VALIDATIONS = [('is_response_quantitative', operator.gt, 0),
 
 
 class LinearSupportVectorRegression(TargetModelEstimatorAction[LinearSVR]):
+    """Linear support vector regression action.
+    Fits a Scikit-Learn LinearSVR
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVR.html
+    """
 
     action_name = 'Linear Support Vector Regression'
     action_key = 'linear_support_vector_regression'
@@ -21,6 +28,10 @@ class LinearSupportVectorRegression(TargetModelEstimatorAction[LinearSVR]):
 
 
 class NuSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
+    """Nu support vector regression action.
+    Fits a Scikit-Learn NuSVR
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVR.html
+    """
 
     action_name = 'Nu-Support Vector Regression'
     action_key = 'nu_support_vector_regression'
@@ -34,6 +45,10 @@ class NuSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
 
 
 class NuPolyKernelSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
+    """Nu polynomial support vector regression action.
+    Fits a Scikit-Learn NuSVR with polynomial kernel of degree 3 or 4
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVR.html
+    """
 
     action_name = 'Nu-Support Vector Regression with Polynomial Kernel'
     action_key = 'nu_poly_kernel_support_vector_regression'
@@ -47,6 +62,10 @@ class NuPolyKernelSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
 
 
 class SupportVectorRegression(TargetModelEstimatorAction[SVR]):
+    """Support vector regression action.
+    Fits a Scikit-Learn SVR
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html
+    """
 
     action_name = 'Support Vector Regression'
     action_key = 'support_vector_regression'
@@ -59,6 +78,10 @@ class SupportVectorRegression(TargetModelEstimatorAction[SVR]):
 
 
 class PolyKernelSupportVectorRegression(TargetModelEstimatorAction[SVR]):
+    """Polynomial support vector regression action.
+    Fits a Scikit-Learn SVR with polynomial kernel of degree 3 or 4
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html
+    """
 
     action_name = 'Support Vector Regression with Polynomial Kernel'
     action_key = 'poly_kernel_support_vector_regression'

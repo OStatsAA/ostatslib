@@ -70,6 +70,7 @@ class GymEnvironment(Env):
                                                           self.config)
 
         self.__steps_taken += 1
+        self._state = state
         observation = state.features_dict
         terminated = self.__is_done(state, reward)
         truncated = self.__is_truncated(terminated)

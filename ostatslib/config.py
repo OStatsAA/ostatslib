@@ -25,6 +25,9 @@ class Config(TypedDict):
     # Scores
     MIN_ACCEPTED_SCORE: float
 
+    # Runtime
+    FIT_TIMEOUT: int
+
 
 DEFAULT_CONFIG = Config(
     FULL_PENALIZED_PVALUE=0.01,
@@ -34,5 +37,6 @@ DEFAULT_CONFIG = Config(
     MAX_REWARD=1,
     EXPLORATORY_REWARD_FRACTION=0.1,
     MAX_EXPLORATORY_REWARD=0.1,
-    MIN_ACCEPTED_SCORE=0.7
+    MIN_ACCEPTED_SCORE=0.7,
+    FIT_TIMEOUT=600
 )

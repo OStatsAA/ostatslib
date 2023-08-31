@@ -15,6 +15,7 @@ from sklearn.model_selection import GridSearchCV, cross_validate
 from sklearn.base import BaseEstimator
 from sklearn.svm import SVC
 from statsforecast.models import AutoARIMA
+from wrapt_timeout_decorator import *
 
 from ostatslib.config import Config
 from ostatslib.states import State
@@ -264,12 +265,13 @@ class ModelEstimatorAction(Action, Generic[T]):
         return state
 
     @abstractmethod
-    def _fit(self, data: DataFrame, state: State) -> tuple[T, float]:
+    def _fit(self, data: DataFrame, state: State, config: Config) -> tuple[T, float]:
         """Private fit method
 
         Args:
             data (DataFrame): data
             state (State): state
+            config (Config): configuration dictionary
 
         Returns:
             tuple[T, float]: adjusted model and score
@@ -290,10 +292,12 @@ class ModelEstimatorAction(Action, Generic[T]):
             warnings.filterwarnings('error', category=ConvergenceWarning)
             fit_start = time.perf_counter()
             try:
-                model, score = self._fit(data, state)
+                model, score = self._fit(data, state, config)
                 info.fit_time = time.perf_counter() - fit_start
                 info.model = model
             except Exception as error:
+                if isinstance(error, TimeoutError):
+                    print(error.args[0])
                 info.fit_time = time.perf_counter() - fit_start
                 self._exception_handler(error, state, config)
                 info.raised_exception = True
@@ -316,7 +320,7 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
 
         return False
 
-    def _fit(self, data: DataFrame, state: State) -> tuple[T, float]:
+    def _fit(self, data: DataFrame, state: State, config: Config) -> tuple[T, float]:
         x_data, y_data = split_x_y_data(data, state)
 
         if self.params_grid is None:
@@ -330,7 +334,9 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
             return best_estimator, best_score
 
         search = GridSearchCV(self.estimator,
-                              self.params_grid).fit(x_data, y_data)
+                              self.params_grid,
+                              n_jobs=4)
+        search = timeout(config['FIT_TIMEOUT'])(search.fit)(x_data, y_data)
         return search.best_estimator_, search.best_score_
 
 
@@ -340,9 +346,9 @@ class TreeEstimatorAction(TargetModelEstimatorAction[T]):
     _MIN_TREE_DEPTH = 2
     _MAX_TREE_DEPTH = 20
 
-    def _fit(self, data: DataFrame, state: State) -> tuple[T, float]:
+    def _fit(self, data: DataFrame, state: State, config: Config) -> tuple[T, float]:
         if self.params_grid is not None:
             max_depth = len(data.columns) // 2
             self.params_grid['max_depth'] = min(max(max_depth, self._MIN_TREE_DEPTH),
                                                 self._MAX_TREE_DEPTH)
-        return super()._fit(data, state)
+        return super()._fit(data, state, config)

@@ -33,7 +33,7 @@ class AutoARIMARegression(TargetModelEstimatorAction[AutoARIMA]):
     estimator = AutoARIMA()
     validations = [('time_convertible_variable', operator.truth, None)]
 
-    def _fit(self, data: DataFrame, state: State) -> tuple[AutoARIMA, float]:
+    def _fit(self, data: DataFrame, state: State, config: Config) -> tuple[AutoARIMA, float]:
         time_var_label = self.__get_time_var_label(state)
         freq = self.__get_frequency(data, time_var_label)
 

@@ -371,7 +371,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.agents.action_info_logger</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span></span><span class="sd">&quot;&quot;&quot;ActionInfoLogger module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3.common.callbacks</span> <span class="kn">import</span> <span class="n">BaseCallback</span>
 
 <span class="n">CSV_HEADERS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;action_name&#39;</span><span class="p">,</span> <span class="s1">&#39;iteration&#39;</span><span class="p">,</span>
@@ -380,6 +383,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="ActionInfoLogger"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.agents.action_info_logger.html#ostatslib.agents.action_info_logger.ActionInfoLogger">[docs]</a><span class="k">class</span> <span class="nc">ActionInfoLogger</span><span class="p">(</span><span class="n">BaseCallback</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Logger class to track actions information during training</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_log_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">CSV_NAME</span>
 

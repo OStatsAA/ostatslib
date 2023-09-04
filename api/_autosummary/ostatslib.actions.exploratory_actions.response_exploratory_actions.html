@@ -456,66 +456,75 @@ document.write(`
                   
   <section id="module-ostatslib.actions.exploratory_actions.response_exploratory_actions">
 <span id="ostatslib-actions-exploratory-actions-response-exploratory-actions"></span><h1>ostatslib.actions.exploratory_actions.response_exploratory_actions<a class="headerlink" href="#module-ostatslib.actions.exploratory_actions.response_exploratory_actions" title="Permalink to this heading">#</a></h1>
+<p>Response exploratory actions module</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.InferResponseDTypeExploration" title="ostatslib.actions.exploratory_actions.response_exploratory_actions.InferResponseDTypeExploration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InferResponseDTypeExploration</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Infer response data type using Pandas function</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseBalancedExploration" title="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseBalancedExploration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsResponseBalancedExploration</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Check if a there's a balance of response min and max values count (mostly for classification data)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDichotomousExploration" title="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDichotomousExploration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsResponseDichotomousExploration</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Checks if response is dichotomous</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDiscreteExploration" title="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDiscreteExploration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsResponseDiscreteExploration</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Checks if response is discrete</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponsePositiveValuesOnlyExploration" title="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponsePositiveValuesOnlyExploration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsResponsePositiveValuesOnlyExploration</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Check if response contains only positive values</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseQuantitativeExploration" title="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseQuantitativeExploration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsResponseQuantitativeExploration</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Checks if response is quantitative</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.ResponseUniqueValuesRatioExploration" title="ostatslib.actions.exploratory_actions.response_exploratory_actions.ResponseUniqueValuesRatioExploration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResponseUniqueValuesRatioExploration</span></code></a>()</p></td>
-<td><p></p></td>
+<td><p>Gets response variable unique values ratio</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.exploratory_actions.response_exploratory_actions.InferResponseDTypeExploration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InferResponseDTypeExploration</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/exploratory_actions/response_exploratory_actions.html#InferResponseDTypeExploration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.InferResponseDTypeExploration" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Infer response data type using Pandas function</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseBalancedExploration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsResponseBalancedExploration</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/exploratory_actions/response_exploratory_actions.html#IsResponseBalancedExploration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseBalancedExploration" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Check if a there’s a balance of response min and max
+values count (mostly for classification data)</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDichotomousExploration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsResponseDichotomousExploration</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/exploratory_actions/response_exploratory_actions.html#IsResponseDichotomousExploration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDichotomousExploration" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Checks if response is dichotomous</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDiscreteExploration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsResponseDiscreteExploration</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/exploratory_actions/response_exploratory_actions.html#IsResponseDiscreteExploration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseDiscreteExploration" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Checks if response is discrete</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponsePositiveValuesOnlyExploration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsResponsePositiveValuesOnlyExploration</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/exploratory_actions/response_exploratory_actions.html#IsResponsePositiveValuesOnlyExploration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponsePositiveValuesOnlyExploration" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Check if response contains only positive values</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseQuantitativeExploration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsResponseQuantitativeExploration</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/exploratory_actions/response_exploratory_actions.html#IsResponseQuantitativeExploration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.IsResponseQuantitativeExploration" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Checks if response is quantitative</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.exploratory_actions.response_exploratory_actions.ResponseUniqueValuesRatioExploration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ResponseUniqueValuesRatioExploration</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/exploratory_actions/response_exploratory_actions.html#ResponseUniqueValuesRatioExploration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.exploratory_actions.response_exploratory_actions.ResponseUniqueValuesRatioExploration" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Gets response variable unique values ratio</p>
+</dd></dl>
 
 </section>
 

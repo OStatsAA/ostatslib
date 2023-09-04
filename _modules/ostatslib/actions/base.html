@@ -371,7 +371,11 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.base</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Actions base classes module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -384,6 +388,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 <span class="kn">from</span> <span class="nn">statsforecast.models</span> <span class="kn">import</span> <span class="n">AutoARIMA</span>
+<span class="kn">from</span> <span class="nn">wrapt_timeout_decorator</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.config</span> <span class="kn">import</span> <span class="n">Config</span>
 <span class="kn">from</span> <span class="nn">ostatslib.states</span> <span class="kn">import</span> <span class="n">State</span>
@@ -393,6 +398,11 @@ document.write(`
 
 
 <div class="viewcode-block" id="ActionInfo"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ActionInfo">[docs]</a><span class="k">class</span> <span class="nc">ActionInfo</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Information class populated by action or environment during a step.</span>
+<span class="sd">    Ostatslib implements Gymnasium step returns</span>
+<span class="sd">    `ref &lt;https://gymnasium.farama.org/api/env/#gymnasium.Env.step&gt;`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">action_name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">model</span><span class="p">:</span> <span class="kc">None</span> <span class="o">|</span> <span class="n">T</span>
     <span class="n">raised_exception</span><span class="p">:</span> <span class="nb">bool</span>
@@ -417,6 +427,9 @@ document.write(`
 
 
 <div class="viewcode-block" id="Action"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.Action">[docs]</a><span class="k">class</span> <span class="nc">Action</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Action base abstract class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">action_key</span><span class="p">:</span> <span class="nb">str</span>
@@ -435,11 +448,12 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Handles exceptions on model fitting.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            error (Exception): exception</span>
-<span class="sd">            state (State): current state</span>
+<span class="sd">            error (Exception): thrown exception in fitting/exploring</span>
+<span class="sd">            state (State): state</span>
+<span class="sd">            config (Config): configuration dictionary</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            None: None</span>
+<span class="sd">            None: return None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exceptions_handlers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -481,35 +495,67 @@ document.write(`
                 <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
                 <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
                 <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">State</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Executes and actions</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Executes action</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            data (DataFrame): data</span>
-<span class="sd">            state (State): current state</span>
-<span class="sd">            config (Config): configuration dict</span>
+<span class="sd">            state (State): state</span>
+<span class="sd">            config (Config): configuration dictionary</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            State, float: next state, reward</span>
+<span class="sd">            tuple[State, float, ActionInfo]: tuple of next state, reward and action info</span>
 <span class="sd">        &quot;&quot;&quot;</span></div></div>
 
 
 <div class="viewcode-block" id="ExploratoryAction"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ExploratoryAction">[docs]</a><span class="k">class</span> <span class="nc">ExploratoryAction</span><span class="p">(</span><span class="n">Action</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends action base class for exploratory actions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_calculate_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">state_copy</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates exploratory reward based on configuration dictionary settings</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (State): state</span>
+<span class="sd">            state_copy (State): copy holding initial state values</span>
+<span class="sd">            config (Config): configuration dictionary</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: reward</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">state_copy</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;MIN_REWARD&#39;</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;MAX_EXPLORATORY_REWARD&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">_update_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates state using action_key property and exploration value</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state (State): state</span>
+<span class="sd">            value (str | int | bool | float): feature value</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            State: updated state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">state</span>
 
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">_explore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="o">...</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Private explore method called by public execute method</span>
 
-<div class="viewcode-block" id="ExploratoryAction.execute"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ExploratoryAction.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">State</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">]:</span>
+<span class="sd">        Args:</span>
+<span class="sd">            data (DataFrame): data</span>
+<span class="sd">            state (State): state</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str | int | bool | float: exploratory value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ExploratoryAction.execute"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ExploratoryAction.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+                <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+                <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">State</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">]:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">ActionInfo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_state</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
             <span class="n">info</span><span class="o">.</span><span class="n">is_invalid_state</span> <span class="o">=</span> <span class="kc">True</span>
@@ -531,6 +577,9 @@ document.write(`
 
 
 <div class="viewcode-block" id="TargetExploratoryAction"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.TargetExploratoryAction">[docs]</a><span class="k">class</span> <span class="nc">TargetExploratoryAction</span><span class="p">(</span><span class="n">ExploratoryAction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends ExploraotryAction base class for</span>
+<span class="sd">    exploratory actions that inspect response variable values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_validate_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">)):</span>
@@ -540,6 +589,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="ModelEstimatorAction"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ModelEstimatorAction">[docs]</a><span class="k">class</span> <span class="nc">ModelEstimatorAction</span><span class="p">(</span><span class="n">Action</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends base action class for model estimators</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">estimator</span><span class="p">:</span> <span class="n">T</span>
     <span class="n">params_grid</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -549,11 +600,11 @@ document.write(`
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_exception_handler</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_calculate_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates action reward</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates reward based on model score and configuration dictionary</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            state (State): current state</span>
-<span class="sd">            score (float): score</span>
+<span class="sd">            score (float): score value</span>
+<span class="sd">            config (Config): configuration dictionary</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: reward</span>
@@ -567,13 +618,15 @@ document.write(`
         <span class="k">return</span> <span class="n">score</span>
 
     <span class="k">def</span> <span class="nf">_update_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">reward</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">score</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates state before completing action execution</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates state on action key based on reward and score</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            state (State): state</span>
+<span class="sd">            reward (float): reward</span>
+<span class="sd">            score (float): model score</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            State: next state</span>
+<span class="sd">            State: updated state</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_key</span> <span class="o">+</span> <span class="s1">&#39;_score_reward&#39;</span><span class="p">,</span> <span class="n">reward</span><span class="p">)</span>
 
@@ -585,15 +638,22 @@ document.write(`
         <span class="k">return</span> <span class="n">state</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Private model fitting method</span>
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Private fit method</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            x_data (DataFrame): data</span>
-<span class="sd">            y_data (Series): response values</span>
+<span class="sd">            data (DataFrame): data</span>
+<span class="sd">            state (State): state</span>
+<span class="sd">            config (Config): configuration dictionary</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[T, float]: adjusted model and score</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ModelEstimatorAction.execute"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ModelEstimatorAction.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">State</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">[</span><span class="n">T</span><span class="p">]]:</span>
+<div class="viewcode-block" id="ModelEstimatorAction.execute"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ModelEstimatorAction.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+                <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
+                <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">State</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ActionInfo</span><span class="p">[</span><span class="n">T</span><span class="p">]]:</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">ActionInfo</span><span class="p">[</span><span class="n">T</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">action_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_state</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
             <span class="n">info</span><span class="o">.</span><span class="n">is_invalid_state</span> <span class="o">=</span> <span class="kc">True</span>
@@ -605,10 +665,12 @@ document.write(`
             <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">ConvergenceWarning</span><span class="p">)</span>
             <span class="n">fit_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">model</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+                <span class="n">model</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">fit_start</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">):</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">fit_start</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_exception_handler</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">raised_exception</span> <span class="o">=</span> <span class="kc">True</span>
@@ -622,6 +684,8 @@ document.write(`
 
 
 <div class="viewcode-block" id="TargetModelEstimatorAction"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.TargetModelEstimatorAction">[docs]</a><span class="k">class</span> <span class="nc">TargetModelEstimatorAction</span><span class="p">(</span><span class="n">ModelEstimatorAction</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends ModelEstimatorAction for modeling response (target) variable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_validate_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">)):</span>
@@ -629,36 +693,40 @@ document.write(`
 
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span> <span class="o">=</span> <span class="n">split_x_y_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+        <span class="n">_timeout</span> <span class="o">=</span> <span class="n">timeout</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FIT_TIMEOUT&#39;</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">cv_search</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span>
-                                                           <span class="n">x_data</span><span class="p">,</span>
-                                                           <span class="n">y_data</span><span class="p">,</span>
-                                                           <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">cv_search</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="n">_timeout</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span>
+                                                                     <span class="n">x_data</span><span class="p">,</span>
+                                                                     <span class="n">y_data</span><span class="p">,</span>
+                                                                     <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                                     <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
             <span class="n">best_index</span> <span class="o">=</span> <span class="n">cv_search</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
             <span class="n">best_estimator</span><span class="p">:</span> <span class="n">T</span> <span class="o">=</span> <span class="n">cv_search</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="n">best_index</span><span class="p">]</span>
             <span class="n">best_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">cv_search</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">][</span><span class="n">best_index</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">best_estimator</span><span class="p">,</span> <span class="n">best_score</span>
 
         <span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span>
-                              <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">,</span>
+                              <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">search</span> <span class="o">=</span> <span class="n">_timeout</span><span class="p">(</span><span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">)(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">search</span><span class="o">.</span><span class="n">best_score_</span></div>
 
 
-<span class="n">MIN_TREE_DEPTH</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">MAX_TREE_DEPTH</span> <span class="o">=</span> <span class="mi">20</span>
-
-
 <div class="viewcode-block" id="TreeEstimatorAction"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.TreeEstimatorAction">[docs]</a><span class="k">class</span> <span class="nc">TreeEstimatorAction</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends TargetModelEstimatorAction for Tree models</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_MIN_TREE_DEPTH</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">_MAX_TREE_DEPTH</span> <span class="o">=</span> <span class="mi">20</span>
 
-    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">MIN_TREE_DEPTH</span><span class="p">),</span>
-                                                <span class="n">MAX_TREE_DEPTH</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_MIN_TREE_DEPTH</span><span class="p">),</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">_MAX_TREE_DEPTH</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></div>
 </pre></div>
 
                 </article>

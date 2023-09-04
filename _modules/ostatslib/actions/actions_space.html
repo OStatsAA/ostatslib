@@ -371,7 +371,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ostatslib.actions.actions_space</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span></span><span class="sd">&quot;&quot;&quot;ActionsSpace module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">ModuleType</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cached_property</span>
 
@@ -406,6 +409,9 @@ document.write(`
 
 
 <div class="viewcode-block" id="ActionsSpace"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace">[docs]</a><span class="k">class</span> <span class="nc">ActionsSpace</span><span class="p">(</span><span class="n">MultiBinary</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Actions space initializes actions and make them available to </span>
+<span class="sd">    the environment. Extends Gymnasium MultiBinary space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_exploratory_actions</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">exploratory_actions</span><span class="p">)</span>
@@ -416,34 +422,64 @@ document.write(`
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">actions_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Action</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions in actions space</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict[int, Action | None]: dictionary of actions in actions space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span>
 
     <span class="nd">@cached_property</span>
     <span class="k">def</span> <span class="nf">actions_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Action</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List of valid actions available in actions space</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[Action]: list of available actions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">action</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">action</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">encoding_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns encoding length (# of digits in the)</span>
+<span class="sd">        Returns encoding length (# of digits in the encoding)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: # of digits in the encoding</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ENCODING_LENGTH</span>
 
-    <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numeric_key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ActionsSpace.get_action"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action">[docs]</a>    <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numeric_key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get action by numeric key.</span>
+<span class="sd">        Numeric key may be an integer or ndarray binary representation (from policy network)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            numeric_key (int | np.ndarray): action numeric key</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Action | None: action or None if dict key is not an action</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">numeric_key</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="n">numeric_key</span> <span class="o">=</span> <span class="n">_binary_to_integer</span><span class="p">(</span><span class="n">numeric_key</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">[</span><span class="n">numeric_key</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span><span class="p">[</span><span class="n">numeric_key</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="nf">get_action_by_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span><span class="p">:</span>
+<div class="viewcode-block" id="ActionsSpace.get_action_by_class"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.get_action_by_class">[docs]</a>    <span class="k">def</span> <span class="nf">get_action_by_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Action</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get action instance in actions space by class</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            action (type): action type</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: raised if no action of type is found</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Action: action instance in actions space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">action_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">action_</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">action_</span>
 
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No class matched class </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No class matched class </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ActionsSpace.sample"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.actions_space.html#ostatslib.actions.actions_space.ActionsSpace.sample">[docs]</a>    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">:</span> <span class="n">MaskNDArray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>

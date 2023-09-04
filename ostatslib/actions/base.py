@@ -322,12 +322,14 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
 
     def _fit(self, data: DataFrame, state: State, config: Config) -> tuple[T, float]:
         x_data, y_data = split_x_y_data(data, state)
+        _timeout = timeout(config['FIT_TIMEOUT'])
 
         if self.params_grid is None:
-            cv_search: dict[str, ndarray] = cross_validate(self.estimator,
-                                                           x_data,
-                                                           y_data,
-                                                           return_estimator=True)
+            cv_search: dict[str, ndarray] = _timeout(cross_validate)(self.estimator,
+                                                                     x_data,
+                                                                     y_data,
+                                                                     return_estimator=True,
+                                                                     n_jobs=4)
             best_index = cv_search['test_score'].argmax()
             best_estimator: T = cv_search['estimator'][best_index]
             best_score: float = cv_search['test_score'][best_index]
@@ -336,7 +338,7 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
         search = GridSearchCV(self.estimator,
                               self.params_grid,
                               n_jobs=4)
-        search = timeout(config['FIT_TIMEOUT'])(search.fit)(x_data, y_data)
+        search = _timeout(search.fit)(x_data, y_data)
         return search.best_estimator_, search.best_score_
 
 

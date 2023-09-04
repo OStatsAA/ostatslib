@@ -21,4 +21,3 @@ def test_target_model_estimator_timeout() -> None:
     _, reward, info = action.execute(data, state, config)
     assert reward < 0
     assert info.raised_exception
-

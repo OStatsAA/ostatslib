@@ -15,7 +15,7 @@ from sklearn.model_selection import GridSearchCV, cross_validate
 from sklearn.base import BaseEstimator
 from sklearn.svm import SVC
 from statsforecast.models import AutoARIMA
-from wrapt_timeout_decorator import *
+from wrapt_timeout_decorator.wrapt_timeout_decorator import timeout
 
 from ostatslib.config import Config
 from ostatslib.states import State

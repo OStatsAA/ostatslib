@@ -5,8 +5,8 @@ import operator
 from sklearn.ensemble import (AdaBoostRegressor,
                               BaggingRegressor,
                               ExtraTreesRegressor,
-                              GradientBoostingRegressor,
                               RandomForestRegressor)
+from xgboost import XGBRegressor
 
 from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorAction
 
@@ -57,37 +57,31 @@ class ExtraTreesRegression(TreeEstimatorAction[ExtraTreesRegressor]):
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 
 
-class GradientBoostingRegression(TargetModelEstimatorAction[GradientBoostingRegressor]):
+class GradientBoostingRegression(TreeEstimatorAction[XGBRegressor]):
     """Gradient Boosting regression action.
-    Fits a Scikit-Learn GradientBoostingRegressor
-    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html
+    Fits a XGBoostClassfier
+    https://xgboost.readthedocs.io/en/stable/python/examples/basic_walkthrough.html
     """
 
     action_name = 'Gradient Boosting Regression'
     action_key = 'gradient_boosting_regression'
-    estimator = GradientBoostingRegressor()
-    params_grid = {'n_estimators': [10, 50],
-                   'loss': ['squared_error', 'huber', 'quantile'],
-                   'criterion': ['friedman_mse', 'squared_error'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+    estimator = XGBRegressor()
+    params_grid = {'n_estimators': [10, 50]}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 
 
 class N100EstimatorsGradientBoostingRegression(
-        TargetModelEstimatorAction[GradientBoostingRegressor]):
+        TreeEstimatorAction[XGBRegressor]):
     """Gradient Boosting with 100 estimators regression action.
-    Fits a Scikit-Learn GradientBoostingRegressor with parameter n_estimators=100
-    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html
+    Fits a XGBRegressor with parameter n_estimators=100
+    https://xgboost.readthedocs.io/en/stable/python/examples/basic_walkthrough.html
     """
 
     action_name = 'Gradient Boosting Regression 100 Estimators'
     action_key = 'n_100_estimators_gradient_boosting_regression'
-    estimator = GradientBoostingRegressor(n_estimators=100)
-    params_grid = {'criterion': ['friedman_mse', 'squared_error'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+    estimator = XGBRegressor(n_estimators=100)
+    params_grid = {}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 

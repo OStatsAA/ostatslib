@@ -29,3 +29,18 @@ def test_metric_exploratory_actions_update_keys_in_state(action: Action) -> None
     next_state, *_ = action.execute(data, init_state.copy(), DEFAULT_CONFIG)
 
     assert init_state.get(key) != next_state.get(key)
+
+
+def test_missing_data_ratio_offset() -> None:
+    """Tests if missing data ratio is higher than offset if any NaNs are found
+    """
+    action = metrics_expl_actions.MissingDataRatioExploration()
+    init_state = State()
+    init_state.set('response_variable_label', 'target')
+    data = DataFrame({'x': np.ones(100), 'target': np.random.rand(100)})
+    data.iloc[1]['x'] = None
+    key = action.action_key
+
+    next_state, *_ = action.execute(data, init_state.copy(), DEFAULT_CONFIG)
+
+    assert next_state.get(key) > getattr(action, '_OFFSET')

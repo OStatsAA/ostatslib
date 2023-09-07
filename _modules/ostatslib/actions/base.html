@@ -719,13 +719,13 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends TargetModelEstimatorAction for Tree models</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_MIN_TREE_DEPTH</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">_MAX_TREE_DEPTH</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">_MAX_TREE_DEPTH</span> <span class="o">=</span> <span class="mi">10</span>
 
     <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_MIN_TREE_DEPTH</span><span class="p">),</span>
-                                                <span class="bp">self</span><span class="o">.</span><span class="n">_MAX_TREE_DEPTH</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_MIN_TREE_DEPTH</span><span class="p">),</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">_MAX_TREE_DEPTH</span><span class="p">)]</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></div>
 </pre></div>
 

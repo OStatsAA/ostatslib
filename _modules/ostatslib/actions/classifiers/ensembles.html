@@ -378,8 +378,8 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AdaBoostClassifier</span><span class="p">,</span>
                               <span class="n">BaggingClassifier</span><span class="p">,</span>
                               <span class="n">ExtraTreesClassifier</span><span class="p">,</span>
-                              <span class="n">GradientBoostingClassifier</span><span class="p">,</span>
                               <span class="n">RandomForestClassifier</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">TargetModelEstimatorAction</span><span class="p">,</span> <span class="n">TreeEstimatorAction</span>
 
@@ -435,37 +435,32 @@ document.write(`
                    <span class="p">(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">lt</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span></div>
 
 
-<div class="viewcode-block" id="GradientBoostingClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.GradientBoostingClassification">[docs]</a><span class="k">class</span> <span class="nc">GradientBoostingClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">GradientBoostingClassifier</span><span class="p">]):</span>
+<div class="viewcode-block" id="GradientBoostingClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.GradientBoostingClassification">[docs]</a><span class="k">class</span> <span class="nc">GradientBoostingClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">XGBClassifier</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Gradient Boosting classification action.</span>
-<span class="sd">    Fits a Scikit-Learn GradientBoostingClassifier</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html</span>
+<span class="sd">    Fits a XGBoostClassfier</span>
+<span class="sd">    https://xgboost.readthedocs.io/en/stable/python/examples/basic_walkthrough.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Gradient Boosting&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;gradient_boosting&#39;</span>
-    <span class="n">estimator</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
-    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
-                   <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;log_loss&#39;</span><span class="p">,</span> <span class="s1">&#39;deviance&#39;</span><span class="p">,</span> <span class="s1">&#39;exponential&#39;</span><span class="p">],</span>
-                   <span class="s1">&#39;criterion&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;friedman_mse&#39;</span><span class="p">,</span> <span class="s1">&#39;squared_error&#39;</span><span class="p">],</span>
-                   <span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s1">&#39;log2&#39;</span><span class="p">]}</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">()</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">]}</span>
     <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;is_response_discrete&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                    <span class="p">(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">ne</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                    <span class="p">(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">lt</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span></div>
 
 
-<div class="viewcode-block" id="N100GradientBoostingClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.N100GradientBoostingClassification">[docs]</a><span class="k">class</span> <span class="nc">N100GradientBoostingClassification</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">GradientBoostingClassifier</span><span class="p">]):</span>
+<div class="viewcode-block" id="N100GradientBoostingClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.ensembles.html#ostatslib.actions.classifiers.ensembles.N100GradientBoostingClassification">[docs]</a><span class="k">class</span> <span class="nc">N100GradientBoostingClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">XGBClassifier</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Gradient Boosting with 100 estimators classification action.</span>
-<span class="sd">    Fits a Scikit-Learn GradientBoostingClassifier with parameter n_estimators=100</span>
-<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html</span>
+<span class="sd">    Fits a XGBoostClassfier with parameter n_estimators=100</span>
+<span class="sd">    https://xgboost.readthedocs.io/en/stable/python/examples/basic_walkthrough.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Gradient Boosting 100 Estimators&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;n_100_gradient_boosting&#39;</span>
-    <span class="n">estimator</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;log_loss&#39;</span><span class="p">,</span> <span class="s1">&#39;deviance&#39;</span><span class="p">,</span> <span class="s1">&#39;exponential&#39;</span><span class="p">],</span>
-                   <span class="s1">&#39;criterion&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;friedman_mse&#39;</span><span class="p">,</span> <span class="s1">&#39;squared_error&#39;</span><span class="p">],</span>
-                   <span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s1">&#39;log2&#39;</span><span class="p">]}</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;is_response_discrete&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                    <span class="p">(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">ne</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>

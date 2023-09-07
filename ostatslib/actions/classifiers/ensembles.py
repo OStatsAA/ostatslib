@@ -5,8 +5,8 @@ import operator
 from sklearn.ensemble import (AdaBoostClassifier,
                               BaggingClassifier,
                               ExtraTreesClassifier,
-                              GradientBoostingClassifier,
                               RandomForestClassifier)
+from xgboost import XGBClassifier
 
 from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorAction
 
@@ -62,37 +62,32 @@ class ExtraTreesClassification(TreeEstimatorAction[ExtraTreesClassifier]):
                    ('response_unique_values_ratio', operator.lt, 0.1)]
 
 
-class GradientBoostingClassification(TargetModelEstimatorAction[GradientBoostingClassifier]):
+class GradientBoostingClassification(TreeEstimatorAction[XGBClassifier]):
     """Gradient Boosting classification action.
-    Fits a Scikit-Learn GradientBoostingClassifier
-    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html
+    Fits a XGBoostClassfier
+    https://xgboost.readthedocs.io/en/stable/python/examples/basic_walkthrough.html
     """
 
     action_name = 'Gradient Boosting'
     action_key = 'gradient_boosting'
-    estimator = GradientBoostingClassifier()
-    params_grid = {'n_estimators': [10, 50],
-                   'loss': ['log_loss', 'deviance', 'exponential'],
-                   'criterion': ['friedman_mse', 'squared_error'],
-                   'max_features': ['sqrt', 'log2']}
+    estimator = XGBClassifier()
+    params_grid = {'n_estimators': [10, 50]}
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),
                    ('response_unique_values_ratio', operator.lt, 0.1)]
 
 
-class N100GradientBoostingClassification(TargetModelEstimatorAction[GradientBoostingClassifier]):
+class N100GradientBoostingClassification(TreeEstimatorAction[XGBClassifier]):
     """Gradient Boosting with 100 estimators classification action.
-    Fits a Scikit-Learn GradientBoostingClassifier with parameter n_estimators=100
-    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html
+    Fits a XGBoostClassfier with parameter n_estimators=100
+    https://xgboost.readthedocs.io/en/stable/python/examples/basic_walkthrough.html
     """
 
     action_name = 'Gradient Boosting 100 Estimators'
     action_key = 'n_100_gradient_boosting'
-    estimator = GradientBoostingClassifier(n_estimators=100)
-    params_grid = {'loss': ['log_loss', 'deviance', 'exponential'],
-                   'criterion': ['friedman_mse', 'squared_error'],
-                   'max_features': ['sqrt', 'log2']}
+    estimator = XGBClassifier(n_estimators=100)
+    params_grid = {}
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),

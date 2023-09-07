@@ -346,11 +346,11 @@ class TreeEstimatorAction(TargetModelEstimatorAction[T]):
     """Extends TargetModelEstimatorAction for Tree models
     """
     _MIN_TREE_DEPTH = 2
-    _MAX_TREE_DEPTH = 20
+    _MAX_TREE_DEPTH = 10
 
     def _fit(self, data: DataFrame, state: State, config: Config) -> tuple[T, float]:
         if self.params_grid is not None:
             max_depth = len(data.columns) // 2
-            self.params_grid['max_depth'] = min(max(max_depth, self._MIN_TREE_DEPTH),
-                                                self._MAX_TREE_DEPTH)
+            self.params_grid['max_depth'] = [min(max(max_depth, self._MIN_TREE_DEPTH),
+                                                self._MAX_TREE_DEPTH)]
         return super()._fit(data, state, config)

@@ -2,7 +2,7 @@
 OstatsLib Configuration module
 """
 
-from typing import TypedDict
+from typing import Literal, TypedDict
 
 
 class Config(TypedDict):
@@ -27,6 +27,8 @@ class Config(TypedDict):
 
     # Runtime
     FIT_TIMEOUT: int
+    FIT_VERBOSE: Literal[0, 1, 2, 3]
+    """Sets verbosity level as in SkLearn from 0 (no log output) to 3"""
 
 
 DEFAULT_CONFIG = Config(
@@ -38,5 +40,6 @@ DEFAULT_CONFIG = Config(
     EXPLORATORY_REWARD_FRACTION=0.1,
     MAX_EXPLORATORY_REWARD=0.1,
     MIN_ACCEPTED_SCORE=0.7,
-    FIT_TIMEOUT=600
+    FIT_TIMEOUT=600,
+    FIT_VERBOSE=0
 )

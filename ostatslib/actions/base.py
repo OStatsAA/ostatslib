@@ -329,7 +329,8 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
                                                                      x_data,
                                                                      y_data,
                                                                      return_estimator=True,
-                                                                     n_jobs=4)
+                                                                     n_jobs=4,
+                                                                     verbose=config['FIT_VERBOSE'])
             best_index = cv_search['test_score'].argmax()
             best_estimator: T = cv_search['estimator'][best_index]
             best_score: float = cv_search['test_score'][best_index]
@@ -337,7 +338,8 @@ class TargetModelEstimatorAction(ModelEstimatorAction[T]):
 
         search = GridSearchCV(self.estimator,
                               self.params_grid,
-                              n_jobs=4)
+                              n_jobs=4,
+                              verbose=config['FIT_VERBOSE'])
         search = _timeout(search.fit)(x_data, y_data)
         return search.best_estimator_, search.best_score_
 
@@ -352,5 +354,5 @@ class TreeEstimatorAction(TargetModelEstimatorAction[T]):
         if self.params_grid is not None:
             max_depth = len(data.columns) // 2
             self.params_grid['max_depth'] = [min(max(max_depth, self._MIN_TREE_DEPTH),
-                                                self._MAX_TREE_DEPTH)]
+                                                 self._MAX_TREE_DEPTH)]
         return super()._fit(data, state, config)

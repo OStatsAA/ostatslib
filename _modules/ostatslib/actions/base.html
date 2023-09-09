@@ -669,8 +669,8 @@ document.write(`
                 <span class="n">info</span><span class="o">.</span><span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">fit_start</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">):</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;VERBOSE&#39;</span><span class="p">]:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Action </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">action_name</span><span class="si">}</span><span class="s1"> raised </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">fit_start</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_exception_handler</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
                 <span class="n">info</span><span class="o">.</span><span class="n">raised_exception</span> <span class="o">=</span> <span class="kc">True</span>
@@ -702,7 +702,8 @@ document.write(`
                                                                      <span class="n">x_data</span><span class="p">,</span>
                                                                      <span class="n">y_data</span><span class="p">,</span>
                                                                      <span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                                                     <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+                                                                     <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                                                     <span class="n">verbose</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FIT_VERBOSE&#39;</span><span class="p">])</span>
             <span class="n">best_index</span> <span class="o">=</span> <span class="n">cv_search</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
             <span class="n">best_estimator</span><span class="p">:</span> <span class="n">T</span> <span class="o">=</span> <span class="n">cv_search</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">][</span><span class="n">best_index</span><span class="p">]</span>
             <span class="n">best_score</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">cv_search</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">][</span><span class="n">best_index</span><span class="p">]</span>
@@ -710,7 +711,8 @@ document.write(`
 
         <span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span>
                               <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">,</span>
-                              <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+                              <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                              <span class="n">verbose</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FIT_VERBOSE&#39;</span><span class="p">])</span>
         <span class="n">search</span> <span class="o">=</span> <span class="n">_timeout</span><span class="p">(</span><span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">)(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">search</span><span class="o">.</span><span class="n">best_score_</span></div>
 
@@ -725,7 +727,7 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">max_depth</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">[</span><span class="s1">&#39;max_depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_depth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_MIN_TREE_DEPTH</span><span class="p">),</span>
-                                                <span class="bp">self</span><span class="o">.</span><span class="n">_MAX_TREE_DEPTH</span><span class="p">)]</span>
+                                                 <span class="bp">self</span><span class="o">.</span><span class="n">_MAX_TREE_DEPTH</span><span class="p">)]</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></div>
 </pre></div>
 

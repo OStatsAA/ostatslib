@@ -56,15 +56,21 @@ class GymEnvironment(Env):
         self.__init_state_and_data()
         self.__steps_taken = 0
         super().reset(seed=seed, options=options)
+        if self.config['VERBOSE']:
+            print('Environment reset')
         return self._state.features_dict, ActionInfo('Invalid Action')
 
     def step(self, action: ndarray) -> tuple[dict, float, bool, bool, ActionInfo]:
         action_instance = self.action_space.get_action(action)
         if action_instance is None:
+            if self.config['VERBOSE']:
+                print(f'Executing action: {None}')
             state = self._state
             reward = self.config['MIN_REWARD']
             info = ActionInfo('Invalid Action', next_state=state.copy())
         else:
+            if self.config['VERBOSE']:
+                print(f'Executing action: {action_instance.action_name}')
             state, reward, info = action_instance.execute(self._data,
                                                           self._state,
                                                           self.config)

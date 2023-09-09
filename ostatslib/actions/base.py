@@ -296,8 +296,8 @@ class ModelEstimatorAction(Action, Generic[T]):
                 info.fit_time = time.perf_counter() - fit_start
                 info.model = model
             except Exception as error:
-                if isinstance(error, TimeoutError):
-                    print(error.args[0])
+                if config['VERBOSE']:
+                    print(f'Action {self.action_name} raised {type(error)}')
                 info.fit_time = time.perf_counter() - fit_start
                 self._exception_handler(error, state, config)
                 info.raised_exception = True

@@ -29,6 +29,8 @@ class Config(TypedDict):
     FIT_TIMEOUT: int
     FIT_VERBOSE: Literal[0, 1, 2, 3]
     """Sets verbosity level as in SkLearn from 0 (no log output) to 3"""
+    VERBOSE: bool
+    """Verbosity flag"""
 
 
 DEFAULT_CONFIG = Config(
@@ -41,5 +43,6 @@ DEFAULT_CONFIG = Config(
     MAX_EXPLORATORY_REWARD=0.1,
     MIN_ACCEPTED_SCORE=0.7,
     FIT_TIMEOUT=600,
-    FIT_VERBOSE=0
+    FIT_VERBOSE=0,
+    VERBOSE=True
 )

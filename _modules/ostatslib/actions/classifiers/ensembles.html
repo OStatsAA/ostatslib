@@ -379,6 +379,7 @@ document.write(`
                               <span class="n">BaggingClassifier</span><span class="p">,</span>
                               <span class="n">ExtraTreesClassifier</span><span class="p">,</span>
                               <span class="n">RandomForestClassifier</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 
 <span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">TargetModelEstimatorAction</span><span class="p">,</span> <span class="n">TreeEstimatorAction</span>
@@ -409,7 +410,9 @@ document.write(`
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Bagging&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;bagging&#39;</span>
     <span class="n">estimator</span> <span class="o">=</span> <span class="n">BaggingClassifier</span><span class="p">()</span>
-    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">]}</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;estimator&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+                                 <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">)],</span>
+                   <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">]}</span>
     <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;is_response_discrete&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
                    <span class="p">(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">ne</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>

@@ -6,6 +6,7 @@ from sklearn.ensemble import (AdaBoostRegressor,
                               BaggingRegressor,
                               ExtraTreesRegressor,
                               RandomForestRegressor)
+from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 
 from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorAction
@@ -35,7 +36,9 @@ class BaggingRegression(TargetModelEstimatorAction[BaggingRegressor]):
     action_name = 'Bagging Regression'
     action_key = 'bagging_regression'
     estimator = BaggingRegressor()
-    params_grid = {'n_estimators': [5, 10, 25]}
+    params_grid = {'estimator': [DecisionTreeRegressor(max_depth=3),
+                                 DecisionTreeRegressor(max_depth=10)],
+                   'n_estimators': [5, 10, 25]}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 

@@ -6,6 +6,7 @@ from sklearn.ensemble import (AdaBoostClassifier,
                               BaggingClassifier,
                               ExtraTreesClassifier,
                               RandomForestClassifier)
+from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 
 from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorAction
@@ -36,7 +37,9 @@ class BaggingClassification(TargetModelEstimatorAction[BaggingClassifier]):
     action_name = 'Bagging'
     action_key = 'bagging'
     estimator = BaggingClassifier()
-    params_grid = {'n_estimators': [5, 10, 25]}
+    params_grid = {'estimator': [DecisionTreeClassifier(max_depth=3),
+                                 DecisionTreeClassifier(max_depth=10)],
+                   'n_estimators': [5, 10, 25]}
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),

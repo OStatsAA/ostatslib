@@ -2,6 +2,7 @@
 GymEnvironment module
 """
 
+from os import getpid
 from typing import Any, Callable
 from random import choice
 from numpy import ndarray
@@ -45,6 +46,7 @@ class GymEnvironment(Env):
             self._data_generators = data_generators
         self.__steps_taken = 0
         self.__init_state_and_data()
+        self.pid = getpid()
 
     def render(self) -> None:
         print("Render has no effect yet")
@@ -57,23 +59,27 @@ class GymEnvironment(Env):
         self.__steps_taken = 0
         super().reset(seed=seed, options=options)
         if self.config['VERBOSE']:
-            print('Environment reset')
+            print(f'Env Id {self.pid} - Environment reset')
         return self._state.features_dict, ActionInfo('Invalid Action')
 
     def step(self, action: ndarray) -> tuple[dict, float, bool, bool, ActionInfo]:
         action_instance = self.action_space.get_action(action)
         if action_instance is None:
             if self.config['VERBOSE']:
-                print(f'Executing action: {None}')
+                print(f'Env Id {self.pid} - Executing action: {None}')
             state = self._state
             reward = self.config['MIN_REWARD']
             info = ActionInfo('Invalid Action', next_state=state.copy())
+            if self.config['VERBOSE']:
+                print(f'Env Id {self.pid} - Finished action: {None}')
         else:
             if self.config['VERBOSE']:
-                print(f'Executing action: {action_instance.action_name}')
+                print(f'Env Id {self.pid} - Executing action: {action_instance.action_name}')
             state, reward, info = action_instance.execute(self._data,
                                                           self._state,
                                                           self.config)
+            if self.config['VERBOSE']:
+                print(f'Env Id {self.pid} - Finished action: {action_instance.action_name}')
 
         self.__steps_taken += 1
         self._state = state

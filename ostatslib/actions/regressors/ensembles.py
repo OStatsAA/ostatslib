@@ -54,8 +54,7 @@ class ExtraTreesRegression(TreeEstimatorAction[ExtraTreesRegressor]):
     estimator = ExtraTreesRegressor()
     params_grid = {'n_estimators': [10, 50, 100],
                    'criterion': ['squared_error', 'friedman_mse'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+                   'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 
@@ -100,8 +99,7 @@ class RandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
     estimator = RandomForestRegressor()
     params_grid = {'n_estimators': [10, 50],
                    'criterion': ['squared_error', 'friedman_mse'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+                   'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 
@@ -115,7 +113,6 @@ class N100EstimatorsRandomForestRegression(TreeEstimatorAction[RandomForestRegre
     action_name = 'Random Forest Regression 100 Estimators'
     action_key = 'n_100_estimators_random_forest_regression'
     estimator = RandomForestRegressor(n_estimators=100)
-    params_grid = {'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+    params_grid = {'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]

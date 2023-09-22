@@ -57,8 +57,7 @@ class ExtraTreesClassification(TreeEstimatorAction[ExtraTreesClassifier]):
     estimator = ExtraTreesClassifier()
     params_grid = {'n_estimators': [10, 50, 100],
                    'criterion': ['gini', 'log_loss'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+                   'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),
@@ -108,8 +107,7 @@ class RandomForestClassification(TreeEstimatorAction[RandomForestClassifier]):
     estimator = RandomForestClassifier()
     params_grid = {'n_estimators': [10, 20, 50],
                    'criterion': ['gini', 'log_loss'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+                   'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),
@@ -126,8 +124,7 @@ class N100RandomForestClassification(TreeEstimatorAction[RandomForestClassifier]
     action_key = 'n_100_estimators_random_forest'
     estimator = RandomForestClassifier(n_estimators=100)
     params_grid = {'criterion': ['gini', 'log_loss'],
-                   'max_features': ['sqrt', 'log2'],
-                   'ccp_alpha': [1e-2, 1e-3]}
+                   'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),

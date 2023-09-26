@@ -98,7 +98,6 @@ class RandomForestRegression(TreeEstimatorAction[RandomForestRegressor]):
     action_key = 'random_forest_regression'
     estimator = RandomForestRegressor()
     params_grid = {'n_estimators': [10, 50],
-                   'criterion': ['squared_error', 'friedman_mse'],
                    'max_features': ['sqrt', 'log2']}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]

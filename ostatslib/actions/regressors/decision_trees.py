@@ -16,7 +16,7 @@ class DecisionTreeRegression(TreeEstimatorAction[DecisionTreeRegressor]):
     action_name = 'Decision Tree Regression'
     action_key = 'decision_tree_regression'
     estimator = DecisionTreeRegressor()
-    params_grid = {'criterion': ['squared_error', 'friedman_mse', 'absolute_error'],
+    params_grid = {'criterion': ['squared_error', 'friedman_mse'],
                    'max_features': ['sqrt', 'log2'],
                    'ccp_alpha': [1e-2, 1e-3]}
     exceptions_handlers = None

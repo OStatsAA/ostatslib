@@ -51,4 +51,6 @@ class ElasticNetLogisticRegressionClassification(TargetModelEstimatorAction[Logi
     exceptions_handlers = None
     validations = [('is_response_discrete', operator.gt, 0),
                    ('response_unique_values_ratio', operator.ne, 0),
-                   ('response_unique_values_ratio', operator.lt, 0.1)]
+                   ('response_unique_values_ratio', operator.lt, 0.1),
+                   ('log_rows_count', operator.gt, 0),
+                   ('log_rows_count', operator.lt, 81)]

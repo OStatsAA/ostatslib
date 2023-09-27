@@ -17,6 +17,7 @@ def test_target_model_estimator_timeout() -> None:
     state.set('response_variable_label', 'target')
     state.set('is_response_discrete', 1)
     state.set('response_unique_values_ratio', 0.001)
+    state.set('log_rows_count', 0.5)
 
     _, reward, info = action.execute(data, state, config)
     assert reward < 0

@@ -36,8 +36,7 @@ class NuSupportVectorClassification(TargetModelEstimatorAction[NuSVC]):
     action_name = 'Nu-Support Vector Classification'
     action_key = 'nu_support_vector_classification'
     estimator = NuSVC()
-    params_grid = {'nu': [0.33, 0.5, 0.66],
-                   'kernel': ['linear', 'rbf']}
+    params_grid = {'kernel': ['linear', 'rbf']}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]
@@ -52,8 +51,7 @@ class NuPolyKernelSupportVectorClassification(TargetModelEstimatorAction[NuSVC])
     action_name = 'Nu-Support Vector Classification with Polynomial Kernel'
     action_key = 'nu_poly_kernel_support_vector_classification'
     estimator = NuSVC(kernel='poly')
-    params_grid = {'nu': [0.33, 0.5, 0.66],
-                   'degree': [3, 4]}
+    params_grid = {'degree': [3, 4]}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]

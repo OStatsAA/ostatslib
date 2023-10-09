@@ -27,7 +27,7 @@ wrapt-timeout-decorator = "^1.4.0"
 xgboost = "^1.7.6"
 
 [tool.poetry.group.dev.dependencies]
-pylint = "^2.15.4"
+pylint = ">=2.15.4,<4.0.0"
 autopep8 = ">=1.7,<3.0"
 
 [tool.poetry.group.test.dependencies]

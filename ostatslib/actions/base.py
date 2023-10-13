@@ -310,6 +310,17 @@ class ModelEstimatorAction(Action, Generic[T]):
         return state, reward, info
 
 
+class ClusteringEstimatorAction(ModelEstimatorAction[T]):
+    """Extends ModelEstimatorAction to fit a cluster model
+    """
+
+    def _validate_state(self, state: State) -> bool:
+        if bool(state.get('response_variable_label')):
+            return False
+
+        return super()._validate_state(state)
+
+
 class TargetModelEstimatorAction(ModelEstimatorAction[T]):
     """Extends ModelEstimatorAction for modeling response (target) variable
     """

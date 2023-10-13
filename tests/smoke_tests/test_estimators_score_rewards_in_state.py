@@ -1,7 +1,7 @@
 import inspect
 import pytest
 
-from ostatslib.actions import classifiers, regressors
+from ostatslib.actions import classifiers, regressors, clustering
 from ostatslib.actions.base import Action
 from ostatslib.states import State
 
@@ -11,8 +11,8 @@ def _is_action(type_: type):
 
 
 @pytest.mark.parametrize('module_',
-                         [classifiers, regressors],
-                         ids=['classifiers', 'regressors'])
+                         [classifiers, regressors, clustering],
+                         ids=['classifiers', 'regressors', 'clustering'])
 def test_estimators_score_rewards_in_state(module_) -> None:
     actions: list[tuple[str, type[Action]]
                   ] = inspect.getmembers(module_, _is_action)
@@ -22,7 +22,7 @@ def test_estimators_score_rewards_in_state(module_) -> None:
 
 
 def test_no_unmatched_score_rewards_in_state() -> None:
-    modules = [classifiers, regressors]
+    modules = [classifiers, regressors, clustering]
     actions: list[tuple[str, type[Action]]] = []
     for module_ in modules:
         actions.extend(inspect.getmembers(module_, _is_action))

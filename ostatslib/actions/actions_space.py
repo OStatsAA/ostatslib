@@ -11,14 +11,15 @@ import numpy.typing as npt
 
 from ostatslib.actions.base import Action
 
-from . import exploratory_actions, classifiers, regressors
+from . import exploratory_actions, classifiers, regressors, clustering
 
 MaskNDArray = npt.NDArray[np.int8]
-ENCODING_LENGTH = 6
+ENCODING_LENGTH = 7
 
-_CLASSIFIERS_OFFSET = 16
-_REGRESSION_OFFSET = 32
-_LAST_KEY = 63
+_CLASSIFIERS_OFFSET = 32
+_REGRESSION_OFFSET = 64
+_CLUSTERING_OFFSET = 96
+_LAST_KEY = 127
 _NONES_DICT = {key: None for key in range(_LAST_KEY + 1)}
 
 
@@ -44,7 +45,8 @@ class ActionsSpace(MultiBinary):
         _exploratory_actions = _build_actions_dict(exploratory_actions)
         _classifiers = _build_actions_dict(classifiers, _CLASSIFIERS_OFFSET)
         _regressors = _build_actions_dict(regressors, _REGRESSION_OFFSET)
-        self._actions = _NONES_DICT | _exploratory_actions | _classifiers | _regressors
+        _clustering = _build_actions_dict(clustering, _CLUSTERING_OFFSET)
+        self._actions = _NONES_DICT | _exploratory_actions | _classifiers | _regressors | _clustering
         super().__init__(ENCODING_LENGTH)
 
     @property

@@ -307,3 +307,40 @@ class ModelsFeaturesSet(FeaturesSet):
             'gym_space': Box(-1, 1),
             'get_value_fn': None
         })
+
+    # clustering scores
+
+    kmeans_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    dbscan_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    spectral_clustering_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    spectral_clustering_discretize_labels_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    spectral_clustering_qr_labels_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })

@@ -19,6 +19,7 @@ ostatslib.actions.base
    
       Action
       ActionInfo
+      ClusteringEstimatorAction
       ExploratoryAction
       ModelEstimatorAction
       TargetExploratoryAction

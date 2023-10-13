@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>ostatslib.agents.analysis_result &#8212; Open Statistics Analysis Agent</title>
+    <title>ostatslib.actions.clustering.kmeans &#8212; Open Statistics Analysis Agent</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ostatslib.agents.analysis_result';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ostatslib.actions.clustering.kmeans';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ostatslib.agents.ppo_agent" href="ostatslib.agents.ppo_agent.html" />
-    <link rel="prev" title="ostatslib.agents.agent" href="ostatslib.agents.agent.html" />
+    <link rel="next" title="ostatslib.actions.clustering.spectral" href="ostatslib.actions.clustering.spectral.html" />
+    <link rel="prev" title="ostatslib.actions.clustering.dbscan" href="ostatslib.actions.clustering.dbscan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -344,7 +344,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="ostatslib.actions.html">ostatslib.actions</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="ostatslib.actions.html">ostatslib.actions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ostatslib.actions.actions_space.html">ostatslib.actions.actions_space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ostatslib.actions.base.html">ostatslib.actions.base</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="ostatslib.actions.classifiers.html">ostatslib.actions.classifiers</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -354,9 +354,9 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.classifiers.svm.html">ostatslib.actions.classifiers.svm</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="ostatslib.actions.clustering.html">ostatslib.actions.clustering</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="ostatslib.actions.clustering.html">ostatslib.actions.clustering</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.clustering.dbscan.html">ostatslib.actions.clustering.dbscan</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.clustering.kmeans.html">ostatslib.actions.clustering.kmeans</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">ostatslib.actions.clustering.kmeans</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ostatslib.actions.clustering.spectral.html">ostatslib.actions.clustering.spectral</a></li>
 </ul>
 </li>
@@ -379,10 +379,10 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="ostatslib.agents.html">ostatslib.agents</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="ostatslib.agents.html">ostatslib.agents</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="ostatslib.agents.action_info_logger.html">ostatslib.agents.action_info_logger</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ostatslib.agents.agent.html">ostatslib.agents.agent</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">ostatslib.agents.analysis_result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ostatslib.agents.analysis_result.html">ostatslib.agents.analysis_result</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ostatslib.agents.ppo_agent.html">ostatslib.agents.ppo_agent</a></li>
 </ul>
 </li>
@@ -438,6 +438,8 @@ document.write(`
 
 
 
+
+
 <nav aria-label="Breadcrumb">
   <ul class="bd-breadcrumbs">
     
@@ -450,9 +452,12 @@ document.write(`
     <li class="breadcrumb-item"><a href="../api.html" class="nav-link">API</a></li>
     
     
-    <li class="breadcrumb-item"><a href="ostatslib.agents.html" class="nav-link">ostatslib.agents</a></li>
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
     
-    <li class="breadcrumb-item active" aria-current="page">ostatslib.agents.analysis_result</li>
+    
+    <li class="breadcrumb-item"><a href="ostatslib.actions.clustering.html" class="nav-link">ostatslib.actions.clustering</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">ostatslib.actions.clustering.kmeans</li>
   </ul>
 </nav>
 </div>
@@ -469,35 +474,23 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-ostatslib.agents.analysis_result">
-<span id="ostatslib-agents-analysis-result"></span><h1>ostatslib.agents.analysis_result<a class="headerlink" href="#module-ostatslib.agents.analysis_result" title="Permalink to this heading">#</a></h1>
-<p>Analysis module</p>
+  <section id="module-ostatslib.actions.clustering.kmeans">
+<span id="ostatslib-actions-clustering-kmeans"></span><h1>ostatslib.actions.clustering.kmeans<a class="headerlink" href="#module-ostatslib.actions.clustering.kmeans" title="Permalink to this heading">#</a></h1>
+<p>KMeans clustering actions module</p>
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.agents.analysis_result.AnalysisResult" title="ostatslib.agents.analysis_result.AnalysisResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnalysisResult</span></code></a>(initial_state, steps, done)</p></td>
-<td><p>Analysis class</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.clustering.kmeans.KMeansClustering" title="ostatslib.actions.clustering.kmeans.KMeansClustering"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KMeansClustering</span></code></a>()</p></td>
+<td><p>KMeans clustering action.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="ostatslib.agents.analysis_result.AnalysisResult">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AnalysisResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ostatslib.states.state.html#ostatslib.states.state.State" title="ostatslib.states.state.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="ostatslib.actions.base.html#ostatslib.actions.base.ActionInfo" title="ostatslib.actions.base.ActionInfo"><span class="pre">ostatslib.actions.base.ActionInfo</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ostatslib/agents/analysis_result.html#AnalysisResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.analysis_result.AnalysisResult" title="Permalink to this definition">#</a></dt>
-<dd><p>Analysis class</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="ostatslib.agents.analysis_result.AnalysisResult.summary">
-<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/ostatslib/agents/analysis_result.html#AnalysisResult.summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.agents.analysis_result.AnalysisResult.summary" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns analysis summary</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>analysis summary</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
+<dt class="sig sig-object py" id="ostatslib.actions.clustering.kmeans.KMeansClustering">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KMeansClustering</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/clustering/kmeans.html#KMeansClustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.clustering.kmeans.KMeansClustering" title="Permalink to this definition">#</a></dt>
+<dd><p>KMeans clustering action.
+Fits a Scikit-Learn KMeans.
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans">https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans</a></p>
 </dd></dl>
 
 </section>
@@ -532,20 +525,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ostatslib.agents.agent.html"
+       href="ostatslib.actions.clustering.dbscan.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ostatslib.agents.agent</p>
+        <p class="prev-next-title">ostatslib.actions.clustering.dbscan</p>
       </div>
     </a>
     <a class="right-next"
-       href="ostatslib.agents.ppo_agent.html"
+       href="ostatslib.actions.clustering.spectral.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">ostatslib.agents.ppo_agent</p>
+        <p class="prev-next-title">ostatslib.actions.clustering.spectral</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -560,7 +553,7 @@ document.write(`
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="../../_sources/api/_autosummary/ostatslib.agents.analysis_result.rst">
+    <a href="../../_sources/api/_autosummary/ostatslib.actions.clustering.kmeans.rst">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

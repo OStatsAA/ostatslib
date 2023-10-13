@@ -433,10 +433,12 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.copy">copy() (State method)</a>
+      <li><a href="api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ClusteringEstimatorAction">ClusteringEstimatorAction (class in ostatslib.actions.base)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.copy">copy() (State method)</a>
+</li>
       <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.CorrelatedVariablesRatioExploration">CorrelatedVariablesRatioExploration (class in ostatslib.actions.exploratory_actions.metrics_exploratory_actions)</a>
 </li>
   </ul></td>
@@ -451,6 +453,8 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.clustering.dbscan.html#ostatslib.actions.clustering.dbscan.DBSCANClustering">DBSCANClustering (class in ostatslib.actions.clustering.dbscan)</a>
+</li>
       <li><a href="api/_autosummary/ostatslib.actions.classifiers.decision_trees.html#ostatslib.actions.classifiers.decision_trees.DecisionTreeClassification">DecisionTreeClassification (class in ostatslib.actions.classifiers.decision_trees)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.actions.regressors.decision_trees.html#ostatslib.actions.regressors.decision_trees.DecisionTreeRegression">DecisionTreeRegression (class in ostatslib.actions.regressors.decision_trees)</a>
@@ -550,6 +554,10 @@ document.write(`
       <li><a href="api/_autosummary/ostatslib.states.state.html#ostatslib.states.state.State.keys">keys (State property)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.clustering.kmeans.html#ostatslib.actions.clustering.kmeans.KMeansClustering">KMeansClustering (class in ostatslib.actions.clustering.kmeans)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="L">L</h2>
@@ -606,6 +614,14 @@ document.write(`
         <li><a href="api/_autosummary/ostatslib.actions.classifiers.linear_models.html#module-ostatslib.actions.classifiers.linear_models">ostatslib.actions.classifiers.linear_models</a>
 </li>
         <li><a href="api/_autosummary/ostatslib.actions.classifiers.svm.html#module-ostatslib.actions.classifiers.svm">ostatslib.actions.classifiers.svm</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.html#module-ostatslib.actions.clustering">ostatslib.actions.clustering</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.dbscan.html#module-ostatslib.actions.clustering.dbscan">ostatslib.actions.clustering.dbscan</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.kmeans.html#module-ostatslib.actions.clustering.kmeans">ostatslib.actions.clustering.kmeans</a>
+</li>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.spectral.html#module-ostatslib.actions.clustering.spectral">ostatslib.actions.clustering.spectral</a>
 </li>
         <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.html#module-ostatslib.actions.exploratory_actions">ostatslib.actions.exploratory_actions</a>
 </li>
@@ -749,6 +765,34 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    ostatslib.actions.clustering
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.html#module-ostatslib.actions.clustering">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.clustering.dbscan
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.dbscan.html#module-ostatslib.actions.clustering.dbscan">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.clustering.kmeans
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.kmeans.html#module-ostatslib.actions.clustering.kmeans">module</a>
+</li>
+      </ul></li>
+      <li>
+    ostatslib.actions.clustering.spectral
+
+      <ul>
+        <li><a href="api/_autosummary/ostatslib.actions.clustering.spectral.html#module-ostatslib.actions.clustering.spectral">module</a>
+</li>
+      </ul></li>
+      <li>
     ostatslib.actions.exploratory_actions
 
       <ul>
@@ -797,6 +841,8 @@ document.write(`
         <li><a href="api/_autosummary/ostatslib.actions.regressors.ensembles.html#module-ostatslib.actions.regressors.ensembles">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ostatslib.actions.regressors.linear_models
 
@@ -811,8 +857,6 @@ document.write(`
         <li><a href="api/_autosummary/ostatslib.actions.regressors.svr.html#module-ostatslib.actions.regressors.svr">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ostatslib.actions.utils
 
@@ -990,8 +1034,14 @@ document.write(`
 </li>
       <li><a href="api/_autosummary/ostatslib.environments.data_generators.sklearn_generator.html#ostatslib.environments.data_generators.sklearn_generator">sklearn_generator() (in module ostatslib.environments.data_generators)</a>
 </li>
+      <li><a href="api/_autosummary/ostatslib.actions.clustering.spectral.html#ostatslib.actions.clustering.spectral.SpectralClustering">SpectralClustering (class in ostatslib.actions.clustering.spectral)</a>
+</li>
+      <li><a href="api/_autosummary/ostatslib.actions.clustering.spectral.html#ostatslib.actions.clustering.spectral.SpectralDiscretizedLabelingClustering">SpectralDiscretizedLabelingClustering (class in ostatslib.actions.clustering.spectral)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_autosummary/ostatslib.actions.clustering.spectral.html#ostatslib.actions.clustering.spectral.SpectralQRLabelingClustering">SpectralQRLabelingClustering (class in ostatslib.actions.clustering.spectral)</a>
+</li>
       <li><a href="api/_autosummary/ostatslib.actions.utils.split_x_y_data.html#ostatslib.actions.utils.split_x_y_data">split_x_y_data() (in module ostatslib.actions.utils)</a>
 </li>
       <li><a href="api/_autosummary/ostatslib.actions.exploratory_actions.metrics_exploratory_actions.html#ostatslib.actions.exploratory_actions.metrics_exploratory_actions.StandardizedVariablesRatioExploration">StandardizedVariablesRatioExploration (class in ostatslib.actions.exploratory_actions.metrics_exploratory_actions)</a>

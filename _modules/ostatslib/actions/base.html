@@ -697,6 +697,17 @@ document.write(`
         <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span></div></div>
 
 
+<div class="viewcode-block" id="ClusteringEstimatorAction"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.ClusteringEstimatorAction">[docs]</a><span class="k">class</span> <span class="nc">ClusteringEstimatorAction</span><span class="p">(</span><span class="n">ModelEstimatorAction</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends ModelEstimatorAction to fit a cluster model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_validate_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_validate_state</span><span class="p">(</span><span class="n">state</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="TargetModelEstimatorAction"><a class="viewcode-back" href="../../../api/_autosummary/ostatslib.actions.base.html#ostatslib.actions.base.TargetModelEstimatorAction">[docs]</a><span class="k">class</span> <span class="nc">TargetModelEstimatorAction</span><span class="p">(</span><span class="n">ModelEstimatorAction</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends ModelEstimatorAction for modeling response (target) variable</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -398,14 +398,15 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">ostatslib.actions.base</span> <span class="kn">import</span> <span class="n">Action</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">exploratory_actions</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">,</span> <span class="n">regressors</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">exploratory_actions</span><span class="p">,</span> <span class="n">classifiers</span><span class="p">,</span> <span class="n">regressors</span><span class="p">,</span> <span class="n">clustering</span>
 
 <span class="n">MaskNDArray</span> <span class="o">=</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">]</span>
-<span class="n">ENCODING_LENGTH</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">ENCODING_LENGTH</span> <span class="o">=</span> <span class="mi">7</span>
 
-<span class="n">_CLASSIFIERS_OFFSET</span> <span class="o">=</span> <span class="mi">16</span>
-<span class="n">_REGRESSION_OFFSET</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">_LAST_KEY</span> <span class="o">=</span> <span class="mi">63</span>
+<span class="n">_CLASSIFIERS_OFFSET</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">_REGRESSION_OFFSET</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">_CLUSTERING_OFFSET</span> <span class="o">=</span> <span class="mi">96</span>
+<span class="n">_LAST_KEY</span> <span class="o">=</span> <span class="mi">127</span>
 <span class="n">_NONES_DICT</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_LAST_KEY</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span>
 
 
@@ -431,7 +432,8 @@ document.write(`
         <span class="n">_exploratory_actions</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">exploratory_actions</span><span class="p">)</span>
         <span class="n">_classifiers</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">classifiers</span><span class="p">,</span> <span class="n">_CLASSIFIERS_OFFSET</span><span class="p">)</span>
         <span class="n">_regressors</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">regressors</span><span class="p">,</span> <span class="n">_REGRESSION_OFFSET</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="n">_NONES_DICT</span> <span class="o">|</span> <span class="n">_exploratory_actions</span> <span class="o">|</span> <span class="n">_classifiers</span> <span class="o">|</span> <span class="n">_regressors</span>
+        <span class="n">_clustering</span> <span class="o">=</span> <span class="n">_build_actions_dict</span><span class="p">(</span><span class="n">clustering</span><span class="p">,</span> <span class="n">_CLUSTERING_OFFSET</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_actions</span> <span class="o">=</span> <span class="n">_NONES_DICT</span> <span class="o">|</span> <span class="n">_exploratory_actions</span> <span class="o">|</span> <span class="n">_classifiers</span> <span class="o">|</span> <span class="n">_regressors</span> <span class="o">|</span> <span class="n">_clustering</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ENCODING_LENGTH</span><span class="p">)</span>
 
     <span class="nd">@property</span>

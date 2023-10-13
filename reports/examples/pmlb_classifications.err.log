@@ -105,6 +105,8 @@ File [0;32m~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/torch/
 [1;32m   2043[0m [38;5;28;01mreturn[39;00m _IncompatibleKeys(missing_keys, unexpected_keys)
 
 [0;31mRuntimeError[0m: Error(s) in loading state_dict for MultiInputActorCriticPolicy:
-	size mismatch for mlp_extractor.policy_net.0.weight: copying a param with shape torch.Size([128, 43]) from checkpoint, the shape in current model is torch.Size([128, 64]).
-	size mismatch for mlp_extractor.value_net.0.weight: copying a param with shape torch.Size([64, 43]) from checkpoint, the shape in current model is torch.Size([64, 64]).
+	size mismatch for mlp_extractor.policy_net.0.weight: copying a param with shape torch.Size([128, 43]) from checkpoint, the shape in current model is torch.Size([128, 69]).
+	size mismatch for mlp_extractor.value_net.0.weight: copying a param with shape torch.Size([64, 43]) from checkpoint, the shape in current model is torch.Size([64, 69]).
+	size mismatch for action_net.weight: copying a param with shape torch.Size([6, 128]) from checkpoint, the shape in current model is torch.Size([7, 128]).
+	size mismatch for action_net.bias: copying a param with shape torch.Size([6]) from checkpoint, the shape in current model is torch.Size([7]).
 

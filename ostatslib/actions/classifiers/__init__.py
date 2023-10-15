@@ -1,7 +1,9 @@
 """Classification actions module
 """
 
-from .decision_trees import (DecisionTreeClassification)
+from .decision_trees import (DecisionTreeClassification,
+                             DecisionTreeEntropyCriteriaClassification,
+                             DecisionTreeLogLossCriteriaClassification)
 
 from .ensembles import (RandomForestClassification,
                         N100RandomForestClassification,
@@ -19,4 +21,5 @@ from .svm import (LinearSupportVectorClassification,
                   PolyKernelSupportVectorClassification,
                   SupportVectorClassification,
                   NuPolyKernelSupportVectorClassification,
-                  NuSupportVectorClassification)
+                  NuSupportVectorClassification,
+                  NuLinearKernelSupportVectorClassification)

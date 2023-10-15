@@ -36,7 +36,21 @@ class NuSupportVectorClassification(TargetModelEstimatorAction[NuSVC]):
     action_name = 'Nu-Support Vector Classification'
     action_key = 'nu_support_vector_classification'
     estimator = NuSVC()
-    params_grid = {'kernel': ['linear', 'rbf']}
+    params_grid = {'kernel': ['rbf']}
+    exceptions_handlers = None
+    validations = [('log_rows_count', operator.lt, 0.71),
+                   *_SVM_VALIDATIONS]
+
+class NuLinearKernelSupportVectorClassification(TargetModelEstimatorAction[NuSVC]):
+    """Nu support vector classification action with linear kernel.
+    Fits a Scikit-Learn NuSVC
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVC.html
+    """
+
+    action_name = 'Nu-Linear Kernel Support Vector Classification'
+    action_key = 'nu_linear_kernel_support_vector_classification'
+    estimator = NuSVC()
+    params_grid = {'kernel': ['linear']}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]

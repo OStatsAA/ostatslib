@@ -396,15 +396,44 @@ document.write(`
 
 <div class="viewcode-block" id="DecisionTreeClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.decision_trees.html#ostatslib.actions.classifiers.decision_trees.DecisionTreeClassification">[docs]</a><span class="k">class</span> <span class="nc">DecisionTreeClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">DecisionTreeClassifier</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;DecisionTree classification action.</span>
-<span class="sd">    Fits a Scikit-Learn DecisionTreeClassfier</span>
+<span class="sd">    Fits a Scikit-Learn DecisionTreeClassifier</span>
 <span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Decision Tree&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;decision_tree&#39;</span>
-    <span class="n">estimator</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;criterion&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;log_loss&#39;</span><span class="p">],</span>
-                   <span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s1">&#39;log2&#39;</span><span class="p">],</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s1">&#39;log2&#39;</span><span class="p">],</span>
+                   <span class="s1">&#39;ccp_alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">]}</span>
+    <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;is_response_discrete&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="DecisionTreeEntropyCriteriaClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.decision_trees.html#ostatslib.actions.classifiers.decision_trees.DecisionTreeEntropyCriteriaClassification">[docs]</a><span class="k">class</span> <span class="nc">DecisionTreeEntropyCriteriaClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">DecisionTreeClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DecisionTree classification action using entropy as splitting criteria.</span>
+<span class="sd">    Fits a Scikit-Learn DecisionTreeClassifier</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Decision Tree with Entropy Criteria&#39;</span>
+    <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;entropy_criteria_decision_tree&#39;</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s1">&#39;log2&#39;</span><span class="p">],</span>
+                   <span class="s1">&#39;ccp_alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">]}</span>
+    <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;is_response_discrete&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="DecisionTreeLogLossCriteriaClassification"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.classifiers.decision_trees.html#ostatslib.actions.classifiers.decision_trees.DecisionTreeLogLossCriteriaClassification">[docs]</a><span class="k">class</span> <span class="nc">DecisionTreeLogLossCriteriaClassification</span><span class="p">(</span><span class="n">TreeEstimatorAction</span><span class="p">[</span><span class="n">DecisionTreeClassifier</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DecisionTree classification action using log loss as splitting criteria.</span>
+<span class="sd">    Fits a Scikit-Learn DecisionTreeClassifier</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Decision Tree with Log Loss Criteria&#39;</span>
+    <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;log_loss_criteria_decision_tree&#39;</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;log_loss&#39;</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s1">&#39;log2&#39;</span><span class="p">],</span>
                    <span class="s1">&#39;ccp_alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">]}</span>
     <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;is_response_discrete&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span></div>

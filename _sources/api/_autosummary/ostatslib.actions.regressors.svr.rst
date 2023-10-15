@@ -18,6 +18,7 @@ ostatslib.actions.regressors.svr
    .. autosummary::
    
       LinearSupportVectorRegression
+      NuLinearKernelSupportVectorRegression
       NuPolyKernelSupportVectorRegression
       NuSupportVectorRegression
       PolyKernelSupportVectorRegression

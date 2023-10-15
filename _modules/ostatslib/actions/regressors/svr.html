@@ -422,10 +422,25 @@ document.write(`
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Nu-Support Vector Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;nu_support_vector_regression&#39;</span>
-    <span class="n">estimator</span> <span class="o">=</span> <span class="n">NuSVR</span><span class="p">()</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">NuSVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">)</span>
     <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nu&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">],</span>
-                   <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-                   <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;rbf&#39;</span><span class="p">]}</span>
+                   <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]}</span>
+    <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;log_rows_count&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">lt</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">),</span>
+                   <span class="o">*</span><span class="n">_SVM_VALIDATIONS</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="NuLinearKernelSupportVectorRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.svr.html#ostatslib.actions.regressors.svr.NuLinearKernelSupportVectorRegression">[docs]</a><span class="k">class</span> <span class="nc">NuLinearKernelSupportVectorRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">NuSVR</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Nu support vector regression action.</span>
+<span class="sd">    Fits a Scikit-Learn NuSVR</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVR.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;Nu-Linear Kernel Support Vector Regression&#39;</span>
+    <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;nu_linear_kernel_support_vector_regression&#39;</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">NuSVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nu&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">],</span>
+                   <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]}</span>
     <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;log_rows_count&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">lt</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">),</span>
                    <span class="o">*</span><span class="n">_SVM_VALIDATIONS</span><span class="p">]</span></div>

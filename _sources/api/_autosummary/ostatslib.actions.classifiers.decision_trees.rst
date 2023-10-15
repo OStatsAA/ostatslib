@@ -18,6 +18,8 @@ ostatslib.actions.classifiers.decision\_trees
    .. autosummary::
    
       DecisionTreeClassification
+      DecisionTreeEntropyCriteriaClassification
+      DecisionTreeLogLossCriteriaClassification
    
    
 

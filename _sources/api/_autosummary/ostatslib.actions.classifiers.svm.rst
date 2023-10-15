@@ -18,6 +18,7 @@ ostatslib.actions.classifiers.svm
    .. autosummary::
    
       LinearSupportVectorClassification
+      NuLinearKernelSupportVectorClassification
       NuPolyKernelSupportVectorClassification
       NuSupportVectorClassification
       PolyKernelSupportVectorClassification

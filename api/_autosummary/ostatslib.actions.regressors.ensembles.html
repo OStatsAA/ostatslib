@@ -480,8 +480,14 @@ document.write(`
 <p class="rubric">Classes</p>
 <table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.AdaBoostRegression" title="ostatslib.actions.regressors.ensembles.AdaBoostRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaBoostRegression</span></code></a>()</p></td>
-<td><p>AdaBoost regression action.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.AdaBoostExponentialLossRegression" title="ostatslib.actions.regressors.ensembles.AdaBoostExponentialLossRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaBoostExponentialLossRegression</span></code></a>()</p></td>
+<td><p>AdaBoost regression action with exponential loss.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.AdaBoostRegression" title="ostatslib.actions.regressors.ensembles.AdaBoostRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaBoostRegression</span></code></a>()</p></td>
+<td><p>AdaBoost regression action with linear loss.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.AdaBoostSquareLossRegression" title="ostatslib.actions.regressors.ensembles.AdaBoostSquareLossRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaBoostSquareLossRegression</span></code></a>()</p></td>
+<td><p>AdaBoost regression action with square loss.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ostatslib.actions.regressors.ensembles.BaggingRegression" title="ostatslib.actions.regressors.ensembles.BaggingRegression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaggingRegression</span></code></a>()</p></td>
 <td><p>Bagging regression action.</p></td>
@@ -504,9 +510,25 @@ document.write(`
 </tbody>
 </table>
 <dl class="py class">
+<dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.AdaBoostExponentialLossRegression">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AdaBoostExponentialLossRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#AdaBoostExponentialLossRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.AdaBoostExponentialLossRegression" title="Permalink to this definition">#</a></dt>
+<dd><p>AdaBoost regression action with exponential loss.
+Fits a Scikit-Learn AdaBoostRegressor
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html</a></p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.AdaBoostRegression">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AdaBoostRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#AdaBoostRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.AdaBoostRegression" title="Permalink to this definition">#</a></dt>
-<dd><p>AdaBoost regression action.
+<dd><p>AdaBoost regression action with linear loss.
+Fits a Scikit-Learn AdaBoostRegressor
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html</a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ostatslib.actions.regressors.ensembles.AdaBoostSquareLossRegression">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AdaBoostSquareLossRegression</span></span><a class="reference internal" href="../../_modules/ostatslib/actions/regressors/ensembles.html#AdaBoostSquareLossRegression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ostatslib.actions.regressors.ensembles.AdaBoostSquareLossRegression" title="Permalink to this definition">#</a></dt>
+<dd><p>AdaBoost regression action with square loss.
 Fits a Scikit-Learn AdaBoostRegressor
 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html</a></p>
 </dd></dl>

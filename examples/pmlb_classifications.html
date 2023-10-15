@@ -427,83 +427,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">sampled_dataset_names</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">pmlb</span><span class="o">.</span><span class="n">classification_dataset_names</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">AGENT_FILE</span> <span class="o">=</span> <span class="s1">&#39;../trained_ppo_model.zip&#39;</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">PPOAgent</span><span class="p">(</span><span class="n">AGENT_FILE</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Sampled </span><span class="si">{</span><span class="n">sample_size</span><span class="si">}</span><span class="s1"> classification datasets: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sampled_dataset_names</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:38,</span> in <span class="ni">PPOAgent.__init__</span><span class="nt">(self, path, training_envs_count, environment_kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>              <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>              <span class="n">training_envs_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>              <span class="n">environment_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__environment_kwargs</span> <span class="o">=</span> <span class="n">environment_kwargs</span>
-<span class="ne">---&gt; </span><span class="mi">38</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__init__model</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">training_envs_count</span><span class="p">)</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/ppo_agent.py:70,</span> in <span class="ni">PPOAgent.__init__model</span><span class="nt">(self, path, training_envs_count)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="k">return</span> <span class="n">PPO</span><span class="p">(</span><span class="n">POLICY</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>                <span class="n">environments</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>                <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span>                <span class="n">n_steps</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span>                <span class="n">policy_kwargs</span><span class="o">=</span><span class="n">POLICY_KWARGS</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">70</span> <span class="k">return</span> <span class="n">PPO</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>                 <span class="n">environments</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>                 <span class="n">custom_objects</span><span class="o">=</span><span class="p">{</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>                     <span class="s1">&#39;observation_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">observation_space</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span>                     <span class="s1">&#39;action_space&#39;</span><span class="p">:</span> <span class="n">environments</span><span class="o">.</span><span class="n">action_space</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span>                 <span class="p">})</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:761,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span>         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span>             <span class="s2">&quot;You are probably loading a model saved with SB3 &lt; 1.7.0, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">754</span>             <span class="s2">&quot;we deactivated exact_match so you can save the model &quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">758</span>             <span class="s2">&quot;Note: the model should still work fine, this only a warning.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">759</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">761</span>         <span class="k">raise</span> <span class="n">e</span>
-<span class="g g-Whitespace">    </span><span class="mi">762</span> <span class="c1"># put other pytorch variables back in place</span>
-<span class="g g-Whitespace">    </span><span class="mi">763</span> <span class="k">if</span> <span class="n">pytorch_variables</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:745,</span> in <span class="ni">BaseAlgorithm.load</span><span class="nt">(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">741</span> <span class="n">model</span><span class="o">.</span><span class="n">_setup_model</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">743</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">744</span>     <span class="c1"># put state_dicts back in place</span>
-<span class="ne">--&gt; </span><span class="mi">745</span>     <span class="n">model</span><span class="o">.</span><span class="n">set_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">exact_match</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">746</span> <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">747</span>     <span class="c1"># Patch to load Policy saved using SB3 &lt; 1.7.0</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span>     <span class="c1"># the error is probably due to old policy being loaded</span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span>     <span class="c1"># See https://github.com/DLR-RM/stable-baselines3/issues/1233</span>
-<span class="g g-Whitespace">    </span><span class="mi">750</span>     <span class="k">if</span> <span class="s2">&quot;pi_features_extractor&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Missing key(s) in state_dict&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/stable_baselines3/common/base_class.py:631,</span> in <span class="ni">BaseAlgorithm.set_parameters</span><span class="nt">(self, load_path_or_dict, exact_match, device)</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span>         <span class="n">attr</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">630</span>         <span class="c1"># Assume attr is th.nn.Module</span>
-<span class="ne">--&gt; </span><span class="mi">631</span>         <span class="n">attr</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">strict</span><span class="o">=</span><span class="n">exact_match</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">updated_objects</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="k">if</span> <span class="n">exact_match</span> <span class="ow">and</span> <span class="n">updated_objects</span> <span class="o">!=</span> <span class="n">objects_needing_update</span><span class="p">:</span>
-
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py:2041,</span> in <span class="ni">Module.load_state_dict</span><span class="nt">(self, state_dict, strict)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2036</span>         <span class="n">error_msgs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2037</span>             <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Missing key(s) in state_dict: </span><span class="si">{}</span><span class="s1">. &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2038</span>                 <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">missing_keys</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2040</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">error_msgs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2041</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Error(s) in loading state_dict for </span><span class="si">{}</span><span class="s1">:</span><span class="se">\n\t</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2042</span>                        <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_msgs</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2043</span> <span class="k">return</span> <span class="n">_IncompatibleKeys</span><span class="p">(</span><span class="n">missing_keys</span><span class="p">,</span> <span class="n">unexpected_keys</span><span class="p">)</span>
-
-<span class="ne">RuntimeError</span>: Error(s) in loading state_dict for MultiInputActorCriticPolicy:
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">mlp_extractor</span><span class="o">.</span><span class="n">policy_net</span><span class="mf">.0</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">128</span><span class="p">,</span> <span class="mi">43</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">128</span><span class="p">,</span> <span class="mi">69</span><span class="p">])</span><span class="o">.</span>
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">mlp_extractor</span><span class="o">.</span><span class="n">value_net</span><span class="mf">.0</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">43</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">64</span><span class="p">,</span> <span class="mi">69</span><span class="p">])</span><span class="o">.</span>
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">action_net</span><span class="o">.</span><span class="n">weight</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">128</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">128</span><span class="p">])</span><span class="o">.</span>
-	<span class="n">size</span> <span class="n">mismatch</span> <span class="k">for</span> <span class="n">action_net</span><span class="o">.</span><span class="n">bias</span><span class="p">:</span> <span class="n">copying</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">6</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">checkpoint</span><span class="p">,</span> <span class="n">the</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">current</span> <span class="n">model</span> <span class="ow">is</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">7</span><span class="p">])</span><span class="o">.</span>
-</pre></div>
-</div>
+<p>Sampled 16 classification datasets: clean1, ann_thyroid, led24, diabetes, ionosphere, GAMETES_Heterogeneity_20atts_1600_Het_0.4_0.2_75_EDM_2_001, yeast, krkopt, car, vowel, colic, shuttle, segmentation, glass2, texture, page_blocks.</p>
 </div>
 </div>
 </section>
@@ -541,276 +465,484 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p class="rubric">fars</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:27.546841
-Final status is Complete
+<p class="rubric">clean1</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:11.522180
+Final status is Not Complete
 Initial State known features:
-response_variable_label  target
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.004201680672268907
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
 Steps:
-  Order  Step                          Reward  State Change
--------  --------------------------  --------  ------------------------------------
-      1  Infer Response DType        0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count          0.1       log_rows_count  0.966805
-      3  Is Response Discrete Check  0.1       is_response_discrete  1
-      4  Decision Tree               0.771191  score                       0.696191
-                                               decision_tree_score_reward  0.696191
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00420168
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
 <p class="rubric">ann_thyroid</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:28.407073
-Final status is Complete
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:12.614945
+Final status is Not Complete
 Initial State known features:
-response_variable_label  target
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0004166666666666667
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
 Steps:
-  Order  Step                          Reward  State Change
--------  --------------------------  --------  -----------------------------------
-      1  Infer Response DType             0.1  response_inferred_dtype  integer
-      2  Get Log Rows Count               0.1  log_rows_count  0.745234
-      3  Is Response Discrete Check       0.1  is_response_discrete  1
-      4  Decision Tree                    1    score                       0.99625
-                                               decision_tree_score_reward  0.99625
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000416667
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">led24</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:13.667317
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.003125
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  --------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.003125
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">diabetes</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:14.646228
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0026041666666666665
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00260417
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">ionosphere</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:15.932154
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.005698005698005698
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00569801
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">GAMETES_Heterogeneity_20atts_1600_Het_0.4_0.2_75_EDM_2_001</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:16.722191
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.00125
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00125
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">yeast</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:18.578339
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.006085192697768763
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00608519
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">krkopt</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:19.570762
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0006415739948674081
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000641574
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">car</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:20.973437
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0023148148148148147
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00231481
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">vowel</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:21.692416
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.011111111111111112
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ---------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0111111
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">colic</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:22.981455
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.005434782608695652
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00543478
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">shuttle</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:26.059731
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0001206896551724138
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00012069
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">segmentation</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:28.211013
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0030303030303030303
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ---------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0030303
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">glass2</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:30.057594
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.012269938650306749
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ---------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0122699
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">texture</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:32.186811
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.002
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.002
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
 <p class="rubric">page_blocks</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:29.576404
-Final status is Complete
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:41:33.863582
+Final status is Not Complete
 Initial State known features:
-response_variable_label  target
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0009135757354284671
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
 Steps:
-  Order  Step                          Reward  State Change
--------  --------------------------  --------  ------------------------------------
-      1  Infer Response DType             0.1  response_inferred_dtype  integer
-      2  Get Log Rows Count               0.1  log_rows_count  0.722223
-      3  Is Response Discrete Check       0.1  is_response_discrete  1
-      4  Decision Tree                    1    score                       0.952263
-                                               decision_tree_score_reward  0.952263
-</pre></div>
-</div>
-<p class="rubric">analcatdata_happiness</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:30.053794
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ----------------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count                      0.1       log_rows_count  0.343538
-      3  Is Response Balanced Check              0.1       is_response_balanced  1
-      4  Is Response Discrete Check              0.1       is_response_discrete  1
-      5  Is Response Dichotomous Check           0.1       is_response_dichotomous  -1
-      6  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  1
-      7  Support Vector Classification           0.533333  score                                       0.633333
-                                                           support_vector_classification_score_reward  0.633333
-</pre></div>
-</div>
-<p class="rubric">xd6</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:30.224590
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count                      0.1       log_rows_count  0.577302
-      3  Is Response Discrete Check              0.1       is_response_discrete  1
-      4  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  1
-      5  Is Response Dichotomous Check           0.1       is_response_dichotomous  1
-      6  Logistic Regression                     0.913977  score                             0.813977
-                                                           logistic_regression_score_reward  0.813977
-</pre></div>
-</div>
-<p class="rubric">monk1</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:30.339794
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count                      0.1       log_rows_count  0.530347
-      3  Is Response Discrete Check              0.1       is_response_discrete  1
-      4  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  1
-      5  Is Response Dichotomous Check           0.1       is_response_dichotomous  1
-      6  Logistic Regression                     0.765468  score                             0.665468
-                                                           logistic_regression_score_reward  0.665468
-</pre></div>
-</div>
-<p class="rubric">pima</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:30.686781
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count                      0.1       log_rows_count  0.55745
-      3  Is Response Discrete Check              0.1       is_response_discrete  1
-      4  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  1
-      5  Is Response Dichotomous Check           0.1       is_response_dichotomous  1
-      6  Logistic Regression                     0.883854  score                             0.783854
-                                                           logistic_regression_score_reward  0.783854
-</pre></div>
-</div>
-<p class="rubric">mfeat_fourier</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:32.042367
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count                      0.1       log_rows_count  0.637757
-      3  Is Response Discrete Check              0.1       is_response_discrete  1
-      4  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  1
-      5  Is Response Dichotomous Check           0.1       is_response_dichotomous  -1
-      6  Poisson Regression                      0.837421  score                                                     0.737421
-                                                           does_poisson_regression_raises_perfect_separation_error  -1
-                                                           poisson_regression_score_reward                           0.737421
-</pre></div>
-</div>
-<p class="rubric">clean2</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:34.459835
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                          Reward  State Change
--------  --------------------------  --------  ------------------------------------
-      1  Infer Response DType        0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count          0.1       log_rows_count  0.737908
-      3  Is Response Discrete Check  0.1       is_response_discrete  1
-      4  Decision Tree               0.956172  score                       0.881172
-                                               decision_tree_score_reward  0.881172
-</pre></div>
-</div>
-<p class="rubric">GAMETES_Epistasis_2_Way_20atts_0.1H_EDM_1_1</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:42.263926
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                       Reward  State Change
--------  --------------------------------------  ---------  -----------------------------------------------------
-      1  Infer Response DType                     0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count                       0.1       log_rows_count  0.619034
-      3  Is Response Discrete Check               0.1       is_response_discrete  1
-      4  Is Response Positive Values Only Check   0.1       is_response_positive_values_only  1
-      5  Is Response Dichotomous Check            0.1       is_response_dichotomous  1
-      6  Logistic Regression                     -0.350625  score                              0.549375
-                                                            logistic_regression_score_reward  -0.450625
-      7  Support Vector Classification           -0.546875  score                                        0.553125
-                                                            support_vector_classification_score_reward  -0.446875
-      8  Get Standarized Variables Ratio          0.1       standarized_variables_ratio  -1
-      9  Support Vector Classification           -1
-     10  Support Vector Classification           -1
-</pre></div>
-</div>
-<p class="rubric">breast_cancer_wisconsin</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:45.121895
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------
-      1  Infer Response DType                         0.1  response_inferred_dtype  integer
-      2  Get Log Rows Count                           0.1  log_rows_count  0.532286
-      3  Is Response Discrete Check                   0.1  is_response_discrete  1
-      4  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  1
-      5  Is Response Dichotomous Check                0.1  is_response_dichotomous  1
-      6  Logistic Regression                          1    score                             0.970123
-                                                           logistic_regression_score_reward  0.970123
-</pre></div>
-</div>
-<p class="rubric">sleep</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:59.614236
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                          Reward  State Change
--------  --------------------------  --------  ------------------------------------
-      1  Infer Response DType        0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count          0.1       log_rows_count  0.970813
-      3  Is Response Discrete Check  0.1       is_response_discrete  1
-      4  Decision Tree               0.743952  score                       0.668952
-                                               decision_tree_score_reward  0.668952
-</pre></div>
-</div>
-<p class="rubric">analcatdata_boxing1</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:59.762954
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                             Reward  State Change
--------  -----------------------------  --------  --------------------------------------
-      1  Infer Response DType               0.1   response_inferred_dtype  integer
-      2  Get Log Rows Count                 0.1   log_rows_count  0.401697
-      3  Is Response Balanced Check         0.1   is_response_balanced  0.5
-      4  Is Response Discrete Check         0.1   is_response_discrete  1
-      5  Is Response Dichotomous Check      0.1   is_response_dichotomous  1
-      6  Logistic Regression                0.75  score                             0.65
-                                                  logistic_regression_score_reward  0.65
-</pre></div>
-</div>
-<p class="rubric">monk2</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:00:59.922892
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------------
-      1  Infer Response DType                    0.1       response_inferred_dtype  integer
-      2  Get Log Rows Count                      0.1       log_rows_count  0.536877
-      3  Is Response Discrete Check              0.1       is_response_discrete  1
-      4  Is Response Positive Values Only Check  0.1       is_response_positive_values_only  1
-      5  Is Response Dichotomous Check           0.1       is_response_dichotomous  1
-      6  Logistic Regression                     0.757238  score                             0.657238
-                                                           logistic_regression_score_reward  0.657238
-</pre></div>
-</div>
-<p class="rubric">car_evaluation</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:01.805494
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                                      Reward  State Change
--------  --------------------------------------  --------  ------------------------------------
-      1  Infer Response DType                         0.1  response_inferred_dtype  integer
-      2  Get Log Rows Count                           0.1  log_rows_count  0.625491
-      3  Is Response Discrete Check                   0.1  is_response_discrete  1
-      4  Is Response Positive Values Only Check       0.1  is_response_positive_values_only  1
-      5  Is Response Dichotomous Check                0.1  is_response_dichotomous  -1
-      6  Poisson Regression                          -0.9  poisson_regression_score_reward  -1
-      7  Get Log Columns Count                        0.1  log_columns_count  0.447474
-      8  Get Standarized Variables Ratio              0.1  standarized_variables_ratio  -1
-      9  Get Correlated Variables Ratio               0.1  correlated_variables_ratio  0.318182
-     10  Get Correlated Variables Ratio              -1
-</pre></div>
-</div>
-<p class="rubric">house_votes_84</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-07-25 19:01:04.887150
-Final status is Complete
-Initial State known features:
-response_variable_label  target
-Steps:
-  Order  Step                             Reward  State Change
--------  -----------------------------  --------  -----------------------------------------
-      1  Infer Response DType                0.1  response_inferred_dtype  integer
-      2  Get Log Rows Count                  0.1  log_rows_count  0.509754
-      3  Is Response Balanced Check          0.1  is_response_balanced  0.5
-      4  Is Response Discrete Check          0.1  is_response_discrete  1
-      5  Is Response Dichotomous Check       0.1  is_response_dichotomous  1
-      6  Logistic Regression                 1    score                             0.96092
-                                                  logistic_regression_score_reward  0.96092
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000913576
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
 </div>

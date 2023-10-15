@@ -400,16 +400,43 @@ document.write(`
 
 
 <div class="viewcode-block" id="AdaBoostRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.AdaBoostRegression">[docs]</a><span class="k">class</span> <span class="nc">AdaBoostRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">AdaBoostRegressor</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;AdaBoost regression action.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AdaBoost regression action with linear loss.</span>
 <span class="sd">    Fits a Scikit-Learn AdaBoostRegressor</span>
 <span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;AdaBoost Regression&#39;</span>
     <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;adaboost_regression&#39;</span>
-    <span class="n">estimator</span> <span class="o">=</span> <span class="n">AdaBoostRegressor</span><span class="p">()</span>
-    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
-                   <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="s1">&#39;square&#39;</span><span class="p">,</span> <span class="s1">&#39;exponential&#39;</span><span class="p">]}</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">AdaBoostRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+    <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="AdaBoostSquareLossRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.AdaBoostSquareLossRegression">[docs]</a><span class="k">class</span> <span class="nc">AdaBoostSquareLossRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">AdaBoostRegressor</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AdaBoost regression action with square loss.</span>
+<span class="sd">    Fits a Scikit-Learn AdaBoostRegressor</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;AdaBoost Regression with Square Loss&#39;</span>
+    <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;adaboost_square_loss_regression&#39;</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">AdaBoostRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+    <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="AdaBoostExponentialLossRegression"><a class="viewcode-back" href="../../../../api/_autosummary/ostatslib.actions.regressors.ensembles.html#ostatslib.actions.regressors.ensembles.AdaBoostExponentialLossRegression">[docs]</a><span class="k">class</span> <span class="nc">AdaBoostExponentialLossRegression</span><span class="p">(</span><span class="n">TargetModelEstimatorAction</span><span class="p">[</span><span class="n">AdaBoostRegressor</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AdaBoost regression action with exponential loss.</span>
+<span class="sd">    Fits a Scikit-Learn AdaBoostRegressor</span>
+<span class="sd">    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">action_name</span> <span class="o">=</span> <span class="s1">&#39;AdaBoost Regression with Exponential Loss&#39;</span>
+    <span class="n">action_key</span> <span class="o">=</span> <span class="s1">&#39;adaboost_exponential_loss_regression&#39;</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">AdaBoostRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;exponential&#39;</span><span class="p">)</span>
+    <span class="n">params_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
     <span class="n">exceptions_handlers</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">validations</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;response_unique_values_ratio&#39;</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span></div>
 

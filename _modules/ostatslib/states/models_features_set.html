@@ -446,6 +446,20 @@ document.write(`
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
         <span class="p">})</span>
 
+    <span class="n">entropy_criteria_decision_tree_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">log_loss_criteria_decision_tree_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
     <span class="c1"># ensembles</span>
 
     <span class="n">adaboost_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
@@ -536,6 +550,13 @@ document.write(`
             <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
         <span class="p">})</span>
 
+    <span class="n">nu_linear_kernel_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
     <span class="n">nu_poly_kernel_support_vector_classification_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
@@ -578,6 +599,20 @@ document.write(`
     <span class="c1"># ensembles</span>
 
     <span class="n">adaboost_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">adaboost_square_loss_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">adaboost_exponential_loss_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
             <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
@@ -659,6 +694,13 @@ document.write(`
         <span class="p">})</span>
 
     <span class="n">nu_support_vector_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="s1">&#39;get_value_fn&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">})</span>
+
+    <span class="n">nu_linear_kernel_support_vector_regression_score_reward</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
             <span class="s1">&#39;gym_space&#39;</span><span class="p">:</span> <span class="n">Box</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>

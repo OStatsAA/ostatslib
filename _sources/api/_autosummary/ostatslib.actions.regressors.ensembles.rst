@@ -17,7 +17,9 @@ ostatslib.actions.regressors.ensembles
 
    .. autosummary::
    
+      AdaBoostExponentialLossRegression
       AdaBoostRegression
+      AdaBoostSquareLossRegression
       BaggingRegression
       ExtraTreesRegression
       GradientBoostingRegression

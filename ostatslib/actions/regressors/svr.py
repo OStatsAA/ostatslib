@@ -35,10 +35,25 @@ class NuSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
 
     action_name = 'Nu-Support Vector Regression'
     action_key = 'nu_support_vector_regression'
-    estimator = NuSVR()
+    estimator = NuSVR(kernel='rbf')
     params_grid = {'nu': [0.33, 0.5, 0.66],
-                   'C': [0.1, 1, 10],
-                   'kernel': ['linear', 'rbf']}
+                   'C': [0.1, 1, 10]}
+    exceptions_handlers = None
+    validations = [('log_rows_count', operator.lt, 0.71),
+                   *_SVM_VALIDATIONS]
+
+
+class NuLinearKernelSupportVectorRegression(TargetModelEstimatorAction[NuSVR]):
+    """Nu support vector regression action.
+    Fits a Scikit-Learn NuSVR
+    https://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVR.html
+    """
+
+    action_name = 'Nu-Linear Kernel Support Vector Regression'
+    action_key = 'nu_linear_kernel_support_vector_regression'
+    estimator = NuSVR(kernel='linear')
+    params_grid = {'nu': [0.33, 0.5, 0.66],
+                   'C': [0.1, 1, 10]}
     exceptions_handlers = None
     validations = [('log_rows_count', operator.lt, 0.71),
                    *_SVM_VALIDATIONS]

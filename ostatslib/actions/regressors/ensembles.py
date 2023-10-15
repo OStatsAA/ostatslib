@@ -13,16 +13,43 @@ from ostatslib.actions.base import TargetModelEstimatorAction, TreeEstimatorActi
 
 
 class AdaBoostRegression(TargetModelEstimatorAction[AdaBoostRegressor]):
-    """AdaBoost regression action.
+    """AdaBoost regression action with linear loss.
     Fits a Scikit-Learn AdaBoostRegressor
     https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html
     """
 
     action_name = 'AdaBoost Regression'
     action_key = 'adaboost_regression'
-    estimator = AdaBoostRegressor()
-    params_grid = {'n_estimators': [10, 50, 100],
-                   'loss': ['linear', 'square', 'exponential']}
+    estimator = AdaBoostRegressor(loss='linear')
+    params_grid = {'n_estimators': [10, 50, 100]}
+    exceptions_handlers = None
+    validations = [('response_unique_values_ratio', operator.gt, 0.1)]
+
+
+class AdaBoostSquareLossRegression(TargetModelEstimatorAction[AdaBoostRegressor]):
+    """AdaBoost regression action with square loss.
+    Fits a Scikit-Learn AdaBoostRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html
+    """
+
+    action_name = 'AdaBoost Regression with Square Loss'
+    action_key = 'adaboost_square_loss_regression'
+    estimator = AdaBoostRegressor(loss='square')
+    params_grid = {'n_estimators': [10, 50, 100]}
+    exceptions_handlers = None
+    validations = [('response_unique_values_ratio', operator.gt, 0.1)]
+
+
+class AdaBoostExponentialLossRegression(TargetModelEstimatorAction[AdaBoostRegressor]):
+    """AdaBoost regression action with exponential loss.
+    Fits a Scikit-Learn AdaBoostRegressor
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html
+    """
+
+    action_name = 'AdaBoost Regression with Exponential Loss'
+    action_key = 'adaboost_exponential_loss_regression'
+    estimator = AdaBoostRegressor(loss='exponential')
+    params_grid = {'n_estimators': [10, 50, 100]}
     exceptions_handlers = None
     validations = [('response_unique_values_ratio', operator.gt, 0.1)]
 

@@ -59,6 +59,20 @@ class ModelsFeaturesSet(FeaturesSet):
             'get_value_fn': None
         })
 
+    entropy_criteria_decision_tree_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    log_loss_criteria_decision_tree_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
     # ensembles
 
     adaboost_score_reward: float = field(
@@ -149,6 +163,13 @@ class ModelsFeaturesSet(FeaturesSet):
             'get_value_fn': None
         })
 
+    nu_linear_kernel_support_vector_classification_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
     nu_poly_kernel_support_vector_classification_score_reward: float = field(
         default=0,
         metadata={
@@ -191,6 +212,20 @@ class ModelsFeaturesSet(FeaturesSet):
     # ensembles
 
     adaboost_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    adaboost_square_loss_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    adaboost_exponential_loss_regression_score_reward: float = field(
         default=0,
         metadata={
             'gym_space': Box(-1, 1),
@@ -272,6 +307,13 @@ class ModelsFeaturesSet(FeaturesSet):
         })
 
     nu_support_vector_regression_score_reward: float = field(
+        default=0,
+        metadata={
+            'gym_space': Box(-1, 1),
+            'get_value_fn': None
+        })
+
+    nu_linear_kernel_support_vector_regression_score_reward: float = field(
         default=0,
         metadata={
             'gym_space': Box(-1, 1),

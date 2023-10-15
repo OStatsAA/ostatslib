@@ -6,6 +6,8 @@ from .decision_trees import (DecisionTreeRegression,)
 from .ensembles import (RandomForestRegression,
                         N100EstimatorsRandomForestRegression,
                         AdaBoostRegression,
+                        AdaBoostExponentialLossRegression,
+                        AdaBoostSquareLossRegression,
                         BaggingRegression,
                         ExtraTreesRegression,
                         GradientBoostingRegression,
@@ -20,4 +22,5 @@ from .svr import (LinearSupportVectorRegression,
                   PolyKernelSupportVectorRegression,
                   SupportVectorRegression,
                   NuPolyKernelSupportVectorRegression,
-                  NuSupportVectorRegression)
+                  NuSupportVectorRegression,
+                  NuLinearKernelSupportVectorRegression)

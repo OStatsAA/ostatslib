@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,9 +37,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -196,8 +196,8 @@ const thebe_selector_output = ".output, .cell_output"
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__kbd-shortcut">Search</span>
-    <span><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
    </button>
  `);
  </script>
@@ -241,8 +241,8 @@ document.write(`
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__kbd-shortcut">Search</span>
-    <span><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
    </button>
  `);
  </script>
@@ -386,7 +386,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="examples.html" class="nav-link">Examples</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">PMLB Regression Datasets</li>
+    <li class="breadcrumb-item active" aria-current="page">PMLB...</li>
   </ul>
 </nav>
 </div>
@@ -427,7 +427,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Sampled 12 regression datasets: 659_sleuth_ex1714, 623_fri_c4_1000_10, 522_pm10, 590_fri_c0_1000_50, 646_fri_c3_500_10, 601_fri_c1_250_5, 628_fri_c3_1000_5, 505_tecator, 588_fri_c4_1000_100, 695_chatfield_4, 527_analcatdata_election2000, 344_mv.</p>
+<p>Sampled 12 regression datasets: 594_fri_c2_100_5, 1028_SWD, 620_fri_c1_1000_25, 591_fri_c1_100_10, 603_fri_c0_250_50, 230_machine_cpu, 590_fri_c0_1000_50, 596_fri_c2_250_5, 195_auto_price, 656_fri_c1_100_5, 4544_GeographicalOriginalofMusic, 579_fri_c0_250_5.</p>
 </div>
 </div>
 </section>
@@ -467,74 +467,33 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p class="rubric">659_sleuth_ex1714</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:04.439310
-Final status is Not Complete
-Initial State known features:
-response_variable_label                                     target
-score                                                       0.4776465895355451
-time_convertible_variable
-response_unique_values_ratio                                1.0
-response_inferred_dtype                                     floating
-is_response_positive_values_only                            1
-standardized_variables_ratio                                -1
-are_linear_model_regression_residuals_correlated            1
-are_linear_model_regression_residuals_homoscedastic         -0.5
-are_linear_model_regression_residuals_normally_distributed  1
-n_100_estimators_gradient_boosting_regression_score_reward  -0.5223534104644549
-n_100_estimators_random_forest_regression_score_reward      -0.6253785827364042
-linear_regression_score_reward                              0.8543076708679601
-Steps:
-  Order  Step                                            Reward  State Change
--------  -------------------------------------------  ---------  ---------------------------------------------------------------------
-      1  Is Response Positive Values Only              0.1
-      2  Time Convertible Variable Search              0.1       time_convertible_variable
-      3  Infer Response DType                          0.1       response_inferred_dtype  floating
-      4  Standardized Variables Ratio                  0.1       standardized_variables_ratio  -1
-      5  Response Unique Values Ratio                  0.1       response_unique_values_ratio  1
-      6  Random Forest Regression 100 Estimators      -0.625379  score                                                    0.374621
-                                                                 n_100_estimators_random_forest_regression_score_reward  -0.625379
-      7  Linear Regression                             0.254308  score                                                        0.854308
-                                                                 are_linear_model_regression_residuals_correlated             1
-                                                                 are_linear_model_regression_residuals_homoscedastic         -0.5
-                                                                 are_linear_model_regression_residuals_normally_distributed   1
-                                                                 linear_regression_score_reward                               0.854308
-      8  Gradient Boosting Regression 100 Estimators  -0.522353  score                                                        0.477647
-                                                                 n_100_estimators_gradient_boosting_regression_score_reward  -0.522353
-      9  Gradient Boosting Regression 100 Estimators  -0.522353
-     10  Gradient Boosting Regression 100 Estimators  -0.522353
-     11  Gradient Boosting Regression 100 Estimators  -0.522353
-     12  Gradient Boosting Regression 100 Estimators  -0.522353
-     13  Gradient Boosting Regression 100 Estimators  -0.522353
-     14  Gradient Boosting Regression 100 Estimators  -0.522353
-     15  Gradient Boosting Regression 100 Estimators  -0.522353
-</pre></div>
-</div>
-<p class="rubric">623_fri_c4_1000_10</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:11.077552
+<p class="rubric">594_fri_c2_100_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:10.164239
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7878274748891181
+score                                         0.7445799731081634
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7878274748891181
+adaboost_square_loss_regression_score_reward  0.7445799731081634
 Steps:
-  Order  Step                                    Reward  State Change
--------  ------------------------------------  --------  ------------------------------------------------------
-      1  Is Response Positive Values Only      0.1
-      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.787827  score                                         0.787827
-                                                         adaboost_square_loss_regression_score_reward  0.787827
+  Order  Step                                     Reward  State Change
+-------  ------------------------------------  ---------  -------------------------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Response Unique Values Ratio           0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  -0.308103  score                                          0.691897
+                                                          adaboost_square_loss_regression_score_reward  -0.308103
+      4  AdaBoost Regression with Square Loss   0.74458   score                                         0.74458
+                                                          adaboost_square_loss_regression_score_reward  0.74458
 </pre></div>
 </div>
-<p class="rubric">522_pm10</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:13.832629
+<p class="rubric">1028_SWD</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:11.544652
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.234
+response_unique_values_ratio      0.004
 response_inferred_dtype           floating
 is_response_positive_values_only  1
 standardized_variables_ratio      -1
@@ -545,7 +504,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  floating
       4  Standardized Variables Ratio           0.1  standardized_variables_ratio  -1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.234
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.004
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -558,90 +517,96 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<p class="rubric">590_fri_c0_1000_50</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:21.689786
+<p class="rubric">620_fri_c1_1000_25</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:15.778896
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7840638414578838
+score                                         0.8315378218368986
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7840638414578838
+adaboost_square_loss_regression_score_reward  0.8315378218368986
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  ------------------------------------------------------
       1  Is Response Positive Values Only      0.1
       2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.784064  score                                         0.784064
-                                                         adaboost_square_loss_regression_score_reward  0.784064
+      3  AdaBoost Regression with Square Loss  0.831538  score                                         0.831538
+                                                         adaboost_square_loss_regression_score_reward  0.831538
 </pre></div>
 </div>
-<p class="rubric">646_fri_c3_500_10</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:27.015260
+<p class="rubric">591_fri_c1_100_10</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:18.098714
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.8088757809599325
+score                                         0.7523470649907155
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.8088757809599325
+adaboost_square_loss_regression_score_reward  0.7523470649907155
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  ------------------------------------------------------
       1  Is Response Positive Values Only      0.1
       2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.808876  score                                         0.808876
-                                                         adaboost_square_loss_regression_score_reward  0.808876
+      3  AdaBoost Regression with Square Loss  0.752347  score                                         0.752347
+                                                         adaboost_square_loss_regression_score_reward  0.752347
 </pre></div>
 </div>
-<p class="rubric">601_fri_c1_250_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:29.108151
-Final status is Complete
+<p class="rubric">603_fri_c0_250_50</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:43.100324
+Final status is Not Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7957471883322299
+score                                         0.6841291747997548
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7957471883322299
+adaboost_square_loss_regression_score_reward  -0.31587082520024523
 Steps:
-  Order  Step                                    Reward  State Change
--------  ------------------------------------  --------  ------------------------------------------------------
-      1  Is Response Positive Values Only      0.1
-      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.795747  score                                         0.795747
-                                                         adaboost_square_loss_regression_score_reward  0.795747
+  Order  Step                                     Reward  State Change
+-------  ------------------------------------  ---------  -------------------------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Response Unique Values Ratio           0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  -0.331927  score                                          0.668073
+                                                          adaboost_square_loss_regression_score_reward  -0.331927
+      4  AdaBoost Regression with Square Loss  -0.327605  score                                          0.672395
+                                                          adaboost_square_loss_regression_score_reward  -0.327605
+      5  AdaBoost Regression with Square Loss  -0.306006  score                                          0.693994
+                                                          adaboost_square_loss_regression_score_reward  -0.306006
+      6  AdaBoost Regression with Square Loss  -0.327027  score                                          0.672973
+                                                          adaboost_square_loss_regression_score_reward  -0.327027
+      7  AdaBoost Regression with Square Loss  -0.301034  score                                          0.698966
+                                                          adaboost_square_loss_regression_score_reward  -0.301034
+      8  AdaBoost Regression with Square Loss  -0.334422  score                                          0.665578
+                                                          adaboost_square_loss_regression_score_reward  -0.334422
+      9  AdaBoost Regression with Square Loss  -0.335098  score                                          0.664902
+                                                          adaboost_square_loss_regression_score_reward  -0.335098
+     10  AdaBoost Regression with Square Loss  -0.310742  score                                          0.689258
+                                                          adaboost_square_loss_regression_score_reward  -0.310742
+     11  AdaBoost Regression with Square Loss  -0.32152   score                                          0.67848
+                                                          adaboost_square_loss_regression_score_reward  -0.32152
+     12  AdaBoost Regression with Square Loss  -0.338433  score                                          0.661567
+                                                          adaboost_square_loss_regression_score_reward  -0.338433
+     13  AdaBoost Regression with Square Loss  -0.31798   score                                          0.68202
+                                                          adaboost_square_loss_regression_score_reward  -0.31798
+     14  AdaBoost Regression with Square Loss  -0.318499  score                                          0.681501
+                                                          adaboost_square_loss_regression_score_reward  -0.318499
+     15  AdaBoost Regression with Square Loss  -0.315871  score                                          0.684129
+                                                          adaboost_square_loss_regression_score_reward  -0.315871
 </pre></div>
 </div>
-<p class="rubric">628_fri_c3_1000_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:36.753265
-Final status is Complete
-Initial State known features:
-response_variable_label                       target
-score                                         0.8090830978742847
-response_unique_values_ratio                  1.0
-is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.8090830978742847
-Steps:
-  Order  Step                                    Reward  State Change
--------  ------------------------------------  --------  ------------------------------------------------------
-      1  Is Response Positive Values Only      0.1
-      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.809083  score                                         0.809083
-                                                         adaboost_square_loss_regression_score_reward  0.809083
-</pre></div>
-</div>
-<p class="rubric">505_tecator</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:42.934994
+<p class="rubric">230_machine_cpu</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:45.979251
 Final status is Complete
 Initial State known features:
 response_variable_label                                     target
-score                                                       0.9586114110527083
+score                                                       0.7265274054361426
 time_convertible_variable
-response_unique_values_ratio                                0.6541666666666667
+response_unique_values_ratio                                0.5550239234449761
 response_inferred_dtype                                     floating
 is_response_positive_values_only                            1
 standardized_variables_ratio                                -1
-n_100_estimators_gradient_boosting_regression_score_reward  0.9586114110527083
+n_100_estimators_gradient_boosting_regression_score_reward  0.7265274054361426
 Steps:
   Order  Step                                           Reward  State Change
 -------  -------------------------------------------  --------  --------------------------------------------------------------------
@@ -649,93 +614,172 @@ Steps:
       2  Time Convertible Variable Search             0.1       time_convertible_variable
       3  Infer Response DType                         0.1       response_inferred_dtype  floating
       4  Standardized Variables Ratio                 0.1       standardized_variables_ratio  -1
-      5  Response Unique Values Ratio                 0.1       response_unique_values_ratio  0.654167
-      6  Gradient Boosting Regression 100 Estimators  0.958611  score                                                       0.958611
-                                                                n_100_estimators_gradient_boosting_regression_score_reward  0.958611
+      5  Response Unique Values Ratio                 0.1       response_unique_values_ratio  0.555024
+      6  Gradient Boosting Regression 100 Estimators  0.726527  score                                                       0.726527
+                                                                n_100_estimators_gradient_boosting_regression_score_reward  0.726527
 </pre></div>
 </div>
-<p class="rubric">588_fri_c4_1000_100</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:54.625590
+<p class="rubric">590_fri_c0_1000_50</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:53.792398
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7999758722042434
+score                                         0.7746175133483079
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7999758722042434
+adaboost_square_loss_regression_score_reward  0.7746175133483079
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  ------------------------------------------------------
       1  Is Response Positive Values Only      0.1
       2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.799976  score                                         0.799976
-                                                         adaboost_square_loss_regression_score_reward  0.799976
+      3  AdaBoost Regression with Square Loss  0.774618  score                                         0.774618
+                                                         adaboost_square_loss_regression_score_reward  0.774618
 </pre></div>
 </div>
-<p class="rubric">695_chatfield_4</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:55.434978
-Final status is Complete
-Initial State known features:
-response_variable_label                                 target
-score                                                   0.7924323982573906
-time_convertible_variable
-response_unique_values_ratio                            0.8978723404255319
-response_inferred_dtype                                 floating
-is_response_positive_values_only                        1
-standardized_variables_ratio                            -1
-n_100_estimators_random_forest_regression_score_reward  0.7924323982573906
-Steps:
-  Order  Step                                       Reward  State Change
--------  ---------------------------------------  --------  ----------------------------------------------------------------
-      1  Is Response Positive Values Only         0.1
-      2  Time Convertible Variable Search         0.1       time_convertible_variable
-      3  Infer Response DType                     0.1       response_inferred_dtype  floating
-      4  Standardized Variables Ratio             0.1       standardized_variables_ratio  -1
-      5  Response Unique Values Ratio             0.1       response_unique_values_ratio  0.897872
-      6  Random Forest Regression 100 Estimators  0.792432  score                                                   0.792432
-                                                            n_100_estimators_random_forest_regression_score_reward  0.792432
-</pre></div>
-</div>
-<p class="rubric">527_analcatdata_election2000</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:59.125146
-Final status is Complete
-Initial State known features:
-response_variable_label                                 target
-score                                                   0.839888994464381
-time_convertible_variable
-response_unique_values_ratio                            1.0
-response_inferred_dtype                                 floating
-is_response_positive_values_only                        1
-standardized_variables_ratio                            -1
-n_100_estimators_random_forest_regression_score_reward  0.839888994464381
-Steps:
-  Order  Step                                       Reward  State Change
--------  ---------------------------------------  --------  ----------------------------------------------------------------
-      1  Is Response Positive Values Only         0.1
-      2  Time Convertible Variable Search         0.1       time_convertible_variable
-      3  Infer Response DType                     0.1       response_inferred_dtype  floating
-      4  Standardized Variables Ratio             0.1       standardized_variables_ratio  -1
-      5  Response Unique Values Ratio             0.1       response_unique_values_ratio  1
-      6  Random Forest Regression 100 Estimators  0.839889  score                                                   0.839889
-                                                            n_100_estimators_random_forest_regression_score_reward  0.839889
-</pre></div>
-</div>
-<p class="rubric">344_mv</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:43:40.399844
+<p class="rubric">596_fri_c2_250_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:41:57.270444
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.9636676209302273
-response_unique_values_ratio                  0.9573439952904239
+score                                         0.7754751849051057
+response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.9636676209302273
+adaboost_square_loss_regression_score_reward  0.7754751849051057
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  ------------------------------------------------------
       1  Is Response Positive Values Only      0.1
-      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  0.957344
-      3  AdaBoost Regression with Square Loss  0.963668  score                                         0.963668
-                                                         adaboost_square_loss_regression_score_reward  0.963668
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.775475  score                                         0.775475
+                                                         adaboost_square_loss_regression_score_reward  0.775475
+</pre></div>
+</div>
+<p class="rubric">195_auto_price</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:05.878596
+Final status is Not Complete
+Initial State known features:
+response_variable_label                                     target
+score                                                       0.6753235105140416
+time_convertible_variable
+response_unique_values_ratio                                0.9119496855345912
+response_inferred_dtype                                     floating
+is_response_positive_values_only                            1
+standardized_variables_ratio                                -1
+are_linear_model_regression_residuals_correlated            1
+are_linear_model_regression_residuals_homoscedastic         -1
+are_linear_model_regression_residuals_normally_distributed  -1
+n_100_estimators_random_forest_regression_score_reward      -0.3246764894859584
+linear_regression_score_reward                              0.7156106863859699
+Steps:
+  Order  Step                                        Reward  State Change
+-------  ---------------------------------------  ---------  ---------------------------------------------------------------------
+      1  Is Response Positive Values Only          0.1
+      2  Time Convertible Variable Search          0.1       time_convertible_variable
+      3  Infer Response DType                      0.1       response_inferred_dtype  floating
+      4  Standardized Variables Ratio              0.1       standardized_variables_ratio  -1
+      5  Response Unique Values Ratio              0.1       response_unique_values_ratio  0.91195
+      6  Random Forest Regression 100 Estimators  -0.340964  score                                                    0.659036
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.340964
+      7  Linear Regression                        -0.784389  score                                                        0.715611
+                                                             are_linear_model_regression_residuals_correlated             1
+                                                             are_linear_model_regression_residuals_homoscedastic         -1
+                                                             are_linear_model_regression_residuals_normally_distributed  -1
+                                                             linear_regression_score_reward                               0.715611
+      8  Random Forest Regression 100 Estimators  -0.366824  score                                                    0.633176
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.366824
+      9  Random Forest Regression 100 Estimators  -0.365797  score                                                    0.634203
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.365797
+     10  Random Forest Regression 100 Estimators  -0.373495  score                                                    0.626505
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.373495
+     11  Random Forest Regression 100 Estimators  -0.351583  score                                                    0.648417
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.351583
+     12  Random Forest Regression 100 Estimators  -0.32633   score                                                    0.67367
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.32633
+     13  Random Forest Regression 100 Estimators  -0.336411  score                                                    0.663589
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.336411
+     14  Random Forest Regression 100 Estimators  -0.361107  score                                                    0.638893
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.361107
+     15  Random Forest Regression 100 Estimators  -0.324676  score                                                    0.675324
+                                                             n_100_estimators_random_forest_regression_score_reward  -0.324676
+</pre></div>
+</div>
+<p class="rubric">656_fri_c1_100_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:42:09.337608
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.7489957597142947
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.7489957597142947
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.748996  score                                         0.748996
+                                                         adaboost_square_loss_regression_score_reward  0.748996
+</pre></div>
+</div>
+<p class="rubric">4544_GeographicalOriginalofMusic</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:44:01.399769
+Final status is Not Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.6751876036779445
+response_unique_values_ratio                  0.9981114258734656
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  -0.3248123963220555
+Steps:
+  Order  Step                                     Reward  State Change
+-------  ------------------------------------  ---------  -------------------------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Response Unique Values Ratio           0.1       response_unique_values_ratio  0.998111
+      3  AdaBoost Regression with Square Loss  -0.332324  score                                          0.667676
+                                                          adaboost_square_loss_regression_score_reward  -0.332324
+      4  AdaBoost Regression with Square Loss  -0.320912  score                                          0.679088
+                                                          adaboost_square_loss_regression_score_reward  -0.320912
+      5  AdaBoost Regression with Square Loss  -0.325101  score                                          0.674899
+                                                          adaboost_square_loss_regression_score_reward  -0.325101
+      6  AdaBoost Regression with Square Loss  -0.321769  score                                          0.678231
+                                                          adaboost_square_loss_regression_score_reward  -0.321769
+      7  AdaBoost Regression with Square Loss  -0.322216  score                                          0.677784
+                                                          adaboost_square_loss_regression_score_reward  -0.322216
+      8  AdaBoost Regression with Square Loss  -0.324209  score                                          0.675791
+                                                          adaboost_square_loss_regression_score_reward  -0.324209
+      9  AdaBoost Regression with Square Loss  -0.327481  score                                          0.672519
+                                                          adaboost_square_loss_regression_score_reward  -0.327481
+     10  AdaBoost Regression with Square Loss  -0.326518  score                                          0.673482
+                                                          adaboost_square_loss_regression_score_reward  -0.326518
+     11  AdaBoost Regression with Square Loss  -0.33011   score                                          0.66989
+                                                          adaboost_square_loss_regression_score_reward  -0.33011
+     12  AdaBoost Regression with Square Loss  -0.325731  score                                          0.674269
+                                                          adaboost_square_loss_regression_score_reward  -0.325731
+     13  AdaBoost Regression with Square Loss  -0.318678  score                                          0.681322
+                                                          adaboost_square_loss_regression_score_reward  -0.318678
+     14  AdaBoost Regression with Square Loss  -0.332461  score                                          0.667539
+                                                          adaboost_square_loss_regression_score_reward  -0.332461
+     15  AdaBoost Regression with Square Loss  -0.324812  score                                          0.675188
+                                                          adaboost_square_loss_regression_score_reward  -0.324812
+</pre></div>
+</div>
+<p class="rubric">579_fri_c0_250_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-16 20:44:03.542048
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.7349287588415984
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.7349287588415984
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.734929  score                                         0.734929
+                                                         adaboost_square_loss_regression_score_reward  0.734929
 </pre></div>
 </div>
 </div>
@@ -832,8 +876,8 @@ Steps:
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -863,7 +907,7 @@ Steps:
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.1.
 </p></div>
       
     </div>

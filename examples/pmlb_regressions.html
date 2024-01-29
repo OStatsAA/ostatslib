@@ -436,7 +436,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Sampled 12 regression datasets: 230_machine_cpu, 228_elusage, 601_fri_c1_250_5, 628_fri_c3_1000_5, 215_2dplanes, 527_analcatdata_election2000, 1029_LEV, 617_fri_c3_500_5, 594_fri_c2_100_5, 665_sleuth_case2002, 225_puma8NH, 613_fri_c3_250_5.</p>
+<p>Sampled 12 regression datasets: 607_fri_c4_1000_50, 574_house_16H, 523_analcatdata_neavote, 594_fri_c2_100_5, 592_fri_c4_1000_25, 593_fri_c1_1000_10, 598_fri_c0_1000_25, 687_sleuth_ex1605, 666_rmftsa_ladata, 618_fri_c3_1000_50, 207_autoPrice, 651_fri_c0_100_25.</p>
 </div>
 </div>
 </section>
@@ -474,232 +474,31 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p class="rubric">230_machine_cpu</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:21.805609
-Final status is Complete
-Initial State known features:
-response_variable_label                                     target
-score                                                       0.7265274054361426
-time_convertible_variable
-response_unique_values_ratio                                0.5550239234449761
-response_inferred_dtype                                     floating
-is_response_positive_values_only                            1
-standardized_variables_ratio                                -1
-n_100_estimators_gradient_boosting_regression_score_reward  0.7265274054361426
-Steps:
-  Order  Step                                           Reward  State Change
--------  -------------------------------------------  --------  --------------------------------------------------------------------
-      1  Is Response Positive Values Only             0.1
-      2  Time Convertible Variable Search             0.1       time_convertible_variable
-      3  Infer Response DType                         0.1       response_inferred_dtype  floating
-      4  Standardized Variables Ratio                 0.1       standardized_variables_ratio  -1
-      5  Response Unique Values Ratio                 0.1       response_unique_values_ratio  0.555024
-      6  Gradient Boosting Regression 100 Estimators  0.726527  score                                                       0.726527
-                                                                n_100_estimators_gradient_boosting_regression_score_reward  0.726527
-</pre></div>
-</div>
-<p class="rubric">228_elusage</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:23.447887
-Final status is Not Complete
-Initial State known features:
-response_variable_label                                     target
-score                                                       0.855367735140879
-time_convertible_variable
-response_unique_values_ratio                                0.9454545454545454
-response_inferred_dtype                                     floating
-is_response_positive_values_only                            1
-standardized_variables_ratio                                -1
-are_linear_model_regression_residuals_correlated            -1
-are_linear_model_regression_residuals_homoscedastic         -1
-are_linear_model_regression_residuals_normally_distributed  1
-n_100_estimators_random_forest_regression_score_reward      -0.33840281848797793
-linear_regression_score_reward                              0.855367735140879
-Steps:
-  Order  Step                                        Reward  State Change
--------  ---------------------------------------  ---------  ---------------------------------------------------------------------
-      1  Is Response Positive Values Only          0.1
-      2  Time Convertible Variable Search          0.1       time_convertible_variable
-      3  Infer Response DType                      0.1       response_inferred_dtype  floating
-      4  Standardized Variables Ratio              0.1       standardized_variables_ratio  -1
-      5  Response Unique Values Ratio              0.1       response_unique_values_ratio  0.945455
-      6  Random Forest Regression 100 Estimators  -0.338403  score                                                    0.661597
-                                                             n_100_estimators_random_forest_regression_score_reward  -0.338403
-      7  Linear Regression                         0.355368  score                                                        0.855368
-                                                             are_linear_model_regression_residuals_correlated            -1
-                                                             are_linear_model_regression_residuals_homoscedastic         -1
-                                                             are_linear_model_regression_residuals_normally_distributed   1
-                                                             linear_regression_score_reward                               0.855368
-      8  Linear Regression                         0.355368
-      9  Linear Regression                         0.355368
-     10  Linear Regression                         0.355368
-     11  Linear Regression                         0.355368
-     12  Linear Regression                         0.355368
-     13  Linear Regression                         0.355368
-     14  Linear Regression                         0.355368
-     15  Linear Regression                         0.355368
-</pre></div>
-</div>
-<p class="rubric">601_fri_c1_250_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:26.200160
+<p class="rubric">607_fri_c4_1000_50</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-29 20:50:42.576417
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7944543363206894
+score                                         0.7941132381765875
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7944543363206894
+adaboost_square_loss_regression_score_reward  0.7941132381765875
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  ------------------------------------------------------
       1  Is Response Positive Values Only      0.1
       2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.794454  score                                         0.794454
-                                                         adaboost_square_loss_regression_score_reward  0.794454
+      3  AdaBoost Regression with Square Loss  0.794113  score                                         0.794113
+                                                         adaboost_square_loss_regression_score_reward  0.794113
 </pre></div>
 </div>
-<p class="rubric">628_fri_c3_1000_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:27.948697
-Final status is Complete
-Initial State known features:
-response_variable_label                       target
-score                                         0.8063095442590535
-response_unique_values_ratio                  1.0
-is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.8063095442590535
-Steps:
-  Order  Step                                    Reward  State Change
--------  ------------------------------------  --------  -----------------------------------------------------
-      1  Is Response Positive Values Only       0.1
-      2  Response Unique Values Ratio           0.1      response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss   0.80631  score                                         0.80631
-                                                         adaboost_square_loss_regression_score_reward  0.80631
-</pre></div>
-</div>
-<p class="rubric">215_2dplanes</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:39.337172
-Final status is Complete
-Initial State known features:
-response_variable_label                       target
-score                                         0.9324055054897407
-response_unique_values_ratio                  0.9901883830455259
-is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.9324055054897407
-Steps:
-  Order  Step                                    Reward  State Change
--------  ------------------------------------  --------  ------------------------------------------------------
-      1  Is Response Positive Values Only      0.1
-      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  0.990188
-      3  AdaBoost Regression with Square Loss  0.932406  score                                         0.932406
-                                                         adaboost_square_loss_regression_score_reward  0.932406
-</pre></div>
-</div>
-<p class="rubric">527_analcatdata_election2000</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:41.716973
-Final status is Complete
-Initial State known features:
-response_variable_label                                 target
-score                                                   0.8799122068149051
-time_convertible_variable
-response_unique_values_ratio                            1.0
-response_inferred_dtype                                 floating
-is_response_positive_values_only                        1
-standardized_variables_ratio                            -1
-n_100_estimators_random_forest_regression_score_reward  0.8799122068149051
-Steps:
-  Order  Step                                       Reward  State Change
--------  ---------------------------------------  --------  ----------------------------------------------------------------
-      1  Is Response Positive Values Only         0.1
-      2  Time Convertible Variable Search         0.1       time_convertible_variable
-      3  Infer Response DType                     0.1       response_inferred_dtype  floating
-      4  Standardized Variables Ratio             0.1       standardized_variables_ratio  -1
-      5  Response Unique Values Ratio             0.1       response_unique_values_ratio  1
-      6  Random Forest Regression 100 Estimators  0.879912  score                                                   0.879912
-                                                            n_100_estimators_random_forest_regression_score_reward  0.879912
-</pre></div>
-</div>
-<p class="rubric">1029_LEV</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:42.922390
+<p class="rubric">574_house_16H</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-29 20:50:46.950158
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.005
-response_inferred_dtype           floating
-is_response_positive_values_only  1
-standardized_variables_ratio      -1
-Steps:
-  Order  Step                                Reward  State Change
--------  --------------------------------  --------  -----------------------------------
-      1  Is Response Positive Values Only       0.1
-      2  Time Convertible Variable Search       0.1  time_convertible_variable
-      3  Infer Response DType                   0.1  response_inferred_dtype  floating
-      4  Standardized Variables Ratio           0.1  standardized_variables_ratio  -1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.005
-      6  Response Unique Values Ratio          -1
-      7  Response Unique Values Ratio          -1
-      8  Response Unique Values Ratio          -1
-      9  Response Unique Values Ratio          -1
-     10  Response Unique Values Ratio          -1
-     11  Response Unique Values Ratio          -1
-     12  Response Unique Values Ratio          -1
-     13  Response Unique Values Ratio          -1
-     14  Response Unique Values Ratio          -1
-     15  Response Unique Values Ratio          -1
-</pre></div>
-</div>
-<p class="rubric">617_fri_c3_500_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:44.597804
-Final status is Complete
-Initial State known features:
-response_variable_label                       target
-score                                         0.7790651293500019
-response_unique_values_ratio                  1.0
-is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7790651293500019
-Steps:
-  Order  Step                                    Reward  State Change
--------  ------------------------------------  --------  ------------------------------------------------------
-      1  Is Response Positive Values Only      0.1
-      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.779065  score                                         0.779065
-                                                         adaboost_square_loss_regression_score_reward  0.779065
-</pre></div>
-</div>
-<p class="rubric">594_fri_c2_100_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:49.438653
-Final status is Complete
-Initial State known features:
-response_variable_label                       target
-score                                         0.7022552612657176
-response_unique_values_ratio                  1.0
-is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7022552612657176
-Steps:
-  Order  Step                                     Reward  State Change
--------  ------------------------------------  ---------  -------------------------------------------------------
-      1  Is Response Positive Values Only       0.1
-      2  Response Unique Values Ratio           0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  -0.336364  score                                          0.663636
-                                                          adaboost_square_loss_regression_score_reward  -0.336364
-      4  AdaBoost Regression with Square Loss  -0.320701  score                                          0.679299
-                                                          adaboost_square_loss_regression_score_reward  -0.320701
-      5  AdaBoost Regression with Square Loss  -0.327031  score                                          0.672969
-                                                          adaboost_square_loss_regression_score_reward  -0.327031
-      6  AdaBoost Regression with Square Loss  -0.310831  score                                          0.689169
-                                                          adaboost_square_loss_regression_score_reward  -0.310831
-      7  AdaBoost Regression with Square Loss  -0.314192  score                                          0.685808
-                                                          adaboost_square_loss_regression_score_reward  -0.314192
-      8  AdaBoost Regression with Square Loss   0.702255  score                                         0.702255
-                                                          adaboost_square_loss_regression_score_reward  0.702255
-</pre></div>
-</div>
-<p class="rubric">665_sleuth_case2002</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:13:51.715608
-Final status is Not Complete
-Initial State known features:
-response_variable_label           target
-time_convertible_variable
-response_unique_values_ratio      0.1292517006802721
+response_unique_values_ratio      0.0897559691011236
 response_inferred_dtype           floating
 is_response_positive_values_only  1
 standardized_variables_ratio      -1
@@ -710,7 +509,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  floating
       4  Standardized Variables Ratio           0.1  standardized_variables_ratio  -1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.129252
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.089756
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -723,64 +522,158 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<p class="rubric">225_puma8NH</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:14:29.307312
+<p class="rubric">523_analcatdata_neavote</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-29 20:50:48.186573
 Final status is Not Complete
 Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.08
+response_inferred_dtype           floating
+is_response_positive_values_only  1
+standardized_variables_ratio      -1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  floating
+      4  Standardized Variables Ratio           0.1  standardized_variables_ratio  -1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.08
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<p class="rubric">594_fri_c2_100_5</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-29 20:50:51.693009
+Final status is Complete
+Initial State known features:
 response_variable_label                       target
-score                                         0.5305171850708066
+score                                         0.7082338043597722
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  -0.4694828149291934
+adaboost_square_loss_regression_score_reward  0.7082338043597722
 Steps:
   Order  Step                                     Reward  State Change
 -------  ------------------------------------  ---------  -------------------------------------------------------
       1  Is Response Positive Values Only       0.1
       2  Response Unique Values Ratio           0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  -0.479538  score                                          0.520462
-                                                          adaboost_square_loss_regression_score_reward  -0.479538
-      4  AdaBoost Regression with Square Loss  -0.477772  score                                          0.522228
-                                                          adaboost_square_loss_regression_score_reward  -0.477772
-      5  AdaBoost Regression with Square Loss  -0.482407  score                                          0.517593
-                                                          adaboost_square_loss_regression_score_reward  -0.482407
-      6  AdaBoost Regression with Square Loss  -0.496714  score                                          0.503286
-                                                          adaboost_square_loss_regression_score_reward  -0.496714
-      7  AdaBoost Regression with Square Loss  -0.480338  score                                          0.519662
-                                                          adaboost_square_loss_regression_score_reward  -0.480338
-      8  AdaBoost Regression with Square Loss  -0.482771  score                                          0.517229
-                                                          adaboost_square_loss_regression_score_reward  -0.482771
-      9  AdaBoost Regression with Square Loss  -0.492951  score                                          0.507049
-                                                          adaboost_square_loss_regression_score_reward  -0.492951
-     10  AdaBoost Regression with Square Loss  -0.48105   score                                          0.51895
-                                                          adaboost_square_loss_regression_score_reward  -0.48105
-     11  AdaBoost Regression with Square Loss  -0.474178  score                                          0.525822
-                                                          adaboost_square_loss_regression_score_reward  -0.474178
-     12  AdaBoost Regression with Square Loss  -0.477127  score                                          0.522873
-                                                          adaboost_square_loss_regression_score_reward  -0.477127
-     13  AdaBoost Regression with Square Loss  -0.484595  score                                          0.515405
-                                                          adaboost_square_loss_regression_score_reward  -0.484595
-     14  AdaBoost Regression with Square Loss  -0.468552  score                                          0.531448
-                                                          adaboost_square_loss_regression_score_reward  -0.468552
-     15  AdaBoost Regression with Square Loss  -0.469483  score                                          0.530517
-                                                          adaboost_square_loss_regression_score_reward  -0.469483
+      3  AdaBoost Regression with Square Loss  -0.304053  score                                          0.695947
+                                                          adaboost_square_loss_regression_score_reward  -0.304053
+      4  AdaBoost Regression with Square Loss  -0.30808   score                                          0.69192
+                                                          adaboost_square_loss_regression_score_reward  -0.30808
+      5  AdaBoost Regression with Square Loss  -0.308923  score                                          0.691077
+                                                          adaboost_square_loss_regression_score_reward  -0.308923
+      6  AdaBoost Regression with Square Loss  -0.345898  score                                          0.654102
+                                                          adaboost_square_loss_regression_score_reward  -0.345898
+      7  AdaBoost Regression with Square Loss   0.708234  score                                         0.708234
+                                                          adaboost_square_loss_regression_score_reward  0.708234
 </pre></div>
 </div>
-<p class="rubric">613_fri_c3_250_5</p>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-20 20:14:32.436154
+<p class="rubric">592_fri_c4_1000_25</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-29 20:50:54.471096
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7806204329238138
+score                                         0.7862622285639775
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7806204329238138
+adaboost_square_loss_regression_score_reward  0.7862622285639775
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.786262  score                                         0.786262
+                                                         adaboost_square_loss_regression_score_reward  0.786262
+</pre></div>
+</div>
+<p class="rubric">593_fri_c1_1000_10</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-29 20:50:56.722184
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.8157699821546018
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.8157699821546018
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  -----------------------------------------------------
       1  Is Response Positive Values Only       0.1
       2  Response Unique Values Ratio           0.1      response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss   0.78062  score                                         0.78062
-                                                         adaboost_square_loss_regression_score_reward  0.78062
+      3  AdaBoost Regression with Square Loss   0.81577  score                                         0.81577
+                                                         adaboost_square_loss_regression_score_reward  0.81577
+</pre></div>
+</div>
+<p class="rubric">598_fri_c0_1000_25</p>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-01-29 20:51:00.903639
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.8026319591401581
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.8026319591401581
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.802632  score                                         0.802632
+                                                         adaboost_square_loss_regression_score_reward  0.802632
+</pre></div>
+</div>
+<p class="rubric">687_sleuth_ex1605</p>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;analysis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:49,</span> in <span class="ni">AnalysisResult.summary</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span><span class="sd">     Returns analysis summary</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span><span class="sd">     Returns:</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span><span class="sd">         str: analysis summary</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span>     <span class="k">return</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span>         <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Analysis executed at </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span>         <span class="sa">f</span><span class="s1">&#39;Final status is </span><span class="si">{</span><span class="s2">&quot;Complete&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;Not Complete&quot;</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span>         <span class="sa">f</span><span class="s1">&#39;Initial State known features:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__fill_initial_state_row</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">49</span>         <span class="sa">f</span><span class="s1">&#39;Steps:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__fill_summary_table_steps_rows</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:65,</span> in <span class="ni">AnalysisResult.__fill_summary_table_steps_rows</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="n">table_rows</span><span class="p">:</span> <span class="n">StepsRows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">reward</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">table_rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>         <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="nb">str</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">action_name</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>         <span class="n">reward</span><span class="p">,</span>
+<span class="ne">---&gt; </span><span class="mi">65</span>         <span class="n">tabulate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__get_state_delta</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">list_known_features</span><span class="p">(),</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>                  <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;plain&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="k">return</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">table_rows</span><span class="p">,</span> <span class="n">steps_headers</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:84,</span> in <span class="ni">AnalysisResult.__get_state_delta</span><span class="nt">(self, info, i)</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>         <span class="k">return</span> <span class="n">info</span><span class="o">.</span><span class="n">next_state</span> <span class="o">-</span> <span class="n">previous_state</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>         <span class="sa">f</span><span class="s1">&#39;Cannot write State delta, step </span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1"> State is None&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">84</span> <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cannot write State delta, step </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> State is None&#39;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: Cannot write State delta, step 6 State is None
 </pre></div>
 </div>
 </div>

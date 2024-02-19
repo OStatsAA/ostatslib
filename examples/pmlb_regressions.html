@@ -436,7 +436,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Sampled 12 regression datasets: 294_satellite_image, 1196_BNG_pharynx, 597_fri_c2_500_5, 227_cpu_small, 1191_BNG_pbc, 547_no2, 590_fri_c0_1000_50, 589_fri_c2_1000_25, 599_fri_c2_1000_5, 556_analcatdata_apnea2, 192_vineyard, 586_fri_c3_1000_25.</p>
+<p>Sampled 12 regression datasets: 646_fri_c3_500_10, 595_fri_c0_1000_10, 651_fri_c0_100_25, 1191_BNG_pbc, 1089_USCrime, 579_fri_c0_250_5, 522_pm10, 599_fri_c2_1000_5, 658_fri_c3_250_25, 606_fri_c2_1000_10, 547_no2, 1027_ESL.</p>
 </div>
 </div>
 </section>
@@ -520,14 +520,14 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="k">finally</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="n">wrap_helper</span><span class="o">.</span><span class="n">restore_old_alarm_handler</span><span class="p">()</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/base.py:1474,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1467</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1469</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1470</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1471</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">   </span><span class="mi">1472</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1473</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1474</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/base.py:1351,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1346</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1347</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1348</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1349</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1350</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1351</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/model_selection/_search.py:970,</span> in <span class="ni">BaseSearchCV.fit</span><span class="nt">(self, X, y, **params)</span>
 <span class="g g-Whitespace">    </span><span class="mi">964</span>     <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span>

@@ -36,7 +36,7 @@ pytest-cov = "^4.0.0"
 
 
 [tool.poetry.group.docs.dependencies]
-jupyter-book = "^0.15.0"
+jupyter-book = ">=0.15,<1.1"
 pydata-sphinx-theme = ">=0.13.3,<0.16.0"
 
 [build-system]

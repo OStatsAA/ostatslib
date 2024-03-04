@@ -4693,13 +4693,13 @@ files = [
 
 [[package]]
 name = "wrapt-timeout-decorator"
-version = "1.4.1"
+version = "1.5.1"
 description = "The better timout decorator"
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "wrapt_timeout_decorator-1.4.1-py3-none-any.whl", hash = "sha256:200c7f97c3081f3e51ae0cb48add8b5478cc0276439cbe5fe38f98d1244ba79b"},
-    {file = "wrapt_timeout_decorator-1.4.1.tar.gz", hash = "sha256:e49c0e2a4ff03df43005fa24ba26f8b16dd342dd614cd2ef696b65c68b1c20cf"},
+    {file = "wrapt_timeout_decorator-1.5.1-py3-none-any.whl", hash = "sha256:5b0c957da947f4ded2eaa7b36afe709c21ce1da3050fe9261a090ae0714d4641"},
+    {file = "wrapt_timeout_decorator-1.5.1.tar.gz", hash = "sha256:00f15646db89c629aa1b1566f4c1cf00ae6da0beece2905039f1cd7a60506a67"},
 ]
 
 [package.dependencies]

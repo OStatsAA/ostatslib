@@ -422,7 +422,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Sampled 12 regression datasets: 649_fri_c0_500_5, 621_fri_c0_100_10, 631_fri_c1_500_5, 547_no2, 611_fri_c3_100_5, 599_fri_c2_1000_5, 573_cpu_act, 622_fri_c2_1000_50, 634_fri_c2_100_10, 597_fri_c2_500_5, 641_fri_c1_500_10, 645_fri_c3_500_50.</p>
+<p>Sampled 12 regression datasets: 599_fri_c2_1000_5, 1196_BNG_pharynx, 678_visualizing_environmental, 641_fri_c1_500_10, 596_fri_c2_250_5, 634_fri_c2_100_10, 561_cpu, 527_analcatdata_election2000, 560_bodyfat, 192_vineyard, 617_fri_c3_500_5, 695_chatfield_4.</p>
 </div>
 </div>
 </section>
@@ -445,6 +445,165 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">initial_state</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;response_variable_label&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">analysis</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;analysis&quot;</span><span class="p">:</span> <span class="n">analysis</span><span class="p">})</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/agent.py:72,</span> in <span class="ni">Agent.analyze</span><span class="nt">(self, data, initial_state)</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">while</span> <span class="ow">not</span> <span class="p">(</span><span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">72</span>     <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span>         <span class="n">action</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="n">analysis_steps</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">reward</span><span class="p">,</span> <span class="n">info</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="n">environment</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/environments/gym_environment.py:78,</span> in <span class="ni">GymEnvironment.step</span><span class="nt">(self, action)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;VERBOSE&#39;</span><span class="p">]:</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Env Id </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s1"> - Executing action: </span><span class="si">{</span><span class="n">action_instance</span><span class="o">.</span><span class="n">action_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">78</span> <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">action_instance</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>                                               <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>                                               <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;VERBOSE&#39;</span><span class="p">]:</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Env Id </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="si">}</span><span class="s1"> - Finished action: </span><span class="si">{</span><span class="n">action_instance</span><span class="o">.</span><span class="n">action_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/actions/base.py:295,</span> in <span class="ni">ModelEstimatorAction.execute</span><span class="nt">(self, data, state, config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span> <span class="n">fit_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">295</span>     <span class="n">model</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="n">info</span><span class="o">.</span><span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">fit_start</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>     <span class="n">info</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/actions/base.py:354,</span> in <span class="ni">TargetModelEstimatorAction._fit</span><span class="nt">(self, data, state, config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span>     <span class="k">return</span> <span class="n">best_estimator</span><span class="p">,</span> <span class="n">best_score</span>
+<span class="g g-Whitespace">    </span><span class="mi">350</span> <span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>                       <span class="bp">self</span><span class="o">.</span><span class="n">params_grid</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span>                       <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span>                       <span class="n">verbose</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;FIT_VERBOSE&#39;</span><span class="p">])</span>
+<span class="ne">--&gt; </span><span class="mi">354</span> <span class="n">search</span> <span class="o">=</span> <span class="n">_timeout</span><span class="p">(</span><span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">)(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="k">return</span> <span class="n">search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">search</span><span class="o">.</span><span class="n">best_score_</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/wrapt_timeout_decorator/wrapt_timeout_decorator.py:229,</span> in <span class="ni">timeout.&lt;locals&gt;.wrapper</span><span class="nt">(wrapped, instance, args, kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="k">return</span> <span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">wrap_helper</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">wrap_helper</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">229</span>     <span class="k">return</span> <span class="n">wrapped_with_timeout</span><span class="p">(</span><span class="n">wrap_helper</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/wrapt_timeout_decorator/wrapt_timeout_decorator.py:236,</span> in <span class="ni">wrapped_with_timeout</span><span class="nt">(wrap_helper)</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span> <span class="k">def</span> <span class="nf">wrapped_with_timeout</span><span class="p">(</span><span class="n">wrap_helper</span><span class="p">:</span> <span class="n">WrapHelper</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="k">if</span> <span class="n">wrap_helper</span><span class="o">.</span><span class="n">use_signals</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">236</span>         <span class="k">return</span> <span class="n">wrapped_with_timeout_signals</span><span class="p">(</span><span class="n">wrap_helper</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>         <span class="k">return</span> <span class="n">wrapped_with_timeout_process</span><span class="p">(</span><span class="n">wrap_helper</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/wrapt_timeout_decorator/wrapt_timeout_decorator.py:244,</span> in <span class="ni">wrapped_with_timeout_signals</span><span class="nt">(wrap_helper)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span>     <span class="n">wrap_helper</span><span class="o">.</span><span class="n">save_old_and_set_new_alarm_handler</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">244</span>     <span class="k">return</span> <span class="n">wrap_helper</span><span class="o">.</span><span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">wrap_helper</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">wrap_helper</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="n">wrap_helper</span><span class="o">.</span><span class="n">restore_old_alarm_handler</span><span class="p">()</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/base.py:1351,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1346</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1347</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1348</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1349</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1350</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1351</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/model_selection/_search.py:970,</span> in <span class="ni">BaseSearchCV.fit</span><span class="nt">(self, X, y, **params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">964</span>     <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">965</span>         <span class="n">all_candidate_params</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">all_out</span><span class="p">,</span> <span class="n">all_more_results</span>
+<span class="g g-Whitespace">    </span><span class="mi">966</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">968</span>     <span class="k">return</span> <span class="n">results</span>
+<span class="ne">--&gt; </span><span class="mi">970</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_search</span><span class="p">(</span><span class="n">evaluate_candidates</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span> <span class="c1"># multimetric is determined here because in the case of a callable</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span> <span class="c1"># self.scoring the return type is only known after calling</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span> <span class="n">first_test_score</span> <span class="o">=</span> <span class="n">all_out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;test_scores&quot;</span><span class="p">]</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/model_selection/_search.py:1527,</span> in <span class="ni">GridSearchCV._run_search</span><span class="nt">(self, evaluate_candidates)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1525</span> <span class="k">def</span> <span class="nf">_run_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluate_candidates</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1526</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Search all candidates in param_grid&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="n">evaluate_candidates</span><span class="p">(</span><span class="n">ParameterGrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_grid</span><span class="p">))</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/model_selection/_search.py:916,</span> in <span class="ni">BaseSearchCV.fit.&lt;locals&gt;.evaluate_candidates</span><span class="nt">(candidate_params, cv, more_results)</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">909</span>     <span class="nb">print</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span>         <span class="s2">&quot;Fitting </span><span class="si">{0}</span><span class="s2"> folds for each of </span><span class="si">{1}</span><span class="s2"> candidates,&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">911</span>         <span class="s2">&quot; totalling </span><span class="si">{2}</span><span class="s2"> fits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">912</span>             <span class="n">n_splits</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">,</span> <span class="n">n_candidates</span> <span class="o">*</span> <span class="n">n_splits</span>
+<span class="g g-Whitespace">    </span><span class="mi">913</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">914</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">916</span> <span class="n">out</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">917</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">918</span>         <span class="n">clone</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">920</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">921</span>         <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">922</span>         <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">923</span>         <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">924</span>         <span class="n">split_progress</span><span class="o">=</span><span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">925</span>         <span class="n">candidate_progress</span><span class="o">=</span><span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">926</span>         <span class="o">**</span><span class="n">fit_and_score_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">927</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">928</span>     <span class="k">for</span> <span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">parameters</span><span class="p">),</span> <span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">))</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">929</span>         <span class="nb">enumerate</span><span class="p">(</span><span class="n">candidate_params</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">930</span>         <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">routed_params</span><span class="o">.</span><span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">)),</span>
+<span class="g g-Whitespace">    </span><span class="mi">931</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">934</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>         <span class="s2">&quot;No fits were performed. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>         <span class="s2">&quot;Was the CV iterator empty? &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">938</span>         <span class="s2">&quot;Were there no candidates?&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">939</span>     <span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/sklearn/utils/parallel.py:67,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">67</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/joblib/parallel.py:1952,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1946</span> <span class="c1"># The first item from the output is blank, but it makes the interpreter</span>
+<span class="g g-Whitespace">   </span><span class="mi">1947</span> <span class="c1"># progress until it enters the Try/Except block of the generator and</span>
+<span class="g g-Whitespace">   </span><span class="mi">1948</span> <span class="c1"># reach the first `yield` statement. This starts the aynchronous</span>
+<span class="g g-Whitespace">   </span><span class="mi">1949</span> <span class="c1"># dispatch of the tasks to the workers.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1950</span> <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1952</span> <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/joblib/parallel.py:1595,</span> in <span class="ni">Parallel._get_outputs</span><span class="nt">(self, iterator, pre_dispatch)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1592</span>     <span class="k">yield</span>
+<span class="g g-Whitespace">   </span><span class="mi">1594</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">retrieval_context</span><span class="p">():</span>
+<span class="ne">-&gt; </span><span class="mi">1595</span>         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1597</span> <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1598</span>     <span class="c1"># The generator has been garbage collected before being fully</span>
+<span class="g g-Whitespace">   </span><span class="mi">1599</span>     <span class="c1"># consumed. This aborts the remaining tasks if possible and warn</span>
+<span class="g g-Whitespace">   </span><span class="mi">1600</span>     <span class="c1"># the user if necessary.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exception</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/joblib/parallel.py:1707,</span> in <span class="ni">Parallel._retrieve</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1702</span> <span class="c1"># If the next job is not ready for retrieval yet, we just wait for</span>
+<span class="g g-Whitespace">   </span><span class="mi">1703</span> <span class="c1"># async callbacks to progress.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1704</span> <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span>
+<span class="g g-Whitespace">   </span><span class="mi">1705</span>     <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1706</span>         <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span> <span class="o">==</span> <span class="n">TASK_PENDING</span><span class="p">)):</span>
+<span class="ne">-&gt; </span><span class="mi">1707</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="k">continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">1710</span> <span class="c1"># We need to be careful: the job list can be filling up as</span>
+<span class="g g-Whitespace">   </span><span class="mi">1711</span> <span class="c1"># we empty it and Python list are not thread-safe by</span>
+<span class="g g-Whitespace">   </span><span class="mi">1712</span> <span class="c1"># default hence the use of the lock</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="results">
@@ -461,92 +620,270 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <h3 class="rubric" id="fri-c0-500-5">649_fri_c0_500_5</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-03-11 21:05:27.999628
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:27.510980
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7919115681225225
+score                                         0.7852042156037796
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7919115681225225
+adaboost_square_loss_regression_score_reward  0.7852042156037796
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  ------------------------------------------------------
       1  Is Response Positive Values Only      0.1
       2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.791912  score                                         0.791912
-                                                         adaboost_square_loss_regression_score_reward  0.791912
+      3  AdaBoost Regression with Square Loss  0.785204  score                                         0.785204
+                                                         adaboost_square_loss_regression_score_reward  0.785204
 </pre></div>
 </div>
-<h3 class="rubric" id="fri-c0-100-10">621_fri_c0_100_10</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-03-11 21:05:34.586886
-Final status is Not Complete
+<h3 class="rubric" id="fri-c1-100-5">656_fri_c1_100_5</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:28.032696
+Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.6506568031214691
+score                                         0.7549163944562183
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  -0.3493431968785309
+adaboost_square_loss_regression_score_reward  0.7549163944562183
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.754916  score                                         0.754916
+                                                         adaboost_square_loss_regression_score_reward  0.754916
+</pre></div>
+</div>
+<h3 class="rubric" id="fri-c4-1000-10">623_fri_c4_1000_10</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:28.972196
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.789200856110073
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.789200856110073
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.789201  score                                         0.789201
+                                                         adaboost_square_loss_regression_score_reward  0.789201
+</pre></div>
+</div>
+<h3 class="rubric" id="fri-c4-500-25">584_fri_c4_500_25</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:31.657107
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.7779126179981797
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.7779126179981797
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.777913  score                                         0.777913
+                                                         adaboost_square_loss_regression_score_reward  0.777913
+</pre></div>
+</div>
+<h3 class="rubric" id="fri-c4-250-10">615_fri_c4_250_10</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:33.793695
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.704890474685613
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.704890474685613
 Steps:
   Order  Step                                     Reward  State Change
 -------  ------------------------------------  ---------  -------------------------------------------------------
       1  Is Response Positive Values Only       0.1
       2  Response Unique Values Ratio           0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  -0.358845  score                                          0.641155
-                                                          adaboost_square_loss_regression_score_reward  -0.358845
-      4  AdaBoost Regression with Square Loss  -0.346869  score                                          0.653131
-                                                          adaboost_square_loss_regression_score_reward  -0.346869
-      5  AdaBoost Regression with Square Loss  -0.372031  score                                          0.627969
-                                                          adaboost_square_loss_regression_score_reward  -0.372031
-      6  AdaBoost Regression with Square Loss  -0.324634  score                                          0.675366
-                                                          adaboost_square_loss_regression_score_reward  -0.324634
-      7  AdaBoost Regression with Square Loss  -0.359019  score                                          0.640981
-                                                          adaboost_square_loss_regression_score_reward  -0.359019
-      8  AdaBoost Regression with Square Loss  -0.345312  score                                          0.654688
-                                                          adaboost_square_loss_regression_score_reward  -0.345312
-      9  AdaBoost Regression with Square Loss  -0.33978   score                                          0.66022
-                                                          adaboost_square_loss_regression_score_reward  -0.33978
-     10  AdaBoost Regression with Square Loss  -0.355908  score                                          0.644092
-                                                          adaboost_square_loss_regression_score_reward  -0.355908
-     11  AdaBoost Regression with Square Loss  -0.38495   score                                          0.61505
-                                                          adaboost_square_loss_regression_score_reward  -0.38495
-     12  AdaBoost Regression with Square Loss  -0.367793  score                                          0.632207
-                                                          adaboost_square_loss_regression_score_reward  -0.367793
-     13  AdaBoost Regression with Square Loss  -0.370234  score                                          0.629766
-                                                          adaboost_square_loss_regression_score_reward  -0.370234
-     14  AdaBoost Regression with Square Loss  -0.349555  score                                          0.650445
-                                                          adaboost_square_loss_regression_score_reward  -0.349555
-     15  AdaBoost Regression with Square Loss  -0.349343  score                                          0.650657
-                                                          adaboost_square_loss_regression_score_reward  -0.349343
+      3  AdaBoost Regression with Square Loss  -0.315074  score                                          0.684926
+                                                          adaboost_square_loss_regression_score_reward  -0.315074
+      4  AdaBoost Regression with Square Loss  -0.323332  score                                          0.676668
+                                                          adaboost_square_loss_regression_score_reward  -0.323332
+      5  AdaBoost Regression with Square Loss   0.70489   score                                         0.70489
+                                                          adaboost_square_loss_regression_score_reward  0.70489
 </pre></div>
 </div>
-<h3 class="rubric" id="fri-c1-500-5">631_fri_c1_500_5</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-03-11 21:05:42.321484
+<h3 class="rubric" id="fri-c0-500-10">654_fri_c0_500_10</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:34.692126
 Final status is Complete
 Initial State known features:
 response_variable_label                       target
-score                                         0.7516883937139264
+score                                         0.7751243054421953
 response_unique_values_ratio                  1.0
 is_response_positive_values_only              -1
-adaboost_square_loss_regression_score_reward  0.7516883937139264
+adaboost_square_loss_regression_score_reward  0.7751243054421953
 Steps:
   Order  Step                                    Reward  State Change
 -------  ------------------------------------  --------  ------------------------------------------------------
       1  Is Response Positive Values Only      0.1
       2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
-      3  AdaBoost Regression with Square Loss  0.751688  score                                         0.751688
-                                                         adaboost_square_loss_regression_score_reward  0.751688
+      3  AdaBoost Regression with Square Loss  0.775124  score                                         0.775124
+                                                         adaboost_square_loss_regression_score_reward  0.775124
 </pre></div>
 </div>
-<h3 class="rubric" id="no2">547_no2</h3>
+<h3 class="rubric" id="analcatdata-apnea2">556_analcatdata_apnea2</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:34.891779
+Final status is Complete
+Initial State known features:
+response_variable_label                                     target
+score                                                       0.711739995276534
+time_convertible_variable
+response_unique_values_ratio                                0.37473684210526315
+response_inferred_dtype                                     floating
+is_response_positive_values_only                            1
+standardized_variables_ratio                                -1
+n_100_estimators_gradient_boosting_regression_score_reward  0.711739995276534
+Steps:
+  Order  Step                                           Reward  State Change
+-------  -------------------------------------------  --------  -------------------------------------------------------------------
+      1  Is Response Positive Values Only              0.1
+      2  Time Convertible Variable Search              0.1      time_convertible_variable
+      3  Infer Response DType                          0.1      response_inferred_dtype  floating
+      4  Standardized Variables Ratio                  0.1      standardized_variables_ratio  -1
+      5  Response Unique Values Ratio                  0.1      response_unique_values_ratio  0.374737
+      6  Gradient Boosting Regression 100 Estimators   0.71174  score                                                       0.71174
+                                                                n_100_estimators_gradient_boosting_regression_score_reward  0.71174
+</pre></div>
+</div>
+<h3 class="rubric" id="sleuth-case2002">665_sleuth_case2002</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:35.090745
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.1292517006802721
+response_inferred_dtype           floating
+is_response_positive_values_only  1
+standardized_variables_ratio      -1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  --------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  floating
+      4  Standardized Variables Ratio           0.1  standardized_variables_ratio  -1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.129252
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<h3 class="rubric" id="pol">201_pol</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:18:35.386553
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0007333333333333333
+response_inferred_dtype           floating
+is_response_positive_values_only  1
+standardized_variables_ratio      -1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  floating
+      4  Standardized Variables Ratio           0.1  standardized_variables_ratio  -1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000733333
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<h3 class="rubric" id="bng-echomonths">1199_BNG_echoMonths</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:19:50.823089
+Final status is Not Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.2633249659679566
+response_unique_values_ratio                  0.9995999085505258
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  -0.7366750340320434
+Steps:
+  Order  Step                                     Reward  State Change
+-------  ------------------------------------  ---------  -------------------------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Response Unique Values Ratio           0.1       response_unique_values_ratio  0.9996
+      3  AdaBoost Regression with Square Loss  -0.738311  score                                          0.261689
+                                                          adaboost_square_loss_regression_score_reward  -0.738311
+      4  AdaBoost Regression with Square Loss  -0.727353  score                                          0.272647
+                                                          adaboost_square_loss_regression_score_reward  -0.727353
+      5  AdaBoost Regression with Square Loss  -0.722207  score                                          0.277793
+                                                          adaboost_square_loss_regression_score_reward  -0.722207
+      6  AdaBoost Regression with Square Loss  -0.759876  score                                          0.240124
+                                                          adaboost_square_loss_regression_score_reward  -0.759876
+      7  AdaBoost Regression with Square Loss  -0.731492  score                                          0.268508
+                                                          adaboost_square_loss_regression_score_reward  -0.731492
+      8  AdaBoost Regression with Square Loss  -0.745692  score                                          0.254308
+                                                          adaboost_square_loss_regression_score_reward  -0.745692
+      9  AdaBoost Regression with Square Loss  -0.722277  score                                          0.277723
+                                                          adaboost_square_loss_regression_score_reward  -0.722277
+     10  AdaBoost Regression with Square Loss  -0.727023  score                                          0.272977
+                                                          adaboost_square_loss_regression_score_reward  -0.727023
+     11  AdaBoost Regression with Square Loss  -0.730705  score                                          0.269295
+                                                          adaboost_square_loss_regression_score_reward  -0.730705
+     12  AdaBoost Regression with Square Loss  -0.721102  score                                          0.278898
+                                                          adaboost_square_loss_regression_score_reward  -0.721102
+     13  AdaBoost Regression with Square Loss  -0.738351  score                                          0.261649
+                                                          adaboost_square_loss_regression_score_reward  -0.738351
+     14  AdaBoost Regression with Square Loss  -0.722905  score                                          0.277095
+                                                          adaboost_square_loss_regression_score_reward  -0.722905
+     15  AdaBoost Regression with Square Loss  -0.736675  score                                          0.263325
+                                                          adaboost_square_loss_regression_score_reward  -0.736675
+</pre></div>
+</div>
+<h3 class="rubric" id="fri-c3-1000-10">608_fri_c3_1000_10</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2023-10-15 18:19:51.748633
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.787700374415138
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.787700374415138
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ----------------------------------------------------
+      1  Is Response Positive Values Only        0.1
+      2  Response Unique Values Ratio            0.1     response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss    0.7877  score                                         0.7877
+                                                         adaboost_square_loss_regression_score_reward  0.7877
+</pre></div>
+</div>
+<h3 class="rubric" id="facultysalaries">1096_FacultySalaries</h3>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;analysis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="o">/</span><span class="n">workspaces</span><span class="o">/</span><span class="n">ostatslib</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">pmlb_regressions</span><span class="o">.</span><span class="n">ipynb</span> <span class="n">Cell</span> <span class="mi">8</span> <span class="n">line</span> <span class="mi">5</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell://dev-container%2B7b227265706f7369746f727950617468223a2268747470733a2f2f6769746875622e636f6d2f4f537461747341412f6f73746174736c69622e6769742f747265652f6d61696e222c22766f6c756d654e616d65223a225f5f554e495155455f5f222c22666f6c646572223a226f73746174736c6962222c22636c6f6e65496e666f223a7b2275726c546f436c6f6e65223a2268747470733a2f2f6769746875622e636f6d2f4f537461747341412f6f73746174736c69622e676974222c22726566223a226d61696e227d2c22696e7370656374566f6c756d65223a66616c73657d/workspaces/ostatslib/docs/examples/pmlb_regressions.ipynb#X10sdnNjb2RlLXJlbW90ZQ%3D%3D?line=2&#39;</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+      <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell://dev-container%2B7b227265706f7369746f727950617468223a2268747470733a2f2f6769746875622e636f6d2f4f537461747341412f6f73746174736c69622e6769742f747265652f6d61696e222c22766f6c756d654e616d65223a225f5f554e495155455f5f222c22666f6c646572223a226f73746174736c6962222c22636c6f6e65496e666f223a7b2275726c546f436c6f6e65223a2268747470733a2f2f6769746875622e636f6d2f4f537461747341412f6f73746174736c69622e676974222c22726566223a226d61696e227d2c22696e7370656374566f6c756d65223a66616c73657d/workspaces/ostatslib/docs/examples/pmlb_regressions.ipynb#X10sdnNjb2RlLXJlbW90ZQ%3D%3D?line=3&#39;</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>     <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="o">----&gt;</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;vscode-notebook-cell://dev-container%2B7b227265706f7369746f727950617468223a2268747470733a2f2f6769746875622e636f6d2f4f537461747341412f6f73746174736c69622e6769742f747265652f6d61696e222c22766f6c756d654e616d65223a225f5f554e495155455f5f222c22666f6c646572223a226f73746174736c6962222c22636c6f6e65496e666f223a7b2275726c546f436c6f6e65223a2268747470733a2f2f6769746875622e636f6d2f4f537461747341412f6f73746174736c69622e676974222c22726566223a226d61696e227d2c22696e7370656374566f6c756d65223a66616c73657d/workspaces/ostatslib/docs/examples/pmlb_regressions.ipynb#X10sdnNjb2RlLXJlbW90ZQ%3D%3D?line=4&#39;</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;analysis&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:49,</span> in <span class="ni">AnalysisResult.summary</span><span class="nt">(self)</span>
+<span class="nn">File /workspaces/ostatslib/ostatslib/agents/analysis_result.py:49,</span> in <span class="ni">AnalysisResult.summary</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="k">def</span> <span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">39</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">     </span><span class="mi">40</span><span class="sd">     Returns analysis summary</span>
@@ -561,7 +898,7 @@ Steps:
 <span class="ne">---&gt; </span><span class="mi">49</span>         <span class="sa">f</span><span class="s1">&#39;Steps:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__fill_summary_table_steps_rows</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span>
 <span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="p">)</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:65,</span> in <span class="ni">AnalysisResult.__fill_summary_table_steps_rows</span><span class="nt">(self)</span>
+<span class="nn">File /workspaces/ostatslib/ostatslib/agents/analysis_result.py:65,</span> in <span class="ni">AnalysisResult.__fill_summary_table_steps_rows</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="n">table_rows</span><span class="p">:</span> <span class="n">StepsRows</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">reward</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">table_rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
@@ -573,7 +910,7 @@ Steps:
 <span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="p">))</span>
 <span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="k">return</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">table_rows</span><span class="p">,</span> <span class="n">steps_headers</span><span class="p">)</span>
 
-<span class="nn">File ~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:84,</span> in <span class="ni">AnalysisResult.__get_state_delta</span><span class="nt">(self, info, i)</span>
+<span class="nn">File /workspaces/ostatslib/ostatslib/agents/analysis_result.py:84,</span> in <span class="ni">AnalysisResult.__get_state_delta</span><span class="nt">(self, info, i)</span>
 <span class="g g-Whitespace">     </span><span class="mi">79</span>         <span class="k">return</span> <span class="n">info</span><span class="o">.</span><span class="n">next_state</span> <span class="o">-</span> <span class="n">previous_state</span>
 <span class="g g-Whitespace">     </span><span class="mi">81</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
 <span class="g g-Whitespace">     </span><span class="mi">82</span>         <span class="sa">f</span><span class="s1">&#39;Cannot write State delta, step </span><span class="si">{</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1"> State is None&#39;</span><span class="p">)</span>

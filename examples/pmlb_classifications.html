@@ -422,7 +422,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Sampled 16 classification datasets: confidence, sleep, lymphography, allbp, buggyCrx, appendicitis, shuttle, car_evaluation, spect, ionosphere, monk2, horse_colic, mfeat_factors, contraceptive, irish, analcatdata_cyyoung8092.</p>
+<p>Sampled 16 classification datasets: hypothyroid, letter, magic, krkopt, penguins, vote, heart_c, splice, waveform_21, breast, breast_cancer, texture, monk2, wine_quality_red, prnn_synth, agaricus_lepiota.</p>
 </div>
 </div>
 </section>
@@ -460,43 +460,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<h3 class="rubric" id="confidence">confidence</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:03.207864
+<h3 class="rubric" id="hypothyroid">hypothyroid</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:17.263991
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.08333333333333333
-response_inferred_dtype           integer
-is_response_discrete              1
-is_response_positive_values_only  1
-Steps:
-  Order  Step                                Reward  State Change
--------  --------------------------------  --------  ---------------------------------------
-      1  Is Response Positive Values Only       0.1
-      2  Time Convertible Variable Search       0.1  time_convertible_variable
-      3  Infer Response DType                   0.1  response_inferred_dtype  integer
-      4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0833333
-      6  Response Unique Values Ratio          -1
-      7  Response Unique Values Ratio          -1
-      8  Response Unique Values Ratio          -1
-      9  Response Unique Values Ratio          -1
-     10  Response Unique Values Ratio          -1
-     11  Response Unique Values Ratio          -1
-     12  Response Unique Values Ratio          -1
-     13  Response Unique Values Ratio          -1
-     14  Response Unique Values Ratio          -1
-     15  Response Unique Values Ratio          -1
-</pre></div>
-</div>
-<h3 class="rubric" id="sleep">sleep</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:08.832759
-Final status is Not Complete
-Initial State known features:
-response_variable_label           target
-time_convertible_variable
-response_unique_values_ratio      4.721078672054991e-05
+response_unique_values_ratio      0.0006323110970597534
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -507,7 +477,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  4.72108e-05
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000632311
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -520,24 +490,24 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="lymphography">lymphography</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:09.991111
+<h3 class="rubric" id="letter">letter</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:21.118742
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.02702702702702703
+response_unique_values_ratio      0.0013
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
 Steps:
   Order  Step                                Reward  State Change
--------  --------------------------------  --------  --------------------------------------
+-------  --------------------------------  --------  ------------------------------------
       1  Is Response Positive Values Only       0.1
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.027027
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0013
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -550,13 +520,13 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="allbp">allbp</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:11.845850
+<h3 class="rubric" id="magic">magic</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:48.752675
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.0007953340402969247
+response_unique_values_ratio      0.00010515247108307045
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -567,7 +537,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000795334
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000105152
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -580,13 +550,43 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="buggycrx">buggyCrx</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:13.456698
+<h3 class="rubric" id="krkopt">krkopt</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:51.466976
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.002898550724637681
+response_unique_values_ratio      0.0006415739948674081
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000641574
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<h3 class="rubric" id="penguins">penguins</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:53.739994
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.009009009009009009
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -597,7 +597,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00289855
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00900901
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -610,13 +610,13 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="appendicitis">appendicitis</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:14.571227
+<h3 class="rubric" id="vote">vote</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:54.843372
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.018867924528301886
+response_unique_values_ratio      0.004597701149425287
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -627,7 +627,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0188679
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0045977
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -640,13 +640,13 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="shuttle">shuttle</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:17.015934
+<h3 class="rubric" id="heart-c">heart_c</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:56.125207
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.0001206896551724138
+response_unique_values_ratio      0.006600660066006601
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -657,7 +657,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00012069
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00660066
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -670,24 +670,24 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="car-evaluation">car_evaluation</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:17.691107
+<h3 class="rubric" id="splice">splice</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:23:59.618141
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.0023148148148148147
+response_unique_values_ratio      0.0009410288582183187
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
 Steps:
   Order  Step                                Reward  State Change
--------  --------------------------------  --------  ----------------------------------------
+-------  --------------------------------  --------  -----------------------------------------
       1  Is Response Positive Values Only       0.1
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00231481
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000941029
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -700,24 +700,24 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="spect">spect</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:19.998347
+<h3 class="rubric" id="waveform-21">waveform_21</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:02.356017
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.00749063670411985
+response_unique_values_ratio      0.0006
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
 Steps:
   Order  Step                                Reward  State Change
--------  --------------------------------  --------  ----------------------------------------
+-------  --------------------------------  --------  ------------------------------------
       1  Is Response Positive Values Only       0.1
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00749064
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0006
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -730,13 +730,13 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="ionosphere">ionosphere</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:20.589202
+<h3 class="rubric" id="breast">breast</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:04.833389
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.005698005698005698
+response_unique_values_ratio      0.002861230329041488
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -747,7 +747,67 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00569801
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00286123
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<h3 class="rubric" id="breast-cancer">breast_cancer</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:12.484160
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.006993006993006993
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  ----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00699301
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+</pre></div>
+</div>
+<h3 class="rubric" id="texture">texture</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:16.067282
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.002
+response_inferred_dtype           integer
+is_response_discrete              1
+is_response_positive_values_only  1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  integer
+      4  Is Response Discrete                   0.1  is_response_discrete  1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.002
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -761,7 +821,7 @@ Steps:
 </pre></div>
 </div>
 <h3 class="rubric" id="monk2">monk2</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:22.311047
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:19.378255
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
@@ -790,13 +850,13 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="horse-colic">horse_colic</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:22.841615
+<h3 class="rubric" id="wine-quality-red">wine_quality_red</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:20.595985
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.005434782608695652
+response_unique_values_ratio      0.00375234521575985
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -807,7 +867,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00543478
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00375235
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -820,13 +880,13 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="mfeat-factors">mfeat_factors</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:25.513372
+<h3 class="rubric" id="prnn-synth">prnn_synth</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:22.895287
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.005
+response_unique_values_ratio      0.008
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
@@ -837,7 +897,7 @@ Steps:
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.005
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.008
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1
@@ -850,84 +910,24 @@ Steps:
      15  Response Unique Values Ratio          -1
 </pre></div>
 </div>
-<h3 class="rubric" id="contraceptive">contraceptive</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:26.778580
+<h3 class="rubric" id="agaricus-lepiota">agaricus_lepiota</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-03 16:24:25.452360
 Final status is Not Complete
 Initial State known features:
 response_variable_label           target
 time_convertible_variable
-response_unique_values_ratio      0.002036659877800407
+response_unique_values_ratio      0.00024554941682013506
 response_inferred_dtype           integer
 is_response_discrete              1
 is_response_positive_values_only  1
 Steps:
   Order  Step                                Reward  State Change
--------  --------------------------------  --------  ----------------------------------------
+-------  --------------------------------  --------  -----------------------------------------
       1  Is Response Positive Values Only       0.1
       2  Time Convertible Variable Search       0.1  time_convertible_variable
       3  Infer Response DType                   0.1  response_inferred_dtype  integer
       4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.00203666
-      6  Response Unique Values Ratio          -1
-      7  Response Unique Values Ratio          -1
-      8  Response Unique Values Ratio          -1
-      9  Response Unique Values Ratio          -1
-     10  Response Unique Values Ratio          -1
-     11  Response Unique Values Ratio          -1
-     12  Response Unique Values Ratio          -1
-     13  Response Unique Values Ratio          -1
-     14  Response Unique Values Ratio          -1
-     15  Response Unique Values Ratio          -1
-</pre></div>
-</div>
-<h3 class="rubric" id="irish">irish</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:27.299908
-Final status is Not Complete
-Initial State known features:
-response_variable_label           target
-time_convertible_variable
-response_unique_values_ratio      0.004
-response_inferred_dtype           integer
-is_response_discrete              1
-is_response_positive_values_only  1
-Steps:
-  Order  Step                                Reward  State Change
--------  --------------------------------  --------  -----------------------------------
-      1  Is Response Positive Values Only       0.1
-      2  Time Convertible Variable Search       0.1  time_convertible_variable
-      3  Infer Response DType                   0.1  response_inferred_dtype  integer
-      4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.004
-      6  Response Unique Values Ratio          -1
-      7  Response Unique Values Ratio          -1
-      8  Response Unique Values Ratio          -1
-      9  Response Unique Values Ratio          -1
-     10  Response Unique Values Ratio          -1
-     11  Response Unique Values Ratio          -1
-     12  Response Unique Values Ratio          -1
-     13  Response Unique Values Ratio          -1
-     14  Response Unique Values Ratio          -1
-     15  Response Unique Values Ratio          -1
-</pre></div>
-</div>
-<h3 class="rubric" id="analcatdata-cyyoung8092">analcatdata_cyyoung8092</h3>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Analysis executed at 2024-04-01 20:20:27.888100
-Final status is Not Complete
-Initial State known features:
-response_variable_label           target
-time_convertible_variable
-response_unique_values_ratio      0.020618556701030927
-response_inferred_dtype           integer
-is_response_discrete              1
-is_response_positive_values_only  1
-Steps:
-  Order  Step                                Reward  State Change
--------  --------------------------------  --------  ---------------------------------------
-      1  Is Response Positive Values Only       0.1
-      2  Time Convertible Variable Search       0.1  time_convertible_variable
-      3  Infer Response DType                   0.1  response_inferred_dtype  integer
-      4  Is Response Discrete                   0.1  is_response_discrete  1
-      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.0206186
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000245549
       6  Response Unique Values Ratio          -1
       7  Response Unique Values Ratio          -1
       8  Response Unique Values Ratio          -1

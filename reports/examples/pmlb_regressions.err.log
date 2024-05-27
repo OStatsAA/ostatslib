@@ -1,0 +1,199 @@
+Traceback (most recent call last):
+  File "/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/work/ostatslib/ostatslib/.venv/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from IPython.display import display
+
+for result in results:
+    display(Markdown(f"### {result['name']}"))
+    print(result['analysis'].summary())
+------------------
+
+----- stdout -----
+
+Analysis executed at 2024-05-27 20:39:59.420157
+Final status is Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.7917909247356196
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  0.7917909247356196
+Steps:
+  Order  Step                                    Reward  State Change
+-------  ------------------------------------  --------  ------------------------------------------------------
+      1  Is Response Positive Values Only      0.1
+      2  Response Unique Values Ratio          0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  0.791791  score                                         0.791791
+                                                         adaboost_square_loss_regression_score_reward  0.791791
+----- stdout -----
+
+Analysis executed at 2024-05-27 20:40:09.305665
+Final status is Not Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.6801970876415099
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  -0.3198029123584901
+Steps:
+  Order  Step                                     Reward  State Change
+-------  ------------------------------------  ---------  -------------------------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Response Unique Values Ratio           0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  -0.330622  score                                          0.669378
+                                                          adaboost_square_loss_regression_score_reward  -0.330622
+      4  AdaBoost Regression with Square Loss  -0.337453  score                                          0.662547
+                                                          adaboost_square_loss_regression_score_reward  -0.337453
+      5  AdaBoost Regression with Square Loss  -0.349951  score                                          0.650049
+                                                          adaboost_square_loss_regression_score_reward  -0.349951
+      6  AdaBoost Regression with Square Loss  -0.342954  score                                          0.657046
+                                                          adaboost_square_loss_regression_score_reward  -0.342954
+      7  AdaBoost Regression with Square Loss  -0.335073  score                                          0.664927
+                                                          adaboost_square_loss_regression_score_reward  -0.335073
+      8  AdaBoost Regression with Square Loss  -0.336482  score                                          0.663518
+                                                          adaboost_square_loss_regression_score_reward  -0.336482
+      9  AdaBoost Regression with Square Loss  -0.340375  score                                          0.659625
+                                                          adaboost_square_loss_regression_score_reward  -0.340375
+     10  AdaBoost Regression with Square Loss  -0.347422  score                                          0.652578
+                                                          adaboost_square_loss_regression_score_reward  -0.347422
+     11  AdaBoost Regression with Square Loss  -0.332727  score                                          0.667273
+                                                          adaboost_square_loss_regression_score_reward  -0.332727
+     12  AdaBoost Regression with Square Loss  -0.352266  score                                          0.647734
+                                                          adaboost_square_loss_regression_score_reward  -0.352266
+     13  AdaBoost Regression with Square Loss  -0.345241  score                                          0.654759
+                                                          adaboost_square_loss_regression_score_reward  -0.345241
+     14  AdaBoost Regression with Square Loss  -0.338941  score                                          0.661059
+                                                          adaboost_square_loss_regression_score_reward  -0.338941
+     15  AdaBoost Regression with Square Loss  -0.319803  score                                          0.680197
+                                                          adaboost_square_loss_regression_score_reward  -0.319803
+----- stdout -----
+
+Analysis executed at 2024-05-27 20:40:11.185800
+Final status is Not Complete
+Initial State known features:
+response_variable_label           target
+time_convertible_variable
+response_unique_values_ratio      0.0007333333333333333
+response_inferred_dtype           floating
+is_response_positive_values_only  1
+standardized_variables_ratio      -1
+Steps:
+  Order  Step                                Reward  State Change
+-------  --------------------------------  --------  -----------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Time Convertible Variable Search       0.1  time_convertible_variable
+      3  Infer Response DType                   0.1  response_inferred_dtype  floating
+      4  Standardized Variables Ratio           0.1  standardized_variables_ratio  -1
+      5  Response Unique Values Ratio           0.1  response_unique_values_ratio  0.000733333
+      6  Response Unique Values Ratio          -1
+      7  Response Unique Values Ratio          -1
+      8  Response Unique Values Ratio          -1
+      9  Response Unique Values Ratio          -1
+     10  Response Unique Values Ratio          -1
+     11  Response Unique Values Ratio          -1
+     12  Response Unique Values Ratio          -1
+     13  Response Unique Values Ratio          -1
+     14  Response Unique Values Ratio          -1
+     15  Response Unique Values Ratio          -1
+----- stdout -----
+
+Analysis executed at 2024-05-27 20:40:20.982133
+Final status is Not Complete
+Initial State known features:
+response_variable_label                       target
+score                                         0.6553472392958026
+response_unique_values_ratio                  1.0
+is_response_positive_values_only              -1
+adaboost_square_loss_regression_score_reward  -0.34465276070419737
+Steps:
+  Order  Step                                     Reward  State Change
+-------  ------------------------------------  ---------  -------------------------------------------------------
+      1  Is Response Positive Values Only       0.1
+      2  Response Unique Values Ratio           0.1       response_unique_values_ratio  1
+      3  AdaBoost Regression with Square Loss  -0.354721  score                                          0.645279
+                                                          adaboost_square_loss_regression_score_reward  -0.354721
+      4  AdaBoost Regression with Square Loss  -0.346664  score                                          0.653336
+                                                          adaboost_square_loss_regression_score_reward  -0.346664
+      5  AdaBoost Regression with Square Loss  -0.349205  score                                          0.650795
+                                                          adaboost_square_loss_regression_score_reward  -0.349205
+      6  AdaBoost Regression with Square Loss  -0.381423  score                                          0.618577
+                                                          adaboost_square_loss_regression_score_reward  -0.381423
+      7  AdaBoost Regression with Square Loss  -0.348697  score                                          0.651303
+                                                          adaboost_square_loss_regression_score_reward  -0.348697
+      8  AdaBoost Regression with Square Loss  -0.33285   score                                          0.66715
+                                                          adaboost_square_loss_regression_score_reward  -0.33285
+      9  AdaBoost Regression with Square Loss  -0.344332  score                                          0.655668
+                                                          adaboost_square_loss_regression_score_reward  -0.344332
+     10  AdaBoost Regression with Square Loss  -0.357094  score                                          0.642906
+                                                          adaboost_square_loss_regression_score_reward  -0.357094
+     11  AdaBoost Regression with Square Loss  -0.357671  score                                          0.642329
+                                                          adaboost_square_loss_regression_score_reward  -0.357671
+     12  AdaBoost Regression with Square Loss  -0.359413  score                                          0.640587
+                                                          adaboost_square_loss_regression_score_reward  -0.359413
+     13  AdaBoost Regression with Square Loss  -0.342608  score                                          0.657392
+                                                          adaboost_square_loss_regression_score_reward  -0.342608
+     14  AdaBoost Regression with Square Loss  -0.353686  score                                          0.646314
+                                                          adaboost_square_loss_regression_score_reward  -0.353686
+     15  AdaBoost Regression with Square Loss  -0.344653  score                                          0.655347
+                                                          adaboost_square_loss_regression_score_reward  -0.344653
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[4], line 5[0m
+[1;32m      3[0m [38;5;28;01mfor[39;00m result [38;5;129;01min[39;00m results:
+[1;32m      4[0m     display(Markdown([38;5;124mf[39m[38;5;124m"[39m[38;5;124m### [39m[38;5;132;01m{[39;00mresult[[38;5;124m'[39m[38;5;124mname[39m[38;5;124m'[39m][38;5;132;01m}[39;00m[38;5;124m"[39m))
+[0;32m----> 5[0m     [38;5;28mprint[39m([43mresult[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43manalysis[39;49m[38;5;124;43m'[39;49m[43m][49m[38;5;241;43m.[39;49m[43msummary[49m[43m([49m[43m)[49m)
+
+File [0;32m~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:49[0m, in [0;36mAnalysisResult.summary[0;34m(self)[0m
+[1;32m     38[0m [38;5;28;01mdef[39;00m [38;5;21msummary[39m([38;5;28mself[39m) [38;5;241m-[39m[38;5;241m>[39m [38;5;28mstr[39m:
+[1;32m     39[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m     40[0m [38;5;124;03m    Returns analysis summary[39;00m
+[1;32m     41[0m 
+[1;32m     42[0m [38;5;124;03m    Returns:[39;00m
+[1;32m     43[0m [38;5;124;03m        str: analysis summary[39;00m
+[1;32m     44[0m [38;5;124;03m    """[39;00m
+[1;32m     45[0m     [38;5;28;01mreturn[39;00m (
+[1;32m     46[0m         [38;5;124mf[39m[38;5;124m'[39m[38;5;130;01m\n[39;00m[38;5;124mAnalysis executed at [39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mtimestamp[38;5;132;01m}[39;00m[38;5;130;01m\n[39;00m[38;5;124m'[39m
+[1;32m     47[0m         [38;5;124mf[39m[38;5;124m'[39m[38;5;124mFinal status is [39m[38;5;132;01m{[39;00m[38;5;124m"[39m[38;5;124mComplete[39m[38;5;124m"[39m[38;5;250m [39m[38;5;28;01mif[39;00m[38;5;250m [39m[38;5;28mself[39m[38;5;241m.[39mdone[38;5;250m [39m[38;5;28;01melse[39;00m[38;5;250m [39m[38;5;124m"[39m[38;5;124mNot Complete[39m[38;5;124m"[39m[38;5;132;01m}[39;00m[38;5;130;01m\n[39;00m[38;5;124m'[39m
+[1;32m     48[0m         [38;5;124mf[39m[38;5;124m'[39m[38;5;124mInitial State known features:[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39m__fill_initial_state_row()[38;5;132;01m}[39;00m[38;5;130;01m\n[39;00m[38;5;124m'[39m
+[0;32m---> 49[0m         [38;5;124mf[39m[38;5;124m'[39m[38;5;124mSteps:[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m__fill_summary_table_steps_rows[49m[43m([49m[43m)[49m[38;5;132;01m}[39;00m[38;5;124m'[39m
+[1;32m     50[0m     )
+
+File [0;32m~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:65[0m, in [0;36mAnalysisResult.__fill_summary_table_steps_rows[0;34m(self)[0m
+[1;32m     58[0m table_rows: StepsRows [38;5;241m=[39m []
+[1;32m     60[0m [38;5;28;01mfor[39;00m i, (reward, info) [38;5;129;01min[39;00m [38;5;28menumerate[39m([38;5;28mself[39m[38;5;241m.[39msteps):
+[1;32m     61[0m     table_rows[38;5;241m.[39mappend((
+[1;32m     62[0m         i[38;5;241m+[39m[38;5;241m1[39m,
+[1;32m     63[0m         [38;5;28mstr[39m(info[38;5;241m.[39maction_name),
+[1;32m     64[0m         reward,
+[0;32m---> 65[0m         tabulate([38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m__get_state_delta[49m[43m([49m[43minfo[49m[43m,[49m[43m [49m[43mi[49m[43m)[49m[38;5;241m.[39mlist_known_features(),
+[1;32m     66[0m                  tablefmt[38;5;241m=[39m[38;5;124m"[39m[38;5;124mplain[39m[38;5;124m"[39m)
+[1;32m     67[0m     ))
+[1;32m     69[0m [38;5;28;01mreturn[39;00m tabulate(table_rows, steps_headers)
+
+File [0;32m~/work/ostatslib/ostatslib/ostatslib/agents/analysis_result.py:84[0m, in [0;36mAnalysisResult.__get_state_delta[0;34m(self, info, i)[0m
+[1;32m     79[0m         [38;5;28;01mreturn[39;00m info[38;5;241m.[39mnext_state [38;5;241m-[39m previous_state
+[1;32m     81[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m     82[0m         [38;5;124mf[39m[38;5;124m'[39m[38;5;124mCannot write State delta, step [39m[38;5;132;01m{[39;00mi[38;5;241m-[39m[38;5;241m1[39m[38;5;132;01m}[39;00m[38;5;124m State is None[39m[38;5;124m'[39m)
+[0;32m---> 84[0m [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124mf[39m[38;5;124m'[39m[38;5;124mCannot write State delta, step [39m[38;5;132;01m{[39;00mi[38;5;132;01m}[39;00m[38;5;124m State is None[39m[38;5;124m'[39m)
+
+[0;31mValueError[0m: Cannot write State delta, step 4 State is None
+

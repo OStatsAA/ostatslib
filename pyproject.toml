@@ -22,7 +22,7 @@ pmlb = "^1.0.1.post3"
 kneed = "^0.8.5"
 statsforecast = "^1.7.1"
 datasetsforecast = "^0.0.8"
-torch = "2.1.2"
+torch = "2.4.0"
 wrapt-timeout-decorator = "^1.4.0"
 xgboost = "^2.0.3"
 
